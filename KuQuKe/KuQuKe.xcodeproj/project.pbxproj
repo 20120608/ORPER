@@ -63,6 +63,9 @@
 		55D1D0DD21E22095008ECEE3 /* ZJCalenderDateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D1D0D221E22095008ECEE3 /* ZJCalenderDateManager.m */; };
 		55D1D0DE21E22095008ECEE3 /* ZJCalenderMonthModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D1D0D521E22095008ECEE3 /* ZJCalenderMonthModel.m */; };
 		55D1D0DF21E22095008ECEE3 /* ZJCalenderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D1D0D721E22095008ECEE3 /* ZJCalenderController.m */; };
+		5918A77121E2F5DF00CF8431 /* DQMHorizontalViewScrollerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5918A77021E2F5DF00CF8431 /* DQMHorizontalViewScrollerView.m */; };
+		5918A77521E32CE900CF8431 /* UICollectionViewLeftAlignedLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 5918A77421E32CE900CF8431 /* UICollectionViewLeftAlignedLayout.m */; };
+		5918A77821E32D9900CF8431 /* ADHorizontalCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5918A77721E32D9900CF8431 /* ADHorizontalCollectionViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -195,6 +198,12 @@
 		55D1D0D521E22095008ECEE3 /* ZJCalenderMonthModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJCalenderMonthModel.m; sourceTree = "<group>"; };
 		55D1D0D621E22095008ECEE3 /* ZJCalenderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJCalenderController.h; sourceTree = "<group>"; };
 		55D1D0D721E22095008ECEE3 /* ZJCalenderController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJCalenderController.m; sourceTree = "<group>"; };
+		5918A76F21E2F5DF00CF8431 /* DQMHorizontalViewScrollerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DQMHorizontalViewScrollerView.h; sourceTree = "<group>"; };
+		5918A77021E2F5DF00CF8431 /* DQMHorizontalViewScrollerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DQMHorizontalViewScrollerView.m; sourceTree = "<group>"; };
+		5918A77321E32CE900CF8431 /* UICollectionViewLeftAlignedLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICollectionViewLeftAlignedLayout.h; sourceTree = "<group>"; };
+		5918A77421E32CE900CF8431 /* UICollectionViewLeftAlignedLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICollectionViewLeftAlignedLayout.m; sourceTree = "<group>"; };
+		5918A77621E32D9900CF8431 /* ADHorizontalCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ADHorizontalCollectionViewCell.h; sourceTree = "<group>"; };
+		5918A77721E32D9900CF8431 /* ADHorizontalCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ADHorizontalCollectionViewCell.m; sourceTree = "<group>"; };
 		BBA01A4F588F36CE8B3727A1 /* Pods-KuQuKe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KuQuKe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KuQuKe/Pods-KuQuKe.debug.xcconfig"; sourceTree = "<group>"; };
 		C7FE1CD1FD4856ED3093FC18 /* Pods-KuQuKe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KuQuKe.release.xcconfig"; path = "Pods/Target Support Files/Pods-KuQuKe/Pods-KuQuKe.release.xcconfig"; sourceTree = "<group>"; };
 		D39DEF13475F7A49DCFD97FE /* Pods_KuQuKe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KuQuKe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -331,6 +340,7 @@
 		5537064721E1C2E7001E49BC /* Wheel */ = {
 			isa = PBXGroup;
 			children = (
+				5918A76E21E2F5AC00CF8431 /* DQMHorizontalViewScrollerView */,
 				55D1D0C621E22073008ECEE3 /* DQMCalendar */,
 			);
 			path = Wheel;
@@ -409,6 +419,7 @@
 		5594A0E621E1BC1F009178B3 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				5918A77221E32CDA00CF8431 /* UICollectionView */,
 				5594A0E721E1BC1F009178B3 /* UIWindow */,
 				5594A0EA21E1BC1F009178B3 /* UIButton */,
 				5594A0ED21E1BC1F009178B3 /* UIColor */,
@@ -642,6 +653,26 @@
 			path = DQMCalendar;
 			sourceTree = "<group>";
 		};
+		5918A76E21E2F5AC00CF8431 /* DQMHorizontalViewScrollerView */ = {
+			isa = PBXGroup;
+			children = (
+				5918A76F21E2F5DF00CF8431 /* DQMHorizontalViewScrollerView.h */,
+				5918A77021E2F5DF00CF8431 /* DQMHorizontalViewScrollerView.m */,
+				5918A77621E32D9900CF8431 /* ADHorizontalCollectionViewCell.h */,
+				5918A77721E32D9900CF8431 /* ADHorizontalCollectionViewCell.m */,
+			);
+			path = DQMHorizontalViewScrollerView;
+			sourceTree = "<group>";
+		};
+		5918A77221E32CDA00CF8431 /* UICollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				5918A77321E32CE900CF8431 /* UICollectionViewLeftAlignedLayout.h */,
+				5918A77421E32CE900CF8431 /* UICollectionViewLeftAlignedLayout.m */,
+			);
+			path = UICollectionView;
+			sourceTree = "<group>";
+		};
 		835EFD55B493FECDFA3D3B7E /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -863,6 +894,7 @@
 				5594A14A21E1BC1F009178B3 /* DQMGroup.m in Sources */,
 				5594A15021E1BC1F009178B3 /* DQMLabelSizeToFitInTableViewCell.m in Sources */,
 				5594A13921E1BC1F009178B3 /* UIView+GestureCallback.m in Sources */,
+				5918A77821E32D9900CF8431 /* ADHorizontalCollectionViewCell.m in Sources */,
 				5594A14521E1BC1F009178B3 /* DQMNavUIBaseViewController.m in Sources */,
 				5594A14821E1BC1F009178B3 /* StaticListItem.m in Sources */,
 				5594A13621E1BC1F009178B3 /* UIWindow+CurrentViewController.m in Sources */,
@@ -887,12 +919,14 @@
 				5594A13E21E1BC1F009178B3 /* UINavigationController+FDFullscreenPopGesture.m in Sources */,
 				5594A14921E1BC1F009178B3 /* StaticSectionItem.m in Sources */,
 				5594A14E21E1BC1F009178B3 /* StaticListTableViewCell.m in Sources */,
+				5918A77521E32CE900CF8431 /* UICollectionViewLeftAlignedLayout.m in Sources */,
 				5594A13A21E1BC1F009178B3 /* UIView+DQMFrame.m in Sources */,
 				5594A0C221E1BB12009178B3 /* main.m in Sources */,
 				5594A13C21E1BC1F009178B3 /* MBProgressHUD+DQM.m in Sources */,
 				5594A15221E1BC1F009178B3 /* DQMListExpendHeaderView.m in Sources */,
 				5537063721E1C05C001E49BC /* GameViewController.m in Sources */,
 				5594A15B21E1BCC5009178B3 /* HomeViewController.m in Sources */,
+				5918A77121E2F5DF00CF8431 /* DQMHorizontalViewScrollerView.m in Sources */,
 				5594A14B21E1BC1F009178B3 /* DQMTeam.m in Sources */,
 				5537063A21E1C064001E49BC /* MyViewController.m in Sources */,
 				5594A13D21E1BC1F009178B3 /* UIImageView+SDwebImageFade.m in Sources */,
@@ -1075,7 +1109,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4A6RMPCXH3;
-				GCC_PREFIX_HEADER = /Users/daiqiuming/Desktop/ORPER/KuQuKe/KuQuKe/Other/PrefixHeader.pch;
+				GCC_PREFIX_HEADER = /Users/piaoduwang/Desktop/ORPER/KuQuKe/KuQuKe/Other/PrefixHeader.pch;
 				INFOPLIST_FILE = "$(SRCROOT)/KuQuKe/Other/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1095,7 +1129,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4A6RMPCXH3;
-				GCC_PREFIX_HEADER = /Users/daiqiuming/Desktop/ORPER/KuQuKe/KuQuKe/Other/PrefixHeader.pch;
+				GCC_PREFIX_HEADER = /Users/piaoduwang/Desktop/ORPER/KuQuKe/KuQuKe/Other/PrefixHeader.pch;
 				INFOPLIST_FILE = "$(SRCROOT)/KuQuKe/Other/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
