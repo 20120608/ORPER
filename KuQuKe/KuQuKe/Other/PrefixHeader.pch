@@ -11,7 +11,7 @@
 
 #import "dqmBasePrefix.pch"
 
-#define DQMMainColor  QMHexColor(@"qcbb6f")
+#define DQMMainColor  QMHexColor(@"27B678")
 #import "ZJCalenderConst.h"	//日历的宏定义
 
 

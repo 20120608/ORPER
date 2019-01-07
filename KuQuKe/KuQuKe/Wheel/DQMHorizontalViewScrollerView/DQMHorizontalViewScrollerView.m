@@ -30,6 +30,7 @@
 {
   self = [super initWithFrame:frame];
   if (self) {
+	  self.backgroundColor = UIColor.whiteColor;
     [self createUIWithFrame:frame];
     
   }
@@ -40,7 +41,23 @@
 
 #pragma mark - UI
 - (void)createUIWithFrame:(CGRect)frame {
-  
+	
+	UIImageView *imageView = ({
+		UIImageView *imageView = [[UIImageView alloc] init];
+		[self addSubview: imageView];
+		QMSetImage(imageView, @"07");
+		[imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.top.mas_equalTo(8);
+			make.left.mas_equalTo(10);
+			make.size.mas_equalTo(CGSizeMake(24, 22));
+		}];
+		imageView;
+	});
+	
+	UIView *line = [[UIView alloc] initWithFrame:CGRectMake(43, 8, 1, 22)];
+	line.backgroundColor = DQMMainColor;
+	[self addSubview:line];
+	
   UICollectionViewLeftAlignedLayout  *layout = [[UICollectionViewLeftAlignedLayout alloc] init];
   [layout setScrollDirection:UICollectionViewScrollDirectionHorizontal]; //设置竖直滚动
   layout.minimumInteritemSpacing = 0;
@@ -48,14 +65,15 @@
   layout.estimatedItemSize = CGSizeMake(150, frame.size.height);
   
   self.contentView = ({
-    UICollectionView *view = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height) collectionViewLayout:layout];
+    UICollectionView *view = [[UICollectionView alloc] initWithFrame:CGRectMake(38, 0, frame.size.width, frame.size.height) collectionViewLayout:layout];
     [self addSubview: view];
     view.delegate = self;
     view.dataSource = self;
     view.backgroundColor = [UIColor whiteColor];
     [view registerClass:[ADHorizontalCollectionViewCell class] forCellWithReuseIdentifier:@"ADHorizontalCollectionViewCell"];
     [view mas_makeConstraints:^(MASConstraintMaker *make) {
-      make.left.bottom.right.top.mas_equalTo(0);
+      make.bottom.right.top.mas_equalTo(0);
+		make.left.mas_equalTo(44);
     }];
     view;
   });
@@ -115,14 +133,14 @@
 
 - (void)contentMove {
   
-  if (self.contentView.contentSize.width < kScreenWidth-44) {
+  if (self.contentView.contentSize.width < kScreenWidth-38) {
     return;//小于屏幕不滚动
   }
   
   if (self.contentView.contentOffset.x < 0) {
     _scrollRight = NO;
   }
-  if (self.contentView.contentOffset.x > self.contentView.contentSize.width - (kScreenWidth-44) ) {
+  if (self.contentView.contentOffset.x > self.contentView.contentSize.width - (kScreenWidth-38) ) {
     _scrollRight = YES;
   }
   
