@@ -33,13 +33,13 @@
 	if (self)
 	{
 		/** 图标 */
-		@property(nonatomic,strong) UIImageView      *iconImageView;
-		/** 标题 */
-		@property(nonatomic,strong) UILabel          *titleLabel;
-		/** 下标 */
-		@property(nonatomic,copy) NSIndexPath        *indexPath;
-		/** 箭头 */
-		@property(nonatomic,strong) UIImageView      *arrowImageView;
+//    @property(nonatomic,strong) UIImageView      *iconImageView;
+//    /** 标题 */
+//    @property(nonatomic,strong) UILabel          *titleLabel;
+//    /** 下标 */
+//    @property(nonatomic,copy) NSIndexPath        *indexPath;
+//    /** 箭头 */
+//    @property(nonatomic,strong) UIImageView      *arrowImageView;
 	}
 	return self;
 }

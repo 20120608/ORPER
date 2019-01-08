@@ -67,6 +67,9 @@
 		5918A77121E2F5DF00CF8431 /* DQMHorizontalViewScrollerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5918A77021E2F5DF00CF8431 /* DQMHorizontalViewScrollerView.m */; };
 		5918A77521E32CE900CF8431 /* UICollectionViewLeftAlignedLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 5918A77421E32CE900CF8431 /* UICollectionViewLeftAlignedLayout.m */; };
 		5918A77821E32D9900CF8431 /* ADHorizontalCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5918A77721E32D9900CF8431 /* ADHorizontalCollectionViewCell.m */; };
+		59D0AEB921E4281B00F3A67C /* AvgButtonMenuTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 59D0AEB821E4281B00F3A67C /* AvgButtonMenuTableViewCell.m */; };
+		59D0AEBC21E429AF00F3A67C /* QMButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 59D0AEBB21E429AF00F3A67C /* QMButton.m */; };
+		59D0AEC921E4665E00F3A67C /* RotaryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59D0AEC821E4665E00F3A67C /* RotaryTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -207,6 +210,12 @@
 		5918A77421E32CE900CF8431 /* UICollectionViewLeftAlignedLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICollectionViewLeftAlignedLayout.m; sourceTree = "<group>"; };
 		5918A77621E32D9900CF8431 /* ADHorizontalCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ADHorizontalCollectionViewCell.h; sourceTree = "<group>"; };
 		5918A77721E32D9900CF8431 /* ADHorizontalCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ADHorizontalCollectionViewCell.m; sourceTree = "<group>"; };
+		59D0AEB721E4281B00F3A67C /* AvgButtonMenuTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AvgButtonMenuTableViewCell.h; sourceTree = "<group>"; };
+		59D0AEB821E4281B00F3A67C /* AvgButtonMenuTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AvgButtonMenuTableViewCell.m; sourceTree = "<group>"; };
+		59D0AEBA21E429AF00F3A67C /* QMButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMButton.h; sourceTree = "<group>"; };
+		59D0AEBB21E429AF00F3A67C /* QMButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMButton.m; sourceTree = "<group>"; };
+		59D0AEC721E4665E00F3A67C /* RotaryTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RotaryTableViewController.h; sourceTree = "<group>"; };
+		59D0AEC821E4665E00F3A67C /* RotaryTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RotaryTableViewController.m; sourceTree = "<group>"; };
 		BBA01A4F588F36CE8B3727A1 /* Pods-KuQuKe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KuQuKe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KuQuKe/Pods-KuQuKe.debug.xcconfig"; sourceTree = "<group>"; };
 		C7FE1CD1FD4856ED3093FC18 /* Pods-KuQuKe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KuQuKe.release.xcconfig"; path = "Pods/Target Support Files/Pods-KuQuKe/Pods-KuQuKe.release.xcconfig"; sourceTree = "<group>"; };
 		D39DEF13475F7A49DCFD97FE /* Pods_KuQuKe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KuQuKe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -287,8 +296,6 @@
 		5537063F21E1C287001E49BC /* View */ = {
 			isa = PBXGroup;
 			children = (
-				55542FAC21E37ABD000F8D45 /* TaskTableViewCell.h */,
-				55542FAD21E37ABD000F8D45 /* TaskTableViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -345,6 +352,7 @@
 		5537064721E1C2E7001E49BC /* Wheel */ = {
 			isa = PBXGroup;
 			children = (
+				59D0AEC321E465EA00F3A67C /* Rotarytable */,
 				5918A76E21E2F5AC00CF8431 /* DQMHorizontalViewScrollerView */,
 				55D1D0C621E22073008ECEE3 /* DQMCalendar */,
 			);
@@ -380,6 +388,7 @@
 				5594A0B221E1BB11009178B3 /* AppDelegate.h */,
 				5594A0B321E1BB11009178B3 /* AppDelegate.m */,
 				5537064721E1C2E7001E49BC /* Wheel */,
+				59D0AEB621E427C800F3A67C /* GeneralView */,
 				5594A15821E1BC6E009178B3 /* Home */,
 				5594A15E21E1BCF4009178B3 /* APP */,
 				5594A15D21E1BCF2009178B3 /* Game */,
@@ -448,6 +457,8 @@
 		5594A0EA21E1BC1F009178B3 /* UIButton */ = {
 			isa = PBXGroup;
 			children = (
+				59D0AEBA21E429AF00F3A67C /* QMButton.h */,
+				59D0AEBB21E429AF00F3A67C /* QMButton.m */,
 				5594A0EB21E1BC1F009178B3 /* UIButton+DQM.h */,
 				5594A0EC21E1BC1F009178B3 /* UIButton+DQM.m */,
 			);
@@ -678,6 +689,26 @@
 			path = UICollectionView;
 			sourceTree = "<group>";
 		};
+		59D0AEB621E427C800F3A67C /* GeneralView */ = {
+			isa = PBXGroup;
+			children = (
+				55542FAC21E37ABD000F8D45 /* TaskTableViewCell.h */,
+				55542FAD21E37ABD000F8D45 /* TaskTableViewCell.m */,
+				59D0AEB721E4281B00F3A67C /* AvgButtonMenuTableViewCell.h */,
+				59D0AEB821E4281B00F3A67C /* AvgButtonMenuTableViewCell.m */,
+			);
+			path = GeneralView;
+			sourceTree = "<group>";
+		};
+		59D0AEC321E465EA00F3A67C /* Rotarytable */ = {
+			isa = PBXGroup;
+			children = (
+				59D0AEC721E4665E00F3A67C /* RotaryTableViewController.h */,
+				59D0AEC821E4665E00F3A67C /* RotaryTableViewController.m */,
+			);
+			path = Rotarytable;
+			sourceTree = "<group>";
+		};
 		835EFD55B493FECDFA3D3B7E /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -895,6 +926,7 @@
 				5594A15321E1BC1F009178B3 /* YYFPSLabel.m in Sources */,
 				5594A13821E1BC1F009178B3 /* UIColor+HexString.m in Sources */,
 				5594A13721E1BC1F009178B3 /* UIButton+DQM.m in Sources */,
+				59D0AEC921E4665E00F3A67C /* RotaryTableViewController.m in Sources */,
 				55D1D0D821E22095008ECEE3 /* ZJCalenderMonthTitleView.m in Sources */,
 				5594A14A21E1BC1F009178B3 /* DQMGroup.m in Sources */,
 				5594A13921E1BC1F009178B3 /* UIView+GestureCallback.m in Sources */,
@@ -902,12 +934,14 @@
 				5594A14521E1BC1F009178B3 /* DQMNavUIBaseViewController.m in Sources */,
 				5594A14821E1BC1F009178B3 /* StaticListItem.m in Sources */,
 				5594A13621E1BC1F009178B3 /* UIWindow+CurrentViewController.m in Sources */,
+				59D0AEBC21E429AF00F3A67C /* QMButton.m in Sources */,
 				5594A14021E1BC1F009178B3 /* DQMStaticTableViewController.m in Sources */,
 				55542FB121E3A333000F8D45 /* DQMImageAndArrowTableViewCell.m in Sources */,
 				55D1D0DC21E22095008ECEE3 /* ZJCalenderCollectionView.m in Sources */,
 				5594A15521E1BC1F009178B3 /* QMSGeneralHelpers.m in Sources */,
 				5594A15621E1BC1F009178B3 /* DQMConst.m in Sources */,
 				5594A15421E1BC1F009178B3 /* JXTAlertController.m in Sources */,
+				59D0AEB921E4281B00F3A67C /* AvgButtonMenuTableViewCell.m in Sources */,
 				5537064E21E1C85C001E49BC /* CheckInViewController.m in Sources */,
 				5594A14F21E1BC1F009178B3 /* DQMLabelSizeToFitTableViewCell.m in Sources */,
 				5594A14C21E1BC1F009178B3 /* DQMDefaultTableViewCell.m in Sources */,
@@ -1116,7 +1150,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = NO;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4A6RMPCXH3;
-				GCC_PREFIX_HEADER = /Users/daiqiuming/Desktop/ORPER/KuQuKe/KuQuKe/Other/PrefixHeader.pch;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/KuQuKe/Other/PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/KuQuKe/Other/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1137,7 +1171,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = NO;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4A6RMPCXH3;
-				GCC_PREFIX_HEADER = /Users/daiqiuming/Desktop/ORPER/KuQuKe/KuQuKe/Other/PrefixHeader.pch;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/KuQuKe/Other/PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/KuQuKe/Other/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (

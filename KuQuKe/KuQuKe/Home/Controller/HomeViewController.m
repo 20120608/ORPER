@@ -10,6 +10,8 @@
 #import "CheckInViewController.h"//签到
 #import "DQMHorizontalViewScrollerView.h" //滚动广告
 #import "TaskTableViewCell.h"//任务cell
+#import "AvgButtonMenuTableViewCell.h"//多按钮菜单样式的cell
+#import "RotaryTableViewController.h" //转盘
 
 @interface HomeViewController () <DQMHorizontalViewScrollerViewDataSource>
 {
@@ -57,7 +59,9 @@
 	  self.myMoney = @"1";
 	  
     [weakself.advScrollView reloadData];
-//    https://www.jianshu.com/p/46bcfcf53055
+    
+   
+    
   });
 	
 	
@@ -115,6 +119,8 @@
 	
 	UIButton *withdrawMoneyButton = [UIButton initWithFrame:CGRectZero buttonTitle:@"提现" normalColor:DQMMainColor cornerRadius:AdaptedWidth(11) doneBlock:^(UIButton *sender) {
 		NSLog(@"提现");
+    RotaryTableViewController *vc = [[RotaryTableViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:true];
 	}];
 	[navi addSubview:withdrawMoneyButton];
 	withdrawMoneyButton.backgroundColor = UIColor.whiteColor;
@@ -130,21 +136,21 @@
 
 
 #pragma mark - tableView DataSource
-//-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-//{
-//	return 1;
-//}
-//-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-//{
-//	return 20;
-//}
-//
-//-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//	TaskTableViewCell *cell = [TaskTableViewCell cellWithTableView:tableView initWithCellStyle:TaskTableViewCellStyleSubTag indexPath:indexPath andFixedHeightIfNeed:AdaptedHeight(68)];
-//
-//	return cell;
-//}
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+  return 1;
+}
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+  return 20;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+//  TaskTableViewCell *cell = [TaskTableViewCell cellWithTableView:tableView initWithCellStyle:TaskTableViewCellStyleSubTag indexPath:indexPath andFixedHeightIfNeed:AdaptedHeight(68)];
+    AvgButtonMenuTableViewCell *cell = [AvgButtonMenuTableViewCell cellWithTableView:tableView initWithButtonsNum:5 indexPath:indexPath andFixedHeightIfNeed:92 WithDatasArray:@[@{@"name":@"111",@"icon":@"01"},@{@"name":@"222",@"icon":@"02"},@{@"name":@"333",@"icon":@"03"},@{@"name":@"444",@"icon":@"04"},@{@"name":@"555",@"icon":@"05"}] withFixedSpacing:0 leadSpacing:10 tailSpacing:10];
+  return cell;
+}
 
 
 
