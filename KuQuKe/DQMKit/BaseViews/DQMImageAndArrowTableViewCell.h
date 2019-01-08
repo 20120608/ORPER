@@ -7,10 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DQMTeam.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface DQMImageAndArrowTableViewCell : UITableViewCell
+
+/** 数据模型 */
+@property(nonatomic,strong) DQMTeam          *teamModel;
 
 /** 图标 */
 @property(nonatomic,strong) UIImageView      *iconImageView;
@@ -20,6 +24,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,copy) NSIndexPath        *indexPath;
 /** 箭头 */
 @property(nonatomic,strong) UIImageView      *arrowImageView;
+
++(DQMImageAndArrowTableViewCell *)cellWithTableView:(UITableView *)tableview andIndexPath:(NSIndexPath *)indexPath andFixedCellHeight:(CGFloat)fixedCellHeight;
+
 
 
 @end

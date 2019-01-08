@@ -40,7 +40,7 @@
 
   DQMNavigationController *three = [[DQMNavigationController alloc] initWithRootViewController:[[GameViewController alloc] initWithTitle:@"游戏赚钱"]];
 
-  DQMNavigationController *four = [[DQMNavigationController alloc] initWithRootViewController:[[MyViewController alloc] initWithTitle:@"我的"]];
+  DQMNavigationController *four = [[DQMNavigationController alloc] initWithRootViewController:[[MyViewController alloc] initWithStyle:UITableViewStyleGrouped]];
 
    self.viewControllers = @[one,two,three,four];
   
@@ -51,24 +51,24 @@
   
   NSDictionary *firstTabBarItemsAttributes = @{
                                                @"TabBarItemTitle" : @"首页",
-                                               @"TabBarItemImage" : @"icon_tabbar_home_default",
-                                               @"TabBarItemSelectedImage" : @"icon_tabbar_home_select",
+                                               @"TabBarItemImage" : @"08",
+                                               @"TabBarItemSelectedImage" : @"09",
                                                };
   
   NSDictionary *secondTabBarItemsAttributes = @{
                                                @"TabBarItemTitle" : @"应用赚钱",
-                                               @"TabBarItemImage" : @"icon_tabbar_download_default",
-                                               @"TabBarItemSelectedImage" : @"icon_tabbar_download_select",
+                                               @"TabBarItemImage" : @"10",
+                                               @"TabBarItemSelectedImage" : @"11",
                                                };
 NSDictionary *threeTabBarItemsAttributes = @{
 											  @"TabBarItemTitle" : @"游戏赚钱",
-											  @"TabBarItemImage" : @"icon_tabbar_download_default",
-											  @"TabBarItemSelectedImage" : @"icon_tabbar_download_select",
+											  @"TabBarItemImage" : @"12",
+											  @"TabBarItemSelectedImage" : @"13",
 											  };
 NSDictionary *fourTabBarItemsAttributes = @{
 											  @"TabBarItemTitle" : @"我的",
-											  @"TabBarItemImage" : @"icon_tabbar_download_default",
-											  @"TabBarItemSelectedImage" : @"icon_tabbar_download_select",
+											  @"TabBarItemImage" : @"14",
+											  @"TabBarItemSelectedImage" : @"15",
 											  };
   
   NSArray<NSDictionary *>  *tabBarItemsAttributes = @[

@@ -14,6 +14,8 @@
 		5537064E21E1C85C001E49BC /* CheckInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5537064D21E1C85C001E49BC /* CheckInViewController.m */; };
 		55542FAE21E37ABD000F8D45 /* TaskTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 55542FAD21E37ABD000F8D45 /* TaskTableViewCell.m */; };
 		55542FB121E3A333000F8D45 /* DQMImageAndArrowTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 55542FB021E3A333000F8D45 /* DQMImageAndArrowTableViewCell.m */; };
+		55542FB621E4F991000F8D45 /* DQMExpandImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 55542FB221E4F991000F8D45 /* DQMExpandImageView.m */; };
+		55542FB721E4F991000F8D45 /* DQMExpandHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 55542FB521E4F991000F8D45 /* DQMExpandHeader.m */; };
 		5594A0B421E1BB11009178B3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5594A0B321E1BB11009178B3 /* AppDelegate.m */; };
 		5594A0B721E1BB11009178B3 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5594A0B621E1BB11009178B3 /* ViewController.m */; };
 		5594A0BA21E1BB11009178B3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5594A0B821E1BB11009178B3 /* Main.storyboard */; };
@@ -102,6 +104,10 @@
 		55542FAD21E37ABD000F8D45 /* TaskTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TaskTableViewCell.m; sourceTree = "<group>"; };
 		55542FAF21E3A333000F8D45 /* DQMImageAndArrowTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DQMImageAndArrowTableViewCell.h; sourceTree = "<group>"; };
 		55542FB021E3A333000F8D45 /* DQMImageAndArrowTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DQMImageAndArrowTableViewCell.m; sourceTree = "<group>"; };
+		55542FB221E4F991000F8D45 /* DQMExpandImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DQMExpandImageView.m; sourceTree = "<group>"; };
+		55542FB321E4F991000F8D45 /* DQMExpandHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DQMExpandHeader.h; sourceTree = "<group>"; };
+		55542FB421E4F991000F8D45 /* DQMExpandImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DQMExpandImageView.h; sourceTree = "<group>"; };
+		55542FB521E4F991000F8D45 /* DQMExpandHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DQMExpandHeader.m; sourceTree = "<group>"; };
 		5594A0AF21E1BB11009178B3 /* KuQuKe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KuQuKe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5594A0B221E1BB11009178B3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5594A0B321E1BB11009178B3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -317,6 +323,10 @@
 		5537064221E1C295001E49BC /* View */ = {
 			isa = PBXGroup;
 			children = (
+				55542FB321E4F991000F8D45 /* DQMExpandHeader.h */,
+				55542FB521E4F991000F8D45 /* DQMExpandHeader.m */,
+				55542FB421E4F991000F8D45 /* DQMExpandImageView.h */,
+				55542FB221E4F991000F8D45 /* DQMExpandImageView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -561,6 +571,8 @@
 				5594A12921E1BC1F009178B3 /* DQMAutoRefreshFooter.m */,
 				5594A12621E1BC1F009178B3 /* DQMDefaultTableViewCell.h */,
 				5594A11E21E1BC1F009178B3 /* DQMDefaultTableViewCell.m */,
+				55542FAF21E3A333000F8D45 /* DQMImageAndArrowTableViewCell.h */,
+				55542FB021E3A333000F8D45 /* DQMImageAndArrowTableViewCell.m */,
 				5594A11F21E1BC1F009178B3 /* DQMLabelSizeToFitTableViewCell.h */,
 				5594A12521E1BC1F009178B3 /* DQMLabelSizeToFitTableViewCell.m */,
 				5594A12421E1BC1F009178B3 /* DQMListExpendHeaderView.h */,
@@ -569,8 +581,6 @@
 				5594A12021E1BC1F009178B3 /* DQMNavigationBar.m */,
 				5594A12A21E1BC1F009178B3 /* StaticListTableViewCell.h */,
 				5594A12221E1BC1F009178B3 /* StaticListTableViewCell.m */,
-				55542FAF21E3A333000F8D45 /* DQMImageAndArrowTableViewCell.h */,
-				55542FB021E3A333000F8D45 /* DQMImageAndArrowTableViewCell.m */,
 			);
 			path = BaseViews;
 			sourceTree = "<group>";
@@ -927,6 +937,7 @@
 				5594A13821E1BC1F009178B3 /* UIColor+HexString.m in Sources */,
 				5594A13721E1BC1F009178B3 /* UIButton+DQM.m in Sources */,
 				59D0AEC921E4665E00F3A67C /* RotaryTableViewController.m in Sources */,
+				55542FB621E4F991000F8D45 /* DQMExpandImageView.m in Sources */,
 				55D1D0D821E22095008ECEE3 /* ZJCalenderMonthTitleView.m in Sources */,
 				5594A14A21E1BC1F009178B3 /* DQMGroup.m in Sources */,
 				5594A13921E1BC1F009178B3 /* UIView+GestureCallback.m in Sources */,
@@ -938,6 +949,7 @@
 				5594A14021E1BC1F009178B3 /* DQMStaticTableViewController.m in Sources */,
 				55542FB121E3A333000F8D45 /* DQMImageAndArrowTableViewCell.m in Sources */,
 				55D1D0DC21E22095008ECEE3 /* ZJCalenderCollectionView.m in Sources */,
+				55542FB721E4F991000F8D45 /* DQMExpandHeader.m in Sources */,
 				5594A15521E1BC1F009178B3 /* QMSGeneralHelpers.m in Sources */,
 				5594A15621E1BC1F009178B3 /* DQMConst.m in Sources */,
 				5594A15421E1BC1F009178B3 /* JXTAlertController.m in Sources */,

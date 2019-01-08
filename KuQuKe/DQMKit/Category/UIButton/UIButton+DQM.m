@@ -81,6 +81,9 @@ static const void *UIButtonBlockKey = &UIButtonBlockKey;
 
 
 
+/**
+ 创建多状态的Button
+ */
 +(UIButton *)initWithFrame:(CGRect)frame buttonTitle:(NSString *)buttonTitle normalBGColor:(UIColor *)normalBGColor selectBGColor:(UIColor *)selectBGColor
                normalColor:(UIColor *)normalColor selectColor:(UIColor *)selectColor buttonFont:(UIFont *)buttonFont cornerRadius:(CGFloat )cornerRadius
                  doneBlock:(void(^)(UIButton *))doneBlock
@@ -107,7 +110,9 @@ static const void *UIButtonBlockKey = &UIButtonBlockKey;
   return self;
 }
 
-
+/**
+ 创建基础状态的Button
+ */
 + (UIButton *)initWithFrame:(CGRect)frame buttonTitle:(NSString *)buttonTitle
                 normalColor:(UIColor *)normalColor cornerRadius:(CGFloat )cornerRadius
                   doneBlock:(void(^)(UIButton *sender))doneBlock {

@@ -9,10 +9,12 @@
 
 //我的
 #import "DQMTableViewController.h"
+#import "DQMTeam.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface MyViewController : DQMTableViewController
+
 
 @end
 
