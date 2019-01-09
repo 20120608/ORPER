@@ -39,7 +39,7 @@
  @param font 字体大小
  @param rangeOfFont 字体大小范围
  @param color 文字颜色
- @param colorOfFont 文字颜色范围
+ @param rangeOfColor 文字颜色范围
  @return 带颜色字体大小的富文本 NSMutableAttributedString
  */
 + (NSMutableAttributedString *)changeStringToMutableAttributedStringTitle:(NSString *)curTitle font:(UIFont *)font rangeOfFont:(NSRange)rangeOfFont color:(UIColor *)color rangeOfColor:(NSRange)rangeOfColor
@@ -52,7 +52,14 @@
 
 
 
-
+/**
+ 快速由NSString 转成带颜色字体大小的 NSMutableAttributedString
+ */
++ (NSMutableAttributedString *)changeStringToMutableAttributedStringTitle:(NSString *)curTitle color:(UIColor *)color {
+	NSMutableAttributedString *title = [[NSMutableAttributedString alloc] initWithString:curTitle ?: @""];
+	[title addAttribute:NSForegroundColorAttributeName value:color range:NSMakeRange(0, [curTitle length])];
+	return title;
+}
 
 
 

@@ -7,6 +7,7 @@
 //
 
 #import "RotaryTableViewController.h"
+#import "UILabel+LineSpacing.h"
 
 @interface RotaryTableViewController () <CAAnimationDelegate>
 
@@ -20,6 +21,9 @@
 @property(nonatomic,strong) UIImageView  *btnimage;
 /** 数据 */
 @property(nonatomic,strong) NSArray      *prizeArray;
+/** 剩余次数 */
+@property(nonatomic,copy) NSString       *chanceNum;
+
 /** 概率下一次抽中几 */
 @property(nonatomic,strong) NSArray      *winNumArr;
 @property(nonatomic,assign) NSInteger    nowNum;//第几次了
@@ -29,16 +33,23 @@
 @implementation RotaryTableViewController
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
-  self.view.backgroundColor = DQMMainColor;
-  
-  [self initView];
-  
+	[super viewDidLoad];
+	self.view.backgroundColor = DQMMainColor;
+	self.chanceNum = @"0";
+	
+	[self initView];
+	
+	//模拟请求
+	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+		self.chanceNum = @"1";
+	});
+	
+	
 }
 
 #pragma mark 初始化View
 -(void)initView{
-  
+	
   //转盘背景
   _bgImageView = [[UIImageView alloc] init];
   _bgImageView.center = self.view.center;
@@ -66,7 +77,35 @@
     make.centerY.mas_equalTo(self.view.mas_centerY);
     make.height.width.mas_equalTo(_bgImageView.mas_width).multipliedBy(0.41);
   }];
-  
+	
+	UILabel *rotaryLabel = ({
+		UILabel *label = [[UILabel alloc] init];
+		[self.view addSubview:label];
+		[label mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.centerX.mas_equalTo(_bgImageView.mas_centerX);
+			make.centerY.mas_equalTo(self.view.mas_centerY).offset(-11);
+		}];
+		label;
+	});
+	QMLabelFontColorText(rotaryLabel, @"抽奖", QMHexColor(@"#F04724"), 22);
+
+	
+	UILabel *chanceNumLabel = ({
+		UILabel *label = [[UILabel alloc] init];
+		[self.view addSubview:label];
+		QMLabelFontColorText(label, @"0次机会", QMHexColor(@"#A8342A"), 12);
+		[label mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.centerX.mas_equalTo(_bgImageView.mas_centerX);
+			make.centerY.mas_equalTo(self.view.mas_centerY).offset(11);
+		}];
+		label;
+	});
+	
+	//订阅次数
+	[RACObserve(self, chanceNum) subscribeNext:^(NSString *x) {
+		chanceNumLabel.text = [NSString stringWithFormat:@"%@次机会",x];
+	}];
+	
   
   //添加文字
   self.prizeArray = @[@"0.01元现金",@"很遗憾",@"20元旅游卡",@"很遗憾",@"0.01元现金",@"2元现金",@"20元旅游卡",@"1元现金"];
@@ -74,6 +113,73 @@
   
   self.winNumArr = @[@(1),@(2),@(3),@(4)];
   self.nowNum = 0;
+	
+	
+	UIImageView *IlikeRotaryImageView = ({
+		UIImageView *imageView = [[UIImageView alloc] init];
+		[self.view addSubview: imageView];
+		[imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.centerX.mas_equalTo(self.view.mas_centerX);
+			make.top.mas_equalTo(self.dqm_navgationBar.mas_bottom).offset(20);
+			make.width.mas_equalTo(kScreenWidth*0.9);
+			make.height.mas_equalTo(imageView.mas_width).multipliedBy(0.185);
+		}];
+		imageView;
+	});
+	QMSetImage(IlikeRotaryImageView, @"我要抽现金");
+
+	
+	UIImageView *rulesImageView = ({
+		UIImageView *imageView = [[UIImageView alloc] init];
+		[self.view addSubview: imageView];
+		QMSetImage(imageView, @"活动规则背景");
+		[imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.centerX.mas_equalTo(self.view.mas_centerX);
+			make.top.mas_equalTo(_bgImageView.mas_bottom).offset(20);
+			make.height.mas_equalTo(30);
+			make.width.mas_equalTo(212);
+		}];
+		imageView;
+	});
+	UILabel *ruleLabel = ({
+		UILabel *label = [[UILabel alloc] init];
+		[rulesImageView addSubview:label];
+		[label mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.centerX.mas_equalTo(self.view.mas_centerX);
+			make.centerY.mas_equalTo(rulesImageView.mas_centerY);
+		}];
+		label;
+	});
+	QMLabelFontColorText(ruleLabel, @"活动规则", UIColor.whiteColor, 16);
+	
+	UIView *rulesBackView = ({
+		UIView *view = [[UIView alloc] init];
+		[self.view addSubview: view];
+		view.backgroundColor = QMHexColor(@"93fed6");
+		QMViewBorderRadius(view, 2, 0, DQMMainColor);
+		[view mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.centerX.mas_equalTo(self.view.mas_centerX);
+			make.left.mas_equalTo(12);
+			make.right.mas_equalTo(-12);
+			make.top.mas_equalTo(_bgImageView.mas_bottom).offset(35);
+		}];
+		view;
+	});
+	[self.view sendSubviewToBack:rulesBackView];
+	
+	UILabel *ruleSlabel = ({
+		UILabel *label = [[UILabel alloc] init];
+		[rulesBackView addSubview:label];
+		label.numberOfLines = 0;
+		QMLabelFontColorText(label, @"1.每人最多有3次机会参与抽奖，每个用户每天首次免费参与，每完成5个任务，可额外获得一次机会。\n2.兑换方式:\n中奖金额以现金方式发放到账户余额，可提现。", QMTextColor, 12);
+		[label mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.edges.mas_equalTo(UIEdgeInsetsMake(30, 10, 20, 10));
+		}];
+		label;
+	});
+	[ruleSlabel setText:ruleSlabel.text lineSpacing:8];
+	
+	
 }
 
 
@@ -83,7 +189,7 @@
   NSLog(@"点击Go");
   
   //判断是否正在转
-  if (_isAnimation) {
+  if (_isAnimation || [_chanceNum intValue] == 0) {
     return;
   }
   _isAnimation = YES;
@@ -138,7 +244,7 @@
   CGFloat perAngle = M_PI/180.0;
   
   
-  NSLog(@"turnAngle = %ld",(long)_circleAngle);
+  NSLog(@"turnAngle = %.1ld",(long)_circleAngle);
   
   CABasicAnimation *rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation"];
   rotationAnimation.toValue = [NSNumber numberWithFloat:_circleAngle * perAngle + 360 * perAngle * circleNum];
@@ -193,6 +299,24 @@
   
 }
 
+#pragma mark - dqm_navibar
+- (BOOL)dqmNavigationIsHideBottomLine:(DQMNavigationBar *)navigationBar {
+	return true;
+}
+
+/** 导航条左边的按钮 */
+- (UIImage *)dqmNavigationBarLeftButtonImage:(UIButton *)leftButton navigationBar:(DQMNavigationBar *)navigationBar {
+	[leftButton setImage:[UIImage imageNamed:@"NavgationBar_white_back"] forState:UIControlStateHighlighted];
+	return [UIImage imageNamed:@"NavgationBar_white_back"];
+}
+
+-(void)leftButtonEvent:(UIButton *)sender navigationBar:(DQMNavigationBar *)navigationBar {
+	[self.navigationController popViewControllerAnimated:true];
+}
+
+- (UIColor *)dqmNavigationBackgroundColor:(DQMNavigationBar *)navigationBar {
+	return [UIColor clearColor];
+}
 
 
 @end

@@ -7,9 +7,12 @@
 //
 
 #import "MyViewController.h"
-#import "DQMImageAndArrowTableViewCell.h"
-#import "DQMExpandHeader.h"
-#import "DQMExpandImageView.h"
+#import "DQMImageAndArrowTableViewCell.h"//常见cell
+#import "DQMExpandHeader.h"//顶部
+#import "DQMExpandImageView.h"//纯绿色背景会放大
+#import "MessageCenterViewController.h"//消息中心
+#import "UserDetailModel.h"//用户模型
+#import "MyMoneyAndStdentsView.h"//用户余额和学徒
 
 #define HEADER_TOP AdaptedHeight(400) //滚动到多少导航栏变不透明
 
@@ -25,6 +28,8 @@
 @property(nonatomic,strong) UIButton *settingButton;
 /** 消息 */
 @property(nonatomic,strong) UIButton *messageButton;
+/** 用户模型 */
+@property(nonatomic,strong) UserDetailModel   *userModel;
 
 @end
 
@@ -38,7 +43,16 @@
 	
 	[self loadTableViewListData];
 
-	
+	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+		UserDetailModel *userModel = [[UserDetailModel alloc] init];
+		userModel.name = @"测试";
+		userModel.userId = @"1234";
+		userModel.userface = @"http://tupian.qqjay.com/u/2017/1221/4_143339_4.jpg";
+		userModel.balance = @"1";
+		userModel.total = @"15";
+		userModel.students = @"3";
+		self.userModel = userModel;
+	});
 	
 }
 
@@ -51,35 +65,90 @@
 	
 	_statusBarStyle = UIStatusBarStyleLightContent;
 
-	UIImageView *imageView = [[DQMExpandImageView alloc] initWithImage:[UIImage imageNamed:@"img_header"]];
-	imageView.height = HEADER_TOP;
-	imageView.width = kScreenWidth;
-	imageView.backgroundColor = DQMMainColor;
-	_expandHander = [DQMExpandHeader expandWithScrollView:self.tableView expandView:imageView];
+	UIImageView *expandImageView = [[DQMExpandImageView alloc] initWithImage:[UIImage imageNamed:@"img_header"]];
+	expandImageView.height = HEADER_TOP;
+	expandImageView.width = kScreenWidth;
+	expandImageView.backgroundColor = DQMMainColor;
+	expandImageView.userInteractionEnabled = true;
+	_expandHander = [DQMExpandHeader expandWithScrollView:self.tableView expandView:expandImageView];
 	
 	UIImageView *headerImageView = [[UIImageView alloc] init];
 	QMSetImage(headerImageView, @"my_header_bg");
-	[imageView addSubview:headerImageView];
+	[expandImageView addSubview:headerImageView];
 	[headerImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-		make.left.right.mas_equalTo(imageView);
-		make.bottom.mas_equalTo(imageView.mas_bottom);
+		make.left.right.mas_equalTo(expandImageView);
+		make.bottom.mas_equalTo(expandImageView.mas_bottom);
 		make.height.mas_equalTo(kScreenWidth/1127*827);
 	}];
 	
 	UIView *whiteBackView = ({
 		UIView *view = [[UIView alloc] init];
-		[imageView addSubview: view];
+		[expandImageView addSubview: view];
+		view.userInteractionEnabled = true;
 		view.backgroundColor = UIColor.whiteColor;
-		QMViewBorderRadius(view, 4, 0, UIColor.whiteColor);
+		view.layer.shadowOffset =CGSizeMake(1,2);
+		view.layer.shadowColor = [UIColor lightGrayColor].CGColor;
+		view.layer.shadowRadius = 5;
+		view.layer.shadowOpacity = 2;
+		view.layer.cornerRadius = 5;
 		[view mas_makeConstraints:^(MASConstraintMaker *make) {
 			make.centerX.mas_equalTo(self.view);
-			make.bottom.mas_equalTo(imageView.mas_bottom).offset(-20);
+			make.bottom.mas_equalTo(expandImageView.mas_bottom).offset(-20);
 			make.height.mas_equalTo(110);
 			make.left.mas_equalTo(20);
 		}];
 		view;
 	});
 	
+	//余额 总收益 学徒的视图  同样订阅用户信息 
+	MyMoneyAndStdentsView *balanceAndStudentView = [[MyMoneyAndStdentsView alloc] initWithFrame:CGRectZero];
+	QMViewBorderRadius(balanceAndStudentView, 5, 0, DQMMainColor);
+	[expandImageView addSubview:balanceAndStudentView];
+	[balanceAndStudentView mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.edges.mas_equalTo(whiteBackView);
+	}];
+	
+	UIImageView *userFaceImageView = ({
+		UIImageView *imageView = [[UIImageView alloc] init];
+		[expandImageView addSubview: imageView];
+		QMSetImage(imageView, @"001");
+		QMViewBorderRadius(imageView, 50, 2, UIColor.whiteColor);
+		[imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.centerX.mas_equalTo(self.view.mas_centerX);
+			make.size.mas_equalTo(CGSizeMake(100, 100));
+			make.bottom.mas_equalTo(whiteBackView.mas_top).offset(-50);
+		}];
+		imageView;
+	});
+	
+	UILabel *userIDLabel = ({
+		UILabel *label = [[UILabel alloc] init];
+		[expandImageView addSubview:label];
+		QMLabelFontColorText(label, @"ID:____", UIColor.whiteColor, 15);
+		[label mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.centerX.mas_equalTo(userFaceImageView.mas_centerX);
+			make.top.mas_equalTo(userFaceImageView.mas_bottom).offset(15);
+		}];
+		label;
+	});
+	
+	//订阅用户信息的改变
+	[RACObserve(self, userModel) subscribeNext:^(UserDetailModel *x) {
+		//余额等
+		balanceAndStudentView.userModel = x;
+
+		//头像和id
+		if (x != nil) {
+			userIDLabel.text = [NSString stringWithFormat:@"ID: %@",x.userId];
+		} else {
+			userIDLabel.text = [NSString stringWithFormat:@"ID: __"];
+		}
+		if (x.userface != nil) {
+			[userFaceImageView sd_setImageWithURL:[NSURL URLWithString:x.userface] placeholderImage:[UIImage imageNamed:@"userface"]];
+		} else {
+			[userFaceImageView setImage:[UIImage imageNamed:@"userface"]];
+		}
+	}];
 	
 }
 
@@ -188,16 +257,22 @@
 }
 
 - (UIView *)dqmNavigationBarRightView:(DQMNavigationBar *)navigationBar {
+	QMWeak(self);
 	self.messageButton = [UIButton initWithFrame:CGRectMake(kScreenWidth-56, STATUS_BAR_HEIGHT, 44, 44) buttonTitle:nil normalColor:QMTextColor cornerRadius:0 doneBlock:^(UIButton *sender) {
 		NSLog(@"消息");
+		MessageCenterViewController *vc = [[MessageCenterViewController alloc] initWithTitle:@"消息中心"];
+		[weakself.navigationController pushViewController:vc animated:true];
 	}];
 	[_messageButton setImage:[UIImage imageNamed:@"icon_dqm_msg"] forState:UIControlStateNormal];
 	[_messageButton setImage:[UIImage imageNamed:@"icon_dqm_msg_select"] forState:UIControlStateSelected];
 	return self.messageButton;
 }
 - (UIView *)dqmNavigationBarLeftView:(DQMNavigationBar *)navigationBar {
+	QMWeak(self);
 	self.settingButton = [UIButton initWithFrame:CGRectMake(10, STATUS_BAR_HEIGHT, 44, 44) buttonTitle:nil normalColor:QMTextColor cornerRadius:0 doneBlock:^(UIButton *sender) {
 		NSLog(@"设置");
+		MessageCenterViewController *vc = [[MessageCenterViewController alloc] initWithTitle:@"设置中心"];
+		[weakself.navigationController pushViewController:vc animated:true];
 	}];
 	[_settingButton setImage:[UIImage imageNamed:@"icon_dqm_setting"] forState:UIControlStateNormal];
 	[_settingButton setImage:[UIImage imageNamed:@"icon_dqm_setting_select"] forState:UIControlStateSelected];

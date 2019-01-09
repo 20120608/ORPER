@@ -1,0 +1,19 @@
+//
+//  PreviewTaskRequireView.h
+//  KuQuKe
+//
+//  Created by 漂读网 on 2019/1/9.
+//  Copyright © 2019 kuquke. All rights reserved.
+//
+
+
+//预览任务的界面  上面有价格时间，中间有图标  下面有任务内容  再下去是图片预览  最后有个开始任务
+#import <UIKit/UIKit.h>
+
+NS_ASSUME_NONNULL_BEGIN
+
+@interface PreviewTaskRequireView : UIView
+
+@end
+
+NS_ASSUME_NONNULL_END

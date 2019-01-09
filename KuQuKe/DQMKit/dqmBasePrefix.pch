@@ -52,7 +52,7 @@
 #define QMSubTextColor QMHexColor(@"#888888")
 #define QMPriceColor QMHexColor(@"#e6584e")
 #define QMBackColor QMHexColor(@"#f6f6f6")
-
+#define QMBlueColor QMHexColor(@"509230")
 
 
 /**  设置字体*/
