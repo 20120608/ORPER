@@ -52,11 +52,11 @@
 	if (cell == nil)
 	{
 		cell = [[TaskTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
-		cell.indexPath = indexPath;
-		cell.cellStyle = style;
-		if (height != 0) {
-			cell.cellHeight = height;
-		}
+	}
+	cell.indexPath = indexPath;
+	cell.cellStyle = style;
+	if (height != 0) {
+		cell.cellHeight = height;
 	}
 	cell.selectionStyle = UITableViewCellSelectionStyleNone;
 	return cell;

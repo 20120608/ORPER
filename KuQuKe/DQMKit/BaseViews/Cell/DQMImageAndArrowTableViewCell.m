@@ -25,9 +25,9 @@
 	if (cell == nil)
 	{
 		cell = [[DQMImageAndArrowTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
-		cell.indexPath = indexPath;
-		cell.fixedCellHeight = fixedCellHeight;
 	}
+	cell.indexPath = indexPath;
+	cell.fixedCellHeight = fixedCellHeight;
 	cell.selectionStyle = UITableViewCellSelectionStyleNone;
 	return cell;
 }

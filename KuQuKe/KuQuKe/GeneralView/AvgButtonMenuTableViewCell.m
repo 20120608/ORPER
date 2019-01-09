@@ -35,16 +35,14 @@
 {
   static NSString *identifier = @"AvgButtonMenuTableViewCell";
   AvgButtonMenuTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-  if (cell == nil)
-  {
+  if (cell == nil) {
     cell = [[AvgButtonMenuTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
-    cell.num = num;
-    //比num晚设置
-    cell.datasArray = datasArray;
-    
-    //最后设置
-    cell.cellHeight = height;
   }
+	cell.num = num;
+	//比num晚设置
+	cell.datasArray = datasArray;
+	//最后设置
+	cell.cellHeight = height;
   cell.selectionStyle = UITableViewCellSelectionStyleNone;
   return cell;
 }

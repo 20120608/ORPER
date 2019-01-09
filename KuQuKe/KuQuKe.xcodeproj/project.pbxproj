@@ -26,6 +26,7 @@
 		55542FD421E6169E000F8D45 /* EarnMoneyForRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55542FD321E6169E000F8D45 /* EarnMoneyForRegisterViewController.m */; };
 		55542FD721E646EB000F8D45 /* UserDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 55542FD621E646EB000F8D45 /* UserDetailModel.m */; };
 		55542FDA21E64931000F8D45 /* MyMoneyAndStdentsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 55542FD921E64931000F8D45 /* MyMoneyAndStdentsView.m */; };
+		55542FDE21E6598E000F8D45 /* DQMRightImageViewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 55542FDD21E6598E000F8D45 /* DQMRightImageViewTableViewCell.m */; };
 		5594A0B421E1BB11009178B3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5594A0B321E1BB11009178B3 /* AppDelegate.m */; };
 		5594A0B721E1BB11009178B3 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5594A0B621E1BB11009178B3 /* ViewController.m */; };
 		5594A0BA21E1BB11009178B3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5594A0B821E1BB11009178B3 /* Main.storyboard */; };
@@ -138,6 +139,8 @@
 		55542FD621E646EB000F8D45 /* UserDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserDetailModel.m; sourceTree = "<group>"; };
 		55542FD821E64931000F8D45 /* MyMoneyAndStdentsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyMoneyAndStdentsView.h; sourceTree = "<group>"; };
 		55542FD921E64931000F8D45 /* MyMoneyAndStdentsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyMoneyAndStdentsView.m; sourceTree = "<group>"; };
+		55542FDC21E6598E000F8D45 /* DQMRightImageViewTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DQMRightImageViewTableViewCell.h; sourceTree = "<group>"; };
+		55542FDD21E6598E000F8D45 /* DQMRightImageViewTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DQMRightImageViewTableViewCell.m; sourceTree = "<group>"; };
 		5594A0AF21E1BB11009178B3 /* KuQuKe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KuQuKe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5594A0B221E1BB11009178B3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5594A0B321E1BB11009178B3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -455,6 +458,25 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		55542FDB21E65952000F8D45 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				5594A12621E1BC1F009178B3 /* DQMDefaultTableViewCell.h */,
+				5594A11E21E1BC1F009178B3 /* DQMDefaultTableViewCell.m */,
+				55542FAF21E3A333000F8D45 /* DQMImageAndArrowTableViewCell.h */,
+				55542FB021E3A333000F8D45 /* DQMImageAndArrowTableViewCell.m */,
+				55542FB821E615E3000F8D45 /* DQMImageTitleSubTitleAndArrowTableViewCell.h */,
+				55542FB921E615E3000F8D45 /* DQMImageTitleSubTitleAndArrowTableViewCell.m */,
+				5594A11F21E1BC1F009178B3 /* DQMLabelSizeToFitTableViewCell.h */,
+				5594A12521E1BC1F009178B3 /* DQMLabelSizeToFitTableViewCell.m */,
+				5594A12A21E1BC1F009178B3 /* StaticListTableViewCell.h */,
+				5594A12221E1BC1F009178B3 /* StaticListTableViewCell.m */,
+				55542FDC21E6598E000F8D45 /* DQMRightImageViewTableViewCell.h */,
+				55542FDD21E6598E000F8D45 /* DQMRightImageViewTableViewCell.m */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		5594A0A621E1BB11009178B3 = {
 			isa = PBXGroup;
 			children = (
@@ -655,22 +677,13 @@
 		5594A11D21E1BC1F009178B3 /* BaseViews */ = {
 			isa = PBXGroup;
 			children = (
+				55542FDB21E65952000F8D45 /* Cell */,
 				5594A12321E1BC1F009178B3 /* DQMAutoRefreshFooter.h */,
 				5594A12921E1BC1F009178B3 /* DQMAutoRefreshFooter.m */,
-				5594A12621E1BC1F009178B3 /* DQMDefaultTableViewCell.h */,
-				5594A11E21E1BC1F009178B3 /* DQMDefaultTableViewCell.m */,
-				55542FAF21E3A333000F8D45 /* DQMImageAndArrowTableViewCell.h */,
-				55542FB021E3A333000F8D45 /* DQMImageAndArrowTableViewCell.m */,
-				5594A11F21E1BC1F009178B3 /* DQMLabelSizeToFitTableViewCell.h */,
-				5594A12521E1BC1F009178B3 /* DQMLabelSizeToFitTableViewCell.m */,
 				5594A12421E1BC1F009178B3 /* DQMListExpendHeaderView.h */,
 				5594A12B21E1BC1F009178B3 /* DQMListExpendHeaderView.m */,
 				5594A12821E1BC1F009178B3 /* DQMNavigationBar.h */,
 				5594A12021E1BC1F009178B3 /* DQMNavigationBar.m */,
-				5594A12A21E1BC1F009178B3 /* StaticListTableViewCell.h */,
-				5594A12221E1BC1F009178B3 /* StaticListTableViewCell.m */,
-				55542FB821E615E3000F8D45 /* DQMImageTitleSubTitleAndArrowTableViewCell.h */,
-				55542FB921E615E3000F8D45 /* DQMImageTitleSubTitleAndArrowTableViewCell.m */,
 			);
 			path = BaseViews;
 			sourceTree = "<group>";
@@ -1077,6 +1090,7 @@
 				5918A77121E2F5DF00CF8431 /* DQMHorizontalViewScrollerView.m in Sources */,
 				55542FBA21E615E3000F8D45 /* DQMImageTitleSubTitleAndArrowTableViewCell.m in Sources */,
 				5594A14B21E1BC1F009178B3 /* DQMTeam.m in Sources */,
+				55542FDE21E6598E000F8D45 /* DQMRightImageViewTableViewCell.m in Sources */,
 				5537063A21E1C064001E49BC /* MyViewController.m in Sources */,
 				55542FD121E61695000F8D45 /* PreviewTaskRequireView.m in Sources */,
 				5594A13D21E1BC1F009178B3 /* UIImageView+SDwebImageFade.m in Sources */,

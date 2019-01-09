@@ -38,15 +38,14 @@
 {
   static NSString *identifier = @"DQMImageTitleSubTitleAndArrowTableViewCell";
   DQMImageTitleSubTitleAndArrowTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-  if (cell == nil)
-  {
+  if (cell == nil) {
     cell = [[DQMImageTitleSubTitleAndArrowTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
-    cell.indexPath = indexPath;
-    cell.showArrow = showArrow;
-    if (height != 0) {
-      cell.cellHeight = height;
-    }
   }
+	cell.indexPath = indexPath;
+	cell.showArrow = showArrow;
+	if (height != 0) {
+		cell.cellHeight = height;
+	}
   cell.selectionStyle = UITableViewCellSelectionStyleNone;
   return cell;
 }
@@ -86,7 +85,7 @@
     /** 箭头图标 */
     self.arrowImageView =  ({
       UIImageView *imageView = [[UIImageView alloc] init];
-      QMSetImage(imageView, @"ZJCalenderCloseImg");
+      QMSetImage(imageView, @"icon_arrow_dqm_888888");
       [self.contentView addSubview: imageView];
       [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(self.contentView.mas_right).offset(-10);
@@ -100,7 +99,7 @@
     self.titleLabel = ({
       UILabel *label = [[UILabel alloc] init];
       [self.contentView addSubview:label];
-      QMLabelFontColorText(label, @"京东白条-获额版", QMTextColor, 16);
+      QMLabelFontColorText(label, @"titleLabel", QMTextColor, 16);
       [label mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(_iconImageView.mas_right).offset(8);
         make.top.mas_equalTo(_iconImageView.mas_top);
@@ -114,7 +113,7 @@
     self.subTitleLabel = ({
       UILabel *label = [[UILabel alloc] init];
       [self.contentView addSubview:label];
-      QMLabelFontColorText(label, @"线上完成 高通过率", QMSubTextColor, 16);
+      QMLabelFontColorText(label, @"sub_titleLabel", QMSubTextColor, 16);
       [label mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(_iconImageView.mas_right).offset(8);
         make.bottom.mas_equalTo(_iconImageView.mas_bottom);

@@ -12,6 +12,7 @@
 #import "TaskTableViewCell.h"//任务cell
 #import "AvgButtonMenuTableViewCell.h"//多按钮菜单样式的cell
 #import "RotaryTableViewController.h" //转盘
+#import "DQMRightImageViewTableViewCell.h"//头像的cell
 
 @interface HomeViewController () <DQMHorizontalViewScrollerViewDataSource>
 {
@@ -148,7 +149,16 @@
 {
 	//  TaskTableViewCell *cell = [TaskTableViewCell cellWithTableView:tableView initWithCellStyle:TaskTableViewCellStyleSubTag indexPath:indexPath andFixedHeightIfNeed:AdaptedHeight(68)];
 	
-	AvgButtonMenuTableViewCell *cell = [AvgButtonMenuTableViewCell cellWithTableView:tableView initWithButtonsNum:5 indexPath:indexPath andFixedHeightIfNeed:92 WithDatasArray:@[@{@"name":@"111",@"icon":@"01"},@{@"name":@"222",@"icon":@"02"},@{@"name":@"333",@"icon":@"03"},@{@"name":@"444",@"icon":@"04"},@{@"name":@"555",@"icon":@"05"}] withFixedSpacing:0 leadSpacing:10 tailSpacing:10];
+//	AvgButtonMenuTableViewCell *cell = [AvgButtonMenuTableViewCell cellWithTableView:tableView initWithButtonsNum:5 indexPath:indexPath andFixedHeightIfNeed:92 WithDatasArray:@[@{@"name":@"111",@"icon":@"01"},@{@"name":@"222",@"icon":@"02"},@{@"name":@"333",@"icon":@"03"},@{@"name":@"444",@"icon":@"04"},@{@"name":@"555",@"icon":@"05"}] withFixedSpacing:0 leadSpacing:10 tailSpacing:10];
+	
+	DQMRightImageViewTableViewCell *cell = [DQMRightImageViewTableViewCell cellWithTableView:tableView indexPath:indexPath andFixedHeightIfNeed:AdaptedHeight(88) showArrow:true];
+	
+	if (indexPath.row == 2 || indexPath.row == 3) {
+		DQMRightImageViewTableViewCell *cell = [DQMRightImageViewTableViewCell cellWithTableView:tableView indexPath:indexPath andFixedHeightIfNeed:AdaptedHeight(0) showArrow:NO];
+		return cell;
+	}
+	
+	
 	return cell;
 }
 
