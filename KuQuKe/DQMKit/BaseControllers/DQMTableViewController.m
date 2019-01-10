@@ -24,7 +24,7 @@
 
 - (void)setupBaseTableViewUI
 {
-  self.tableView.backgroundColor = self.view.backgroundColor;
+  self.tableView.backgroundColor = QMBackColor;
   if ([self.parentViewController isKindOfClass:[UINavigationController class]]) {
     UIEdgeInsets contentInset = self.tableView.contentInset;
     contentInset.top += self.dqm_navgationBar.height;

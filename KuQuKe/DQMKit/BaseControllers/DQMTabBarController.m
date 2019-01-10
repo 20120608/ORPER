@@ -40,7 +40,8 @@
 
   DQMNavigationController *three = [[DQMNavigationController alloc] initWithRootViewController:[[GameViewController alloc] initWithTitle:@"游戏赚钱"]];
 
-  DQMNavigationController *four = [[DQMNavigationController alloc] initWithRootViewController:[[MyViewController alloc] initWithStyle:UITableViewStyleGrouped]];
+    DQMNavigationController *four = [[DQMNavigationController alloc] initWithRootViewController:[[MyViewController alloc] initWithTitle:@"我的"]];
+
 
    self.viewControllers = @[one,two,three,four];
   
@@ -51,24 +52,24 @@
   
   NSDictionary *firstTabBarItemsAttributes = @{
                                                @"TabBarItemTitle" : @"首页",
-                                               @"TabBarItemImage" : @"08",
-                                               @"TabBarItemSelectedImage" : @"09",
+                                               @"TabBarItemImage" : @"09",
+                                               @"TabBarItemSelectedImage" : @"08",
                                                };
   
   NSDictionary *secondTabBarItemsAttributes = @{
                                                @"TabBarItemTitle" : @"应用赚钱",
-                                               @"TabBarItemImage" : @"10",
-                                               @"TabBarItemSelectedImage" : @"11",
+                                               @"TabBarItemImage" : @"11",
+                                               @"TabBarItemSelectedImage" : @"10",
                                                };
 NSDictionary *threeTabBarItemsAttributes = @{
 											  @"TabBarItemTitle" : @"游戏赚钱",
-											  @"TabBarItemImage" : @"12",
-											  @"TabBarItemSelectedImage" : @"13",
+											  @"TabBarItemImage" : @"13",
+											  @"TabBarItemSelectedImage" : @"12",
 											  };
 NSDictionary *fourTabBarItemsAttributes = @{
 											  @"TabBarItemTitle" : @"我的",
-											  @"TabBarItemImage" : @"14",
-											  @"TabBarItemSelectedImage" : @"15",
+											  @"TabBarItemImage" : @"15",
+											  @"TabBarItemSelectedImage" : @"14",
 											  };
   
   NSArray<NSDictionary *>  *tabBarItemsAttributes = @[
@@ -81,12 +82,13 @@ NSDictionary *fourTabBarItemsAttributes = @{
   [self.childViewControllers enumerateObjectsUsingBlock:^(__kindof UIViewController * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
     
     obj.tabBarItem.title = tabBarItemsAttributes[idx][@"TabBarItemTitle"];
-    obj.tabBarItem.image = [UIImage imageNamed:tabBarItemsAttributes[idx][@"TabBarItemImage"]];
-    obj.tabBarItem.selectedImage = [UIImage imageNamed:tabBarItemsAttributes[idx][@"TabBarItemSelectedImage"]];
+    obj.tabBarItem.image = [[UIImage imageNamed:tabBarItemsAttributes[idx][@"TabBarItemImage"]] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    obj.tabBarItem.selectedImage = [[UIImage imageNamed:tabBarItemsAttributes[idx][@"TabBarItemSelectedImage"]] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     obj.tabBarItem.titlePositionAdjustment = UIOffsetMake(0, -3);
+    obj.tabBarItem.imageInsets = UIEdgeInsetsMake(3, 0, 3, 0);
   }];
   
-  self.tabBar.tintColor = [UIColor redColor];
+  self.tabBar.tintColor = DQMMainColor;
 }
 
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController

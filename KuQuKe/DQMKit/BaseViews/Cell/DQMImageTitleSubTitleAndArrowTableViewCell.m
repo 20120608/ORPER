@@ -85,7 +85,7 @@
     /** 箭头图标 */
     self.arrowImageView =  ({
       UIImageView *imageView = [[UIImageView alloc] init];
-      QMSetImage(imageView, @"icon_arrow_dqm_888888");
+      QMSetImage(imageView, @"icon_dqm_arrow_cdcdcd");
       [self.contentView addSubview: imageView];
       [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(self.contentView.mas_right).offset(-10);

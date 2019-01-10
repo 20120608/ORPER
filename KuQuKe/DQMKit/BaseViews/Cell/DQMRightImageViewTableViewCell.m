@@ -45,7 +45,9 @@
 	cell.showArrow = showArrow;
 	if (height != 0) {
 		cell.cellHeight = height;
-	}
+  } else {
+    cell.cellHeight = 90;
+  }
 	cell.selectionStyle = UITableViewCellSelectionStyleNone;
 	return cell;
 }
@@ -72,7 +74,7 @@
 		/** 箭头图标 */
 		self.arrowImageView =  ({
 			UIImageView *imageView = [[UIImageView alloc] init];
-			QMSetImage(imageView, @"icon_arrow_dqm_888888");
+			QMSetImage(imageView, @"icon_dqm_arrow_cdcdcd");
 			[self.contentView addSubview: imageView];
 			[imageView mas_makeConstraints:^(MASConstraintMaker *make) {
 				make.right.mas_equalTo(self.contentView.mas_right).offset(-10);
@@ -82,7 +84,7 @@
 			imageView;
 		});
 		[RACObserve(self, showArrow) subscribeNext:^(id  _Nullable x) {
-			_arrowImageView.hidden = [x boolValue];
+			_arrowImageView.hidden = ![x boolValue];
 		}];
 		
 		/** 图标 */
@@ -90,16 +92,11 @@
 			UIImageView *imageView = [[UIImageView alloc] init];
 			[self.contentView addSubview: imageView];
 			QMSetImage(imageView, @"pkq");
-			if (_cellHeight != 0) {
-				QMViewBorderRadius(imageView, (_cellHeight-16)/2, 0, DQMMainColor);
-			} else {
-				QMViewBorderRadius(imageView, 36.5, 0, DQMMainColor);
-			}
 			[imageView mas_makeConstraints:^(MASConstraintMaker *make) {
 				make.right.mas_equalTo(_arrowImageView.mas_left).offset(-10).priority(1000);
 				make.right.mas_equalTo(_backView.mas_right).offset(-10).priority(900);
-				make.top.mas_equalTo(8);
-				make.bottom.mas_equalTo(-8);
+				make.top.mas_equalTo(13);
+				make.bottom.mas_equalTo(-13);
 				make.width.mas_equalTo(imageView.mas_height);
 			}];
 			imageView;
@@ -123,9 +120,9 @@
 		self.titleLabel = ({
 			UILabel *label = [[UILabel alloc] init];
 			[self.contentView addSubview:label];
-			QMLabelFontColorText(label, @"京东白条-获额版", QMTextColor, 16);
+			QMLabelFontColorText(label, @"titleLabel", QMTextColor, 16);
 			[label mas_makeConstraints:^(MASConstraintMaker *make) {
-				make.left.mas_equalTo(_backView.mas_left).offset(12);
+				make.left.mas_equalTo(self.contentView.mas_left).offset(20);
 				make.centerY.mas_equalTo(_backView.mas_centerY);
 				make.right.mas_equalTo(_arrowImageView.mas_left).offset(-10).priority(1000);
 				make.right.mas_equalTo(_subTitleLabel.mas_left).offset(-10).priority(900);
@@ -148,6 +145,60 @@
 			make.height.mas_equalTo(cellHeight);
 		}
 	}];
+  
+  if (_cellHeight != 0) {
+    QMViewBorderRadius(self.iconImageView, (_cellHeight-26)/2, 0, DQMMainColor);
+  } else {
+    QMViewBorderRadius(self.iconImageView, 32, 0, DQMMainColor);
+  }
+}
+
+#pragma mark - dataSource
+- (void)setModel:(DQMRightImageViewTableViewCellModel *)model {
+  
+  _model = model;
+  /** 标题 */
+  self.titleLabel.text = model.title;
+  
+  if ([model.subImageUrl length] == 0) {
+    self.iconImageView.hidden = true;
+    self.subTitleLabel.text = [NSString stringWithFormat:@"%@",model.subTitle];
+  } else {
+    self.iconImageView.hidden = false;
+    self.subTitleLabel.text = @"";
+    [self.iconImageView qm_setWithImageURL:[NSURL URLWithString:model.subImageUrl] placeholderImage:[UIImage imageNamed:@"placeholderImage"]];
+  }
+  
+  
+  
+}
+
+
+@end
+
+
+@implementation DQMRightImageViewTableViewCellModel
+
++(DQMRightImageViewTableViewCellModel *)initWithtitle:(NSString *)title andSubTitle:(NSString *)subTitle andsubImageUrl:(NSString *)subImageUrl {
+  
+  DQMRightImageViewTableViewCellModel *model = [[DQMRightImageViewTableViewCellModel alloc] init];
+  model.title = title;
+  model.subTitle = subTitle;
+  model.subImageUrl = subImageUrl;
+  return model;
+  
+}
+
+
++(DQMRightImageViewTableViewCellModel *)initWithtitle:(NSString *)title andSubTitle:(NSString *)subTitle andsubImageUrl:(NSString *)subImageUrl IfNeedCreateWithdestVc:(Class)destVc andviewType:(NSInteger)viewType {
+  
+  DQMRightImageViewTableViewCellModel *model = [[DQMRightImageViewTableViewCellModel alloc] init];
+  model.title = title;
+  model.subTitle = subTitle;
+  model.subImageUrl = subImageUrl;
+  model.destVc = destVc;
+  model.viewType = viewType;
+  return model;
 }
 
 

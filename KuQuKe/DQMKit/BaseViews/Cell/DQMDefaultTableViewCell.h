@@ -11,8 +11,15 @@
 
 @interface DQMDefaultTableViewCell : UITableViewCell
 
+/**
+ 创建带标题 标题字体大小  cell样式的
+ */
 +(DQMDefaultTableViewCell *)cellWithTableView:(UITableView *)tableView Title:(NSString *)title TitleFont:(UIFont *)titleFont TableViewCellStyle:(UITableViewCellStyle)tableViewCellStyle;
 
+/**
+ 快速创建
+ */
++(DQMDefaultTableViewCell *)cellWithTableView:(UITableView *)tableView;
 
 
 @end

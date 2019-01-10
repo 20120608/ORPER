@@ -25,6 +25,19 @@
   return cell;
 }
 
+
++(DQMDefaultTableViewCell *)cellWithTableView:(UITableView *)tableView {
+  
+  static NSString *identifier = @"DQMDefaultTableViewCell";
+  DQMDefaultTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+  if (cell == nil) {
+    cell = [[DQMDefaultTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+  }
+  cell.selectionStyle = UITableViewCellSelectionStyleNone;
+  return cell;
+}
+
+
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
   self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];

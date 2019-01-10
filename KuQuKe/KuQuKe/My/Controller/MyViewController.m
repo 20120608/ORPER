@@ -13,6 +13,10 @@
 #import "MessageCenterViewController.h"//消息中心
 #import "UserDetailModel.h"//用户模型
 #import "MyMoneyAndStdentsView.h"//用户余额和学徒
+#import "SettingUsetInfoViewController.h"//设置
+#import "CompleteAccountViewController.h"//完善账号
+#import "AboutUSViewController.h"//关于我们
+
 
 #define HEADER_TOP AdaptedHeight(400) //滚动到多少导航栏变不透明
 
@@ -180,26 +184,21 @@
 	return [self.listDataArray[section] count];
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-	return 8;
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-	UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 8)];
-	headerView.backgroundColor = QMBackColor;
-	return headerView;
-}
-
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-	return 0.01;
+	return 8;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-	UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 0.01)];
+	UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 8)];
 	footerView.backgroundColor = QMBackColor;
 	return footerView;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+  return 50;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -208,6 +207,21 @@
 	cell.teamModel = self.listDataArray[indexPath.section][indexPath.row];
 	return cell;
 }
+
+
+#pragma mark - tableView delegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+  
+  if (indexPath.section == 0 && indexPath.row == 0) {
+    CompleteAccountViewController *vc = [[CompleteAccountViewController alloc] initWithTitle:@"账号安全"];
+    [self.navigationController pushViewController:vc animated:true];
+  } else if (indexPath.section == 1 && indexPath.row == 0) {
+    AboutUSViewController *vc = [[AboutUSViewController alloc] initWithTitle:@"关于酷趣客"];
+    [self.navigationController pushViewController:vc animated:true];
+  }
+  
+}
+
 
 
 #pragma mark - scroll delegate
@@ -271,7 +285,7 @@
 	QMWeak(self);
 	self.settingButton = [UIButton initWithFrame:CGRectMake(10, STATUS_BAR_HEIGHT, 44, 44) buttonTitle:nil normalColor:QMTextColor cornerRadius:0 doneBlock:^(UIButton *sender) {
 		NSLog(@"设置");
-		MessageCenterViewController *vc = [[MessageCenterViewController alloc] initWithTitle:@"设置中心"];
+		SettingUsetInfoViewController *vc = [[SettingUsetInfoViewController alloc] initWithTitle:@"设置中心"];
 		[weakself.navigationController pushViewController:vc animated:true];
 	}];
 	[_settingButton setImage:[UIImage imageNamed:@"icon_dqm_setting"] forState:UIControlStateNormal];
