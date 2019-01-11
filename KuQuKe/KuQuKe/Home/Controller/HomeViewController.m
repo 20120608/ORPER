@@ -47,10 +47,10 @@
   [self createUI];
   
   
-//  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//    CheckInViewController *vc = [[CheckInViewController alloc] initWithTitle:@"每日签到"];
-//    [self.navigationController pushViewController:vc animated:true];
-//  });
+  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    CheckInViewController *vc = [[CheckInViewController alloc] initWithTitle:@"每日签到"];
+    [self.navigationController pushViewController:vc animated:true];
+  });
 	
   QMWeak(self);
   //广告请求数据
