@@ -56,6 +56,7 @@
 
   [self createUI];
 	
+	
   QMWeak(self);
   //广告请求数据 推荐赚钱数据
   dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
