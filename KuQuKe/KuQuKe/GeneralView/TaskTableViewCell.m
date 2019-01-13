@@ -83,12 +83,12 @@
 		self.iconImageView = ({
 			UIImageView *imageView = [[UIImageView alloc] init];
 			[self.contentView addSubview: imageView];
-			QMSetImage(imageView, @"10");
+			QMSetImage(imageView, @"pkq");
 			QMViewBorderRadius(imageView, 4, 0, DQMMainColor);
 			[imageView mas_makeConstraints:^(MASConstraintMaker *make) {
 				make.left.mas_equalTo(24);
-				make.top.mas_equalTo(8);
-				make.bottom.mas_equalTo(-8);
+				make.top.mas_equalTo(13);
+				make.bottom.mas_equalTo(-13);
 				make.width.mas_equalTo(imageView.mas_height);
 			}];
 			imageView;
@@ -110,7 +110,7 @@
 		self.subTitleLabel = ({
 			UILabel *label = [[UILabel alloc] init];
 			[self.contentView addSubview:label];
-			QMLabelFontColorText(label, @"线上完成 高通过率", QMSubTextColor, 16);
+			QMLabelFontColorText(label, @"线上完成 高通过率", QMSubTextColor, 14);
 			[label mas_makeConstraints:^(MASConstraintMaker *make) {
 				make.left.mas_equalTo(_iconImageView.mas_right).offset(8);
 				make.bottom.mas_equalTo(_iconImageView.mas_bottom);
@@ -207,7 +207,7 @@
 		self.priceLabel = ({
 			UILabel *label = [[UILabel alloc] init];
 			[self.contentView addSubview:label];
-			QMLabelFontColorText(label, @"+1.5元", QMPriceColor, 11);
+			QMLabelFontColorText(label, @"+1.5元", QMPriceColor, 15);
 			[label mas_makeConstraints:^(MASConstraintMaker *make) {
 				make.right.mas_equalTo(-13);
 				make.bottom.mas_equalTo(_iconImageView.mas_bottom).priority(700);
@@ -216,6 +216,20 @@
 			}];
 			label;
 		});
+		
+		
+		//分割线
+		UIView *seperaterLine = [[UIView alloc] initWithFrame: CGRectZero];
+		seperaterLine.backgroundColor = QMBackColor;
+		[self.contentView addSubview:seperaterLine];
+		[seperaterLine mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.left.right.bottom.mas_equalTo(0);
+			make.height.mas_equalTo(2);
+		}];
+		
+		[RACObserve(self, showSeperaterLine) subscribeNext:^(id  _Nullable x) {
+			seperaterLine.hidden = ![x boolValue];
+		}];
 		
 	}
 	return self;
@@ -264,6 +278,7 @@
 			[_subTitleLabel removeFromSuperview];
 			[_sourceLabel removeFromSuperview];
 			_priceLabel.textColor = QMPriceColor;
+			_subLabel1.hidden = _subLabel2.hidden = _subLabel3.hidden = _subLabel4.hidden = false;
 			[_priceLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
 				make.right.mas_equalTo(-13);
 				make.centerY.mas_equalTo(_iconImageView.mas_centerY);
@@ -274,6 +289,8 @@
 		{
 			[_statusLabel removeFromSuperview];
 			_iconImageView.hidden = true;
+			_titleLabel.text = @"提现到微信";
+			_subTitleLabel.text = @"2019年01月13日12:04:32";
 			/** 标题 */
 			[self.titleLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
 				make.left.mas_equalTo(8);
@@ -296,6 +313,50 @@
 			}];
 		}
 			break;
+			
+		case TaskTableViewCellStyleOnGoing:
+		{
+			[_sourceLabel removeFromSuperview];
+			_priceLabel.textColor = QMPriceColor;
+			[_priceLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+				make.right.mas_equalTo(-13);
+				make.centerY.mas_equalTo(_iconImageView.mas_centerY);
+			}];
+			
+		}
+			break;
+		case TaskTableViewCellStyleInCome:
+		{
+			[_sourceLabel removeFromSuperview];
+			[_statusLabel removeFromSuperview];
+			_priceLabel.textColor = QMPriceColor;
+			_priceLabel.font = [UIFont systemFontOfSize:15];
+			[_priceLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+				make.right.mas_equalTo(-13);
+				make.centerY.mas_equalTo(_iconImageView.mas_centerY);
+			}];
+			
+			/** 图标 */
+			[_iconImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
+				make.left.mas_equalTo(20);
+				make.top.mas_equalTo(10);
+				make.bottom.mas_equalTo(-10);
+				make.width.mas_equalTo(_iconImageView.mas_height);
+			}];
+			/** 时间标题 */
+			_subTitleLabel.font = [UIFont systemFontOfSize:12];
+			_subTitleLabel.text = @"2019年01月13日12:04:32";
+			[_subTitleLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+				make.left.mas_equalTo(_iconImageView.mas_right).offset(8);
+				make.bottom.mas_equalTo(_iconImageView.mas_bottom);
+				make.right.mas_equalTo(self.mas_right).offset(-60);
+			}];
+			
+			
+		}
+			break;
+			
+			
 		default:
 			break;
 	}

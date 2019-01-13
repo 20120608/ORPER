@@ -29,6 +29,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,copy) NSString          *title;
 /** subImageUrl */
 @property(nonatomic,copy) NSString          *subImageUrl;
+/** subImage */
+@property(nonatomic,strong) UIImage          *subImage;
 /** subTitle */
 @property(nonatomic,copy) NSString          *subTitle;
 

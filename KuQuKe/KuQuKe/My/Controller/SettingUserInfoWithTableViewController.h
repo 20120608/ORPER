@@ -7,16 +7,15 @@
 //
 
 //设置用户信息  列表选择
-#import "DQMTableViewController.h"
+#import "DQMStaticTableViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 typedef NS_ENUM(NSInteger, SettingTableStyle) {
-  SettingTableStyleSex,//性别
   SettingTableStyleJob,//工作
 };
 
-@interface SettingUserInfoWithTableViewController : DQMTableViewController
+@interface SettingUserInfoWithTableViewController : DQMStaticTableViewController
 
 /** 类型 */
 @property(nonatomic,assign) SettingTableStyle          settingTableStype;

@@ -23,6 +23,15 @@
   [super viewDidLoad];
   
   self.naviName = _settingInputStyle == SettingInputStyleNickName ? @"昵称" : _settingInputStyle == SettingInputStyleBirthday ? @"生日" : _settingInputStyle == SettingInputStyleWeChat ? @"微信" : _settingInputStyle == SettingInputStyleQQ ? @"QQ" : _settingInputStyle == SettingInputStylePhone ? @"电话" : @"其他";
+	
+	UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT+10, kScreenWidth, 50)];
+	textField.backgroundColor = UIColor.whiteColor;
+	textField.placeholder = _naviName;
+	UIView *leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 20, 50)];
+	textField.leftView = leftView;
+	textField.leftViewMode = UITextFieldViewModeAlways;
+	[self.view addSubview:textField];
+	
   
 }
 

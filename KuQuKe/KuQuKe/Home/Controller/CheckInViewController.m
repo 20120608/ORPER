@@ -8,10 +8,18 @@
 
 #import "CheckInViewController.h"
 #import "ZJCalenderView.h"//自己改的日历
+#import "ChickInHeaderView.h"//顶部签到
+#import "ChickSuccessAlertView.h"//成功弹窗
+
+@interface CheckInViewController () <ChickInHeaderViewDelegate>
+
+@end
+
 @implementation CheckInViewController
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
+	self.view.backgroundColor = UIColor.whiteColor;
 	
 	[self createHeaderView];
 	
@@ -25,93 +33,65 @@
  */
 - (void)createHeaderView {
 
-	UIView *buttonBackView = ({
-		UIView *view = [[UIView alloc] init];
-		[self.view addSubview: view];
-		[view setGradientBackgroundWithColors:@[QMHexColor(@"88ec9b"), QMHexColor(@"5bbd7d")] locations:nil startPoint:CGPointMake(0, 0.5) endPoint:CGPointMake(1, 0.5)];
-		[view mas_makeConstraints:^(MASConstraintMaker *make) {
-			make.top.mas_equalTo(NAVIGATION_BAR_HEIGHT);
-			make.width.mas_equalTo(kScreenWidth);
-			make.height.mas_equalTo(kScreenWidth/1125*818);
-		}];
-		view;
-	});
 	
-	UIButton *checkInButton = ({
-		UIButton *button = [[UIButton alloc] init];
-		[self.view addSubview:button];
-		[button setBackgroundImage:[UIImage imageNamed:@"qd01"] forState:UIControlStateNormal];
-		[button addTarget:self action:@selector(checkInButtonClick:) forControlEvents:UIControlEventTouchUpInside];
-		[button mas_makeConstraints:^(MASConstraintMaker *make) {
-			make.centerX.mas_equalTo(self.view.mas_centerX);
-			make.centerY.mas_equalTo(buttonBackView.mas_centerY);
-			make.size.mas_equalTo(CGSizeMake(130, 130));
-		}];
-		button;
-	});
-	
-	UILabel *checkInLabel = ({
-		UILabel *label = [[UILabel alloc] init];
-		[checkInButton addSubview:label];
-		label.numberOfLines = 0;
-		label.font = [UIFont boldSystemFontOfSize:20];
-		[label mas_makeConstraints:^(MASConstraintMaker *make) {
-			make.centerY.mas_equalTo(checkInButton.mas_centerY);
-			make.centerX.mas_equalTo(checkInButton.mas_centerX);
-		}];
-		label;
-	});
-	QMLabelFontColorText(checkInLabel, @"点击\n签到", DQMMainColor, 20);
+	ChickInHeaderView *headerView = [[ChickInHeaderView alloc] initWithFrame:CGRectZero];
+	headerView.delegate = self;
+	[self.view addSubview:headerView];
+	[headerView mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.top.mas_equalTo(NAVIGATION_BAR_HEIGHT);
+		make.left.mas_equalTo(0);
+		make.width.mas_equalTo(kScreenWidth);
+		make.height.mas_equalTo(kScreenHeight-(ZJCalenderWidth/286*292)-100-NAVIGATION_BAR_HEIGHT);
+	}];
+				
 
-	
-	
-	UILabel *titleLabel = ({
-		UILabel *label = [[UILabel alloc] init];
-		[buttonBackView addSubview:label];
-		[label mas_makeConstraints:^(MASConstraintMaker *make) {
-			make.centerX.mas_equalTo(self.view.mas_centerX);
-			make.bottom.mas_equalTo(checkInButton.mas_top).offset(-30);
-		}];
-		label;
-	});
-	QMLabelFontColorText(titleLabel, @"每日签到", UIColor.whiteColor, 20);
-
-
-	UIView *shadowView = ({
-		UIView *view = [[UIView alloc] init];
-		[self.view addSubview: view];
-		view.layer.shadowOffset =CGSizeMake(1,3);
-		view.layer.shadowColor = [UIColor lightGrayColor].CGColor;
-		view.layer.shadowRadius = 6;
-		view.layer.shadowOpacity = 2;
-		[view mas_makeConstraints:^(MASConstraintMaker *make) {
-			make.top.mas_equalTo(buttonBackView.mas_bottom).offset(20);
-			make.left.mas_equalTo(35);
-			make.right.mas_equalTo(-35);
-			make.height.mas_equalTo(ZJCalenderPartScreenHeight);
-		}];
-		view;
-	});
-	shadowView.backgroundColor = UIColor.whiteColor;
-
-	ZJCalenderView *view = [[ZJCalenderView alloc] initWithFrame:CGRectMake(35, 400, kScreenWidth-70, (kScreenWidth-70)/286*292) calenderMode:ZJCalenderModePartScreen];
-	view.selectedEnable = false;
-	[self.view addSubview:view];
-	[view mas_makeConstraints:^(MASConstraintMaker *make) {
-		make.top.mas_equalTo(buttonBackView.mas_bottom).offset(20);
-		make.left.mas_equalTo(35);
-		make.right.mas_equalTo(-35);
+	ZJCalenderView *zjCalenderview = [[ZJCalenderView alloc] initWithFrame:CGRectMake(35, 400, ZJCalenderWidth, ZJCalenderWidth/286*292) calenderMode:ZJCalenderModePartScreen];
+	zjCalenderview.selectedEnable = false;
+	[self.view addSubview:zjCalenderview];
+	[zjCalenderview mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.top.mas_equalTo(headerView.mas_bottom).offset(20);
+		make.left.mas_equalTo(25);
+		make.right.mas_equalTo(-25);
 		make.height.mas_equalTo(ZJCalenderPartScreenHeight);
 	}];
 	
-}
+	UIImageView *bindImageView = ({
+		UIImageView *imageView = [[UIImageView alloc] init];
+		[self.view addSubview: imageView];
+		[imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.centerX.mas_equalTo(self.view.mas_centerX);
+			make.centerY.mas_equalTo(zjCalenderview.mas_top).offset(-5);
+			make.size.mas_equalTo(CGSizeMake(kScreenWidth-200, 40));
+			
+		}];
+		imageView;
+	});
+	QMSetImage(bindImageView, @"qd02");
 
-
-#pragma mark - touch event
-- (void)checkInButtonClick:(UIButton *)sender {
 	
 }
 
+
+#pragma mark - status AlertView
+-(void)showCheckInStatusView {
+	
+	ChickSuccessAlertView *successView = [[ChickSuccessAlertView alloc] initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, kScreenWidth, kScreenHeight)];
+	[self.view addSubview:successView];
+	successView.backgroundColor = [UIColor colorWithHexString:@"000000" alpha:0.6];
+	QMWeak(successView);
+	successView.ChickSuccessAlertViewBlock = ^(NSInteger index) {
+		[weaksuccessView removeFromSuperview];
+	};
+}
+
+
+#pragma mark - 签到按钮
+- (void)ChickInHeaderView:(ChickInHeaderView *)headerView didDidseleted:(NSInteger)index {
+	NSLog(@"签到按钮");
+	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+		[self showCheckInStatusView];
+	});
+}
 
 
 #pragma mark - dqm_navibar

@@ -12,7 +12,17 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class MyMoneyAndStdentsView;
+@protocol MyMoneyAndStdentsViewDelegate <NSObject>
+
+-(void)myMoneyAndStdentsView:(MyMoneyAndStdentsView *)menuView destVc:(Class)destVc didSelect:(NSInteger)index;
+
+@end
+
 @interface MyMoneyAndStdentsView : UIView
+
+/** 代理 */
+@property(nonatomic,weak) id<MyMoneyAndStdentsViewDelegate>          delegate;
 
 /** 模型 */
 @property(nonatomic,strong) UserDetailModel          *userModel;

@@ -11,8 +11,8 @@
 #import "DQMRigthSwitchTableViewCell.h"//右边选择按钮
 #import "DQMDefaultTableViewCell.h"//默认cell用来写退出按钮
 #import "UserDetailModel.h"//用户模型
-
 #import "CompleteInformationViewController.h"//完善资料
+#import "AboutUSViewController.h"//关于酷趣客
 
 
 @interface SettingUsetInfoViewController ()
@@ -142,6 +142,11 @@
     CompleteInformationViewController *vc = [[CompleteInformationViewController alloc] initWithTitle:@"个人资料"];
     [self.navigationController pushViewController:vc animated:true];
   }
+	
+	if (indexPath.section == 2) {
+		AboutUSViewController *vc = [[AboutUSViewController alloc] init];
+		[self.navigationController pushViewController:vc animated:true];
+	}
   
 }
 

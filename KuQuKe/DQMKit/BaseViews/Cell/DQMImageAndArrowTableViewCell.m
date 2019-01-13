@@ -84,7 +84,6 @@
 		[_iconImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
 			make.left.mas_equalTo(20);
 			make.top.mas_equalTo((fixedCellHeight-25)/2);
-			make.bottom.mas_equalTo(-(fixedCellHeight-25)/2);
 			make.size.mas_equalTo(CGSizeMake(25, 25));
 		}];
 	} else {

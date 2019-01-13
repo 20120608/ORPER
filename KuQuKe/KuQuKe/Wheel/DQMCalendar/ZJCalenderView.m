@@ -141,9 +141,10 @@
 
     [self addSubview:_swichView];
     
-    _monthLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth-70, ZJCalenderPartScreenSwichViewHeight)];
+    _monthLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, ZJCalenderWidth, ZJCalenderPartScreenSwichViewHeight)];
     _monthLabel.textAlignment = NSTextAlignmentCenter;
-    _monthLabel.textColor = ZJCalenderCommonTextColor;
+    _monthLabel.textColor = [UIColor whiteColor];
+	_monthLabel.font = [UIFont systemFontOfSize:17];
     _monthLabel.font = [UIFont systemFontOfSize:ZJCalenderLargeTextSize weight:UIFontWeightLight];
     _monthLabel.backgroundColor = [UIColor clearColor];
     _monthLabel.layer.masksToBounds = YES;
@@ -154,6 +155,7 @@
     _lastMonthBtn.tag = 0;
     _lastMonthBtn.frame = CGRectMake(0, 0, 50, ZJCalenderPartScreenSwichViewHeight);
     _lastMonthBtn.enabled = NO;
+	_lastMonthBtn.imageEdgeInsets = UIEdgeInsetsMake(10, 10, 10, 10);
     [_lastMonthBtn setImage:[UIImage imageNamed:@"ZJCalenderLastImg"] forState:UIControlStateNormal];
 	_lastMonthBtn.backgroundColor = [UIColor clearColor];
 	[self setBorderWithView:_lastMonthBtn tlbr:3 borderColor:QMHexColor(@"999999") borderWidth:1];
@@ -162,7 +164,8 @@
     _nextMonthBtn = [self createButton];
     _nextMonthBtn.tag = 1;
     _nextMonthBtn.enabled = NO;
-    _nextMonthBtn.frame = CGRectMake(ZJScreenWidth - 120, 0, 50, ZJCalenderPartScreenSwichViewHeight);
+    _nextMonthBtn.frame = CGRectMake(ZJCalenderWidth-50, 0, 50, ZJCalenderPartScreenSwichViewHeight);
+	_nextMonthBtn.imageEdgeInsets = UIEdgeInsetsMake(10, 10, 10, 10);
     [_nextMonthBtn setImage:[UIImage imageNamed:@"ZJCalenderNextImg"] forState:UIControlStateNormal];
 	_nextMonthBtn.backgroundColor = [UIColor clearColor];
 	[self setBorderWithView:_nextMonthBtn tlbr:1 borderColor:QMHexColor(@"999999") borderWidth:1];
@@ -200,7 +203,7 @@
 - (void)setupWeekView {
     CGFloat weekX = 0;
     CGFloat weekY = CGRectGetMaxY(_swichView.frame);
-    CGFloat weekW = kScreenWidth-70;
+    CGFloat weekW = ZJCalenderWidth;
     CGFloat weekH = ZJCalenderWeekViewHeight;
     
     _weekView = [[UIView alloc] initWithFrame:CGRectMake(weekX, weekY, weekW, weekH)];
@@ -272,13 +275,13 @@
     
     CGFloat calenderX = ZJPadding;
     CGFloat calenderY = CGRectGetMaxY(_weekView.frame);
-    CGFloat calenderW = (kScreenWidth-70);
-    CGFloat calenderH = (kScreenWidth-70);
+    CGFloat calenderW = (ZJCalenderWidth);
+    CGFloat calenderH = (ZJCalenderWidth);
     
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     layout.minimumLineSpacing = 0;
     layout.minimumInteritemSpacing = 0;
-    CGFloat itemWidth = (kScreenWidth-70) / 7;
+    CGFloat itemWidth = (ZJCalenderWidth) / 7;
     CGFloat itemHeight = itemWidth;
     layout.itemSize = CGSizeMake(itemWidth, itemHeight);
     

@@ -22,7 +22,7 @@
 
   [self createTableViewHeader];
   
-  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
    
     //触发信号
     self.companyDictionay = @{@"QQ":@"787765489",@"tieba":@"酷趣客吧",@"weibo":@"@酷趣客-手机赚钱",@"QQSection":@"198067852",@"advice":@"789678956@qq.com",@"businessQQ":@"1011078954",@"needKnow":@"查看",@"icon":@"pkq",@"name":@"酷趣客-手机赚钱",@"version":@"版本4.1.1"};

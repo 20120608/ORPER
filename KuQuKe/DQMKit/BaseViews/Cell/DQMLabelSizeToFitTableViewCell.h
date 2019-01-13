@@ -16,7 +16,15 @@ NS_ASSUME_NONNULL_BEGIN
 /** 显示的文字 */
 @property(nonatomic,copy) NSMutableAttributedString          *contentText;
 
+
 +(DQMLabelSizeToFitTableViewCell *)cellWithTableView:(UITableView *)tableView;
+
+/** 增加背景 */
+@property(nonatomic,assign,getter=isShowBackColorView) BOOL   showBackColorView;
+
+/** 更改内边距 */
+-(void)setLabelEdgeInsetTop:(CGFloat)top left:(CGFloat)left bottom:(CGFloat)bottom right:(CGFloat)right;
+
 
 
 @end

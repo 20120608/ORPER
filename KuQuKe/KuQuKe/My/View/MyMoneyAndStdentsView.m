@@ -7,6 +7,9 @@
 //
 
 #import "MyMoneyAndStdentsView.h"
+#import "MyStudentsViewController.h"//我的徒弟们
+#import "MyBalanceOfPaymentsViewController.h"//收支关系
+
 
 @implementation MyMoneyAndStdentsView
 
@@ -63,6 +66,7 @@
 				UIImageView *imageView = [[UIImageView alloc] init];
 				[backView addSubview: imageView];
 				imageView.userInteractionEnabled = NO;
+				imageView.contentMode = UIViewContentModeScaleAspectFit;
 				[imageView mas_makeConstraints:^(MASConstraintMaker *make) {
 					make.centerX.mas_equalTo(backView.mas_centerX);
 					make.top.mas_equalTo(backView.mas_top).offset(10);
@@ -102,6 +106,10 @@
 
 -(void)menuClick:(UIButton *)sender {
 	NSLog(@"点击了哪个%ld",sender.tag);
+	NSArray *destVcArray = @[[MyBalanceOfPaymentsViewController class],[MyBalanceOfPaymentsViewController class],[MyStudentsViewController class]];
+	if ([self.delegate respondsToSelector:@selector(myMoneyAndStdentsView:destVc:didSelect:)]) {
+		[self.delegate myMoneyAndStdentsView:self destVc:destVcArray[sender.tag] didSelect:sender.tag];
+	}
 }
 
 

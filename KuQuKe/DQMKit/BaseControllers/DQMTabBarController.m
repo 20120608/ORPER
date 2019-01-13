@@ -34,7 +34,7 @@
 
 - (void)addChildViewControllers
 {
-  DQMNavigationController *one = [[DQMNavigationController alloc] initWithRootViewController:[[HomeViewController alloc] initWithTitle:@"首页"]];
+  DQMNavigationController *one = [[DQMNavigationController alloc] initWithRootViewController:[[HomeViewController alloc] initWithStyle:UITableViewStyleGrouped]];
   
   DQMNavigationController *two = [[DQMNavigationController alloc] initWithRootViewController:[[APPViewController alloc] initWithTitle:@"应用赚钱"]];
 
@@ -82,10 +82,10 @@ NSDictionary *fourTabBarItemsAttributes = @{
   [self.childViewControllers enumerateObjectsUsingBlock:^(__kindof UIViewController * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
     
     obj.tabBarItem.title = tabBarItemsAttributes[idx][@"TabBarItemTitle"];
-    obj.tabBarItem.image = [[UIImage imageNamed:tabBarItemsAttributes[idx][@"TabBarItemImage"]] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    obj.tabBarItem.selectedImage = [[UIImage imageNamed:tabBarItemsAttributes[idx][@"TabBarItemSelectedImage"]] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    obj.tabBarItem.titlePositionAdjustment = UIOffsetMake(0, -3);
-    obj.tabBarItem.imageInsets = UIEdgeInsetsMake(3, 0, 3, 0);
+    obj.tabBarItem.image = [[self scaleImageToSize:[UIImage imageNamed:tabBarItemsAttributes[idx][@"TabBarItemImage"]] size:CGSizeMake(28, 28)] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    obj.tabBarItem.selectedImage = [[self scaleImageToSize:[UIImage imageNamed:tabBarItemsAttributes[idx][@"TabBarItemSelectedImage"]] size:CGSizeMake(28, 28)] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    obj.tabBarItem.titlePositionAdjustment = UIOffsetMake(0, 0);
+    obj.tabBarItem.imageInsets = UIEdgeInsetsMake(0, 0, 0, 0);
   }];
   
   self.tabBar.tintColor = DQMMainColor;
@@ -94,6 +94,15 @@ NSDictionary *fourTabBarItemsAttributes = @{
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController
 {
   return YES;
+}
+
+-(UIImage *)scaleImageToSize:(UIImage *)img size:(CGSize)size
+{
+	UIGraphicsBeginImageContext(size);
+	[img drawInRect:CGRectMake(0, 0, size.width, size.height)];
+	UIImage* scaledImage = UIGraphicsGetImageFromCurrentImageContext();
+	UIGraphicsEndImageContext();
+	return scaledImage;
 }
 
 @end

@@ -56,12 +56,13 @@
     for (int i = 0; i < 10; i++) {
       UIButton *button = ({
         QMButton *button = [QMButton buttonWithType:UIButtonTypeCustom withSpace:5];
-        button.padding = 5;
+        button.padding = 8;
         button.buttonStyle = QMButtonImageTop;
         [self.contentView addSubview:button];
         button.tag = i;
-        QMSetButton(button, @"menu", 12, @"ic_reading_trails_yellow", QMTextColor, UIControlStateNormal);
-        QMSetButton(button, @"menu", 12, @"ic_reading_trails_yellow", QMTextColor, UIControlStateSelected);
+		  button.imageView.contentMode = UIViewContentModeScaleAspectFit;
+        QMSetButton(button, @"menu", 14, @"ic_reading_trails_yellow", QMTextColor, UIControlStateNormal);
+        QMSetButton(button, @"menu", 14, @"ic_reading_trails_yellow", QMTextColor, UIControlStateSelected);
         [button addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
         button;
       });
@@ -109,8 +110,8 @@
       //设置按钮的样式
       QMButton *btn = _buttonArray[i];
       NSDictionary *dataDic = datasArray[i];
-      QMSetButton(btn, dataDic[@"name"], 12, dataDic[@"icon"], QMTextColor, UIControlStateNormal);
-      QMSetButton(btn, dataDic[@"name"], 12, dataDic[@"icon"], QMTextColor, UIControlStateSelected);
+      QMSetButton(btn, dataDic[@"name"], 14, dataDic[@"icon"], QMTextColor, UIControlStateNormal);
+      QMSetButton(btn, dataDic[@"name"], 14, dataDic[@"icon"], QMTextColor, UIControlStateSelected);
     }
   }
 }

@@ -198,7 +198,7 @@
       label.textAlignment = NSTextAlignmentCenter;
       QMLabelFontColorText(label, @"通过审核后自动到账,审核时长1~2工作日", QMSubTextColor, 10);
       [label mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.mas_equalTo(self.mas_bottom).offset(-30+HOME_INDICATOR_HEIGHT);//撑开高
+        make.bottom.mas_equalTo(self.mas_bottom).offset(-30-HOME_INDICATOR_HEIGHT);//撑开高
         make.left.right.mas_equalTo(0);
         make.top.mas_equalTo(_putButton.mas_bottom).offset(20);
       }];

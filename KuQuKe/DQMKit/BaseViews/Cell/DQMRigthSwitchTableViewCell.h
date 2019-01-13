@@ -6,7 +6,7 @@
 //  Copyright © 2019 kuquke. All rights reserved.
 //
 
-//右边带switch的cell
+//左边标题 右边带switch的cell
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN

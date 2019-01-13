@@ -16,11 +16,15 @@
 #import "SettingUsetInfoViewController.h"//设置
 #import "CompleteAccountViewController.h"//完善账号
 #import "AboutUSViewController.h"//关于我们
+#import "CustomerServiceOfQQViewController.h"//QQ客服二维码
+#import "ShareToMyFriendViewController.h"//分享给朋友
+#import "MyBalanceCheckOutView.h"//余额弹窗
+#import "CheckOutAliPayViewController.h"//兑换到支付宝
 
 
-#define HEADER_TOP AdaptedHeight(400) //滚动到多少导航栏变不透明
+#define HEADER_TOP 330 //滚动到多少导航栏变不透明
 
-@interface MyViewController ()
+@interface MyViewController () <MyMoneyAndStdentsViewDelegate,MyBalanceCheckOutViewDelegate>
 {
 	UIStatusBarStyle _statusBarStyle; /*要想改变状态栏的颜色要在plist配置 View controller-based status bar appearance 为YES*/
 }
@@ -41,6 +45,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+	
+	self.tableView.contentInset = UIEdgeInsetsMake(NAVIGATION_BAR_HEIGHT, 0, TAB_BAR_HEIGHT, 0);
 	
 	//创建界面
 	[self createUI];
@@ -106,6 +112,7 @@
 	
 	//余额 总收益 学徒的视图  同样订阅用户信息 
 	MyMoneyAndStdentsView *balanceAndStudentView = [[MyMoneyAndStdentsView alloc] initWithFrame:CGRectZero];
+	balanceAndStudentView.delegate = self;
 	QMViewBorderRadius(balanceAndStudentView, 5, 0, DQMMainColor);
 	[expandImageView addSubview:balanceAndStudentView];
 	[balanceAndStudentView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -203,24 +210,60 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	DQMImageAndArrowTableViewCell *cell = [DQMImageAndArrowTableViewCell cellWithTableView:tableView andIndexPath:indexPath andFixedCellHeight:AdaptedHeight(56)];
+	DQMImageAndArrowTableViewCell *cell = [DQMImageAndArrowTableViewCell cellWithTableView:tableView andIndexPath:indexPath andFixedCellHeight:56];
 	cell.teamModel = self.listDataArray[indexPath.section][indexPath.row];
 	return cell;
 }
 
 
 #pragma mark - tableView delegate
+/**
+ 列表点击事件
+ */
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   
   if (indexPath.section == 0 && indexPath.row == 0) {
     CompleteAccountViewController *vc = [[CompleteAccountViewController alloc] initWithTitle:@"账号安全"];
     [self.navigationController pushViewController:vc animated:true];
+  } else if (indexPath.section == 0 && indexPath.row == 1) {
+	  CustomerServiceOfQQViewController *vc = [[CustomerServiceOfQQViewController alloc] initWithTitle:@"QQ客服群"];
+	  [self.navigationController pushViewController:vc animated:true];
+  }else if (indexPath.section == 0 && indexPath.row == 2) {
+	  ShareToMyFriendViewController *vc = [[ShareToMyFriendViewController alloc] initWithStyle:UITableViewStyleGrouped];
+	  [self.navigationController pushViewController:vc animated:true];
   } else if (indexPath.section == 1 && indexPath.row == 0) {
-    AboutUSViewController *vc = [[AboutUSViewController alloc] initWithTitle:@"关于酷趣客"];
-    [self.navigationController pushViewController:vc animated:true];
+	  AboutUSViewController *vc = [[AboutUSViewController alloc] initWithTitle:@"关于酷趣客"];
+	  [self.navigationController pushViewController:vc animated:true];
+  } else {
+	  
   }
   
 }
+
+#pragma mark - myMoneyAndStdentsView Delegate
+/**
+ 菜单点击事件
+ */
+- (void)myMoneyAndStdentsView:(MyMoneyAndStdentsView *)menuView destVc:(Class)destVc didSelect:(NSInteger)index {
+	if (index == 0) {
+		
+		MyBalanceCheckOutView *checkOutView = [[MyBalanceCheckOutView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
+		[self.view addSubview:checkOutView];
+		checkOutView.delegete = self;
+	}
+	else {
+		UIViewController *vc = [[destVc alloc] init];
+		[self.navigationController pushViewController:vc animated:true];
+	}
+}
+
+- (void)MyBalanceCheckOutView:(MyBalanceCheckOutView *)checkOutView didSelected:(NSInteger)index {
+	if (index == 1) {
+		CheckOutAliPayViewController *vc = [[CheckOutAliPayViewController alloc] initWithTitle:@"兑换支付宝"];
+		[self.navigationController pushViewController:vc animated:true];
+	}
+}
+
 
 
 

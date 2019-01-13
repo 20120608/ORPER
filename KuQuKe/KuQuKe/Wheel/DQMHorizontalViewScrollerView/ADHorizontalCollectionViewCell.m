@@ -38,6 +38,7 @@
       UIImageView *imageView = [[UIImageView alloc] init];
       QMViewBorderRadius(imageView, 12.5, 1, [UIColor redColor]);
       [self addSubview: imageView];
+		 imageView.image = [UIImage imageNamed:@"logo"];
       [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.mas_left).offset(3);
         make.centerY.mas_equalTo(self.contentView.mas_centerY);
@@ -71,16 +72,21 @@
 
 }
 
-#pragma mark — 实现自适应文字宽度的关键步骤:item的layoutAttributes
-- (UICollectionViewLayoutAttributes *)preferredLayoutAttributesFittingAttributes:(UICollectionViewLayoutAttributes *)layoutAttributes{
-  
-  UICollectionViewLayoutAttributes *attributes = [super preferredLayoutAttributesFittingAttributes:layoutAttributes];
-  CGRect rect = [self.contnetLabel.text boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, 38) options:NSStringDrawingTruncatesLastVisibleLine| NSStringDrawingUsesFontLeading |NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:14]} context:nil];
-  rect.size.width +=8;
-  rect.size.height+=8;
-attributes.frame = CGRectMake(rect.origin.x, rect.origin.y, rect.size.width+35, rect.size.height);
- return attributes;
-  
+- (UICollectionViewLayoutAttributes *)preferredLayoutAttributesFittingAttributes:(UICollectionViewLayoutAttributes *)layoutAttributes {
+	// 获得每个cell的属性集
+	UICollectionViewLayoutAttributes *attributes = [super preferredLayoutAttributesFittingAttributes:layoutAttributes];
+	// 计算cell里面textfield的宽度
+	CGRect frame = [self.contnetLabel.text boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, 38) options:(NSStringDrawingUsesLineFragmentOrigin) attributes:[NSDictionary dictionaryWithObjectsAndKeys:self.contnetLabel.font,NSFontAttributeName, nil] context:nil];
+	
+	// 这里在本身宽度的基础上 又增加了10
+	frame.size.width += 60;
+	frame.size.height = 38;
+	
+	// 重新赋值给属性集
+	attributes.frame = frame;
+	
+	return attributes;
 }
+
 
 @end

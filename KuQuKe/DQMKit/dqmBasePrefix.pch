@@ -51,8 +51,8 @@
 #define QMTextColor QMHexColor(@"#373737")
 #define QMSubTextColor QMHexColor(@"#888888")
 #define QMPriceColor QMHexColor(@"#e6584e")
-#define QMBackColor QMHexColor(@"#f6f6f6")
-#define QMBlueColor QMHexColor(@"509230")
+#define QMBackColor QMHexColor(@"#eeeeee")
+#define QMBlueColor QMHexColor(@"5092e0")
 
 
 /**  设置字体*/
@@ -160,6 +160,9 @@ isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bo
 
 /** 不带遮罩的弹窗警告 */
 #import "Toast.h"
+
+
+
 
 /** 基本的宏定义 ⤴️ */
 

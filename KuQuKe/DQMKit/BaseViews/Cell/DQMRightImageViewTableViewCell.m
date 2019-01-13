@@ -83,8 +83,10 @@
 			}];
 			imageView;
 		});
+		
+		QMWeak(self);
 		[RACObserve(self, showArrow) subscribeNext:^(id  _Nullable x) {
-			_arrowImageView.hidden = ![x boolValue];
+			weakself.arrowImageView.hidden = ![x boolValue];
 		}];
 		
 		/** 图标 */
@@ -159,17 +161,25 @@
   _model = model;
   /** 标题 */
   self.titleLabel.text = model.title;
+	self.iconImageView.hidden = true;
+	self.iconImageView.hidden = true;
+	
+	if (model.subImage != nil) {
+		self.iconImageView.hidden = false;
+		[self.iconImageView setImage:model.subImage];
+	}
+	else if ([model.subTitle length] != 0) {
+		self.subTitleLabel.hidden = false;
+		self.subTitleLabel.text = [NSString stringWithFormat:@"%@",model.subTitle];
+	}
+	else if ([model.subImageUrl length] > 1) {
+		self.iconImageView.hidden = false;
+		self.subTitleLabel.text = @"";
+		[self.iconImageView qm_setWithImageURL:[NSURL URLWithString:model.subImageUrl] placeholderImage:[UIImage imageNamed:@"placeholderImage"]];
+	}
+	
   
-  if ([model.subImageUrl length] == 0) {
-    self.iconImageView.hidden = true;
-    self.subTitleLabel.text = [NSString stringWithFormat:@"%@",model.subTitle];
-  } else {
-    self.iconImageView.hidden = false;
-    self.subTitleLabel.text = @"";
-    [self.iconImageView qm_setWithImageURL:[NSURL URLWithString:model.subImageUrl] placeholderImage:[UIImage imageNamed:@"placeholderImage"]];
-  }
-  
-  
+	
   
 }
 

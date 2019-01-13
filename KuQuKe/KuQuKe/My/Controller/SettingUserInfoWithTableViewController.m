@@ -20,14 +20,42 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
   
-  self.naviName = _settingTableStype == SettingTableStyleSex ? @"性别" : _settingTableStype == SettingTableStyleJob ? @"工作" : @"其他";
+  self.naviName = _settingTableStype == SettingTableStyleJob ? @"工作" : @"其他";
   //因为先走了dqmNavigationBarTitle  所以要手动触发一次
   self.dqm_navgationBar.title = [QMSGeneralHelpers changeStringToMutableAttributedStringTitle:self.naviName color:UIColor.whiteColor];
-  
-  
+	
+	self.addItem([StaticListItem itemAdditionalExtensionWithTitle:@"学生" subTitle:nil extensionDictionary:nil itemOperation:^(NSIndexPath *indexPath) {
+		
+	}])
+	.addItem([StaticListItem itemAdditionalExtensionWithTitle:@"教师" subTitle:nil extensionDictionary:nil itemOperation:^(NSIndexPath *indexPath) {
+		
+	}])
+	.addItem([StaticListItem itemAdditionalExtensionWithTitle:@"全职妈妈" subTitle:nil extensionDictionary:nil itemOperation:^(NSIndexPath *indexPath) {
+		
+	}])
+	.addItem([StaticListItem itemAdditionalExtensionWithTitle:@"上班族" subTitle:nil extensionDictionary:nil itemOperation:^(NSIndexPath *indexPath) {
+		
+	}])
+	.addItem([StaticListItem itemAdditionalExtensionWithTitle:@"老板" subTitle:nil extensionDictionary:nil itemOperation:^(NSIndexPath *indexPath) {
+		
+	}])
+	.addItem([StaticListItem itemAdditionalExtensionWithTitle:@"公务员" subTitle:nil extensionDictionary:nil itemOperation:^(NSIndexPath *indexPath) {
+		
+	}])
+	.addItem([StaticListItem itemAdditionalExtensionWithTitle:@"自由职业" subTitle:nil extensionDictionary:nil itemOperation:^(NSIndexPath *indexPath) {
+		
+	}])
+	.addItem([StaticListItem itemAdditionalExtensionWithTitle:@"其他" subTitle:nil extensionDictionary:nil itemOperation:^(NSIndexPath *indexPath) {
+		
+	}]);
   
 }
 
+
+#pragma mark - tableview datasource
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+	return 50;
+}
 
 
 

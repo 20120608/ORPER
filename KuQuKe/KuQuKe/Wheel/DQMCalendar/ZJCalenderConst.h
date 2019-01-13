@@ -38,15 +38,17 @@
 #define ZJCalenderMonthTitleColor [UIColor whiteColor]
 #define ZJCalenderMonthTitleBackgroundColor [UIColor darkGrayColor]
 
+
+#define ZJCalenderWidth (ZJScreenWidth-50)
 #define ZJCalenderLineFullScreenSpacing 0
 #define ZJCalenderLinePartScreenSpacing 0
 #define ZJCalenderMonthTitleViewHeight ZJCalenderItemHeight + ZJCalenderLinePartScreenSpacing
-#define ZJCalenderMonthTitleWidth (ZJScreenWidth - 70) / 7
+#define ZJCalenderMonthTitleWidth ZJCalenderWidth / 7
 #define ZJCalenderMonthTitleHeight 22
 #define ZJCalenderWeekViewHeight 44
-#define ZJCalenderItemWidth (ZJScreenWidth - 70) / 7
+#define ZJCalenderItemWidth ZJCalenderWidth / 7
 #define ZJCalenderItemHeight ZJCalenderItemWidth
-#define ZJCalenderPartScreenSwichViewHeight 58
+#define ZJCalenderPartScreenSwichViewHeight 50
 #define ZJCalenderPartScreenHeight ZJCalenderWeekViewHeight + ZJCalenderPartScreenSwichViewHeight + 6 * ZJCalenderItemHeight
 
 #define ZJCalenderFirstSelectedText @"入住"

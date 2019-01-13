@@ -135,7 +135,7 @@
 		QMSetImage(imageView, @"活动规则背景");
 		[imageView mas_makeConstraints:^(MASConstraintMaker *make) {
 			make.centerX.mas_equalTo(self.view.mas_centerX);
-			make.top.mas_equalTo(_bgImageView.mas_bottom).offset(20);
+			make.top.mas_equalTo(_bgImageView.mas_bottom).offset(10);
 			make.height.mas_equalTo(30);
 			make.width.mas_equalTo(212);
 		}];
@@ -161,7 +161,7 @@
 			make.centerX.mas_equalTo(self.view.mas_centerX);
 			make.left.mas_equalTo(12);
 			make.right.mas_equalTo(-12);
-			make.top.mas_equalTo(_bgImageView.mas_bottom).offset(35);
+			make.top.mas_equalTo(_bgImageView.mas_bottom).offset(25);
 		}];
 		view;
 	});

@@ -13,7 +13,6 @@
 @interface DQMHorizontalViewScrollerView () <UICollectionViewDelegate,UICollectionViewDataSource>
 {
   NSTimer * _timer;
-  BOOL      _scrollRight;
   
 }
 /** 数组 */
@@ -45,7 +44,6 @@
 	UIImageView *imageView = ({
 		UIImageView *imageView = [[UIImageView alloc] init];
 		[self addSubview: imageView];
-		QMSetImage(imageView, @"07");
 		[imageView mas_makeConstraints:^(MASConstraintMaker *make) {
 			make.top.mas_equalTo(8);
 			make.left.mas_equalTo(10);
@@ -53,6 +51,8 @@
 		}];
 		imageView;
 	});
+	QMSetImage(imageView, @"07");
+
 	
 	UIView *line = [[UIView alloc] initWithFrame:CGRectMake(43, 8, 1, 22)];
 	line.backgroundColor = DQMMainColor;
@@ -132,28 +132,19 @@
 
 
 - (void)contentMove {
-  
-  if (self.contentView.contentSize.width < kScreenWidth-38) {
-    return;//小于屏幕不滚动
-  }
-  
-  if (self.contentView.contentOffset.x < 0) {
-    _scrollRight = NO;
-  }
-  if (self.contentView.contentOffset.x > self.contentView.contentSize.width - (kScreenWidth-38) ) {
-    _scrollRight = YES;
-  }
-  
-  if (_scrollRight) {
-    [UIView animateWithDuration:0.03 animations:^{
-      self.contentView.contentOffset = CGPointMake(self.contentView.contentOffset.x - 1, 0);
-    }];
-  } else {
-    [UIView animateWithDuration:0.03 animations:^{
-      self.contentView.contentOffset = CGPointMake(self.contentView.contentOffset.x + 1, 0);
-    }];
-  }
-  
+	
+	if (self.contentView.contentSize.width < kScreenWidth-38) {
+		return;//小于屏幕不滚动
+	}
+	if (self.contentView.contentOffset.x + kScreenWidth+128 > self.contentView.contentSize.width ) {
+		self.contentView.contentOffset = CGPointMake(-kScreenWidth+38, 0);
+	}
+
+	
+	[UIView animateWithDuration:0.03 animations:^{
+		self.contentView.contentOffset = CGPointMake(self.contentView.contentOffset.x + 1, 0);
+	}];
+	
 }
 
 - (void)dealloc{

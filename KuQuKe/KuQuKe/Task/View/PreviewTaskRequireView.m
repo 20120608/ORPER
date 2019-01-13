@@ -164,7 +164,7 @@
   if (!_iconImageView) {
     _iconImageView = ({
       UIImageView *imageView = [[UIImageView alloc] init];
-      QMSetImage(imageView, @"01");
+      QMSetImage(imageView, @"logo");
       [self addSubview: imageView];
       imageView;
     });
