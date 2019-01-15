@@ -95,9 +95,9 @@
 		});
 		[checkOutBtn addTarget:self action:@selector(AlertViewbuttonClick:) forControlEvents:UIControlEventTouchUpInside];
 
-		NSArray *imgaRRAY = @[@"s01",@"s07",@"logo"];
+		NSArray *imgaRRAY = @[@"s01",@"s07"];
 		NSMutableArray *buttonArray = [[NSMutableArray alloc] init];
-		for (int i = 0; i < 3; i++) {
+		for (int i = 0; i < [imgaRRAY count]; i++) {
 			UIButton *button = ({
 				UIButton *button = [[UIButton alloc] init];
 				[self addSubview:button];
@@ -111,7 +111,7 @@
 			});
 			[buttonArray addObject: button];
 		}
-		[buttonArray mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedItemLength:53 leadSpacing:(kScreenWidth-127)/5 tailSpacing:(kScreenWidth-127)/5];
+		[buttonArray mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedItemLength:53 leadSpacing:(kScreenWidth-127)/4 tailSpacing:(kScreenWidth-127)/4];
 		[buttonArray mas_makeConstraints:^(MASConstraintMaker *make) {
 			make.top.mas_equalTo(whiteBackView.mas_bottom).offset(70);
 			make.height.mas_equalTo(53);

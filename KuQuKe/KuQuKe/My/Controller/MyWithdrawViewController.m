@@ -22,7 +22,8 @@
 @implementation MyWithdrawViewController
 
 - (void)viewDidLoad {
-	
+  self.view.backgroundColor = UIColor.whiteColor;
+
 	//因为列表延迟加载了，所以在初始化的时候加载数据即可
 	[self loadData];
 }
@@ -30,7 +31,6 @@
 
 
 - (void)loadData {
-	NSLog(@"1111");
 	//第一次才加载，后续触发的不处理
 	if (!self.isDataLoaded) {
 		[self headerRefresh];
@@ -40,7 +40,6 @@
 
 
 - (void)headerRefresh {
-	NSLog(@"1111wwww");
 	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
 		NSLog(@"刷新");
 		[self.listDataArray addObjectsFromArray:@[@{@"11":@"222"},@{@"11":@"222"},@{@"11":@"222"}]];

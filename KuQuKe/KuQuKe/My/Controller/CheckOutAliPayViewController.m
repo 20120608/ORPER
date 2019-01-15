@@ -11,14 +11,19 @@
 
 @interface CheckOutAliPayViewController () <CheckOutCollectionViewDelegate>
 
+/** 用户选择要提现的金额 默认20元 */
+@property(nonatomic,copy) NSString          *withdrawalMoney;
+
 @end
 
 @implementation CheckOutAliPayViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+  self.withdrawalMoney = CheckOutMoneyArray[0];
 	self.view.backgroundColor = QMBackColor;
 	
+  
 	
 	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
 		
@@ -37,8 +42,9 @@
 }
 
 #pragma mark - delegate
-- (void)CheckOutCollectionView:(CheckOutCollectionView *)checkView didSelectIndex:(NSInteger)index {
-	
+- (void)CheckOutCollectionView:(CheckOutCollectionView *)checkView didSelectButton:(nonnull UIButton *)button {
+  NSLog(@"用户点击了%@元",CheckOutMoneyArray[button.tag]);
+  self.withdrawalMoney = CheckOutMoneyArray[button.tag];//触发订阅
 }
 
 

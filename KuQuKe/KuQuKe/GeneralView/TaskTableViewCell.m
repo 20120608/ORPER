@@ -83,7 +83,7 @@
 		self.iconImageView = ({
 			UIImageView *imageView = [[UIImageView alloc] init];
 			[self.contentView addSubview: imageView];
-			QMSetImage(imageView, @"pkq");
+			QMSetImage(imageView, @"logo");
 			QMViewBorderRadius(imageView, 4, 0, DQMMainColor);
 			[imageView mas_makeConstraints:^(MASConstraintMaker *make) {
 				make.left.mas_equalTo(24);

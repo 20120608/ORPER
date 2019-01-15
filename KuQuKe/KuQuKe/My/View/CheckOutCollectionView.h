@@ -14,7 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 @class CheckOutCollectionView;
 @protocol CheckOutCollectionViewDelegate <NSObject>
 
--(void)CheckOutCollectionView:(CheckOutCollectionView *)checkView didSelectIndex:(NSInteger)index;
+-(void)CheckOutCollectionView:(CheckOutCollectionView *)checkView didSelectButton:(UIButton *)button;
+
 
 @end
 @interface CheckOutCollectionView : UIView
@@ -24,6 +25,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 /** 我的余额 */
 @property(nonatomic,copy) NSString          *myBalane;
+
+
 
 @end
 

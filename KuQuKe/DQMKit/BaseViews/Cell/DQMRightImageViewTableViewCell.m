@@ -93,7 +93,7 @@
 		self.iconImageView = ({
 			UIImageView *imageView = [[UIImageView alloc] init];
 			[self.contentView addSubview: imageView];
-			QMSetImage(imageView, @"pkq");
+			QMSetImage(imageView, @"logo");
 			[imageView mas_makeConstraints:^(MASConstraintMaker *make) {
 				make.right.mas_equalTo(_arrowImageView.mas_left).offset(-10).priority(1000);
 				make.right.mas_equalTo(_backView.mas_right).offset(-10).priority(900);

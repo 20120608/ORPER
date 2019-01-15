@@ -23,6 +23,7 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
+  self.view.backgroundColor = UIColor.whiteColor;
 	
 	//滚动的菜单
 	CGFloat categoryHeight = 45;

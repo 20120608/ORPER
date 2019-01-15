@@ -13,7 +13,16 @@
  #define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
  #define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
 
- 
+//和网络请求有关的宏
+#define kUserDefaults      [NSUserDefaults standardUserDefaults]
+#define kJSON(JSONString)    [NSJSONSerialization JSONObjectWithData:JSONString options:NSJSONReadingMutableLeaves error:nil]
+
+//操作userdefault
+#define GET_USERDEFAULT(KEY)  [[NSUserDefaults standardUserDefaults] objectForKey:KEY]
+
+
+
+
 //尺寸
 #define kStatusBarHeight [UIApplication sharedApplication].statusBarFrame.size.height
 
@@ -153,25 +162,13 @@ isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bo
 #import "ReactiveObjC.h"
 
 /** 网络请求 */
-#import "AFNetworking.h"
+#import "DQMAFNetWork.h"
 
 /** 遮罩 */
 #import "MBProgressHUD.h"
 
 /** 不带遮罩的弹窗警告 */
 #import "Toast.h"
-
-
-
-
-/** 基本的宏定义 ⤴️ */
-
-
-
-
-
-
-
 
 
 
@@ -193,6 +190,31 @@ isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bo
 
 /** 网络图片加载 */
 #import "UIImageView+WebCache.h"
+
+/** 基本的宏定义 ⤴️ */
+
+
+
+
+
+/** 每个APP不同的 */
+//用户编号
+#define USER_ID @"user_id"
+//用户信息
+#define USER_INFO @"user_info"
+//主机信息
+#define MASTER @"master"
+//主机编号
+#define MASTER_ID @"master_id"
+//用户登录的token
+#define USER_TOKEN @"user_token"
+//增加SESSIONID / token的文件命名
+#define kHTTPHeaderField   @"PIAODU_JSESSIONID"
+
+#define BASEURL @"http://www.weather.com.cn/"
+
+
+
 
 
 

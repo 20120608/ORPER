@@ -53,6 +53,7 @@
 			textField.placeholder = @"请输入支付宝账号";
 			textField.textColor = QMTextColor;
 			textField.font = KQMFont(16);
+      textField.returnKeyType = UIReturnKeyDone;
 			[textField mas_makeConstraints:^(MASConstraintMaker *make) {
 				make.left.mas_equalTo(icon1.mas_right).offset(20);
 				make.centerY.mas_equalTo(icon1.mas_centerY);
@@ -90,6 +91,7 @@
 			textField.placeholder = @"请输入支付宝认证的姓名";
 			textField.textColor = QMTextColor;
 			textField.font = KQMFont(16);
+      textField.returnKeyType = UIReturnKeyDone;
 			[textField mas_makeConstraints:^(MASConstraintMaker *make) {
 				make.left.mas_equalTo(icon2.mas_right).offset(20);
 				make.centerY.mas_equalTo(icon2.mas_centerY);
@@ -109,7 +111,17 @@
 		});
 		line2View.backgroundColor = QMBackColor;
 		
-		
+    UILabel *needLabel = ({
+      UILabel *label = [[UILabel alloc] init];
+      [self addSubview:label];
+      NSString *price = [ NSString stringWithFormat:@"需要%.2lf元",[CheckOutMoneyArray[0] floatValue]];
+      QMLabelFontColorText(label, price, QMTextColor, 16);
+      [label mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(20);
+        make.top.mas_equalTo(whiteBack.mas_bottom).offset(20);
+      }];
+      label;
+    });
 		
 		
 		self.buttonArray = [[NSMutableArray alloc] init];
@@ -135,7 +147,7 @@
 			UIButton *button = ({
 				UIButton *button = [[UIButton alloc] init];
 				[self addSubview:button];
-				button.tag = i;
+				button.tag = i+3;
 				button;
 			});
 			[secondArray addObject:button];
@@ -148,28 +160,28 @@
 		}];
 		
 		
-		NSArray *titleArray = @[@"20元",@"50元",@"100元",@"200元",@"500元",@"1000元"];
 		[_buttonArray enumerateObjectsUsingBlock:^(UIButton *obj, NSUInteger idx, BOOL * _Nonnull stop) {
 			obj.layer.borderColor = QMBackColor.CGColor;
 			obj.layer.borderWidth = 1;
 			[obj setBackgroundColor:DQMMainColor forState:UIControlStateSelected];
 			[obj setBackgroundColor:[UIColor whiteColor] forState:UIControlStateNormal];
-			QMSetButton(obj, titleArray[idx], 14, nil, QMTextColor, UIControlStateNormal);
-			QMSetButton(obj, titleArray[idx], 14, nil, UIColor.whiteColor, UIControlStateSelected);
-		}];
+      NSString *price = [NSString stringWithFormat:@"%@元",CheckOutMoneyArray[idx]];
+			QMSetButton(obj, price, 14, nil, QMTextColor, UIControlStateNormal);
+			QMSetButton(obj, price, 14, nil, UIColor.whiteColor, UIControlStateSelected);
+      [obj setSelected:idx == 0 ? true : false];//默认选中第一个
+      [obj addTarget:self action:@selector(changeSelectedWithButton:) forControlEvents:UIControlEventTouchUpInside];
+      
+      //订阅每个按钮的点击事件
+      [[obj rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(UIButton *x) {
+        NSString *price = [ NSString stringWithFormat:@"需要%.2lf元",[CheckOutMoneyArray[x.tag] floatValue]];
+        QMLabelFontColorText(needLabel, price, QMTextColor, 16);
+      }];
+    }];
 		
 		
-		UILabel *needLabel = ({
-			UILabel *label = [[UILabel alloc] init];
-			[self addSubview:label];
-			QMLabelFontColorText(label, @"需要20.00元", QMTextColor, 16);
-			[label mas_makeConstraints:^(MASConstraintMaker *make) {
-				make.left.mas_equalTo(20);
-				make.top.mas_equalTo(whiteBack.mas_bottom).offset(20);
-			}];
-			label;
-		});
-		
+	
+    
+    
 		UIButton *checkOutButton = ({
 			UIButton *button = [[UIButton alloc] init];
 			[self addSubview:button];
@@ -190,7 +202,6 @@
 			UILabel *label = [[UILabel alloc] init];
 			[self addSubview:label];
 			label.numberOfLines = 2;
-			QMLabelFontColorText(label, @"提现到支付宝,审核后立即到账;\n所产生的手续费由学生赚官方承担。", QMSubTextColor, 14);
 			[label mas_makeConstraints:^(MASConstraintMaker *make) {
 				make.left.mas_equalTo(20);
 				make.right.mas_equalTo(-20);
@@ -198,10 +209,24 @@
 			}];
 			label;
 		});
+    QMLabelFontColorText(msgLabel, @"提现到支付宝,审核后立即到账;\n所产生的手续费由学生赚官方承担。", QMSubTextColor, 14);
+
 		
 	}
 	return self;
 }
+
+
+- (void)changeSelectedWithButton:(UIButton *)sender {
+  for (UIButton *button in _buttonArray) {
+    [button setSelected:sender.tag == button.tag ? true : false];
+  }
+  if ([self.delegate respondsToSelector:@selector(CheckOutCollectionView:didSelectButton:)]) {
+    [self.delegate CheckOutCollectionView:self didSelectButton:sender];
+  }
+}
+
+
 
 - (void)checkOutButtonClick:(UIButton *)sender {
 	

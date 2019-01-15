@@ -27,7 +27,9 @@
     manager.shouldResignOnTouchOutside = YES;//控制点击背景是否收起键盘
     manager.enableAutoToolbar = YES;//控制是否显示键盘上的工具条。
     manager.keyboardDistanceFromTextField = 10.0f; // 输入框距离键盘的距离
-    
+    manager.toolbarDoneBarButtonItemText = @"完成";// 将英文done换成中文
+  
+
     
     self.window.rootViewController = [[DQMTabBarController alloc] init];
     [self.window makeKeyAndVisible];

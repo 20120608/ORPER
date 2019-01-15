@@ -30,6 +30,8 @@
 	UIView *leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 20, 50)];
 	textField.leftView = leftView;
 	textField.leftViewMode = UITextFieldViewModeAlways;
+  textField.returnKeyType = UIReturnKeyDone;
+  textField.keyboardType = _settingInputStyle == SettingInputStyleNickName ? UIKeyboardTypeDefault : _settingInputStyle == SettingInputStyleBirthday ? UIKeyboardTypeDefault : _settingInputStyle == SettingInputStyleWeChat ? UIKeyboardTypeDefault : _settingInputStyle == SettingInputStyleQQ ? UIKeyboardTypeNumberPad : _settingInputStyle == SettingInputStylePhone ? UIKeyboardTypeNumberPad : UIKeyboardTypeDefault;
 	[self.view addSubview:textField];
 	
   

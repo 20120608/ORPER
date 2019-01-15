@@ -112,6 +112,9 @@
 		59D0AEB921E4281B00F3A67C /* AvgButtonMenuTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 59D0AEB821E4281B00F3A67C /* AvgButtonMenuTableViewCell.m */; };
 		59D0AEBC21E429AF00F3A67C /* QMButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 59D0AEBB21E429AF00F3A67C /* QMButton.m */; };
 		59D0AEC921E4665E00F3A67C /* RotaryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59D0AEC821E4665E00F3A67C /* RotaryTableViewController.m */; };
+		59DC11EA21EDB06C003FE685 /* DQMAFNetWork.m in Sources */ = {isa = PBXBuildFile; fileRef = 59DC11E921EDB06C003FE685 /* DQMAFNetWork.m */; };
+		59DC11EE21EDB95E003FE685 /* QMBaseNetWorking.m in Sources */ = {isa = PBXBuildFile; fileRef = 59DC11ED21EDB95E003FE685 /* QMBaseNetWorking.m */; };
+		59DC11F221EDC8FD003FE685 /* KuQuKeNetWorkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 59DC11F121EDC8FD003FE685 /* KuQuKeNetWorkManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -342,6 +345,12 @@
 		59D0AEBB21E429AF00F3A67C /* QMButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMButton.m; sourceTree = "<group>"; };
 		59D0AEC721E4665E00F3A67C /* RotaryTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RotaryTableViewController.h; sourceTree = "<group>"; };
 		59D0AEC821E4665E00F3A67C /* RotaryTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RotaryTableViewController.m; sourceTree = "<group>"; };
+		59DC11E821EDB06C003FE685 /* DQMAFNetWork.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DQMAFNetWork.h; sourceTree = "<group>"; };
+		59DC11E921EDB06C003FE685 /* DQMAFNetWork.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DQMAFNetWork.m; sourceTree = "<group>"; };
+		59DC11EC21EDB95E003FE685 /* QMBaseNetWorking.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QMBaseNetWorking.h; sourceTree = "<group>"; };
+		59DC11ED21EDB95E003FE685 /* QMBaseNetWorking.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QMBaseNetWorking.m; sourceTree = "<group>"; };
+		59DC11F021EDC8FD003FE685 /* KuQuKeNetWorkManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KuQuKeNetWorkManager.h; sourceTree = "<group>"; };
+		59DC11F121EDC8FD003FE685 /* KuQuKeNetWorkManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KuQuKeNetWorkManager.m; sourceTree = "<group>"; };
 		BBA01A4F588F36CE8B3727A1 /* Pods-KuQuKe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KuQuKe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KuQuKe/Pods-KuQuKe.debug.xcconfig"; sourceTree = "<group>"; };
 		C7FE1CD1FD4856ED3093FC18 /* Pods-KuQuKe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KuQuKe.release.xcconfig"; path = "Pods/Target Support Files/Pods-KuQuKe/Pods-KuQuKe.release.xcconfig"; sourceTree = "<group>"; };
 		D39DEF13475F7A49DCFD97FE /* Pods_KuQuKe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KuQuKe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -658,6 +667,7 @@
 				5594A0B321E1BB11009178B3 /* AppDelegate.m */,
 				5537064721E1C2E7001E49BC /* Wheel */,
 				59D0AEB621E427C800F3A67C /* GeneralView */,
+				59DC11EF21EDC8B0003FE685 /* RequestManager */,
 				5594A15821E1BC6E009178B3 /* Home */,
 				5594A15E21E1BCF4009178B3 /* APP */,
 				5594A15D21E1BCF2009178B3 /* Game */,
@@ -695,6 +705,7 @@
 				5594A10021E1BC1F009178B3 /* BaseControllers */,
 				5594A11421E1BC1F009178B3 /* BaseModels */,
 				5594A11D21E1BC1F009178B3 /* BaseViews */,
+				59DC11EB21EDB846003FE685 /* DQMNetWork */,
 				5594A12C21E1BC1F009178B3 /* Helpers */,
 			);
 			path = DQMKit;
@@ -842,14 +853,14 @@
 		5594A12C21E1BC1F009178B3 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				5594A12D21E1BC1F009178B3 /* YYFPSLabel.h */,
-				5594A12E21E1BC1F009178B3 /* QMSGeneralHelpers.h */,
-				5594A12F21E1BC1F009178B3 /* JXTAlertController.h */,
 				5594A13021E1BC1F009178B3 /* DQMConst.h */,
-				5594A13121E1BC1F009178B3 /* YYFPSLabel.m */,
-				5594A13221E1BC1F009178B3 /* JXTAlertController.m */,
-				5594A13321E1BC1F009178B3 /* QMSGeneralHelpers.m */,
 				5594A13421E1BC1F009178B3 /* DQMConst.m */,
+				5594A12F21E1BC1F009178B3 /* JXTAlertController.h */,
+				5594A13221E1BC1F009178B3 /* JXTAlertController.m */,
+				5594A12E21E1BC1F009178B3 /* QMSGeneralHelpers.h */,
+				5594A13321E1BC1F009178B3 /* QMSGeneralHelpers.m */,
+				5594A12D21E1BC1F009178B3 /* YYFPSLabel.h */,
+				5594A13121E1BC1F009178B3 /* YYFPSLabel.m */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -973,6 +984,26 @@
 				59D0AEC821E4665E00F3A67C /* RotaryTableViewController.m */,
 			);
 			path = Rotarytable;
+			sourceTree = "<group>";
+		};
+		59DC11EB21EDB846003FE685 /* DQMNetWork */ = {
+			isa = PBXGroup;
+			children = (
+				59DC11E821EDB06C003FE685 /* DQMAFNetWork.h */,
+				59DC11E921EDB06C003FE685 /* DQMAFNetWork.m */,
+				59DC11EC21EDB95E003FE685 /* QMBaseNetWorking.h */,
+				59DC11ED21EDB95E003FE685 /* QMBaseNetWorking.m */,
+			);
+			path = DQMNetWork;
+			sourceTree = "<group>";
+		};
+		59DC11EF21EDC8B0003FE685 /* RequestManager */ = {
+			isa = PBXGroup;
+			children = (
+				59DC11F021EDC8FD003FE685 /* KuQuKeNetWorkManager.h */,
+				59DC11F121EDC8FD003FE685 /* KuQuKeNetWorkManager.m */,
+			);
+			path = RequestManager;
 			sourceTree = "<group>";
 		};
 		835EFD55B493FECDFA3D3B7E /* Pods */ = {
@@ -1240,6 +1271,7 @@
 				5594A14C21E1BC1F009178B3 /* DQMDefaultTableViewCell.m in Sources */,
 				551A0A0D21EAFAF900B2FB84 /* HomeMyTaskTableViewCell.m in Sources */,
 				5594A13B21E1BC1F009178B3 /* UIView+Gradient.m in Sources */,
+				59DC11EE21EDB95E003FE685 /* QMBaseNetWorking.m in Sources */,
 				551A09E621E9AF9B00B2FB84 /* MyInComeViewController.m in Sources */,
 				5594A14321E1BC1F009178B3 /* DQMFoldingTableViewController.m in Sources */,
 				551A09DA21E9A25600B2FB84 /* DQMJXCategoryViewController.m in Sources */,
@@ -1250,6 +1282,7 @@
 				551A09FB21EA213900B2FB84 /* ShareResultsTableViewCell.m in Sources */,
 				5594A14721E1BC1F009178B3 /* DQMTableViewController.m in Sources */,
 				55D1D0DF21E22095008ECEE3 /* ZJCalenderController.m in Sources */,
+				59DC11F221EDC8FD003FE685 /* KuQuKeNetWorkManager.m in Sources */,
 				55D1D0DE21E22095008ECEE3 /* ZJCalenderMonthModel.m in Sources */,
 				5594A0B721E1BB11009178B3 /* ViewController.m in Sources */,
 				55542FAE21E37ABD000F8D45 /* TaskTableViewCell.m in Sources */,
@@ -1291,6 +1324,7 @@
 				55D1D0D921E22095008ECEE3 /* ZJCalenderDayModel.m in Sources */,
 				551A09DD21E9A35200B2FB84 /* DQMChildJXCategpryListViewController.m in Sources */,
 				551A0A1321EB0E3A00B2FB84 /* CheckOutSuccessView.m in Sources */,
+				59DC11EA21EDB06C003FE685 /* DQMAFNetWork.m in Sources */,
 				5537063421E1C053001E49BC /* APPViewController.m in Sources */,
 				59ADCD1621E6ECB200A86C1F /* CompleteInformationViewController.m in Sources */,
 				5594A0B421E1BB11009178B3 /* AppDelegate.m in Sources */,
@@ -1469,12 +1503,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = NO;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4A6RMPCXH3;
+				DEVELOPMENT_TEAM = 5JG628995P;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/KuQuKe/Other/PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/KuQuKe/Other/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.baobo.baoboapp;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.piaoduwang;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1487,12 +1524,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = NO;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4A6RMPCXH3;
+				DEVELOPMENT_TEAM = 5JG628995P;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/KuQuKe/Other/PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/KuQuKe/Other/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.baobo.baoboapp;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.piaoduwang;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1505,7 +1545,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4A6RMPCXH3;
 				INFOPLIST_FILE = KuQuKeTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.kuquke.KuQuKeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1520,7 +1564,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4A6RMPCXH3;
 				INFOPLIST_FILE = KuQuKeTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.kuquke.KuQuKeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1535,7 +1583,11 @@
 				DEVELOPMENT_TEAM = 4A6RMPCXH3;
 				GCC_PREFIX_HEADER = /Users/daiqiuming/Desktop/ORPER/KuQuKe/KuQuKe/Other/PrefixHeader.pch;
 				INFOPLIST_FILE = KuQuKeUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.kuquke.KuQuKeUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1550,7 +1602,11 @@
 				DEVELOPMENT_TEAM = 4A6RMPCXH3;
 				GCC_PREFIX_HEADER = /Users/daiqiuming/Desktop/ORPER/KuQuKe/KuQuKe/Other/PrefixHeader.pch;
 				INFOPLIST_FILE = KuQuKeUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.kuquke.KuQuKeUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
