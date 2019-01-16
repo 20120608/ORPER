@@ -84,8 +84,8 @@ NSDictionary *fourTabBarItemsAttributes = @{
     obj.tabBarItem.title = tabBarItemsAttributes[idx][@"TabBarItemTitle"];
     obj.tabBarItem.image = [[self scaleImageToSize:[UIImage imageNamed:tabBarItemsAttributes[idx][@"TabBarItemImage"]] size:CGSizeMake(28, 28)] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     obj.tabBarItem.selectedImage = [[self scaleImageToSize:[UIImage imageNamed:tabBarItemsAttributes[idx][@"TabBarItemSelectedImage"]] size:CGSizeMake(28, 28)] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    obj.tabBarItem.titlePositionAdjustment = UIOffsetMake(0, 0);
-    obj.tabBarItem.imageInsets = UIEdgeInsetsMake(0, 0, 0, 0);
+//    obj.tabBarItem.titlePositionAdjustment = UIOffsetMake(0, 0);
+//    obj.tabBarItem.imageInsets = UIEdgeInsetsMake(0,0,0,0);
   }];
   
   self.tabBar.tintColor = DQMMainColor;
@@ -96,13 +96,15 @@ NSDictionary *fourTabBarItemsAttributes = @{
   return YES;
 }
 
--(UIImage *)scaleImageToSize:(UIImage *)img size:(CGSize)size
+-(UIImage *)scaleImageToSize:(UIImage *)image size:(CGSize)newSize
 {
-	UIGraphicsBeginImageContext(size);
-	[img drawInRect:CGRectMake(0, 0, size.width, size.height)];
-	UIImage* scaledImage = UIGraphicsGetImageFromCurrentImageContext();
-	UIGraphicsEndImageContext();
-	return scaledImage;
+	UIGraphicsBeginImageContextWithOptions(newSize, NO, 3.0);
+	//UIGraphicsBeginImageContext(newSize);//用这个会模糊
+	[image drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];//根据新的尺寸画出传过来的图片
+	UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();//从当前环境当中得到重绘的图片
+	UIGraphicsEndImageContext();//关闭当前环境
+	return newImage;
 }
+
 
 @end

@@ -23,6 +23,9 @@ NS_ASSUME_NONNULL_BEGIN
 /** 代理 */
 @property(nonatomic,weak) id<MyBalanceCheckOutViewDelegate>          delegete;
 
+//添加时候的动画
+-(void)showAnimation;
+
 @end
 
 NS_ASSUME_NONNULL_END

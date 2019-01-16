@@ -7,7 +7,6 @@
 //
 
 #import "DQMHorizontalViewScrollerView.h"
-#import "UICollectionViewLeftAlignedLayout.h"
 #import "ADHorizontalCollectionViewCell.h"      //广告的
 
 @interface DQMHorizontalViewScrollerView () <UICollectionViewDelegate,UICollectionViewDataSource>
@@ -58,7 +57,7 @@
 	line.backgroundColor = DQMMainColor;
 	[self addSubview:line];
 	
-  UICollectionViewLeftAlignedLayout  *layout = [[UICollectionViewLeftAlignedLayout alloc] init];
+	UICollectionViewFlowLayout  *layout = [[UICollectionViewFlowLayout alloc] init];
   [layout setScrollDirection:UICollectionViewScrollDirectionHorizontal]; //设置竖直滚动
   layout.minimumInteritemSpacing = 0;
   layout.minimumLineSpacing = 0;
@@ -136,7 +135,7 @@
 	if (self.contentView.contentSize.width < kScreenWidth-38) {
 		return;//小于屏幕不滚动
 	}
-	if (self.contentView.contentOffset.x + kScreenWidth+128 > self.contentView.contentSize.width ) {
+	if (self.contentView.contentOffset.x + kScreenWidth -18 > self.contentView.contentSize.width ) {
 		self.contentView.contentOffset = CGPointMake(-kScreenWidth+38, 0);
 	}
 

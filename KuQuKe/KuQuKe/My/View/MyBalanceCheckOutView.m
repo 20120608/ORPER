@@ -8,6 +8,13 @@
 
 #import "MyBalanceCheckOutView.h"
 
+@interface MyBalanceCheckOutView ()
+
+/** 白色背景 */
+@property(nonatomic,strong) UIView          *whiteBackView;
+
+@end
+
 @implementation MyBalanceCheckOutView
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -23,7 +30,7 @@
 			QMSetButton(button, nil, 12, @"icon_dqm_ring_close_white", QMRandomColor, UIControlStateNormal);
 			[button mas_makeConstraints:^(MASConstraintMaker *make) {
 				make.right.mas_equalTo(self.mas_right).offset(-30);
-				make.top.mas_equalTo(NAVIGATION_BAR_HEIGHT);
+				make.top.mas_equalTo(NAVIGATION_BAR_HEIGHT+30);
 				make.size.mas_equalTo(CGSizeMake(30, 30));
 			}];
 			button;
@@ -43,6 +50,7 @@
 			}];
 			view;
 		});
+		self.whiteBackView = whiteBackView;
 		
 		UIImageView *iconImageView = ({
 			UIImageView *view = [[UIImageView alloc] init];
@@ -111,7 +119,7 @@
 			});
 			[buttonArray addObject: button];
 		}
-		[buttonArray mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedItemLength:53 leadSpacing:(kScreenWidth-127)/4 tailSpacing:(kScreenWidth-127)/4];
+		[buttonArray mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedItemLength:53 leadSpacing:(kScreenWidth-106)/3 tailSpacing:(kScreenWidth-106)/3];
 		[buttonArray mas_makeConstraints:^(MASConstraintMaker *make) {
 			make.top.mas_equalTo(whiteBackView.mas_bottom).offset(70);
 			make.height.mas_equalTo(53);
@@ -121,6 +129,14 @@
 	}
 	return self;
 }
+
+
+- (void)showAnimation {
+	[UIView animateWithDuration:0.5 animations:^{
+
+	}];
+}
+
 
 - (void)AlertViewbuttonClick:(UIButton *)sender {
 	if ([self.delegete respondsToSelector:@selector(MyBalanceCheckOutView:didSelected:)]) {

@@ -312,7 +312,11 @@
 #pragma mark - DQMHorizontalViewScrollerViewDataSource
 - (NSArray *)horizontalViewScrollViewDataArray:(DQMHorizontalViewScrollerView *)horizontalScrollView
 {
-  return @[@{@"name":@"186****1234的客户赚了10元,获得厦门一日游"},@{@"name":@"186****1234的客户赚了10元"},@{@"name":@"186****1234的客户刚刚签到成功获得100元现金抵用券"},@{@"name":@"186****1234的客户赚了0.02元"},@{@"name":@"186****1234的客户赚了1元"}];
+	NSMutableArray *modelArray = [[NSMutableArray alloc] init];
+	for (int i = 0; i < 10; i++) {
+		[modelArray addObjectsFromArray:@[@{@"name":@"186****1234的客户赚了10元,获得厦门一日游"},@{@"name":@"186****1234的客户赚了10元"},@{@"name":@"186****1234的客户刚刚签到成功获得100元现金抵用券"},@{@"name":@"186****1234的客户赚了0.02元"},@{@"name":@"186****1234的客户赚了1元"}]];
+	}
+  return modelArray;
 }
 
 

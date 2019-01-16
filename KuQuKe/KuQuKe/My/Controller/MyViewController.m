@@ -246,10 +246,11 @@
  */
 - (void)myMoneyAndStdentsView:(MyMoneyAndStdentsView *)menuView destVc:(Class)destVc didSelect:(NSInteger)index {
 	if (index == 0) {
-		
+		//提现
 		MyBalanceCheckOutView *checkOutView = [[MyBalanceCheckOutView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
 		[self.view addSubview:checkOutView];
 		checkOutView.delegete = self;
+		[checkOutView showAnimation];
 	}
 	else {
 		UIViewController *vc = [[destVc alloc] init];
