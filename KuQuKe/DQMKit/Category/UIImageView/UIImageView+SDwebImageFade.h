@@ -10,11 +10,19 @@
 
 @interface UIImageView (SDwebImageFade)
 
+- (void)qm_setImageUrlString:(NSString *)imageUrlString;
+
+- (void)qm_setImageUrlString:(NSString *)imageUrlString placeholderImageName:(NSString * _Nullable)placeholderImageName;
+
 - (void)qm_setWithImageURL:(NSURL *)imageURL placeholderImage:(UIImage *)placeholder completion:(void (^)(UIImage *image))completion;
 
 - (void)qm_setWithImageURL:(NSURL *)imageURL placeholderImage:(UIImage *)placeholder;
 
 - (void)qm_setWithImageURL:(NSURL *)imageURL;
+
+
+
+
 
 @end
 

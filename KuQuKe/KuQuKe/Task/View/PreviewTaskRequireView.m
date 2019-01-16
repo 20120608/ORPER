@@ -8,28 +8,30 @@
 
 #import "PreviewTaskRequireView.h"
 #import "UILabel+LineSpacing.h"//带间距
+#import "PreViewTaskTotalStepView.h"//步骤数统计
+#import "PreviewStepsCollectionViewCell.h"//图片步骤的样式
+#import "YBImageBrowser.h"//图片浏览器
 
-@interface PreviewTaskRequireView ()
+@interface PreviewTaskRequireView () <UICollectionViewDelegate,UICollectionViewDataSource,YBImageBrowserDataSource, YBImageBrowserDelegate>
+/** 视图 */
+@property (nonatomic,strong) UICollectionView *collectionView;
+/** 任务模型数组 */
+@property (nonatomic,strong) NSMutableArray   *taskPreviewStepModelMArray;
 
 /** 价格 */
-@property (nonatomic,strong) UILabel        *priceLabel;
+@property (nonatomic,strong) UILabel          *priceLabel;
 /** 截止时间或开始时间 */
-@property (nonatomic,strong) UILabel        *timeLabel;
+@property (nonatomic,strong) UILabel          *timeLabel;
 /** 图标 */
-@property (nonatomic,strong) UIImageView    *iconImageView;
+@property (nonatomic,strong) UIImageView      *iconImageView;
 /** 名称 */
-@property (nonatomic,strong) UILabel        *nameLabel;
+@property (nonatomic,strong) UILabel          *nameLabel;
 /** 任务描述 */
-@property (nonatomic,strong) UILabel        *contentLabel;
+@property (nonatomic,strong) UILabel          *contentLabel;
 /** 图片数组背景 */
-@property (nonatomic,strong) UIView         *imageBackView;
+@property (nonatomic,strong) UIView           *imageBackView;
 /** 开始按钮 */
-@property (nonatomic,strong) UIButton       *beginButton;
-
-/** 图片数组 */
-@property (nonatomic,strong) NSMutableArray *imageMArray;
-
-
+@property (nonatomic,strong) UIButton         *beginButton;
 
 @end
 
@@ -84,8 +86,12 @@
     [self.imageBackView mas_makeConstraints:^(MASConstraintMaker *make) {
       make.left.right.mas_equalTo(0);
       make.top.mas_equalTo(_contentLabel.mas_bottom).offset(30);
-      make.height.mas_equalTo((kScreenWidth-50)/4);
+      make.height.mas_equalTo((kScreenWidth-54)/4);
     }];
+    
+    //图片滚动
+    [self createUIWithFrame:frame];
+    
     
     /** 开始按钮 */
     [self.beginButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -108,23 +114,116 @@
       view;
     });
     garyView.backgroundColor = QMBackColor;
+    
 
   }
   return self;
 }
 
 
+#pragma mark - UI
+- (void)createUIWithFrame:(CGRect)frame {
+  
+  CGFloat kStepWidth = (kScreenWidth-54)/4;
+  
+  PreViewTaskTotalStepView *stepView =  ({
+    PreViewTaskTotalStepView *stepView = [[PreViewTaskTotalStepView alloc] init];
+    [_imageBackView addSubview: stepView];
+    [stepView mas_makeConstraints:^(MASConstraintMaker *make) {
+      make.left.mas_equalTo(12);
+      make.top.mas_equalTo(0);
+      make.size.mas_equalTo(CGSizeMake(kStepWidth, kStepWidth));
+    }];
+    stepView;
+  });
+  
+  UICollectionViewFlowLayout  *layout = [[UICollectionViewFlowLayout alloc] init];
+  [layout setScrollDirection:UICollectionViewScrollDirectionHorizontal]; //设置竖直滚动
+  layout.minimumInteritemSpacing = 10;
+  layout.minimumLineSpacing = 10;
+  layout.itemSize = CGSizeMake(kStepWidth, kStepWidth);
+
+  self.collectionView = ({
+    UICollectionView *view = [[UICollectionView alloc] initWithFrame:CGRectMake(12+kStepWidth+5, 0, kScreenWidth-17-kStepWidth, kStepWidth) collectionViewLayout:layout];
+    [_imageBackView addSubview: view];
+    view.delegate = self;
+    view.dataSource = self;
+    view.backgroundColor = [UIColor whiteColor];
+	  view.showsHorizontalScrollIndicator = false;
+    [view registerClass:[PreviewStepsCollectionViewCell class] forCellWithReuseIdentifier:@"PreviewStepsCollectionViewCell"];
+    [view mas_makeConstraints:^(MASConstraintMaker *make) {
+      make.edges.mas_equalTo(UIEdgeInsetsMake(0, kStepWidth+12+5, 0, 0));
+    }];
+    view;
+  });
+  
+  
+  //步骤数 图片数组 订阅
+  QMWeak(self);
+  [[RACObserve(self,imagesUrlStringArray) skip:1] subscribeNext:^(NSMutableArray<NSString *> *x) {
+    stepView.totalNum = [x count];
+    for (NSString *imageUrl in x) {
+      TaskPreviewStepModel *model = [[TaskPreviewStepModel alloc] init];
+      model.imageUrl = imageUrl;
+      [weakself.taskPreviewStepModelMArray addObject:model];
+    }
+    [weakself.collectionView reloadData];
+  }];
+  
+}
 
 
+#pragma mark - UICollection dataSource
+-(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
+  return UIEdgeInsetsMake(0, 0, 0, 0);
+}
 
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+  return self.imagesUrlStringArray.count;
+}
+
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+  PreviewStepsCollectionViewCell *cell = [PreviewStepsCollectionViewCell cellWithCollectionView:collectionView forIndexPath:indexPath];
+  cell.stepModel = self.taskPreviewStepModelMArray[indexPath.row];
+  return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+	// 设置数据源代理并展示
+	YBImageBrowser *browser = [YBImageBrowser new];
+	browser.dataSource = self;
+	browser.currentIndex = indexPath.item;
+	[browser show];
+	
+	
+}
+
+// 实现 <YBImageBrowserDataSource> 协议方法配置数据源
+- (NSUInteger)yb_numberOfCellForImageBrowserView:(YBImageBrowserView *)imageBrowserView {
+	return [self.imagesUrlStringArray count];
+}
+- (id<YBImageBrowserCellDataProtocol>)yb_imageBrowserView:(YBImageBrowserView *)imageBrowserView dataForCellAtIndex:(NSUInteger)index {
+	YBImageBrowseCellData *data = [YBImageBrowseCellData new];
+	data.url = [NSURL URLWithString:_imagesUrlStringArray[index]];
+	data.sourceObject = [_collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:index inSection:0]];
+	return data;
+}
 
 
 #pragma mark - load
-- (NSMutableArray *)imageMArray {
-  if (!_imageMArray) {
-    _imageMArray = [[NSMutableArray alloc] init];
+- (NSMutableArray *)imagesUrlStringArray {
+  if (!_imagesUrlStringArray) {
+    _imagesUrlStringArray = [[NSMutableArray alloc] init];
   }
-  return _imageMArray;
+  return _imagesUrlStringArray;
+}
+
+-(NSMutableArray *)taskPreviewStepModelMArray {
+  if (!_taskPreviewStepModelMArray) {
+    _taskPreviewStepModelMArray = [[NSMutableArray alloc] init];
+  }
+  return _taskPreviewStepModelMArray;
 }
 
 /** 价格 */
@@ -140,10 +239,6 @@
   }
   return _priceLabel;
 }
-
-
-
-
 
 /** 截止时间或开始时间 */
 -(UILabel *)timeLabel {
@@ -214,7 +309,6 @@
   }
   return _imageBackView;
 }
-
 
 /** 开始按钮 */
 - (UIButton *)beginButton {

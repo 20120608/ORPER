@@ -7,8 +7,17 @@
 //
 
 #import "UserMessageInputView.h"
+#import "HXPhotoPicker.h"
+#import "SDWebImageManager.h"
 
-@interface UserMessageInputView ()
+static const CGFloat kPhotoViewMargin = 3;
+static const CGFloat printScreensViewMargin = 12.0;
+
+@interface UserMessageInputView () <HXPhotoViewDelegate>
+
+@property (strong, nonatomic) HXPhotoManager         *manager;
+@property (weak, nonatomic  ) HXPhotoView            *photoView;
+@property (strong, nonatomic) HXDatePhotoToolManager *toolManager;
 
 
 @end
@@ -160,6 +169,7 @@
     });
     QMLabelFontColorText(msgLabel, @"上传截图", QMTextColor, 15);
     
+    
     /** 提交的图片数组 */
     self.printScreensView = ({
       UIView *view = [[UIView alloc] init];
@@ -167,9 +177,9 @@
       QMViewBorderRadius(view, 8, 0, QMBackColor);
       view.backgroundColor = QMBackColor;
       [view mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.mas_left).offset(12);
+        make.left.mas_equalTo(self.mas_left).offset(printScreensViewMargin);
         make.top.mas_equalTo(msgLabel.mas_bottom).offset(12);
-        make.size.mas_equalTo(CGSizeMake(kScreenWidth-24, (kScreenWidth-44)/4 + 20));//后期改成子视图撑高
+        make.width.mas_equalTo(kScreenWidth-printScreensViewMargin*2);//选图片的子视图会撑高
       }];
       view;
     });
@@ -205,9 +215,94 @@
       label;
     });
     
+    //创建选择图片的容器
+    [self createImagesBackContentView];
+    
   }
   return self;
 }
+
+
+#pragma mark - HXPhotoManager
+- (void)createImagesBackContentView {
+  
+  HXPhotoView *photoView = [HXPhotoView photoManager:self.manager];
+  photoView.frame = CGRectMake(3, 3, kScreenWidth - printScreensViewMargin*2 - kPhotoViewMargin * 2, 0);
+//  photoView.showAddCell = NO;
+  photoView.outerCamera = NO;//相机放外边
+  photoView.backgroundColor = QMBackColor;
+  photoView.lineCount = 4;
+  photoView.delegate = self;
+  photoView.manager.configuration.showDateSectionHeader = NO;
+  [_printScreensView addSubview:photoView];
+  self.photoView = photoView;
+  
+  [self.photoView refreshView];
+  
+}
+
+#pragma mark - load
+- (HXPhotoManager *)manager {
+  if (!_manager) {
+    _manager = [[HXPhotoManager alloc] initWithType:HXPhotoManagerSelectedTypePhoto];
+    _manager.configuration.saveSystemAblum = YES;
+    _manager.configuration.photoMaxNum = 20;
+    _manager.configuration.videoMaxNum = 0;
+    _manager.configuration.maxNum = 20;
+  }
+  return _manager;
+}
+
+- (HXDatePhotoToolManager *)toolManager {
+  if (!_toolManager) {
+    _toolManager = [[HXDatePhotoToolManager alloc] init];
+  }
+  return _toolManager;
+}
+
+#pragma mark - HXphotomanager delegate
+- (void)photoView:(HXPhotoView *)photoView changeComplete:(NSArray<HXPhotoModel *> *)allList photos:(NSArray<HXPhotoModel *> *)photos videos:(NSArray<HXPhotoModel *> *)videos original:(BOOL)isOriginal {
+  NSSLog(@"所有:%ld - 照片:%ld - 视频:%ld",allList.count,photos.count,videos.count);
+  
+  //    [self.toolManager writeSelectModelListToTempPathWithList:allList requestType:0 success:^(NSArray<NSURL *> *allURL, NSArray<NSURL *> *photoURL, NSArray<NSURL *> *videoURL) {
+  //        NSSLog(@"%@",allURL);
+  //    } failed:^{
+  //
+  //    }];
+  
+  
+  //    [self.view showLoadingHUDText:nil];
+  //    __weak typeof(self) weakSelf = self;
+  //    [self.toolManager getSelectedImageList:allList success:^(NSArray<UIImage *> *imageList) {
+  //        [weakSelf.view handleLoading];
+  //        NSSLog(@"%@",imageList);
+  //    } failed:^{
+  //        [weakSelf.view handleLoading];
+  //    }];
+}
+
+- (void)photoView:(HXPhotoView *)photoView deleteNetworkPhoto:(NSString *)networkPhotoUrl {
+  NSSLog(@"%@",networkPhotoUrl);
+}
+
+- (void)photoView:(HXPhotoView *)photoView updateFrame:(CGRect)frame {
+  NSSLog(@"%@",NSStringFromCGRect(frame));
+//    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width, CGRectGetMaxY(frame) + kPhotoViewMargin);
+
+  //更新约束
+  [self.photoView mas_remakeConstraints:^(MASConstraintMaker *make) {
+    make.edges.mas_equalTo(UIEdgeInsetsMake(kPhotoViewMargin, kPhotoViewMargin, kPhotoViewMargin, kPhotoViewMargin));
+    make.height.mas_greaterThanOrEqualTo(CGRectGetMaxY(frame));//3间隔
+  }];
+  [UIView animateWithDuration:0.25 animations:^{
+    [self layoutIfNeeded];
+  }];
+}
+
+
+
+
+
 
 #pragma mark - event
 - (void)codeButtonClick:(UIButton *)sender {

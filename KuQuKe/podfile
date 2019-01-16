@@ -14,15 +14,15 @@ pod 'MBProgressHUD', '~> 1.1.0'                 #MB蒙版
 pod 'Toast', '~> 4.0.0'                         #不带遮罩蒙版
 pod 'Masonry', '~> 1.1.0'                       #控件约束autolayout
 pod 'FMDB', '~> 2.7.2'                          #数据库
-pod 'JXCategoryView', '~> 1.1.9'				#多种风格的顶部切换菜单
+pod 'JXCategoryView', '~> 1.1.9'				        #多种风格的顶部切换菜单
 
 pod 'MJRefresh', '~> 3.1.15.3'                  #刷新基类
 pod 'MJExtension', '~> 3.0.15.1'                #数据转换
 
 pod 'YYText', '~> 1.0.7'                        #YY文字类
-
-
+pod 'YYImage', '~> 1.0.4'                       #YYImage类
 pod 'YYCategories', '~> 1.0.4'                  #YY扩展类
+
 
 pod 'SDWebImage', '~> 4.4.1'                    #加载图片控件
 pod 'SDWebImage/GIF'                            #GIF的支持
@@ -32,7 +32,7 @@ pod 'SDWebImage/GIF'                            #GIF的支持
 
 pod 'PGDatePicker', '~> 2.6.7'					#时间选择器
 pod 'HXPhotoPicker', '~> 2.2.3'					#图片选择器 自带YYCache YYImage
-
+pod 'YBImageBrowser', '~> 2.1.1'       			#图片浏览器
 
 end
 

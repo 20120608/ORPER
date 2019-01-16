@@ -42,10 +42,6 @@
 		55542FBE21E61601000F8D45 /* UILabel+LineSpacing.m in Sources */ = {isa = PBXBuildFile; fileRef = 55542FBC21E61601000F8D45 /* UILabel+LineSpacing.m */; };
 		55542FC321E61618000F8D45 /* MessageContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55542FC021E61618000F8D45 /* MessageContentViewController.m */; };
 		55542FC421E61618000F8D45 /* MessageCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55542FC121E61618000F8D45 /* MessageCenterViewController.m */; };
-		55542FCF21E61695000F8D45 /* EarnMoneyForSubLabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 55542FCA21E61695000F8D45 /* EarnMoneyForSubLabelView.m */; };
-		55542FD021E61695000F8D45 /* UserMessageInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 55542FCB21E61695000F8D45 /* UserMessageInputView.m */; };
-		55542FD121E61695000F8D45 /* PreviewTaskRequireView.m in Sources */ = {isa = PBXBuildFile; fileRef = 55542FCD21E61695000F8D45 /* PreviewTaskRequireView.m */; };
-		55542FD421E6169E000F8D45 /* EarnMoneyForRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55542FD321E6169E000F8D45 /* EarnMoneyForRegisterViewController.m */; };
 		55542FD721E646EB000F8D45 /* UserDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 55542FD621E646EB000F8D45 /* UserDetailModel.m */; };
 		55542FDA21E64931000F8D45 /* MyMoneyAndStdentsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 55542FD921E64931000F8D45 /* MyMoneyAndStdentsView.m */; };
 		55542FDE21E6598E000F8D45 /* DQMRightImageViewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 55542FDD21E6598E000F8D45 /* DQMRightImageViewTableViewCell.m */; };
@@ -91,6 +87,13 @@
 		5594A15521E1BC1F009178B3 /* QMSGeneralHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 5594A13321E1BC1F009178B3 /* QMSGeneralHelpers.m */; };
 		5594A15621E1BC1F009178B3 /* DQMConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 5594A13421E1BC1F009178B3 /* DQMConst.m */; };
 		5594A15B21E1BCC5009178B3 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5594A15A21E1BCC5009178B3 /* HomeViewController.m */; };
+		55B4994E21EF4662005F31AE /* TaskPreviewStepModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4994D21EF4662005F31AE /* TaskPreviewStepModel.m */; };
+		55B4995921EF466F005F31AE /* PreviewTaskRequireView.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4995121EF466E005F31AE /* PreviewTaskRequireView.m */; };
+		55B4995A21EF466F005F31AE /* PreViewTaskTotalStepView.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4995321EF466E005F31AE /* PreViewTaskTotalStepView.m */; };
+		55B4995B21EF466F005F31AE /* PreviewStepsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4995421EF466E005F31AE /* PreviewStepsCollectionViewCell.m */; };
+		55B4995C21EF466F005F31AE /* EarnMoneyForSubLabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4995621EF466E005F31AE /* EarnMoneyForSubLabelView.m */; };
+		55B4995D21EF466F005F31AE /* UserMessageInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4995821EF466F005F31AE /* UserMessageInputView.m */; };
+		55B4996021EF467B005F31AE /* EarnMoneyForRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4995E21EF467B005F31AE /* EarnMoneyForRegisterViewController.m */; };
 		55D1D0D821E22095008ECEE3 /* ZJCalenderMonthTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D1D0C821E22094008ECEE3 /* ZJCalenderMonthTitleView.m */; };
 		55D1D0D921E22095008ECEE3 /* ZJCalenderDayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D1D0C921E22094008ECEE3 /* ZJCalenderDayModel.m */; };
 		55D1D0DA21E22095008ECEE3 /* ZJCalenderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D1D0CC21E22095008ECEE3 /* ZJCalenderCell.m */; };
@@ -203,14 +206,6 @@
 		55542FC021E61618000F8D45 /* MessageContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageContentViewController.m; sourceTree = "<group>"; };
 		55542FC121E61618000F8D45 /* MessageCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageCenterViewController.m; sourceTree = "<group>"; };
 		55542FC221E61618000F8D45 /* MessageContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageContentViewController.h; sourceTree = "<group>"; };
-		55542FC921E61695000F8D45 /* PreviewTaskRequireView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreviewTaskRequireView.h; sourceTree = "<group>"; };
-		55542FCA21E61695000F8D45 /* EarnMoneyForSubLabelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EarnMoneyForSubLabelView.m; sourceTree = "<group>"; };
-		55542FCB21E61695000F8D45 /* UserMessageInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserMessageInputView.m; sourceTree = "<group>"; };
-		55542FCC21E61695000F8D45 /* EarnMoneyForSubLabelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EarnMoneyForSubLabelView.h; sourceTree = "<group>"; };
-		55542FCD21E61695000F8D45 /* PreviewTaskRequireView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreviewTaskRequireView.m; sourceTree = "<group>"; };
-		55542FCE21E61695000F8D45 /* UserMessageInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserMessageInputView.h; sourceTree = "<group>"; };
-		55542FD221E6169E000F8D45 /* EarnMoneyForRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EarnMoneyForRegisterViewController.h; sourceTree = "<group>"; };
-		55542FD321E6169E000F8D45 /* EarnMoneyForRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EarnMoneyForRegisterViewController.m; sourceTree = "<group>"; };
 		55542FD521E646EB000F8D45 /* UserDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserDetailModel.h; sourceTree = "<group>"; };
 		55542FD621E646EB000F8D45 /* UserDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserDetailModel.m; sourceTree = "<group>"; };
 		55542FD821E64931000F8D45 /* MyMoneyAndStdentsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyMoneyAndStdentsView.h; sourceTree = "<group>"; };
@@ -302,6 +297,20 @@
 		5594A15721E1BC2B009178B3 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PrefixHeader.pch; path = KuQuKe/Other/PrefixHeader.pch; sourceTree = SOURCE_ROOT; };
 		5594A15921E1BCC5009178B3 /* HomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		5594A15A21E1BCC5009178B3 /* HomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		55B4994C21EF4662005F31AE /* TaskPreviewStepModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskPreviewStepModel.h; sourceTree = "<group>"; };
+		55B4994D21EF4662005F31AE /* TaskPreviewStepModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskPreviewStepModel.m; sourceTree = "<group>"; };
+		55B4994F21EF466D005F31AE /* PreviewTaskRequireView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreviewTaskRequireView.h; sourceTree = "<group>"; };
+		55B4995021EF466D005F31AE /* PreviewStepsCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreviewStepsCollectionViewCell.h; sourceTree = "<group>"; };
+		55B4995121EF466E005F31AE /* PreviewTaskRequireView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreviewTaskRequireView.m; sourceTree = "<group>"; };
+		55B4995221EF466E005F31AE /* PreViewTaskTotalStepView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreViewTaskTotalStepView.h; sourceTree = "<group>"; };
+		55B4995321EF466E005F31AE /* PreViewTaskTotalStepView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreViewTaskTotalStepView.m; sourceTree = "<group>"; };
+		55B4995421EF466E005F31AE /* PreviewStepsCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreviewStepsCollectionViewCell.m; sourceTree = "<group>"; };
+		55B4995521EF466E005F31AE /* EarnMoneyForSubLabelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EarnMoneyForSubLabelView.h; sourceTree = "<group>"; };
+		55B4995621EF466E005F31AE /* EarnMoneyForSubLabelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EarnMoneyForSubLabelView.m; sourceTree = "<group>"; };
+		55B4995721EF466E005F31AE /* UserMessageInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserMessageInputView.h; sourceTree = "<group>"; };
+		55B4995821EF466F005F31AE /* UserMessageInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserMessageInputView.m; sourceTree = "<group>"; };
+		55B4995E21EF467B005F31AE /* EarnMoneyForRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EarnMoneyForRegisterViewController.m; sourceTree = "<group>"; };
+		55B4995F21EF467B005F31AE /* EarnMoneyForRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EarnMoneyForRegisterViewController.h; sourceTree = "<group>"; };
 		55D1D0C721E22094008ECEE3 /* ZJCalenderConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJCalenderConst.h; sourceTree = "<group>"; };
 		55D1D0C821E22094008ECEE3 /* ZJCalenderMonthTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJCalenderMonthTitleView.m; sourceTree = "<group>"; };
 		55D1D0C921E22094008ECEE3 /* ZJCalenderDayModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJCalenderDayModel.m; sourceTree = "<group>"; };
@@ -588,8 +597,8 @@
 		55542FC621E6166F000F8D45 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				55542FD221E6169E000F8D45 /* EarnMoneyForRegisterViewController.h */,
-				55542FD321E6169E000F8D45 /* EarnMoneyForRegisterViewController.m */,
+				55B4995F21EF467B005F31AE /* EarnMoneyForRegisterViewController.h */,
+				55B4995E21EF467B005F31AE /* EarnMoneyForRegisterViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -597,12 +606,16 @@
 		55542FC721E61681000F8D45 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				55542FCC21E61695000F8D45 /* EarnMoneyForSubLabelView.h */,
-				55542FCA21E61695000F8D45 /* EarnMoneyForSubLabelView.m */,
-				55542FC921E61695000F8D45 /* PreviewTaskRequireView.h */,
-				55542FCD21E61695000F8D45 /* PreviewTaskRequireView.m */,
-				55542FCE21E61695000F8D45 /* UserMessageInputView.h */,
-				55542FCB21E61695000F8D45 /* UserMessageInputView.m */,
+				55B4995521EF466E005F31AE /* EarnMoneyForSubLabelView.h */,
+				55B4995621EF466E005F31AE /* EarnMoneyForSubLabelView.m */,
+				55B4995021EF466D005F31AE /* PreviewStepsCollectionViewCell.h */,
+				55B4995421EF466E005F31AE /* PreviewStepsCollectionViewCell.m */,
+				55B4994F21EF466D005F31AE /* PreviewTaskRequireView.h */,
+				55B4995121EF466E005F31AE /* PreviewTaskRequireView.m */,
+				55B4995221EF466E005F31AE /* PreViewTaskTotalStepView.h */,
+				55B4995321EF466E005F31AE /* PreViewTaskTotalStepView.m */,
+				55B4995721EF466E005F31AE /* UserMessageInputView.h */,
+				55B4995821EF466F005F31AE /* UserMessageInputView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -610,6 +623,8 @@
 		55542FC821E61687000F8D45 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				55B4994C21EF4662005F31AE /* TaskPreviewStepModel.h */,
+				55B4994D21EF4662005F31AE /* TaskPreviewStepModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1168,6 +1183,7 @@
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/TYCyclePagerView/TYCyclePagerView.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast/Toast.framework",
+				"${BUILT_PRODUCTS_DIR}/YBImageBrowser/YBImageBrowser.framework",
 				"${BUILT_PRODUCTS_DIR}/YYCache/YYCache.framework",
 				"${BUILT_PRODUCTS_DIR}/YYCategories/YYCategories.framework",
 				"${BUILT_PRODUCTS_DIR}/YYImage/YYImage.framework",
@@ -1193,6 +1209,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TYCyclePagerView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YBImageBrowser.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYCache.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYCategories.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYImage.framework",
@@ -1230,7 +1247,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				59ADCD2521E7280200A86C1F /* AboutUSViewController.m in Sources */,
-				55542FD021E61695000F8D45 /* UserMessageInputView.m in Sources */,
 				59ADCD1F21E70E5B00A86C1F /* SettingUserInfoWithTableViewController.m in Sources */,
 				5594A14621E1BC1F009178B3 /* DQMTextViewController.m in Sources */,
 				5594A14421E1BC1F009178B3 /* DQMNavigationController.m in Sources */,
@@ -1254,6 +1270,7 @@
 				551A0A1921EB126200B2FB84 /* CheckOutCollectionView.m in Sources */,
 				5594A13621E1BC1F009178B3 /* UIWindow+CurrentViewController.m in Sources */,
 				59D0AEBC21E429AF00F3A67C /* QMButton.m in Sources */,
+				55B4996021EF467B005F31AE /* EarnMoneyForRegisterViewController.m in Sources */,
 				5594A14021E1BC1F009178B3 /* DQMStaticTableViewController.m in Sources */,
 				55542FB121E3A333000F8D45 /* DQMImageAndArrowTableViewCell.m in Sources */,
 				55D1D0DC21E22095008ECEE3 /* ZJCalenderCollectionView.m in Sources */,
@@ -1262,14 +1279,14 @@
 				5594A15521E1BC1F009178B3 /* QMSGeneralHelpers.m in Sources */,
 				5594A15621E1BC1F009178B3 /* DQMConst.m in Sources */,
 				5594A15421E1BC1F009178B3 /* JXTAlertController.m in Sources */,
-				55542FD421E6169E000F8D45 /* EarnMoneyForRegisterViewController.m in Sources */,
 				59D0AEB921E4281B00F3A67C /* AvgButtonMenuTableViewCell.m in Sources */,
 				551A09F221E9E6D300B2FB84 /* OnGoingTaskViewController.m in Sources */,
 				5537064E21E1C85C001E49BC /* CheckInViewController.m in Sources */,
 				5594A14F21E1BC1F009178B3 /* DQMLabelSizeToFitTableViewCell.m in Sources */,
-				55542FCF21E61695000F8D45 /* EarnMoneyForSubLabelView.m in Sources */,
 				5594A14C21E1BC1F009178B3 /* DQMDefaultTableViewCell.m in Sources */,
+				55B4995C21EF466F005F31AE /* EarnMoneyForSubLabelView.m in Sources */,
 				551A0A0D21EAFAF900B2FB84 /* HomeMyTaskTableViewCell.m in Sources */,
+				55B4995B21EF466F005F31AE /* PreviewStepsCollectionViewCell.m in Sources */,
 				5594A13B21E1BC1F009178B3 /* UIView+Gradient.m in Sources */,
 				59DC11EE21EDB95E003FE685 /* QMBaseNetWorking.m in Sources */,
 				551A09E621E9AF9B00B2FB84 /* MyInComeViewController.m in Sources */,
@@ -1287,10 +1304,13 @@
 				5594A0B721E1BB11009178B3 /* ViewController.m in Sources */,
 				55542FAE21E37ABD000F8D45 /* TaskTableViewCell.m in Sources */,
 				55542FDA21E64931000F8D45 /* MyMoneyAndStdentsView.m in Sources */,
+				55B4995D21EF466F005F31AE /* UserMessageInputView.m in Sources */,
+				55B4995921EF466F005F31AE /* PreviewTaskRequireView.m in Sources */,
 				5594A13E21E1BC1F009178B3 /* UINavigationController+FDFullscreenPopGesture.m in Sources */,
 				551A09BB21E980FF00B2FB84 /* MyStudentsViewController.m in Sources */,
 				5594A14921E1BC1F009178B3 /* StaticSectionItem.m in Sources */,
 				5594A14E21E1BC1F009178B3 /* StaticListTableViewCell.m in Sources */,
+				55B4994E21EF4662005F31AE /* TaskPreviewStepModel.m in Sources */,
 				5918A77521E32CE900CF8431 /* UICollectionViewLeftAlignedLayout.m in Sources */,
 				5594A13A21E1BC1F009178B3 /* UIView+DQMFrame.m in Sources */,
 				551A09E321E9AF6C00B2FB84 /* MyWithdrawViewController.m in Sources */,
@@ -1311,10 +1331,10 @@
 				551A09FE21EA2F7100B2FB84 /* HomeBigAmazingTableViewCell.m in Sources */,
 				5594A14B21E1BC1F009178B3 /* DQMTeam.m in Sources */,
 				551A09C121E985EC00B2FB84 /* DQMRImageRLabelAndLSubLabelTableViewCell.m in Sources */,
+				55B4995A21EF466F005F31AE /* PreViewTaskTotalStepView.m in Sources */,
 				55542FDE21E6598E000F8D45 /* DQMRightImageViewTableViewCell.m in Sources */,
 				551A09F521E9F31300B2FB84 /* ShareToMyFriendViewController.m in Sources */,
 				5537063A21E1C064001E49BC /* MyViewController.m in Sources */,
-				55542FD121E61695000F8D45 /* PreviewTaskRequireView.m in Sources */,
 				551A0A0121EA349100B2FB84 /* HomeHeaderView.m in Sources */,
 				5594A13D21E1BC1F009178B3 /* UIImageView+SDwebImageFade.m in Sources */,
 				59ADCD2221E724AD00A86C1F /* CompleteAccountViewController.m in Sources */,
@@ -1508,10 +1528,7 @@
 				GCC_PREFIX_HEADER = "$(SRCROOT)/KuQuKe/Other/PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/KuQuKe/Other/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.baobo.baoboapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1531,10 +1548,7 @@
 				GCC_PREFIX_HEADER = "$(SRCROOT)/KuQuKe/Other/PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/KuQuKe/Other/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.baobo.baoboapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1549,11 +1563,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4A6RMPCXH3;
 				INFOPLIST_FILE = KuQuKeTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kuquke.KuQuKeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1568,11 +1578,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4A6RMPCXH3;
 				INFOPLIST_FILE = KuQuKeTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kuquke.KuQuKeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1587,11 +1593,7 @@
 				DEVELOPMENT_TEAM = 4A6RMPCXH3;
 				GCC_PREFIX_HEADER = /Users/daiqiuming/Desktop/ORPER/KuQuKe/KuQuKe/Other/PrefixHeader.pch;
 				INFOPLIST_FILE = KuQuKeUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kuquke.KuQuKeUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1606,11 +1608,7 @@
 				DEVELOPMENT_TEAM = 4A6RMPCXH3;
 				GCC_PREFIX_HEADER = /Users/daiqiuming/Desktop/ORPER/KuQuKe/KuQuKe/Other/PrefixHeader.pch;
 				INFOPLIST_FILE = KuQuKeUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kuquke.KuQuKeUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";

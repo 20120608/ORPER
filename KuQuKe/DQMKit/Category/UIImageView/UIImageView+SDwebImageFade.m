@@ -58,4 +58,34 @@
                  }];
 }
 
+- (void)qm_setImageUrlString:(NSString *)imageUrlString placeholderImageName:(NSString * _Nullable)placeholderImageName {
+	UIImage *image = placeholderImageName == nil ? [UIImage imageNamed:placeholderImageName] : [UIImage imageNamed:@"placeholderImage"];
+	[self sd_setImageWithURL:[NSURL URLWithString:@"imageUrlString"]
+			placeholderImage:image
+				   completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+					   if (image && cacheType == SDImageCacheTypeNone) {
+						   CATransition *transition = [CATransition animation];
+						   transition.type = kCATransitionFade;
+						   transition.duration = 0.5;
+						   transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+						   [self.layer addAnimation:transition forKey:nil];
+					   }
+				   }];
+}
+
+- (void)qm_setImageUrlString:(NSString *)imageUrlString {
+	[self sd_setImageWithURL:[NSURL URLWithString:imageUrlString]
+			placeholderImage:[UIImage imageNamed:@"placeholderImage"]
+				   completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+					   if (image && cacheType == SDImageCacheTypeNone) {
+						   CATransition *transition = [CATransition animation];
+						   transition.type = kCATransitionFade;
+						   transition.duration = 0.5;
+						   transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+						   [self.layer addAnimation:transition forKey:nil];
+					   }
+				   }];
+}
+
+
 @end

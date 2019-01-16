@@ -73,13 +73,13 @@ static NSString *const ID = @"StaticListTableViewCell";
   if ([self.item.image isKindOfClass:[UIImage class]]) {
     self.imageView.image = self.item.image;
   }else if ([self.item.image isKindOfClass:[NSURL class]]) {
-    [self.imageView qm_setWithImageURL:self.item.image placeholderImage:[UIImage imageNamed:@"timg-1.jpg"]];
+    [self.imageView qm_setImageUrlString:self.item.image];
   }else if ([self.item.image isKindOfClass:[NSString class]]) {
     
     if ([self.item.image hasPrefix:@"http://"] || [self.item.image hasPrefix:@"https://"] || [self.item.image hasPrefix:@"file://"]) {
       
       NSString *imageUrl = [self.item.image stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet characterSetWithCharactersInString:@"`#%^{}\"[]|\\<> "].invertedSet];
-      [self.imageView qm_setWithImageURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"timg-1.jpg"]];
+      [self.imageView qm_setImageUrlString:imageUrl];
     }else {
       self.imageView.image = [UIImage imageNamed:self.item.image];
     }

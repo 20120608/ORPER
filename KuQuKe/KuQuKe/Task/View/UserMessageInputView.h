@@ -37,7 +37,6 @@ NS_ASSUME_NONNULL_BEGIN
 /** 介绍 */
 @property (nonatomic,strong) UILabel     *msgLabel;
 
-
 @end
 
 NS_ASSUME_NONNULL_END

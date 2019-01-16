@@ -175,15 +175,9 @@
 	else if ([model.subImageUrl length] > 1) {
 		self.iconImageView.hidden = false;
 		self.subTitleLabel.text = @"";
-		[self.iconImageView qm_setWithImageURL:[NSURL URLWithString:model.subImageUrl] placeholderImage:[UIImage imageNamed:@"placeholderImage"]];
+		[self.iconImageView qm_setImageUrlString:model.subImageUrl];
 	}
-	
-  
-	
-  
 }
-
-
 @end
 
 

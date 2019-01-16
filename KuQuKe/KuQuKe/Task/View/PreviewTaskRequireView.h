@@ -14,6 +14,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PreviewTaskRequireView : UIView
 
+/** 图片数组 */
+@property (nonatomic, copy) NSMutableArray<NSString *> *imagesUrlStringArray;
+
 @end
 
 NS_ASSUME_NONNULL_END

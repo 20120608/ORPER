@@ -169,7 +169,7 @@
 	/** 标题 */
 	self.titleLabel.text = model.title;
 	self.subTitleLabel.text = [NSString stringWithFormat:@"%@",model.subTitle];
-	[self.iconImageView qm_setWithImageURL:[NSURL URLWithString:model.imageUrl] placeholderImage:[UIImage imageNamed:@"placeholderImage"]];
+	[self.iconImageView qm_setImageUrlString:model.imageUrl];
 }
 
 
