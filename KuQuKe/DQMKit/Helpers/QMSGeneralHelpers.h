@@ -8,7 +8,6 @@
 
 /** 通用文件工具类 */
 #import <Foundation/Foundation.h>
-
 @interface QMSGeneralHelpers : NSObject
 
 //获取单利
@@ -66,5 +65,22 @@
  @return 图片
  */
 + (UIImage *)imageWithCaputureView:(UIView *)view;
+
+
+
+
+/**
+ 在window上加一个loading视图
+
+ @param alpha 背景色
+ @param showHUD 是否显示HUD--loading样式
+ */
++ (void)showAlertMaskViewAlpha:(CGFloat)alpha AndLoadingAlwaysHUD:(BOOL)showHUD animated:(BOOL)animated graceTime:(CGFloat)graceTime delayAfter:(CGFloat)delay completeBlock:(void(^)(UIView *maskView, MBProgressHUD *hud))completeBlock;
+
+
+
+
+
+
 
 @end

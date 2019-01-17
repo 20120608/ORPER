@@ -146,4 +146,52 @@
 }
 
 
+
+/**
+ 在window上加一个loading视图
+ 
+ @param alpha 背景色
+ @param showHUD 是否显示HUD--loading样式
+ */
++ (void)showAlertMaskViewAlpha:(CGFloat)alpha AndLoadingAlwaysHUD:(BOOL)showHUD animated:(BOOL)animated graceTime:(CGFloat)graceTime delayAfter:(CGFloat)delay completeBlock:(void(^)(UIView *maskView, MBProgressHUD *hud))completeBlock {
+  
+  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    
+    UIView *maskView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
+    [[UIApplication sharedApplication].keyWindow addSubview:maskView];
+    
+    MBProgressHUD *hud = [[MBProgressHUD alloc] initWithFrame:CGRectMake(0, 0, 200, 200)];
+    hud.mode = MBProgressHUDModeIndeterminate;
+    [maskView addSubview:hud];
+    hud.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
+//    hud.bezelView.backgroundColor = QMHexColor(@"ffffff");
+    hud.graceTime = graceTime;
+    [hud showAnimated:true];
+    
+    if (animated) {
+      maskView.backgroundColor = [UIColor colorWithHexString:@"000000" alpha:0.01];
+      hud.alpha = 0.01;
+      [UIView animateWithDuration:0.35 animations:^{
+        maskView.backgroundColor = [UIColor colorWithHexString:@"000000" alpha:alpha];
+        hud.alpha = 1;
+      }];
+    }
+    if (completeBlock) {
+      completeBlock(maskView,hud);
+    }
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+      [maskView removeFromSuperview];
+    });
+    
+  });
+}
+
+
+
+
+
+
+
+
 @end

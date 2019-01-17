@@ -16,7 +16,22 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+  
+  
+  
+  
+}
+
+
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+  
+  [QMSGeneralHelpers showAlertMaskViewAlpha:0.5 AndLoadingAlwaysHUD:true animated:true graceTime:1 delayAfter:1 completeBlock:^(UIView *maskView, MBProgressHUD *hud) {
+    
+    NSLog(@"结束回调%f",maskView.width);
+  }];
+  
+  
 }
 
 

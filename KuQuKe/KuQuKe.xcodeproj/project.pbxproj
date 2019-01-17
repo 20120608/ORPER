@@ -721,6 +721,7 @@
 				5594A11421E1BC1F009178B3 /* BaseModels */,
 				5594A11D21E1BC1F009178B3 /* BaseViews */,
 				59DC11EB21EDB846003FE685 /* DQMNetWork */,
+				5930276921F033F500FC68F1 /* DQMUserInfoFMDB */,
 				5594A12C21E1BC1F009178B3 /* Helpers */,
 			);
 			path = DQMKit;
@@ -977,6 +978,13 @@
 				5918A77421E32CE900CF8431 /* UICollectionViewLeftAlignedLayout.m */,
 			);
 			path = UICollectionView;
+			sourceTree = "<group>";
+		};
+		5930276921F033F500FC68F1 /* DQMUserInfoFMDB */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = DQMUserInfoFMDB;
 			sourceTree = "<group>";
 		};
 		59D0AEB621E427C800F3A67C /* GeneralView */ = {
@@ -1528,7 +1536,10 @@
 				GCC_PREFIX_HEADER = "$(SRCROOT)/KuQuKe/Other/PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/KuQuKe/Other/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.baobo.baoboapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1548,7 +1559,10 @@
 				GCC_PREFIX_HEADER = "$(SRCROOT)/KuQuKe/Other/PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/KuQuKe/Other/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.baobo.baoboapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1563,7 +1577,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4A6RMPCXH3;
 				INFOPLIST_FILE = KuQuKeTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.kuquke.KuQuKeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1578,7 +1596,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4A6RMPCXH3;
 				INFOPLIST_FILE = KuQuKeTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.kuquke.KuQuKeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1593,7 +1615,11 @@
 				DEVELOPMENT_TEAM = 4A6RMPCXH3;
 				GCC_PREFIX_HEADER = /Users/daiqiuming/Desktop/ORPER/KuQuKe/KuQuKe/Other/PrefixHeader.pch;
 				INFOPLIST_FILE = KuQuKeUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.kuquke.KuQuKeUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1608,7 +1634,11 @@
 				DEVELOPMENT_TEAM = 4A6RMPCXH3;
 				GCC_PREFIX_HEADER = /Users/daiqiuming/Desktop/ORPER/KuQuKe/KuQuKe/Other/PrefixHeader.pch;
 				INFOPLIST_FILE = KuQuKeUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.kuquke.KuQuKeUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";

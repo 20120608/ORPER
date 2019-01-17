@@ -36,6 +36,7 @@
     
     [self.window addSubview:[[YYFPSLabel alloc] initWithFrame:CGRectMake(61, STATUS_BAR_HEIGHT, 0, 0)]];
 	
+  
     
     return YES;
 }
