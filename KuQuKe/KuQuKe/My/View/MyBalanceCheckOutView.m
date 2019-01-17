@@ -12,7 +12,8 @@
 
 /** 白色背景 */
 @property(nonatomic,strong) UIView          *whiteBackView;
-
+/** 控件容器 */
+@property(nonatomic,strong) UIView          *backView;
 @end
 
 @implementation MyBalanceCheckOutView
@@ -23,6 +24,15 @@
 	if (self) {
 		self.backgroundColor = [UIColor colorWithHexString:@"000000" alpha:0.4];
 		
+    self.backView = ({
+      UIView *view = [[UIView alloc] init];
+      [self addSubview: view];
+      [view mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(UIEdgeInsetsMake(0, 0, 0, 0));
+      }];
+      view;
+    });
+    
 		UIButton *closeButton = ({
 			UIButton *button = [[UIButton alloc] init];
 			[self addSubview:button];
@@ -36,11 +46,10 @@
 			button;
 		});
 		[closeButton addTarget:self action:@selector(AlertViewbuttonClick:) forControlEvents:UIControlEventTouchUpInside];
-		
-		
+    
 		UIView *whiteBackView = ({
 			UIView *view = [[UIView alloc] init];
-			[self addSubview: view];
+			[_backView addSubview: view];
 			view.backgroundColor = UIColor.whiteColor;
 			QMViewBorderRadius(view, 4, 0, DQMMainColor);
 			[view mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -108,7 +117,7 @@
 		for (int i = 0; i < [imgaRRAY count]; i++) {
 			UIButton *button = ({
 				UIButton *button = [[UIButton alloc] init];
-				[self addSubview:button];
+				[_backView addSubview:button];
 				button.tag = i + 2;
 				button.imageView.contentMode = UIViewContentModeScaleAspectFit;
 				QMViewBorderRadius(button, 26.5, 0, DQMMainColor);
@@ -132,9 +141,20 @@
 
 
 - (void)showAnimation {
-	[UIView animateWithDuration:0.5 animations:^{
-
-	}];
+  CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+  animation.fromValue = [NSNumber numberWithFloat:0.01f];
+  animation.toValue = [NSNumber numberWithFloat:1.0f];
+  animation.duration = 0.35f;
+  animation.fillMode = kCAFillModeForwards;
+  animation.removedOnCompletion = NO;
+  [self.backView.layer addAnimation:animation forKey:@"scaleAnimation"];
+  CABasicAnimation *animation2 = [CABasicAnimation animationWithKeyPath:@"opacity"];
+  animation2.fromValue = [NSNumber numberWithFloat:0.01f];
+  animation2.toValue = [NSNumber numberWithFloat:1.0f];
+  animation2.duration = 0.35f;
+  animation2.fillMode = kCAFillModeForwards;
+  animation2.removedOnCompletion = NO;
+  [self.backView.layer addAnimation:animation2 forKey:@"opacityAnimation"];
 }
 
 

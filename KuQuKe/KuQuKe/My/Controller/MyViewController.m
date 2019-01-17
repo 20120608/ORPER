@@ -248,7 +248,7 @@
 	if (index == 0) {
 		//提现
 		MyBalanceCheckOutView *checkOutView = [[MyBalanceCheckOutView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
-		[self.view addSubview:checkOutView];
+    [[UIApplication sharedApplication].keyWindow addSubview:checkOutView];
 		checkOutView.delegete = self;
 		[checkOutView showAnimation];
 	}

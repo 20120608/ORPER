@@ -30,8 +30,8 @@ pod 'SDWebImage/GIF'                            #GIF的支持
 #常用控件⤴️
 
 
-pod 'PGDatePicker', '~> 2.6.7'					#时间选择器
-pod 'HXPhotoPicker', '~> 2.2.3'					#图片选择器 自带YYCache YYImage
+pod 'PGDatePicker', '~> 2.6.7'					    #时间选择器
+pod 'HXPhotoPicker', '~> 2.2.3'					    #图片选择器 自带YYCache YYImage
 pod 'YBImageBrowser', '~> 2.1.1'       			#图片浏览器
 
 end
