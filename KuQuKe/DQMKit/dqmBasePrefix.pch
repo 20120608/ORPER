@@ -146,12 +146,8 @@ isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bo
 /** 颜色和渐变的扩展 */
 #import "UIColor+HexString.h"
 
-/** MB遮罩 要比QMGeneral提前 */
+/** MB遮罩  */
 #import "MBProgressHUD.h"
-
-/** helper 常用通用工具类 */
-#import "QMSGeneralHelpers.h"//通用类
-#import "JXTAlertController.h"//警告弹窗
 
 /** 渐变加载SDwebImage */
 #import "UIImageView+SDwebImageFade.h"
@@ -185,6 +181,10 @@ isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bo
 
 /** 网络图片加载 */
 #import "UIImageView+WebCache.h"
+
+/** helper 常用通用工具类 */
+#import "QMSGeneralHelpers.h"//通用类
+#import "JXTAlertController.h"//警告弹窗
 
 /** 基本的宏定义 ⤴️ */
 

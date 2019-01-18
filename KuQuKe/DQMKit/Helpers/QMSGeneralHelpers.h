@@ -44,6 +44,11 @@
 + (BOOL)modifyFlashLight;
 
 
+/**
+ 获取顶层视图控制器
+ */
++ (UIViewController*)currentViewController;
+
 
 
 /**

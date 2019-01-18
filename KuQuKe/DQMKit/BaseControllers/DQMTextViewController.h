@@ -6,7 +6,7 @@
 //  Copyright © 2018 漂读网. All rights reserved.
 //
 
-/** 戴泉明文本类型基础视图 */
+/** 文本类型基础视图 */
 #import "DQMNavUIBaseViewController.h"
 
 @class DQMTextViewController;

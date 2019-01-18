@@ -22,6 +22,6 @@
  */
 +(QMURLSessionTask *)getWeather:(NSDictionary * __nullable)params AndView:(UIView *)view success:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))success unknown:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))unknown failure:(void(^)(NSError *error))failure;
 
-
++(QMURLSessionTask *)GETWeather:(NSDictionary *)params AndView:(UIView *)view success:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))success unknown:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))unknown failure:(void(^)(NSError *error))failure CheckLoginStatus:(BOOL)checkstatus;
 
 @end

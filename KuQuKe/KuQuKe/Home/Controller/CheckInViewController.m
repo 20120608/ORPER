@@ -23,8 +23,21 @@
 	
 	[self createHeaderView];
 	
-	
+  
+  
+  [KuQuKeNetWorkManager GETWeather:nil AndView:self.view success:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
+    
+  } unknown:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
+    
+  } failure:^(NSError *error) {
+    
+  } CheckLoginStatus:true];
 
+
+}
+
+- (void)dealloc {
+  NSLog(@"进来了");
 }
 
 #pragma mark - UI
