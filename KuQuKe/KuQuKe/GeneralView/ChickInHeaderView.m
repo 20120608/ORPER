@@ -60,10 +60,10 @@
 		UIView *shadowView = ({
 			UIView *view = [[UIView alloc] init];
 			[self addSubview: view];
-			view.layer.shadowOffset =CGSizeMake(1,3);
-			view.layer.shadowColor = [UIColor lightGrayColor].CGColor;
-			view.layer.shadowRadius = 6;
-			view.layer.shadowOpacity = 2;
+			[view.layer setShadowOffset:CGSizeMake(1,3)];
+			[view.layer setShadowColor:[UIColor lightGrayColor].CGColor];
+			[view.layer setShadowRadius:6];
+			[view.layer setShadowOpacity:2];
 			[view mas_makeConstraints:^(MASConstraintMaker *make) {
 				make.top.mas_equalTo(self.mas_bottom).offset(20);
 				make.left.mas_equalTo((kScreenWidth-ZJCalenderWidth)/2);

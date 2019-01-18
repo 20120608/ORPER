@@ -94,6 +94,7 @@
 		55B4995C21EF466F005F31AE /* EarnMoneyForSubLabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4995621EF466E005F31AE /* EarnMoneyForSubLabelView.m */; };
 		55B4995D21EF466F005F31AE /* UserMessageInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4995821EF466F005F31AE /* UserMessageInputView.m */; };
 		55B4996021EF467B005F31AE /* EarnMoneyForRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4995E21EF467B005F31AE /* EarnMoneyForRegisterViewController.m */; };
+		55B4996621F1F948005F31AE /* GameHomeTaskListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4996521F1F948005F31AE /* GameHomeTaskListTableViewCell.m */; };
 		55D1D0D821E22095008ECEE3 /* ZJCalenderMonthTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D1D0C821E22094008ECEE3 /* ZJCalenderMonthTitleView.m */; };
 		55D1D0D921E22095008ECEE3 /* ZJCalenderDayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D1D0C921E22094008ECEE3 /* ZJCalenderDayModel.m */; };
 		55D1D0DA21E22095008ECEE3 /* ZJCalenderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D1D0CC21E22095008ECEE3 /* ZJCalenderCell.m */; };
@@ -316,6 +317,8 @@
 		55B4995821EF466F005F31AE /* UserMessageInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserMessageInputView.m; sourceTree = "<group>"; };
 		55B4995E21EF467B005F31AE /* EarnMoneyForRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EarnMoneyForRegisterViewController.m; sourceTree = "<group>"; };
 		55B4995F21EF467B005F31AE /* EarnMoneyForRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EarnMoneyForRegisterViewController.h; sourceTree = "<group>"; };
+		55B4996421F1F948005F31AE /* GameHomeTaskListTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameHomeTaskListTableViewCell.h; sourceTree = "<group>"; };
+		55B4996521F1F948005F31AE /* GameHomeTaskListTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameHomeTaskListTableViewCell.m; sourceTree = "<group>"; };
 		55D1D0C721E22094008ECEE3 /* ZJCalenderConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJCalenderConst.h; sourceTree = "<group>"; };
 		55D1D0C821E22094008ECEE3 /* ZJCalenderMonthTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJCalenderMonthTitleView.m; sourceTree = "<group>"; };
 		55D1D0C921E22094008ECEE3 /* ZJCalenderDayModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJCalenderDayModel.m; sourceTree = "<group>"; };
@@ -522,6 +525,8 @@
 		5537064121E1C290001E49BC /* View */ = {
 			isa = PBXGroup;
 			children = (
+				55B4996421F1F948005F31AE /* GameHomeTaskListTableViewCell.h */,
+				55B4996521F1F948005F31AE /* GameHomeTaskListTableViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -699,9 +704,9 @@
 				59D0AEB621E427C800F3A67C /* GeneralView */,
 				59DC11EF21EDC8B0003FE685 /* RequestManager */,
 				5594A15821E1BC6E009178B3 /* Home */,
+				55542FC521E6165A000F8D45 /* Task */,
 				5594A15E21E1BCF4009178B3 /* APP */,
 				5594A15D21E1BCF2009178B3 /* Game */,
-				55542FC521E6165A000F8D45 /* Task */,
 				5594A15C21E1BCEF009178B3 /* My */,
 				5594A15F21E1BD47009178B3 /* Other */,
 			);
@@ -1372,6 +1377,7 @@
 				551A09F821E9F42C00B2FB84 /* ShareToMyFriendImageTableViewCell.m in Sources */,
 				551A09EF21E9CD0900B2FB84 /* ChickSuccessAlertView.m in Sources */,
 				5594A13C21E1BC1F009178B3 /* MBProgressHUD+DQM.m in Sources */,
+				55B4996621F1F948005F31AE /* GameHomeTaskListTableViewCell.m in Sources */,
 				5594A15221E1BC1F009178B3 /* DQMListExpendHeaderView.m in Sources */,
 				59ADCD1321E6D52800A86C1F /* SettingUsetInfoViewController.m in Sources */,
 				551A0A1621EB0F8C00B2FB84 /* CheckOutAliPayViewController.m in Sources */,

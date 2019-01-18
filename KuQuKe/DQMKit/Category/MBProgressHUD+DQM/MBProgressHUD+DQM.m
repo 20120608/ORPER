@@ -70,7 +70,7 @@
 
 //快速显示一条提示信息
 + (void)showAutoMessage:(NSString *)message{
-  [self showAutoMessage:message ToView:nil];
+  [self showAutoMessage:message ToView:(UIView*)[UIApplication sharedApplication].delegate.window];
 }
 
 
@@ -140,7 +140,7 @@
 
 + (void)hideHUD
 {
-  [self hideHUDForView:nil];
+  [self hideHUDForView:(UIView*)[UIApplication sharedApplication].delegate.window];
 }
 @end
 

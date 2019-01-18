@@ -78,7 +78,9 @@
 [View.layer setCornerRadius:(Radius)];\
 [View.layer setBorderWidth:(Width)];\
 [View.layer setBorderColor:[Color CGColor]];\
-[View.layer setMasksToBounds:YES] //尽量不用，否则影响性能
+if (Radius) [View.layer setMasksToBounds:YES]//尽量不用，否则影响性能
+
+
 
 /**  自定义label */
 #define QMLabelFontColorText(label, text, textColor, Font)\

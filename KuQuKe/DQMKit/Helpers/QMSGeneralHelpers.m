@@ -206,6 +206,15 @@
   });
 }
 
+/**  自定义投影 不能有setMasksToBounds */
+//#define QMViewShadows(View, Offset, CGColor, Radius, Opacity)\
+//\
+//[view setBackgroundColor:UIColor.blackColor];\
+//[view.layer setShadowOffset:Offset];\
+//[view.layer setShadowOffset:Offset];\
+//[view.layer setShadowColor:CGColor];\
+//[view.layer setShadowRadius:Radius];\
+//[view.layer setShadowOpacity:Opacity]
 
 
 
