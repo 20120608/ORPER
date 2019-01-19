@@ -14,11 +14,12 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol DQMModalNavUIBaseViewControllerDataSource <NSObject>
 
 @optional
-- (BOOL)navUIBaseViewControllerIsNeedNavBar:(DQMModalNavUIBaseViewController *)navUIBaseViewController;
 
-- (UIColor *)navUIBaseViewControllerNaviBackgroundColor:(DQMModalNavUIBaseViewController *)navUIBaseViewController;
+- (BOOL)DQMModalnavUIBaseViewControllerIsNeedNavBar:(DQMModalNavUIBaseViewController *)navUIBaseViewController;
 
-- (NSMutableAttributedString *)navUIBaseViewControllerNaviTitle:(DQMModalNavUIBaseViewController *)navUIBaseViewController;
+- (UIColor *)DQMModalnavUIBaseViewControllerNaviBackgroundColor:(DQMModalNavUIBaseViewController *)navUIBaseViewController;
+
+- (NSMutableAttributedString *)DQMModalnavUIBaseViewControllerNaviTitle:(DQMModalNavUIBaseViewController *)navUIBaseViewController;
 
 @end
 
@@ -26,19 +27,21 @@ NS_ASSUME_NONNULL_BEGIN
 
 @optional
 /** 左边的按钮的点击 */
--(void)leftButtonEvent:(UIButton *)sender navigationBar:(DQMModalNavUIBaseViewController *)navUIBaseViewController;
+-(void)DQMModalleftButtonEvent:(UIButton *)sender navigationBar:(DQMModalNavUIBaseViewController *)navUIBaseViewController;
 /** 右边的按钮的点击 */
--(void)rightButtonEvent:(UIButton *)sender navigationBar:(DQMModalNavUIBaseViewController *)navUIBaseViewController;
+-(void)DQMModalrightButtonEvent:(UIButton *)sender navigationBar:(DQMModalNavUIBaseViewController *)navUIBaseViewController;
 
 @end
 
-@interface DQMModalNavUIBaseViewController : UIViewController <DQMModalNavUIBaseViewControllerDataSource>
+@interface DQMModalNavUIBaseViewController : UIViewController <DQMModalNavUIBaseViewControllerDataSource,DQMModalNavUIBaseViewControllerDelegate>
 
-/** 数据源 */
-@property(nonatomic,weak) id<DQMModalNavUIBaseViewControllerDataSource>          dataSource;
+/** 数据源  */
+@property(nonatomic,weak) id<DQMModalNavUIBaseViewControllerDataSource>        dataSource;
 
 /** 代理 */
 @property(nonatomic,weak) id<DQMModalNavUIBaseViewControllerDelegate>          delegate;
+
+
 
 - (NSMutableAttributedString *)changeTitle:(NSString *)curTitle;
 

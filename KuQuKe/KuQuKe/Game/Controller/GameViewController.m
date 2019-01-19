@@ -41,9 +41,16 @@
 
 #pragma mark - createUI
 - (void)createUI {
-	self.view.backgroundColor = UIColor.whiteColor;
+	self.tableView.backgroundColor = UIColor.whiteColor;
 	self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 	
+  //重置tableView
+  self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+  [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+    make.left.right.mas_equalTo(0);
+    make.top.mas_equalTo(NAVIGATION_BAR_HEIGHT);
+    make.bottom.mas_equalTo(self.view.mas_bottom).offset(-TAB_BAR_HEIGHT);
+  }];
 }
 
 

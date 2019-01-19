@@ -74,6 +74,7 @@
     if ([vc isKindOfClass:[UINavigationController class]]) {
       vc = ((UINavigationController*)vc).visibleViewController;
     }
+    //会获取到登入的
     if (vc.presentedViewController) {
       vc = vc.presentedViewController;
     }else{
@@ -82,6 +83,7 @@
   }
   return vc;
 }
+
 
 
 /** 开或关 闪光灯 */

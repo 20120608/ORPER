@@ -9,7 +9,7 @@
 #import "DQMLoginViewController.h"
 #import "DQMTabBarController.h"//分栏
 
-@interface DQMLoginViewController () <DQMModalNavUIBaseViewControllerDataSource,DQMModalNavUIBaseViewControllerDelegate>
+@interface DQMLoginViewController ()
 
 @end
 
@@ -17,9 +17,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-  
-  self.delegate = self;
-  self.dataSource = self;
+
 
   
   
@@ -31,11 +29,15 @@
 
 
 #pragma mark - dqm_navibar
-- (UIColor *)navUIBaseViewControllerNaviBackgroundColor:(DQMModalNavUIBaseViewController *)navUIBaseViewController {
+- (UIColor *)DQMModalnavUIBaseViewControllerNaviBackgroundColor:(DQMModalNavUIBaseViewController *)navUIBaseViewController {
   return DQMMainColor;
 }
 
--(void)leftButtonEvent:(UIButton *)sender navigationBar:(DQMModalNavUIBaseViewController *)navUIBaseViewController {
+- (NSMutableAttributedString *)DQMModalnavUIBaseViewControllerNaviTitle:(DQMModalNavUIBaseViewController *)navUIBaseViewController {
+  return [QMSGeneralHelpers changeStringToMutableAttributedStringTitle:@"登录" color:UIColor.whiteColor];
+}
+
+-(void)DQMModalleftButtonEvent:(UIButton *)sender navigationBar:(DQMModalNavUIBaseViewController *)navUIBaseViewController {
   UIViewController *currentVc = [QMSGeneralHelpers currentViewController];
   if (currentVc != nil) {
     [currentVc.navigationController popViewControllerAnimated:false];

@@ -111,6 +111,8 @@
 		5930277521F1B75F00FC68F1 /* DQMModalTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5930277421F1B75F00FC68F1 /* DQMModalTextViewController.m */; };
 		5930277821F1B84200FC68F1 /* DQMModalRequestBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5930277721F1B84200FC68F1 /* DQMModalRequestBaseViewController.m */; };
 		5930277B21F1B8EC00FC68F1 /* DQMModalBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5930277A21F1B8EC00FC68F1 /* DQMModalBaseViewController.m */; };
+		5930277E21F2DEAF00FC68F1 /* GameTaskCheckInDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5930277D21F2DEAF00FC68F1 /* GameTaskCheckInDetailViewController.m */; };
+		5930278121F2DF3E00FC68F1 /* GameTaskCheckInTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5930278021F2DF3E00FC68F1 /* GameTaskCheckInTableViewCell.m */; };
 		59ADCD1021E6D10F00A86C1F /* DQMRigthSwitchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 59ADCD0F21E6D10F00A86C1F /* DQMRigthSwitchTableViewCell.m */; };
 		59ADCD1321E6D52800A86C1F /* SettingUsetInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59ADCD1221E6D52800A86C1F /* SettingUsetInfoViewController.m */; };
 		59ADCD1621E6ECB200A86C1F /* CompleteInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59ADCD1521E6ECB200A86C1F /* CompleteInformationViewController.m */; };
@@ -352,6 +354,10 @@
 		5930277721F1B84200FC68F1 /* DQMModalRequestBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DQMModalRequestBaseViewController.m; sourceTree = "<group>"; };
 		5930277921F1B8EC00FC68F1 /* DQMModalBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DQMModalBaseViewController.h; sourceTree = "<group>"; };
 		5930277A21F1B8EC00FC68F1 /* DQMModalBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DQMModalBaseViewController.m; sourceTree = "<group>"; };
+		5930277C21F2DEAF00FC68F1 /* GameTaskCheckInDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameTaskCheckInDetailViewController.h; sourceTree = "<group>"; };
+		5930277D21F2DEAF00FC68F1 /* GameTaskCheckInDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameTaskCheckInDetailViewController.m; sourceTree = "<group>"; };
+		5930277F21F2DF3E00FC68F1 /* GameTaskCheckInTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameTaskCheckInTableViewCell.h; sourceTree = "<group>"; };
+		5930278021F2DF3E00FC68F1 /* GameTaskCheckInTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameTaskCheckInTableViewCell.m; sourceTree = "<group>"; };
 		59ADCD0E21E6D10F00A86C1F /* DQMRigthSwitchTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DQMRigthSwitchTableViewCell.h; sourceTree = "<group>"; };
 		59ADCD0F21E6D10F00A86C1F /* DQMRigthSwitchTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DQMRigthSwitchTableViewCell.m; sourceTree = "<group>"; };
 		59ADCD1121E6D52800A86C1F /* SettingUsetInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingUsetInfoViewController.h; sourceTree = "<group>"; };
@@ -619,6 +625,8 @@
 			children = (
 				55B4995F21EF467B005F31AE /* EarnMoneyForRegisterViewController.h */,
 				55B4995E21EF467B005F31AE /* EarnMoneyForRegisterViewController.m */,
+				5930277C21F2DEAF00FC68F1 /* GameTaskCheckInDetailViewController.h */,
+				5930277D21F2DEAF00FC68F1 /* GameTaskCheckInDetailViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -636,6 +644,8 @@
 				55B4995321EF466E005F31AE /* PreViewTaskTotalStepView.m */,
 				55B4995721EF466E005F31AE /* UserMessageInputView.h */,
 				55B4995821EF466F005F31AE /* UserMessageInputView.m */,
+				5930277F21F2DF3E00FC68F1 /* GameTaskCheckInTableViewCell.h */,
+				5930278021F2DF3E00FC68F1 /* GameTaskCheckInTableViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1378,6 +1388,7 @@
 				551A09EF21E9CD0900B2FB84 /* ChickSuccessAlertView.m in Sources */,
 				5594A13C21E1BC1F009178B3 /* MBProgressHUD+DQM.m in Sources */,
 				55B4996621F1F948005F31AE /* GameHomeTaskListTableViewCell.m in Sources */,
+				5930278121F2DF3E00FC68F1 /* GameTaskCheckInTableViewCell.m in Sources */,
 				5594A15221E1BC1F009178B3 /* DQMListExpendHeaderView.m in Sources */,
 				59ADCD1321E6D52800A86C1F /* SettingUsetInfoViewController.m in Sources */,
 				551A0A1621EB0F8C00B2FB84 /* CheckOutAliPayViewController.m in Sources */,
@@ -1402,6 +1413,7 @@
 				5594A14221E1BC1F009178B3 /* DQMBaseViewController.m in Sources */,
 				55D1D0D921E22095008ECEE3 /* ZJCalenderDayModel.m in Sources */,
 				551A09DD21E9A35200B2FB84 /* DQMChildJXCategpryListViewController.m in Sources */,
+				5930277E21F2DEAF00FC68F1 /* GameTaskCheckInDetailViewController.m in Sources */,
 				5930277221F1AE5B00FC68F1 /* DQMModalNavUIBaseViewController.m in Sources */,
 				551A0A1321EB0E3A00B2FB84 /* CheckOutSuccessView.m in Sources */,
 				59DC11EA21EDB06C003FE685 /* DQMAFNetWork.m in Sources */,
