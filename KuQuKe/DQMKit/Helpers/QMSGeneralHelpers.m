@@ -63,9 +63,9 @@
 
 
 /**
- 获取顶层视图控制器
+ 获取顶层视图控制器 visibleViewController
  */
-+ (UIViewController*)currentViewController {
++ (UIViewController *)visibleViewControllerInNavi {
   UIViewController* vc = [UIApplication sharedApplication].keyWindow.rootViewController;
   while (1) {
     if ([vc isKindOfClass:[UITabBarController class]]) {
@@ -74,7 +74,6 @@
     if ([vc isKindOfClass:[UINavigationController class]]) {
       vc = ((UINavigationController*)vc).visibleViewController;
     }
-    //会获取到登入的
     if (vc.presentedViewController) {
       vc = vc.presentedViewController;
     }else{
@@ -83,6 +82,21 @@
   }
   return vc;
 }
+
+/**
+ 获取栈顶视图控制器 topViewController
+ */
++ (UIViewController *)topViewControllerInNavi
+{
+  UIWindow *keyWindow  = [UIApplication sharedApplication].keyWindow;
+  UITabBarController *tabbar = ((UITabBarController *)keyWindow.rootViewController);
+  UINavigationController *navi = tabbar.selectedViewController;
+  UIViewController *vc = [navi topViewController];
+  return vc;
+}
+
+
+
 
 
 

@@ -21,6 +21,9 @@ typedef NS_ENUM(NSInteger,DQMNetMethod) {
 @class RequestStatusModel;
 @interface DQMAFNetWork : NSObject
 
+/** 是否跳转到登入页中 */
+@property(nonatomic,assign) BOOL          loging;
+
 /** 单利 */
 + (DQMAFNetWork *)sharedDQMAFNetWork;
 
@@ -86,13 +89,14 @@ networkstatus:(BOOL)netstatus;
 // /**
 // 获取天气的接口
 // */
-//+(QMURLSessionTask *)getWeather:(NSDictionary *)params AndView:(UIView *)view success:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))success unknown:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))unknown failure:(void(^)(NSError *error))failure;
+//+(QMURLSessionTask *)GETWeather:(NSDictionary *)params AndView:(UIView *)view success:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))success unknown:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))unknown failure:(void(^)(NSError *error))failure CheckLoginStatus:(BOOL)checkstatus;
 //
 // /**
 // 获取天气的接口
 // */
-//+(QMURLSessionTask *)getWeather:(NSDictionary *)params AndView:(UIView *)view success:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))success unknown:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))unknown failure:(void(^)(NSError *error))failure {
-//  return [DQMAFNetWork method:POST
+//+(QMURLSessionTask *)GETWeather:(NSDictionary *)params AndView:(UIView *)view success:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))success unknown:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))unknown failure:(void(^)(NSError *error))failure CheckLoginStatus:(BOOL)checkstatus {
+//
+//  return [DQMAFNetWork method:GET
 //                 withchildUrl:@"/data/sk/101110101.html"
 //                    andparams:params
 //                         view:view
@@ -114,5 +118,6 @@ networkstatus:(BOOL)netstatus;
 //                      }
 //                    graceTime:2
 //                      showHUD:true
-//                networkstatus:true];
+//                networkstatus:true
+//             checkLoginStatus:checkstatus];
 //}

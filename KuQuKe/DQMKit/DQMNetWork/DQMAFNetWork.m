@@ -9,8 +9,8 @@
 #import "DQMAFNetWork.h"
 #import "DQMTabBarController.h"//分栏
 #import "DQMLoginViewController.h"//登入页
-@implementation DQMAFNetWork
 
+@implementation DQMAFNetWork
 
 /** 单利 */
 + (DQMAFNetWork *)sharedDQMAFNetWork
@@ -38,6 +38,9 @@
                     showHUD:(BOOL)showhud
               networkstatus:(BOOL)netstatus
            checkLoginStatus:(BOOL)checkLoginStatus {
+  
+//  单利
+ DQMAFNetWork *netWork = [DQMAFNetWork sharedDQMAFNetWork];
   
   if (method == POST) {
     //进行post请求
@@ -107,12 +110,17 @@
         default://不成功,也不是登入过期
         {
           [view makeToast:([reqsModel.msg length] == 0 ? @"登入状态失效!请重新登入。" : reqsModel.msg)];
-          if (checkLoginStatus) {
+          if (checkLoginStatus && !netWork.loging) {
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-              UIViewController *currentVc = [QMSGeneralHelpers currentViewController];
-              if (currentVc != nil) {
+              netWork.loging = true;
+              UIViewController *visibleVc = [QMSGeneralHelpers visibleViewControllerInNavi];
+              UIViewController *currentVc = [QMSGeneralHelpers topViewControllerInNavi];
+              //NSLog(@"currentVc %@  currentVc %@",[currentVc class],[visibleVc class]);
+              if (currentVc != nil && ![visibleVc isKindOfClass: [DQMLoginViewController class]]) {
                 DQMLoginViewController *loginVc = [[DQMLoginViewController alloc] initWithTitle:@"登录"];
-                [currentVc presentViewController:loginVc animated:true completion:nil];
+                [currentVc presentViewController:loginVc animated:true completion:^{
+                  netWork.loging = false;
+                }];
               }
             });
           }

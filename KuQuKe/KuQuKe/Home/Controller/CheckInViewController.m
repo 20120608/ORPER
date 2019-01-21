@@ -17,13 +17,9 @@
 
 @implementation CheckInViewController
 
-- (void)viewDidLoad {
-	[super viewDidLoad];
-	self.view.backgroundColor = UIColor.whiteColor;
-	
-	[self createHeaderView];
-	
-  
+
+#pragma mark - life cycle
+- (void)viewWillAppear:(BOOL)animated {
   
   [KuQuKeNetWorkManager GETWeather:nil AndView:self.view success:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
     
@@ -32,12 +28,23 @@
   } failure:^(NSError *error) {
     
   } CheckLoginStatus:true];
-
-
+  
 }
 
-- (void)dealloc {
-  NSLog(@"进来了");
+- (void)viewDidLoad {
+	[super viewDidLoad];
+	self.view.backgroundColor = UIColor.whiteColor;
+	
+	[self createHeaderView];
+  
+  [KuQuKeNetWorkManager GETWeather:nil AndView:self.view success:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
+    
+  } unknown:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
+    
+  } failure:^(NSError *error) {
+    
+  } CheckLoginStatus:true];
+	
 }
 
 #pragma mark - UI

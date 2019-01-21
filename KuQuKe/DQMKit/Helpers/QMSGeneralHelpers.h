@@ -45,11 +45,14 @@
 
 
 /**
- 获取顶层视图控制器
+ 获取栈顶视图控制器
  */
-+ (UIViewController*)currentViewController;
++ (UIViewController *)topViewControllerInNavi;
 
-
+/**
+ 获取顶部活动的控制器
+ */
++ (UIViewController *)visibleViewControllerInNavi;
 
 /**
  从bundle中取出图片

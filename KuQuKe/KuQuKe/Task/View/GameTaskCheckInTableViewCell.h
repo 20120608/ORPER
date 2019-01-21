@@ -13,6 +13,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface GameTaskCheckInTableViewCell : UITableViewCell
 
+
+
+/** 固定高度 0则自适应 */
+@property (nonatomic,assign) CGFloat     fixedCellHeight;
+
++(GameTaskCheckInTableViewCell *)cellWithTableView:(UITableView *)tableview indexPath:(NSIndexPath *)indexPath FixedCellHeight:(CGFloat)fixedCellHeight;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -38,7 +38,7 @@
 }
 
 -(void)DQMModalleftButtonEvent:(UIButton *)sender navigationBar:(DQMModalNavUIBaseViewController *)navUIBaseViewController {
-  UIViewController *currentVc = [QMSGeneralHelpers currentViewController];
+  UIViewController *currentVc = [QMSGeneralHelpers topViewControllerInNavi];
   if (currentVc != nil) {
     [currentVc.navigationController popViewControllerAnimated:false];
     [self dismissViewControllerAnimated:true completion:nil];

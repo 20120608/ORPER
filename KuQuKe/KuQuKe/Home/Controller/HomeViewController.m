@@ -67,23 +67,6 @@
     
    
   });
-  
-  
-  //模拟请求天气
-  [KuQuKeNetWorkManager getWeather:nil AndView:self.view success:^(RequestStatusModel * reqsModel, NSDictionary * dataDic) {
-    NSLog(@"weatherData success = %@",dataDic);
-    
-  } unknown:^(RequestStatusModel * _Nonnull reqsModel, NSDictionary * _Nonnull dataDic) {
-    NSLog(@"weatherData unknown = %@",dataDic);
-
-  } failure:^(NSError * _Nonnull error) {
-    NSLog(@"weatherData failure = %@",error);
-
-  }];
-  
-  
-  
-  
 
 }
 

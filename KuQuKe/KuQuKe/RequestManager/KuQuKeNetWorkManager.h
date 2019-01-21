@@ -17,11 +17,10 @@
 + (instancetype)sharedInstance;
 
 
-/**
- 获取天气的接口
- */
-+(QMURLSessionTask *)getWeather:(NSDictionary * __nullable)params AndView:(UIView *)view success:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))success unknown:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))unknown failure:(void(^)(NSError *error))failure;
 
+/**
+ 获取天气信息
+ */
 +(QMURLSessionTask *)GETWeather:(NSDictionary *)params AndView:(UIView *)view success:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))success unknown:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))unknown failure:(void(^)(NSError *error))failure CheckLoginStatus:(BOOL)checkstatus;
 
 @end
