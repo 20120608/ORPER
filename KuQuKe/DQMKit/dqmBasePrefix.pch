@@ -50,6 +50,8 @@
 #define QMPriceColor QMHexColor(@"#e6584e")
 #define QMBackColor QMHexColor(@"#eeeeee")
 #define QMBlueColor QMHexColor(@"5092e0")
+#define QMYellowColor QMHexColor(@"ffd000")
+
 
 
 /**  设置字体*/

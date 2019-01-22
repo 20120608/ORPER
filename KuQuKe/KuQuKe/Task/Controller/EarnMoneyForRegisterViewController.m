@@ -75,7 +75,6 @@
   });
   
   [[RACObserve(self, imagesUrlStringArray) skip:1] subscribeNext:^(NSMutableArray<NSString *> *x) {
-    NSLog(@"进入的次数111111");
     preTaskView.imagesUrlStringArray = x;
   }];
   

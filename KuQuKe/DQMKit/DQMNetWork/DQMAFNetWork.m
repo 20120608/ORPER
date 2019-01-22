@@ -109,7 +109,9 @@
           break;
         default://不成功,也不是登入过期
         {
-          [view makeToast:([reqsModel.msg length] == 0 ? @"登入状态失效!请重新登入。" : reqsModel.msg)];
+          if (checkLoginStatus) {
+            [view makeToast:([reqsModel.msg length] == 0 ? @"登入状态失效!请重新登入。" : reqsModel.msg)];
+          }
           if (checkLoginStatus && !netWork.loging) {
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
               netWork.loging = true;

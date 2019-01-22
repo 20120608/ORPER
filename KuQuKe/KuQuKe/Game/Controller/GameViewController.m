@@ -8,6 +8,7 @@
 
 #import "GameViewController.h"
 #import "GameHomeTaskListTableViewCell.h"//列表cell
+#import "GameTaskCheckInDetailViewController.h"//游戏活动详情页
 
 @interface GameViewController ()
 
@@ -24,18 +25,18 @@
 	[self createUI];
 	
 	
-	[KuQuKeNetWorkManager getWeather:nil AndView:self.view success:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
-		
-	} unknown:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
-		
-		self.listModelArray = [GameListModel mj_objectArrayWithKeyValuesArray:@[@{},@{},@{},@{},@{}]];
-		[self.tableView reloadData];
-		
-		
-	} failure:^(NSError *error) {
-		
-	}];
-	
+  [KuQuKeNetWorkManager GETWeather:nil AndView:self.view success:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
+    
+  } unknown:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
+    
+    self.listModelArray = [GameListModel mj_objectArrayWithKeyValuesArray:@[@{},@{},@{},@{},@{}]];
+    [self.tableView reloadData];
+    
+  } failure:^(NSError *error) {
+    
+  } CheckLoginStatus:false];
+  
+  
 }
 
 
@@ -68,6 +69,17 @@
 	
 	return cell;
 }
+
+
+
+#pragma mark - tableView delegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+  GameTaskCheckInDetailViewController *vc = [[GameTaskCheckInDetailViewController alloc] init];
+  [self.navigationController pushViewController:vc animated:true];
+}
+
+
+
 
 
 #pragma mark - dqm_navibar

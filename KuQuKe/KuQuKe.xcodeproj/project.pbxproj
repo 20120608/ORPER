@@ -103,6 +103,7 @@
 		55D1D0DD21E22095008ECEE3 /* ZJCalenderDateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D1D0D221E22095008ECEE3 /* ZJCalenderDateManager.m */; };
 		55D1D0DE21E22095008ECEE3 /* ZJCalenderMonthModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D1D0D521E22095008ECEE3 /* ZJCalenderMonthModel.m */; };
 		55D1D0DF21E22095008ECEE3 /* ZJCalenderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D1D0D721E22095008ECEE3 /* ZJCalenderController.m */; };
+		59185E7921F70AD400EEC8B3 /* GameHeaderADCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 59185E7821F70AD400EEC8B3 /* GameHeaderADCollectionViewCell.m */; };
 		5918A77121E2F5DF00CF8431 /* DQMHorizontalViewScrollerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5918A77021E2F5DF00CF8431 /* DQMHorizontalViewScrollerView.m */; };
 		5918A77521E32CE900CF8431 /* UICollectionViewLeftAlignedLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 5918A77421E32CE900CF8431 /* UICollectionViewLeftAlignedLayout.m */; };
 		5918A77821E32D9900CF8431 /* ADHorizontalCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5918A77721E32D9900CF8431 /* ADHorizontalCollectionViewCell.m */; };
@@ -338,6 +339,8 @@
 		55D1D0D521E22095008ECEE3 /* ZJCalenderMonthModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJCalenderMonthModel.m; sourceTree = "<group>"; };
 		55D1D0D621E22095008ECEE3 /* ZJCalenderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJCalenderController.h; sourceTree = "<group>"; };
 		55D1D0D721E22095008ECEE3 /* ZJCalenderController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJCalenderController.m; sourceTree = "<group>"; };
+		59185E7721F70AD400EEC8B3 /* GameHeaderADCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameHeaderADCollectionViewCell.h; sourceTree = "<group>"; };
+		59185E7821F70AD400EEC8B3 /* GameHeaderADCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameHeaderADCollectionViewCell.m; sourceTree = "<group>"; };
 		5918A76F21E2F5DF00CF8431 /* DQMHorizontalViewScrollerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DQMHorizontalViewScrollerView.h; sourceTree = "<group>"; };
 		5918A77021E2F5DF00CF8431 /* DQMHorizontalViewScrollerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DQMHorizontalViewScrollerView.m; sourceTree = "<group>"; };
 		5918A77321E32CE900CF8431 /* UICollectionViewLeftAlignedLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICollectionViewLeftAlignedLayout.h; sourceTree = "<group>"; };
@@ -646,6 +649,8 @@
 				55B4995821EF466F005F31AE /* UserMessageInputView.m */,
 				5930277F21F2DF3E00FC68F1 /* GameTaskCheckInTableViewCell.h */,
 				5930278021F2DF3E00FC68F1 /* GameTaskCheckInTableViewCell.m */,
+				59185E7721F70AD400EEC8B3 /* GameHeaderADCollectionViewCell.h */,
+				59185E7821F70AD400EEC8B3 /* GameHeaderADCollectionViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1319,6 +1324,7 @@
 				5594A14D21E1BC1F009178B3 /* DQMNavigationBar.m in Sources */,
 				5594A15321E1BC1F009178B3 /* YYFPSLabel.m in Sources */,
 				5594A13821E1BC1F009178B3 /* UIColor+HexString.m in Sources */,
+				59185E7921F70AD400EEC8B3 /* GameHeaderADCollectionViewCell.m in Sources */,
 				5594A13721E1BC1F009178B3 /* UIButton+DQM.m in Sources */,
 				59D0AEC921E4665E00F3A67C /* RotaryTableViewController.m in Sources */,
 				55542FB621E4F991000F8D45 /* DQMExpandImageView.m in Sources */,
@@ -1604,7 +1610,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.baobo.baoboapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kuquke.kuquke;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1627,7 +1633,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.baobo.baoboapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kuquke.kuquke;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
