@@ -20,6 +20,8 @@
 #import "HomeMyTaskTableViewCell.h"//专属任务
 #import "EarnMoneyForRegisterViewController.h"//安装注册赚钱
 
+#import "RACMVVMListViewController.h"
+
 
 @interface HomeViewController () <DQMHorizontalViewScrollerViewDataSource,AvgButtonMenuTableViewCellDelegate>
 {
@@ -117,10 +119,13 @@
 		moneyLabel.text = [NSString stringWithFormat:@"今日赚钱: ¥%.2f",[x floatValue]];
 	}];
 	
+  QMWeak(self);
 	UIButton *withdrawMoneyButton = [UIButton initWithFrame:CGRectZero buttonTitle:@"提现" normalColor:DQMMainColor cornerRadius:AdaptedWidth(11) doneBlock:^(UIButton *sender) {
 		NSLog(@"提现");
-		
-		
+    
+    RACMVVMListViewController *vc = [[RACMVVMListViewController alloc] initWithTitle:@"RAC&&MVVM"];
+    [weakself.navigationController pushViewController:vc animated:true];
+    
 	}];
 	
 	[navi addSubview:withdrawMoneyButton];

@@ -56,7 +56,6 @@
 
 
 #pragma mark - tableview datasource
-#pragma mark - tableView DataSource
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
 	return 1;

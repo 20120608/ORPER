@@ -74,7 +74,7 @@
 
 #pragma mark - tableView delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-  GameTaskCheckInDetailViewController *vc = [[GameTaskCheckInDetailViewController alloc] init];
+  GameTaskCheckInDetailViewController *vc = [[GameTaskCheckInDetailViewController alloc] initWithTitle:@"任务详情"];
   [self.navigationController pushViewController:vc animated:true];
 }
 

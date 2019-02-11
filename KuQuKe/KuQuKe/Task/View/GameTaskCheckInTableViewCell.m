@@ -18,10 +18,6 @@
 /** 用来撑开高度的View */
 @property (nonatomic,strong) UIView           *backView;
 
-/** 视图 */
-@property (nonatomic,strong) UICollectionView *collectionView;
-
-
 @end
 
 @implementation GameTaskCheckInTableViewCell
@@ -57,12 +53,9 @@
     });
     
     UIImageView *logoImageView = [[UIImageView alloc] init];
-//    QMViewBorderRadius(logoImageView, 14, 2, UIColor.whiteColor);
-//    QMSetImage(logoImageView, @"pkq");
-//    logoImageView.contentMode = UIViewContentModeScaleAspectFit;
     [_backView addSubview:logoImageView];
     [logoImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-      make.left.mas_equalTo(20);
+      make.left.mas_equalTo(12);
       make.top.mas_equalTo(-25);
       make.size.mas_equalTo(CGSizeMake(AdaptedWidth(100), AdaptedWidth(100)));
     }];
@@ -71,12 +64,12 @@
       UIButton *button = [[UIButton alloc] init];
       [_backView addSubview:button];
       QMSetButton(button, @"攻略", 16, @"icon_gametaskDetail_first", QMYellowColor, UIControlStateNormal);
-      QMViewBorderRadius(button, 21, 0, DQMMainColor);
+      QMViewBorderRadius(button, 16, 0, DQMMainColor);
       button.backgroundColor = [UIColor colorWithHexString:@"535353" alpha:0.53];
       [button addTarget:self action:@selector(strategyButtonClick:) forControlEvents:UIControlEventTouchUpInside];
       [button mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(_backView.mas_right).offset(-10);
-        make.size.mas_equalTo(CGSizeMake(100, 42));
+        make.size.mas_equalTo(CGSizeMake(80, 32));
         make.top.mas_equalTo(2);
       }];
       button;
@@ -124,14 +117,14 @@
     UILabel *priceLabel = ({
       UILabel *label = [[UILabel alloc] init];
       [alphaView addSubview:label];
-      QMLabelFontColorText(label, @"00.00元", QMYellowColor, 20);
-      label.font = [UIFont boldSystemFontOfSize:20];
+      QMLabelFontColorText(label, @"1234.56元", QMYellowColor, 25);
+      label.font = [UIFont boldSystemFontOfSize:25];
       label.adjustsFontSizeToFitWidth = YES;
       label.textAlignment = NSTextAlignmentCenter;
       [label mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(0);
-        make.top.mas_equalTo(10);
-        make.width.mas_equalTo(110);
+        make.left.mas_equalTo(2);
+        make.top.mas_equalTo(15);
+        make.width.mas_equalTo(104);
         make.height.mas_equalTo(30);
       }];
       label;
@@ -143,9 +136,9 @@
       QMLabelFontColorText(label, @"累计提取金额", UIColor.whiteColor, 14);
       label.textAlignment = NSTextAlignmentCenter;
       [label mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(0);
-        make.width.mas_equalTo(110);
-        make.height.mas_equalTo(30);
+        make.left.mas_equalTo(2);
+        make.width.mas_equalTo(104);
+        make.height.mas_equalTo(20);
         make.top.mas_equalTo(priceLabel.mas_bottom);
       }];
       label;
@@ -154,15 +147,16 @@
     UIView *line = ({
       UIView *view = [[UIView alloc] init];
       [alphaView addSubview: view];
-      view.backgroundColor = DQMMainColor;
       [view mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(110);
-        make.top.mas_equalTo(23);
-        make.bottom.mas_equalTo(-23);
+        make.left.mas_equalTo(108);
+        make.top.mas_equalTo(18);
+        make.bottom.mas_equalTo(-18);
         make.width.mas_equalTo(1);
       }];
       view;
     });
+    line.backgroundColor = DQMMainColor;
+
     
     UICollectionViewFlowLayout  *layout = [[UICollectionViewFlowLayout alloc] init];
     [layout setScrollDirection:UICollectionViewScrollDirectionHorizontal]; //设置竖直滚动
@@ -187,9 +181,10 @@
     
     QMWeak(self);
     [[RACObserve(self, cellModel) skip:1] subscribeNext:^(GameTaskCheckInTableViewCellModel *x) {
-      
+      titleLabel.text = x.name;
+      timeLabel.text = [NSString stringWithFormat:@"活动时间: %@",x.taskTime];
+      priceLabel.text = [NSString stringWithFormat:@"%.2lf元",[x.price floatValue]];
       [weakself.collectionView reloadData];
-      
     }];
     
   

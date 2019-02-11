@@ -36,13 +36,13 @@
   if (self) {
     UIImageView *faceImageView = ({
       UIImageView *imageView = [[UIImageView alloc] init];
-      QMViewBorderRadius(imageView, 25, 1, [UIColor whiteColor]);
+      QMViewBorderRadius(imageView, 20, 1, [UIColor whiteColor]);
       [self addSubview: imageView];
       imageView.image = [UIImage imageNamed:@"logo"];
       [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.mas_left).offset(3);
         make.centerY.mas_equalTo(self.contentView.mas_centerY);
-        make.size.mas_equalTo(CGSizeMake(50, 50));
+        make.size.mas_equalTo(CGSizeMake(40, 40));
       }];
       imageView;
     });
@@ -51,7 +51,7 @@
     self.contnetLabel = ({
       UILabel *label = [[UILabel alloc] init];
       [self addSubview:label];
-      QMLabelFontColorText(label, @"name", DQMMainColor, 12);
+      QMLabelFontColorText(label, @"name", UIColor.whiteColor, 20);
       [label mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(faceImageView.mas_right).offset(5);
         make.centerY.mas_equalTo(self.contentView.mas_centerY);
@@ -76,7 +76,7 @@
   // 获得每个cell的属性集
   UICollectionViewLayoutAttributes *attributes = [super preferredLayoutAttributesFittingAttributes:layoutAttributes];
   // 计算cell里面textfield的宽度
-  CGRect frame = [self.contnetLabel.text boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, 38) options:(NSStringDrawingUsesLineFragmentOrigin) attributes:[NSDictionary dictionaryWithObjectsAndKeys:self.contnetLabel.font,NSFontAttributeName, nil] context:nil];
+  CGRect frame = [self.contnetLabel.text boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, 79) options:(NSStringDrawingUsesLineFragmentOrigin) attributes:[NSDictionary dictionaryWithObjectsAndKeys:self.contnetLabel.font,NSFontAttributeName, nil] context:nil];
   
   // 这里在本身宽度的基础上 又增加了10
   frame.size.width += 80;

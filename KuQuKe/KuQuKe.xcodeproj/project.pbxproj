@@ -103,7 +103,15 @@
 		55D1D0DD21E22095008ECEE3 /* ZJCalenderDateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D1D0D221E22095008ECEE3 /* ZJCalenderDateManager.m */; };
 		55D1D0DE21E22095008ECEE3 /* ZJCalenderMonthModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D1D0D521E22095008ECEE3 /* ZJCalenderMonthModel.m */; };
 		55D1D0DF21E22095008ECEE3 /* ZJCalenderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D1D0D721E22095008ECEE3 /* ZJCalenderController.m */; };
+		5910E77321F9BADD0098184A /* LoginThreeForeignView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5910E77221F9BADD0098184A /* LoginThreeForeignView.m */; };
+		5910E77721FAF2080098184A /* RACMVVMListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5910E77621FAF2080098184A /* RACMVVMListViewController.m */; };
+		5910E77A21FAF3250098184A /* RACMVVMViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5910E77921FAF3250098184A /* RACMVVMViewModel.m */; };
+		5910E77D21FAF4F20098184A /* RACMVVMListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5910E77C21FAF4F20098184A /* RACMVVMListModel.m */; };
+		5910E78021FAF6770098184A /* RACMVVMListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5910E77F21FAF6770098184A /* RACMVVMListTableViewCell.m */; };
+		5910E78321FBE69D0098184A /* DQMCommonNetWorkingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5910E78221FBE69D0098184A /* DQMCommonNetWorkingManager.m */; };
+		5910E78D21FE93810098184A /* lottie_loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 5910E78C21FE93810098184A /* lottie_loading.json */; };
 		59185E7921F70AD400EEC8B3 /* GameHeaderADCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 59185E7821F70AD400EEC8B3 /* GameHeaderADCollectionViewCell.m */; };
+		59185E7E21F7FE6900EEC8B3 /* GameTaskDetailStepTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 59185E7D21F7FE6900EEC8B3 /* GameTaskDetailStepTableViewCell.m */; };
 		5918A77121E2F5DF00CF8431 /* DQMHorizontalViewScrollerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5918A77021E2F5DF00CF8431 /* DQMHorizontalViewScrollerView.m */; };
 		5918A77521E32CE900CF8431 /* UICollectionViewLeftAlignedLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 5918A77421E32CE900CF8431 /* UICollectionViewLeftAlignedLayout.m */; };
 		5918A77821E32D9900CF8431 /* ADHorizontalCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5918A77721E32D9900CF8431 /* ADHorizontalCollectionViewCell.m */; };
@@ -114,6 +122,12 @@
 		5930277B21F1B8EC00FC68F1 /* DQMModalBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5930277A21F1B8EC00FC68F1 /* DQMModalBaseViewController.m */; };
 		5930277E21F2DEAF00FC68F1 /* GameTaskCheckInDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5930277D21F2DEAF00FC68F1 /* GameTaskCheckInDetailViewController.m */; };
 		5930278121F2DF3E00FC68F1 /* GameTaskCheckInTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5930278021F2DF3E00FC68F1 /* GameTaskCheckInTableViewCell.m */; };
+		596898F621FED9D1009DB2C0 /* ReadMe.txt in Resources */ = {isa = PBXBuildFile; fileRef = 596898F521FED9D1009DB2C0 /* ReadMe.txt */; };
+		59693EDA21F81151002CAEF1 /* GameTaskStepView.m in Sources */ = {isa = PBXBuildFile; fileRef = 59693ED921F81151002CAEF1 /* GameTaskStepView.m */; };
+		59693EDD21F9521C002CAEF1 /* DQMModalTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59693EDC21F9521C002CAEF1 /* DQMModalTableViewController.m */; };
+		59693EE021F95907002CAEF1 /* LoginCodeOrPassWordTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 59693EDF21F95907002CAEF1 /* LoginCodeOrPassWordTableViewCell.m */; };
+		59693EE321F969F6002CAEF1 /* LoginUseMsgcodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 59693EE221F969F6002CAEF1 /* LoginUseMsgcodeView.m */; };
+		59693EE621F96A0D002CAEF1 /* LoginUsePassWordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 59693EE521F96A0D002CAEF1 /* LoginUsePassWordView.m */; };
 		59ADCD1021E6D10F00A86C1F /* DQMRigthSwitchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 59ADCD0F21E6D10F00A86C1F /* DQMRigthSwitchTableViewCell.m */; };
 		59ADCD1321E6D52800A86C1F /* SettingUsetInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59ADCD1221E6D52800A86C1F /* SettingUsetInfoViewController.m */; };
 		59ADCD1621E6ECB200A86C1F /* CompleteInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59ADCD1521E6ECB200A86C1F /* CompleteInformationViewController.m */; };
@@ -339,8 +353,23 @@
 		55D1D0D521E22095008ECEE3 /* ZJCalenderMonthModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJCalenderMonthModel.m; sourceTree = "<group>"; };
 		55D1D0D621E22095008ECEE3 /* ZJCalenderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJCalenderController.h; sourceTree = "<group>"; };
 		55D1D0D721E22095008ECEE3 /* ZJCalenderController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJCalenderController.m; sourceTree = "<group>"; };
+		5910E77121F9BADD0098184A /* LoginThreeForeignView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginThreeForeignView.h; sourceTree = "<group>"; };
+		5910E77221F9BADD0098184A /* LoginThreeForeignView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginThreeForeignView.m; sourceTree = "<group>"; };
+		5910E77521FAF2080098184A /* RACMVVMListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RACMVVMListViewController.h; sourceTree = "<group>"; };
+		5910E77621FAF2080098184A /* RACMVVMListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RACMVVMListViewController.m; sourceTree = "<group>"; };
+		5910E77821FAF3250098184A /* RACMVVMViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RACMVVMViewModel.h; sourceTree = "<group>"; };
+		5910E77921FAF3250098184A /* RACMVVMViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RACMVVMViewModel.m; sourceTree = "<group>"; };
+		5910E77B21FAF4F20098184A /* RACMVVMListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RACMVVMListModel.h; sourceTree = "<group>"; };
+		5910E77C21FAF4F20098184A /* RACMVVMListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RACMVVMListModel.m; sourceTree = "<group>"; };
+		5910E77E21FAF6770098184A /* RACMVVMListTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RACMVVMListTableViewCell.h; sourceTree = "<group>"; };
+		5910E77F21FAF6770098184A /* RACMVVMListTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RACMVVMListTableViewCell.m; sourceTree = "<group>"; };
+		5910E78121FBE69D0098184A /* DQMCommonNetWorkingManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DQMCommonNetWorkingManager.h; sourceTree = "<group>"; };
+		5910E78221FBE69D0098184A /* DQMCommonNetWorkingManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DQMCommonNetWorkingManager.m; sourceTree = "<group>"; };
+		5910E78C21FE93810098184A /* lottie_loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = lottie_loading.json; sourceTree = "<group>"; };
 		59185E7721F70AD400EEC8B3 /* GameHeaderADCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameHeaderADCollectionViewCell.h; sourceTree = "<group>"; };
 		59185E7821F70AD400EEC8B3 /* GameHeaderADCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameHeaderADCollectionViewCell.m; sourceTree = "<group>"; };
+		59185E7C21F7FE6900EEC8B3 /* GameTaskDetailStepTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameTaskDetailStepTableViewCell.h; sourceTree = "<group>"; };
+		59185E7D21F7FE6900EEC8B3 /* GameTaskDetailStepTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameTaskDetailStepTableViewCell.m; sourceTree = "<group>"; };
 		5918A76F21E2F5DF00CF8431 /* DQMHorizontalViewScrollerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DQMHorizontalViewScrollerView.h; sourceTree = "<group>"; };
 		5918A77021E2F5DF00CF8431 /* DQMHorizontalViewScrollerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DQMHorizontalViewScrollerView.m; sourceTree = "<group>"; };
 		5918A77321E32CE900CF8431 /* UICollectionViewLeftAlignedLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICollectionViewLeftAlignedLayout.h; sourceTree = "<group>"; };
@@ -361,6 +390,17 @@
 		5930277D21F2DEAF00FC68F1 /* GameTaskCheckInDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameTaskCheckInDetailViewController.m; sourceTree = "<group>"; };
 		5930277F21F2DF3E00FC68F1 /* GameTaskCheckInTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameTaskCheckInTableViewCell.h; sourceTree = "<group>"; };
 		5930278021F2DF3E00FC68F1 /* GameTaskCheckInTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameTaskCheckInTableViewCell.m; sourceTree = "<group>"; };
+		596898F521FED9D1009DB2C0 /* ReadMe.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ReadMe.txt; sourceTree = "<group>"; };
+		59693ED821F81151002CAEF1 /* GameTaskStepView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameTaskStepView.h; sourceTree = "<group>"; };
+		59693ED921F81151002CAEF1 /* GameTaskStepView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameTaskStepView.m; sourceTree = "<group>"; };
+		59693EDB21F9521C002CAEF1 /* DQMModalTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DQMModalTableViewController.h; sourceTree = "<group>"; };
+		59693EDC21F9521C002CAEF1 /* DQMModalTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DQMModalTableViewController.m; sourceTree = "<group>"; };
+		59693EDE21F95907002CAEF1 /* LoginCodeOrPassWordTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginCodeOrPassWordTableViewCell.h; sourceTree = "<group>"; };
+		59693EDF21F95907002CAEF1 /* LoginCodeOrPassWordTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginCodeOrPassWordTableViewCell.m; sourceTree = "<group>"; };
+		59693EE121F969F6002CAEF1 /* LoginUseMsgcodeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginUseMsgcodeView.h; sourceTree = "<group>"; };
+		59693EE221F969F6002CAEF1 /* LoginUseMsgcodeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginUseMsgcodeView.m; sourceTree = "<group>"; };
+		59693EE421F96A0D002CAEF1 /* LoginUsePassWordView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginUsePassWordView.h; sourceTree = "<group>"; };
+		59693EE521F96A0D002CAEF1 /* LoginUsePassWordView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginUsePassWordView.m; sourceTree = "<group>"; };
 		59ADCD0E21E6D10F00A86C1F /* DQMRigthSwitchTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DQMRigthSwitchTableViewCell.h; sourceTree = "<group>"; };
 		59ADCD0F21E6D10F00A86C1F /* DQMRigthSwitchTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DQMRigthSwitchTableViewCell.m; sourceTree = "<group>"; };
 		59ADCD1121E6D52800A86C1F /* SettingUsetInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingUsetInfoViewController.h; sourceTree = "<group>"; };
@@ -651,6 +691,10 @@
 				5930278021F2DF3E00FC68F1 /* GameTaskCheckInTableViewCell.m */,
 				59185E7721F70AD400EEC8B3 /* GameHeaderADCollectionViewCell.h */,
 				59185E7821F70AD400EEC8B3 /* GameHeaderADCollectionViewCell.m */,
+				59185E7C21F7FE6900EEC8B3 /* GameTaskDetailStepTableViewCell.h */,
+				59185E7D21F7FE6900EEC8B3 /* GameTaskDetailStepTableViewCell.m */,
+				59693ED821F81151002CAEF1 /* GameTaskStepView.h */,
+				59693ED921F81151002CAEF1 /* GameTaskStepView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -751,11 +795,13 @@
 			children = (
 				5594A11321E1BC1F009178B3 /* dqmBasePrefix.pch */,
 				5594A0E521E1BC1F009178B3 /* DqmBaseAssets.xcassets */,
-				5594A0E621E1BC1F009178B3 /* Category */,
+				5594A0E621E1BC1F009178B3 /* BaseCategory */,
 				5594A10021E1BC1F009178B3 /* BaseControllers */,
 				5594A11421E1BC1F009178B3 /* BaseModels */,
 				5594A11D21E1BC1F009178B3 /* BaseViews */,
-				5930276F21F1AE1B00FC68F1 /* modalBaseControllers */,
+				5930276F21F1AE1B00FC68F1 /* BasemodalControllers */,
+				5910E78B21FE93600098184A /* DQMLottie */,
+				5910E77421FAF1C90098184A /* DQMRAC+MVVM */,
 				59DC11EB21EDB846003FE685 /* DQMNetWork */,
 				5930276B21F1AA6300FC68F1 /* DQMLogin */,
 				5930276921F033F500FC68F1 /* DQMUserInfoFMDB */,
@@ -764,7 +810,7 @@
 			path = DQMKit;
 			sourceTree = SOURCE_ROOT;
 		};
-		5594A0E621E1BC1F009178B3 /* Category */ = {
+		5594A0E621E1BC1F009178B3 /* BaseCategory */ = {
 			isa = PBXGroup;
 			children = (
 				55542FBB21E615F7000F8D45 /* UILabel */,
@@ -777,7 +823,7 @@
 				5594A0FA21E1BC1F009178B3 /* UIImageView */,
 				5594A0FD21E1BC1F009178B3 /* UINavigationController */,
 			);
-			path = Category;
+			path = BaseCategory;
 			sourceTree = "<group>";
 		};
 		5594A0E721E1BC1F009178B3 /* UIWindow */ = {
@@ -997,6 +1043,30 @@
 			path = DQMCalendar;
 			sourceTree = "<group>";
 		};
+		5910E77421FAF1C90098184A /* DQMRAC+MVVM */ = {
+			isa = PBXGroup;
+			children = (
+				5910E77521FAF2080098184A /* RACMVVMListViewController.h */,
+				5910E77621FAF2080098184A /* RACMVVMListViewController.m */,
+				5910E77821FAF3250098184A /* RACMVVMViewModel.h */,
+				5910E77921FAF3250098184A /* RACMVVMViewModel.m */,
+				5910E77B21FAF4F20098184A /* RACMVVMListModel.h */,
+				5910E77C21FAF4F20098184A /* RACMVVMListModel.m */,
+				5910E77E21FAF6770098184A /* RACMVVMListTableViewCell.h */,
+				5910E77F21FAF6770098184A /* RACMVVMListTableViewCell.m */,
+			);
+			path = "DQMRAC+MVVM";
+			sourceTree = "<group>";
+		};
+		5910E78B21FE93600098184A /* DQMLottie */ = {
+			isa = PBXGroup;
+			children = (
+				596898F521FED9D1009DB2C0 /* ReadMe.txt */,
+				5910E78C21FE93810098184A /* lottie_loading.json */,
+			);
+			path = DQMLottie;
+			sourceTree = "<group>";
+		};
 		5918A76E21E2F5AC00CF8431 /* DQMHorizontalViewScrollerView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1029,11 +1099,19 @@
 			children = (
 				5930276C21F1AA8B00FC68F1 /* DQMLoginViewController.h */,
 				5930276D21F1AA8B00FC68F1 /* DQMLoginViewController.m */,
+				59693EDE21F95907002CAEF1 /* LoginCodeOrPassWordTableViewCell.h */,
+				59693EDF21F95907002CAEF1 /* LoginCodeOrPassWordTableViewCell.m */,
+				59693EE121F969F6002CAEF1 /* LoginUseMsgcodeView.h */,
+				59693EE221F969F6002CAEF1 /* LoginUseMsgcodeView.m */,
+				59693EE421F96A0D002CAEF1 /* LoginUsePassWordView.h */,
+				59693EE521F96A0D002CAEF1 /* LoginUsePassWordView.m */,
+				5910E77121F9BADD0098184A /* LoginThreeForeignView.h */,
+				5910E77221F9BADD0098184A /* LoginThreeForeignView.m */,
 			);
 			path = DQMLogin;
 			sourceTree = "<group>";
 		};
-		5930276F21F1AE1B00FC68F1 /* modalBaseControllers */ = {
+		5930276F21F1AE1B00FC68F1 /* BasemodalControllers */ = {
 			isa = PBXGroup;
 			children = (
 				5930277021F1AE5B00FC68F1 /* DQMModalNavUIBaseViewController.h */,
@@ -1044,8 +1122,10 @@
 				5930277721F1B84200FC68F1 /* DQMModalRequestBaseViewController.m */,
 				5930277921F1B8EC00FC68F1 /* DQMModalBaseViewController.h */,
 				5930277A21F1B8EC00FC68F1 /* DQMModalBaseViewController.m */,
+				59693EDB21F9521C002CAEF1 /* DQMModalTableViewController.h */,
+				59693EDC21F9521C002CAEF1 /* DQMModalTableViewController.m */,
 			);
-			path = modalBaseControllers;
+			path = BasemodalControllers;
 			sourceTree = "<group>";
 		};
 		59D0AEB621E427C800F3A67C /* GeneralView */ = {
@@ -1077,6 +1157,8 @@
 				59DC11E921EDB06C003FE685 /* DQMAFNetWork.m */,
 				59DC11EC21EDB95E003FE685 /* QMBaseNetWorking.h */,
 				59DC11ED21EDB95E003FE685 /* QMBaseNetWorking.m */,
+				5910E78121FBE69D0098184A /* DQMCommonNetWorkingManager.h */,
+				5910E78221FBE69D0098184A /* DQMCommonNetWorkingManager.m */,
 			);
 			path = DQMNetWork;
 			sourceTree = "<group>";
@@ -1206,7 +1288,9 @@
 			files = (
 				5594A0BF21E1BB11009178B3 /* LaunchScreen.storyboard in Resources */,
 				5594A0BC21E1BB11009178B3 /* Assets.xcassets in Resources */,
+				5910E78D21FE93810098184A /* lottie_loading.json in Resources */,
 				5594A13521E1BC1F009178B3 /* DqmBaseAssets.xcassets in Resources */,
+				596898F621FED9D1009DB2C0 /* ReadMe.txt in Resources */,
 				5594A0BA21E1BB11009178B3 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1258,6 +1342,7 @@
 				"${BUILT_PRODUCTS_DIR}/YYImage/YYImage.framework",
 				"${BUILT_PRODUCTS_DIR}/YYText/YYText.framework",
 				"${BUILT_PRODUCTS_DIR}/YYWebImage/YYWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -1284,6 +1369,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYText.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lottie.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1339,9 +1425,12 @@
 				5594A14521E1BC1F009178B3 /* DQMNavUIBaseViewController.m in Sources */,
 				5594A14821E1BC1F009178B3 /* StaticListItem.m in Sources */,
 				551A0A1921EB126200B2FB84 /* CheckOutCollectionView.m in Sources */,
+				5910E77D21FAF4F20098184A /* RACMVVMListModel.m in Sources */,
 				5594A13621E1BC1F009178B3 /* UIWindow+CurrentViewController.m in Sources */,
 				5930277821F1B84200FC68F1 /* DQMModalRequestBaseViewController.m in Sources */,
 				59D0AEBC21E429AF00F3A67C /* QMButton.m in Sources */,
+				59693EE621F96A0D002CAEF1 /* LoginUsePassWordView.m in Sources */,
+				59185E7E21F7FE6900EEC8B3 /* GameTaskDetailStepTableViewCell.m in Sources */,
 				55B4996021EF467B005F31AE /* EarnMoneyForRegisterViewController.m in Sources */,
 				5594A14021E1BC1F009178B3 /* DQMStaticTableViewController.m in Sources */,
 				55542FB121E3A333000F8D45 /* DQMImageAndArrowTableViewCell.m in Sources */,
@@ -1366,8 +1455,11 @@
 				551A09DA21E9A25600B2FB84 /* DQMJXCategoryViewController.m in Sources */,
 				55D1D0DD21E22095008ECEE3 /* ZJCalenderDateManager.m in Sources */,
 				5594A14121E1BC1F009178B3 /* DQMRequestBaseViewController.m in Sources */,
+				5910E77A21FAF3250098184A /* RACMVVMViewModel.m in Sources */,
 				55D1D0DA21E22095008ECEE3 /* ZJCalenderCell.m in Sources */,
+				5910E77721FAF2080098184A /* RACMVVMListViewController.m in Sources */,
 				5594A15121E1BC1F009178B3 /* DQMAutoRefreshFooter.m in Sources */,
+				59693EDD21F9521C002CAEF1 /* DQMModalTableViewController.m in Sources */,
 				551A09FB21EA213900B2FB84 /* ShareResultsTableViewCell.m in Sources */,
 				5594A14721E1BC1F009178B3 /* DQMTableViewController.m in Sources */,
 				55D1D0DF21E22095008ECEE3 /* ZJCalenderController.m in Sources */,
@@ -1380,6 +1472,7 @@
 				55B4995921EF466F005F31AE /* PreviewTaskRequireView.m in Sources */,
 				5594A13E21E1BC1F009178B3 /* UINavigationController+FDFullscreenPopGesture.m in Sources */,
 				551A09BB21E980FF00B2FB84 /* MyStudentsViewController.m in Sources */,
+				59693EE321F969F6002CAEF1 /* LoginUseMsgcodeView.m in Sources */,
 				5594A14921E1BC1F009178B3 /* StaticSectionItem.m in Sources */,
 				5594A14E21E1BC1F009178B3 /* StaticListTableViewCell.m in Sources */,
 				55B4994E21EF4662005F31AE /* TaskPreviewStepModel.m in Sources */,
@@ -1388,6 +1481,7 @@
 				551A09E321E9AF6C00B2FB84 /* MyWithdrawViewController.m in Sources */,
 				5594A0C221E1BB12009178B3 /* main.m in Sources */,
 				551A09C721E992BE00B2FB84 /* CustomerServiceOfQQViewController.m in Sources */,
+				5910E78321FBE69D0098184A /* DQMCommonNetWorkingManager.m in Sources */,
 				5930276E21F1AA8B00FC68F1 /* DQMLoginViewController.m in Sources */,
 				551A09BE21E983AC00B2FB84 /* MyBalanceOfPaymentsViewController.m in Sources */,
 				551A09F821E9F42C00B2FB84 /* ShareToMyFriendImageTableViewCell.m in Sources */,
@@ -1401,6 +1495,7 @@
 				5537063721E1C05C001E49BC /* GameViewController.m in Sources */,
 				551A09E921E9C24800B2FB84 /* LeftAndRightLabelHeaderView.m in Sources */,
 				5594A15B21E1BCC5009178B3 /* HomeViewController.m in Sources */,
+				59693EDA21F81151002CAEF1 /* GameTaskStepView.m in Sources */,
 				5918A77121E2F5DF00CF8431 /* DQMHorizontalViewScrollerView.m in Sources */,
 				5930277B21F1B8EC00FC68F1 /* DQMModalBaseViewController.m in Sources */,
 				55542FBA21E615E3000F8D45 /* DQMImageTitleSubTitleAndArrowTableViewCell.m in Sources */,
@@ -1414,6 +1509,7 @@
 				551A0A0121EA349100B2FB84 /* HomeHeaderView.m in Sources */,
 				5594A13D21E1BC1F009178B3 /* UIImageView+SDwebImageFade.m in Sources */,
 				59ADCD2221E724AD00A86C1F /* CompleteAccountViewController.m in Sources */,
+				5910E77321F9BADD0098184A /* LoginThreeForeignView.m in Sources */,
 				55542FD721E646EB000F8D45 /* UserDetailModel.m in Sources */,
 				5594A13F21E1BC1F009178B3 /* DQMTabBarController.m in Sources */,
 				5594A14221E1BC1F009178B3 /* DQMBaseViewController.m in Sources */,
@@ -1424,7 +1520,9 @@
 				551A0A1321EB0E3A00B2FB84 /* CheckOutSuccessView.m in Sources */,
 				59DC11EA21EDB06C003FE685 /* DQMAFNetWork.m in Sources */,
 				5537063421E1C053001E49BC /* APPViewController.m in Sources */,
+				59693EE021F95907002CAEF1 /* LoginCodeOrPassWordTableViewCell.m in Sources */,
 				59ADCD1621E6ECB200A86C1F /* CompleteInformationViewController.m in Sources */,
+				5910E78021FAF6770098184A /* RACMVVMListTableViewCell.m in Sources */,
 				5594A0B421E1BB11009178B3 /* AppDelegate.m in Sources */,
 				55D1D0DB21E22095008ECEE3 /* ZJCalenderView.m in Sources */,
 				55542FC421E61618000F8D45 /* MessageCenterViewController.m in Sources */,
@@ -1614,6 +1712,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
+				WARNING_CFLAGS = "-Wno-ambiguous-macro";
 			};
 			name = Debug;
 		};
@@ -1637,6 +1736,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
+				WARNING_CFLAGS = "-Wno-ambiguous-macro";
 			};
 			name = Release;
 		};

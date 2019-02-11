@@ -21,6 +21,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSMutableAttributedString *)DQMModalnavUIBaseViewControllerNaviTitle:(DQMModalNavUIBaseViewController *)navUIBaseViewController;
 
+- (UIImage *)DQMModalnavUIBaseViewControllerLeftButtonImage:(DQMModalNavUIBaseViewController *)navUIBaseViewController;
+
+
 @end
 
 @protocol DQMModalNavUIBaseViewControllerDelegate <NSObject>

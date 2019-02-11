@@ -69,7 +69,7 @@
 		UIImageView *backImageView = ({
 			UIImageView *imageView = [[UIImageView alloc] init];
 			[_backView addSubview: imageView];
-			QMSetImage(imageView, @"placeholderImage");
+			QMSetImage(imageView, @"horizontal_placehold_image");
 			[imageView mas_makeConstraints:^(MASConstraintMaker *make) {
 				make.edges.mas_equalTo(UIEdgeInsetsMake(0, 0, 0, 0));
 			}];
@@ -104,7 +104,7 @@
 		UILabel *nameLabel = ({
 			UILabel *label = [[UILabel alloc] init];
 			[_backView addSubview:label];
-			QMLabelFontColorText(label, @"___", QMTextColor, 18);
+			QMLabelFontColorText(label, @"酷趣客", QMTextColor, 18);
 			label.font = [UIFont boldSystemFontOfSize:18];
 			[label mas_makeConstraints:^(MASConstraintMaker *make) {
 				make.left.mas_equalTo(_backView.mas_left).offset(16);

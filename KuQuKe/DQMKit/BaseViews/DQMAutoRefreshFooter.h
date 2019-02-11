@@ -10,7 +10,7 @@
 /** mjrefresh刷新底部控件 */
 #import <UIKit/UIKit.h>
 
-@interface DQMAutoRefreshFooter : MJRefreshAutoNormalFooter
+@interface DQMAutoRefreshFooter : MJRefreshBackNormalFooter
 
 @end
 

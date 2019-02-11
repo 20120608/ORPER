@@ -6,11 +6,12 @@
 //  Copyright © 2019 kuquke. All rights reserved.
 //
 
-#import "DQMModalBaseViewController.h"
+//登入页
+#import "DQMModalTableViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DQMLoginViewController : DQMModalBaseViewController
+@interface DQMLoginViewController : DQMModalTableViewController
 
 
 @end

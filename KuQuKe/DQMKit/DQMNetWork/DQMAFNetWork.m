@@ -41,14 +41,19 @@
   
 //  单利
  DQMAFNetWork *netWork = [DQMAFNetWork sharedDQMAFNetWork];
-  
+  NSString *URLString;
+  if ([childUrl rangeOfString:@"http"].location != NSNotFound) {
+    URLString = childUrl;
+  } else {
+    URLString = [NSString stringWithFormat:@"%@%@",BASEURL,childUrl];
+  }
   if (method == POST) {
     //进行post请求
-    return [QMBaseNetworking postWithUrl:[NSString stringWithFormat:@"%@%@",BASEURL,childUrl] params:params showView:view showmsg:msg success:^(id response) {
+    return [QMBaseNetworking postWithUrl:URLString params:params showView:view showmsg:msg success:^(id response) {
       NSDictionary *dataDic = kJSON(response);
       RequestStatusModel *reqsModel = [RequestStatusModel mj_objectWithKeyValues:dataDic];
       
-      switch ([reqsModel.code intValue]) {
+      switch ([reqsModel.status intValue]) {
         case 200:
         {
           if (success) {
@@ -58,13 +63,23 @@
           break;
         case 999://登入过期
         {
-          [view makeToast:([reqsModel.msg length] == 0 ? @"登入状态失效!请重新登入。" : reqsModel.msg)];
           if (checkLoginStatus) {
-            UINavigationController *nav = [UIApplication sharedApplication].keyWindow.rootViewController.tabBarController.selectedViewController;
-            UIViewController *currentVc = (UIViewController *)[nav.viewControllers lastObject];
-            if (currentVc != nil) {
-              [currentVc.navigationController popViewControllerAnimated:true];
-            }
+            [view makeToast:([reqsModel.msg length] == 0 ? @"登入状态失效!请重新登入。" : reqsModel.msg)];
+          }
+          if (checkLoginStatus && !netWork.loging) {
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+              netWork.loging = true;
+              UIViewController *visibleVc = [QMSGeneralHelpers visibleViewControllerInNavi];
+              UIViewController *currentVc = [QMSGeneralHelpers topViewControllerInNavi];
+              if (currentVc != nil && ![visibleVc isKindOfClass: [DQMLoginViewController class]]) {
+                DQMLoginViewController *loginVc = [[DQMLoginViewController alloc] initWithTitle:@"登录"];
+                [currentVc presentViewController:loginVc animated:true completion:^{
+                  netWork.loging = false;
+                }];
+              }
+            });
+          } else {
+            unknown(reqsModel,dataDic);
           }
         }
           break;
@@ -83,11 +98,11 @@
     
   } else if (method == GET) {
     //进行get请求
-    return [QMBaseNetworking getWithUrl:[NSString stringWithFormat:@"%@%@",BASEURL,childUrl] params:params showView:view showmsg:msg success:^(id response) {
+    return [QMBaseNetworking getWithUrl:URLString params:params showView:view showmsg:msg success:^(id response) {
       NSDictionary *dataDic = kJSON(response);
       RequestStatusModel *reqsModel = [RequestStatusModel mj_objectWithKeyValues:dataDic];
       
-      switch ([reqsModel.code intValue]) {
+      switch ([reqsModel.status intValue]) {
         case 200:
         {
           if (success) {
@@ -96,18 +111,6 @@
         }
           break;
         case 999://登入过期
-        {
-          [view makeToast:([reqsModel.msg length] == 0 ? @"登入状态失效!请重新登入。" : reqsModel.msg)];
-          if (checkLoginStatus) {
-            UINavigationController *nav = [UIApplication sharedApplication].keyWindow.rootViewController.tabBarController.selectedViewController;
-            UIViewController *currentVc = (UIViewController *)[nav.viewControllers lastObject];
-            if (currentVc != nil) {
-              [currentVc.navigationController popViewControllerAnimated:true];
-            }
-          }
-        }
-          break;
-        default://不成功,也不是登入过期
         {
           if (checkLoginStatus) {
             [view makeToast:([reqsModel.msg length] == 0 ? @"登入状态失效!请重新登入。" : reqsModel.msg)];
@@ -125,7 +128,13 @@
                 }];
               }
             });
+          } else {
+            unknown(reqsModel,dataDic);
           }
+        }
+          break;
+        default://不成功,也不是登入过期
+        {
           unknown(reqsModel,dataDic);
         }
           break;

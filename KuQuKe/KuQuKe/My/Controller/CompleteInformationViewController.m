@@ -9,7 +9,6 @@
 #import "CompleteInformationViewController.h"
 #import "UserDetailModel.h"
 #import "DQMRightImageViewTableViewCell.h"
-#import "DQMDefaultTableViewCell.h"
 #import "SettingUserInfoWithInputViewController.h"//带输入框的编辑
 #import "SettingUserInfoWithTableViewController.h"//带选择列表的编辑
 #import "PGDatePickManager.h"//时间选择器

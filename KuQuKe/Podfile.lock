@@ -23,6 +23,7 @@ PODS:
     - YYWebImage
   - IQKeyboardManager (6.1.1)
   - JXCategoryView (1.1.9)
+  - lottie-ios (2.5.2)
   - Masonry (1.1.0)
   - MBProgressHUD (1.1.0)
   - MJExtension (3.0.15.1)
@@ -61,6 +62,7 @@ DEPENDENCIES:
   - HXPhotoPicker (~> 2.2.3)
   - IQKeyboardManager (~> 6.1.1)
   - JXCategoryView (~> 1.1.9)
+  - lottie-ios (~> 2.5.2)
   - Masonry (~> 1.1.0)
   - MBProgressHUD (~> 1.1.0)
   - MJExtension (~> 3.0.15.1)
@@ -78,13 +80,14 @@ DEPENDENCIES:
   - YYText (~> 1.0.7)
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/cocoapods/specs.git:
     - AFNetworking
     - FLAnimatedImage
     - FMDB
     - HXPhotoPicker
     - IQKeyboardManager
     - JXCategoryView
+    - lottie-ios
     - Masonry
     - MBProgressHUD
     - MJExtension
@@ -110,6 +113,7 @@ SPEC CHECKSUMS:
   HXPhotoPicker: 143d4fa28a1db67fe982d8465c451ee0c0d284cb
   IQKeyboardManager: 79c57795f5c2408d259d37b9da2ed07efcbb5225
   JXCategoryView: a3b74b492d0111af593c3c0c3f80e48b914bd7d9
+  lottie-ios: 3fef45d3fabe63e3c7c2eb603dd64ddfffc73062
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
   MJExtension: 19bc33ce2eee2d319760f5622562cf581a6ff756
@@ -128,6 +132,6 @@ SPEC CHECKSUMS:
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
   YYWebImage: 5f7f36aee2ae293f016d418c7d6ba05c4863e928
 
-PODFILE CHECKSUM: 0010f7121dafc9f97f720001b21821e67207cf70
+PODFILE CHECKSUM: 6caf34e251d5bccf5e6528f98764e58f96b41cfe
 
-COCOAPODS: 1.5.0
+COCOAPODS: 1.5.3

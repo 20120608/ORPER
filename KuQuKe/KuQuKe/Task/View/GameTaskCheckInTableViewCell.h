@@ -26,6 +26,9 @@ NS_ASSUME_NONNULL_BEGIN
 ///** 数据源 */
 //@property(nonatomic,weak) id<GameTaskCheckInTableViewCellDatasource>          *dataSource;
 
+/** 视图 */
+@property (nonatomic,strong) UICollectionView *collectionView;
+
 /** 固定高度 0则自适应 */
 @property (nonatomic,assign) CGFloat     fixedCellHeight;
 

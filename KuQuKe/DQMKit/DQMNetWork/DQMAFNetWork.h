@@ -86,21 +86,24 @@ networkstatus:(BOOL)netstatus;
 
 
 //使用示例
-// /**
-// 获取天气的接口
-// */
-//+(QMURLSessionTask *)GETWeather:(NSDictionary *)params AndView:(UIView *)view success:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))success unknown:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))unknown failure:(void(^)(NSError *error))failure CheckLoginStatus:(BOOL)checkstatus;
+/**
+ 漂读网根据书名找书列表
+ 
+ @return 书籍列表
+ */
+//+(QMURLSessionTask *)POST_PDWSearchBookWithBookName:(NSDictionary *)params AndView:(UIView *)view success:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))success unknown:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))unknown failure:(void(^)(NSError *error))failure;
+///**
+// 漂读网根据书名找书列表
 //
-// /**
-// 获取天气的接口
+// @return 书籍列表
 // */
-//+(QMURLSessionTask *)GETWeather:(NSDictionary *)params AndView:(UIView *)view success:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))success unknown:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))unknown failure:(void(^)(NSError *error))failure CheckLoginStatus:(BOOL)checkstatus {
+//+(QMURLSessionTask *)POST_PDWSearchBookWithBookName:(NSDictionary *)params AndView:(UIView *)view success:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))success unknown:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))unknown failure:(void(^)(NSError *error))failure {
 //
-//  return [DQMAFNetWork method:GET
-//                 withchildUrl:@"/data/sk/101110101.html"
+//  return [DQMAFNetWork method:POST
+//                 withchildUrl:@"https://mobile.piaoduwang.cn/book/info/search?name=爱"
 //                    andparams:params
 //                         view:view
-//                       HUDMsg:@"请求天气接口"
+//                       HUDMsg:@"获取书籍列表"
 //                      success:^(RequestStatusModel * _Nonnull reqsModel, NSDictionary * _Nonnull dataDic) {
 //                        if (success) {
 //                          success(reqsModel,dataDic);
@@ -116,8 +119,8 @@ networkstatus:(BOOL)netstatus;
 //                          failure(error);
 //                        }
 //                      }
-//                    graceTime:2
+//                    graceTime:3
 //                      showHUD:true
 //                networkstatus:true
-//             checkLoginStatus:checkstatus];
+//             checkLoginStatus:false];
 //}

@@ -52,7 +52,7 @@
     //数据
     navi.backgroundColor = [self DQMModalnavUIBaseViewControllerNaviBackgroundColor:self];
     label.attributedText = [self DQMModalnavUIBaseViewControllerNaviTitle:self];
-    
+    [backButton setImage:[self DQMModalnavUIBaseViewControllerLeftButtonImage:self] forState:UIControlStateNormal];
     
     [self.view addSubview: navi];
   }
@@ -76,6 +76,10 @@
 
 - (NSMutableAttributedString *)DQMModalnavUIBaseViewControllerNaviTitle:(DQMModalNavUIBaseViewController *)navUIBaseViewController {
   return [QMSGeneralHelpers changeStringToMutableAttributedStringTitle:@"" color:UIColor.whiteColor];
+}
+
+- (UIImage *)DQMModalnavUIBaseViewControllerLeftButtonImage:(DQMModalNavUIBaseViewController *)navUIBaseViewController {
+  return [UIImage imageNamed:@"placeholderImage"];
 }
 
 #pragma mark - Delegate
