@@ -53,7 +53,7 @@
       NSDictionary *dataDic = kJSON(response);
       RequestStatusModel *reqsModel = [RequestStatusModel mj_objectWithKeyValues:dataDic];
       
-      switch ([reqsModel.status intValue]) {
+      switch ([reqsModel.code intValue]) {
         case 200:
         {
           if (success) {
@@ -102,7 +102,7 @@
       NSDictionary *dataDic = kJSON(response);
       RequestStatusModel *reqsModel = [RequestStatusModel mj_objectWithKeyValues:dataDic];
       
-      switch ([reqsModel.status intValue]) {
+      switch ([reqsModel.code intValue]) {
         case 200:
         {
           if (success) {

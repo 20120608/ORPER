@@ -181,6 +181,52 @@
 }
 
 
+/**
+ 获取用户的UUID作为唯一标识符
+ */
++ (NSString *)getNowuniqueString
+{
+	NSString *myUUIDStr = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
+	return myUUIDStr;
+}
+
+
+/**
+ 把params根据ksort方法排序
+ */
++ (NSString *)md5Codesign:(NSDictionary *)dict {
+	NSArray *allKeyArray = [dict allKeys];
+	NSArray *afterSortKeyArray = [allKeyArray sortedArrayUsingComparator:^NSComparisonResult(id _Nonnull obj1,id _Nonnull obj2) {
+		NSComparisonResult resuest = [obj1 compare:obj2];
+		return resuest;
+	}];
+	NSLog(@"afterSortKeyArray:%@",afterSortKeyArray);
+	//通过排列的key值获取value
+	NSMutableArray *valueArray = [NSMutableArray array];
+	for(NSString *sortsing in afterSortKeyArray)
+	{
+		NSString *valueString = [dict objectForKey:sortsing];
+		[valueArray addObject:valueString];
+	}
+	NSMutableString *signString = [[NSMutableString alloc] initWithFormat:@"kuquke_"];
+	for(int i =0; i < afterSortKeyArray.count; i++) {
+		NSString *keyValue = [NSString stringWithFormat:@"%@",valueArray[i]];
+		[signString appendString:[NSString stringWithFormat:@"%@kuquke666",[keyValue md5String]]];
+	}
+	[signString appendString:@"_666"];
+	return [signString md5String];
+}
+
+
+/**
+ 获取当前时间戳
+ */
++ (NSString *)currentTimeStr {
+	NSDate* date = [NSDate dateWithTimeIntervalSinceNow:0];//获取当前时间0秒后的时间
+	NSTimeInterval time=[date timeIntervalSince1970]*10;// *1000 是精确到毫秒，不乘就是精确到秒
+	NSString *timeString = [NSString stringWithFormat:@"%.0f", time];
+	return timeString;
+}
 
 /**
  在window上加一个loading视图

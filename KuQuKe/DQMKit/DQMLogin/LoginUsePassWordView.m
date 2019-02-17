@@ -100,29 +100,6 @@
       button;
     });
     
-    [[RACObserve(self, loginStatus) skip:1] subscribeNext:^(id  _Nullable x) {
-      BOOL status = [x boolValue];
-      if (status) {
-        //登入成功
-        NSLog(@"登录成功");
-      } else {
-        //登入失败
-        NSLog(@"登录失败");
-        CGPoint sy = CGPointMake(LoginButton.centerX-10, LoginButton.centerY);
-        CGPoint sx = CGPointMake(LoginButton.centerX+10, LoginButton.centerY);
-        CABasicAnimation * animation = [CABasicAnimation animationWithKeyPath:@"position"];
-        [animation setTimingFunction:[CAMediaTimingFunction
-                                      functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
-        [animation setFromValue:[NSValue valueWithCGPoint:sx]];
-        [animation setToValue:[NSValue valueWithCGPoint:sy]];
-        [animation setAutoreverses:YES];
-        [animation setDuration:0.08];
-        [animation setRepeatCount:3];
-        [LoginButton.layer addAnimation:animation forKey:nil];
-      }
-    }];
-    
-    
     NSMutableArray *buttonMArray = [[NSMutableArray alloc] init];
     UIButton *registerButton = ({
       UIButton *button = [[UIButton alloc] init];
