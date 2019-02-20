@@ -36,6 +36,7 @@
                     failure:(void(^)(NSError *error))failure
                   graceTime:(NSTimeInterval)graceTime
                     showHUD:(BOOL)showhud
+                  showError:(BOOL)showError
               networkstatus:(BOOL)netstatus
            checkLoginStatus:(BOOL)checkLoginStatus {
   
@@ -79,6 +80,9 @@
               }
             });
           } else {
+            if (showError) {
+              [view makeToast:dataDic[@"msg"]];
+            }
             unknown(reqsModel,dataDic);
           }
         }
@@ -129,6 +133,9 @@
               }
             });
           } else {
+            if (showError) {
+              [view makeToast:dataDic[@"msg"]];
+            }
             unknown(reqsModel,dataDic);
           }
         }
@@ -155,22 +162,51 @@
 /**
  基本请求
  */
-+(QMURLSessionTask *)method:(DQMNetMethod)method
- withchildUrl:(NSString *)childUrl
-    andparams:(NSDictionary *)params
-         view:(UIView *)view
-       HUDMsg:(NSString *)msg
-      success:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))success
-      unknown:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))unknown
-      failure:(void(^)(NSError *error))failure
-    graceTime:(NSTimeInterval)graceTime
-      showHUD:(BOOL)showhud
-networkstatus:(BOOL)netstatus {
++ (QMURLSessionTask *)method:(DQMNetMethod)method
+                withchildUrl:(NSString *)childUrl
+                   andparams:(NSDictionary *)params
+                        view:(UIView *)view
+                      HUDMsg:(NSString *)msg
+                     success:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))success
+                     unknown:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))unknown
+                     failure:(void(^)(NSError *error))failure
+                   graceTime:(NSTimeInterval)graceTime
+                     showHUD:(BOOL)showhud
+               networkstatus:(BOOL)netstatus {
   
- return [DQMAFNetWork method:method withchildUrl:childUrl andparams:params view:view HUDMsg:msg success:success unknown:unknown failure:failure graceTime:graceTime showHUD:showhud networkstatus:netstatus checkLoginStatus:false];
-  
+  return [DQMAFNetWork method:method withchildUrl:childUrl andparams:params view:view HUDMsg:msg success:success unknown:unknown failure:failure graceTime:graceTime showHUD:showhud showError:true networkstatus:netstatus checkLoginStatus:false];
 }
 
++ (QMURLSessionTask *)method:(DQMNetMethod)method
+                withchildUrl:(NSString *)childUrl
+                   andparams:(NSDictionary *)params
+                        view:(UIView *)view
+                      HUDMsg:(NSString *)msg
+                     success:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))success
+                     unknown:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))unknown
+                     failure:(void(^)(NSError *error))failure
+                   graceTime:(NSTimeInterval)graceTime
+                     showHUD:(BOOL)showhud
+               networkstatus:(BOOL)netstatus
+            checkLoginStatus:(BOOL)checkLoginStatus {
+  return [DQMAFNetWork method:method withchildUrl:childUrl andparams:params view:view HUDMsg:msg success:success unknown:unknown failure:failure graceTime:graceTime showHUD:showhud showError:true networkstatus:netstatus checkLoginStatus:false];
+}
+
++ (QMURLSessionTask *)method:(DQMNetMethod)method
+                withchildUrl:(NSString *)childUrl
+                   andparams:(NSDictionary *)params
+                        view:(UIView *)view
+                      HUDMsg:(NSString *)msg
+                     success:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))success
+                     unknown:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))unknown
+                     failure:(void(^)(NSError *error))failure
+                   graceTime:(NSTimeInterval)graceTime
+                     showHUD:(BOOL)showhud
+                   showError:(BOOL)showError
+               networkstatus:(BOOL)netstatus {
+  
+  return [DQMAFNetWork method:method withchildUrl:childUrl andparams:params view:view HUDMsg:msg success:success unknown:unknown failure:failure graceTime:graceTime showHUD:showhud showError:showError networkstatus:netstatus checkLoginStatus:false];
+}
 
 
 @end

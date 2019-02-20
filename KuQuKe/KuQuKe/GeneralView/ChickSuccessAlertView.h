@@ -17,6 +17,9 @@ NS_ASSUME_NONNULL_BEGIN
 /** 回调 */
 @property(nonatomic,copy) void(^ChickSuccessAlertViewBlock)(NSInteger index);
 
+/** 图片 */
+@property(nonatomic,strong) UIImageView          *imageView;
+
 @end
 
 NS_ASSUME_NONNULL_END

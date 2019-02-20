@@ -40,7 +40,7 @@ typedef NS_ENUM(NSInteger,DQMNetMethod) {
  @param graceTime 宽恕时间
  @param netstatus 是否进行网络提示
  */
-+(QMURLSessionTask *)method:(DQMNetMethod)method
++ (QMURLSessionTask *)method:(DQMNetMethod)method
  withchildUrl:(NSString *)childUrl
     andparams:(NSDictionary *)params
          view:(UIView *)view
@@ -52,10 +52,29 @@ typedef NS_ENUM(NSInteger,DQMNetMethod) {
       showHUD:(BOOL)showhud
 networkstatus:(BOOL)netstatus;
 
+
+
 /**
- 基本请求 带登入验证
+ 基本请求 带登入验证 带错误提示
  */
-+(QMURLSessionTask *)method:(DQMNetMethod)method
++ (QMURLSessionTask *)method:(DQMNetMethod)method
+               withchildUrl:(NSString *)childUrl
+                  andparams:(NSDictionary *)params
+                       view:(UIView *)view
+                     HUDMsg:(NSString *)msg
+                    success:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))success
+                    unknown:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))unknown
+                    failure:(void(^)(NSError *error))failure
+                  graceTime:(NSTimeInterval)graceTime
+                    showHUD:(BOOL)showhud
+                  showError:(BOOL)showError
+              networkstatus:(BOOL)netstatus
+           checkLoginStatus:(BOOL)checkLoginStatus;
+
+/**
+ 基本请求 带登入验证 默认提示错误
+ */
++ (QMURLSessionTask *)method:(DQMNetMethod)method
                withchildUrl:(NSString *)childUrl
                   andparams:(NSDictionary *)params
                        view:(UIView *)view

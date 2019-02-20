@@ -15,9 +15,9 @@
 	self = [super initWithFrame:frame];
 	if (self) {
 		
-		
 		UIImageView *imageView = ({
 			UIImageView *imageView = [[UIImageView alloc] init];
+      self.imageView = imageView;
 			[self addSubview: imageView];
 			QMSetImage(imageView, @"每日签到");
 			imageView.contentMode = UIViewContentModeScaleAspectFit;

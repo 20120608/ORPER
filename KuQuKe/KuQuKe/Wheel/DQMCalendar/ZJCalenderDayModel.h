@@ -68,6 +68,10 @@ typedef NS_ENUM(NSUInteger, ZJCalenderSelectedMode) {
  */
 @property (nonatomic, assign) ZJCalenderSelectedMode selectedMode;
 
+
+/** 是否签到了 */
+@property(nonatomic,assign) NSInteger signStatus;
+
 /**
  是否可选
  */

@@ -464,9 +464,16 @@
             dayModel.indexPath = indexPath;
             cell.dayModel = dayModel;
 			
-			if ([self isSameDay:dayModel.date date2:[NSDate date]]) {
-				NSLog(@"有今天");
-			}
+          
+          if (dayModel.signStatus) {
+            cell.roundBgView.image = [UIImage imageNamed:@"scalear_ral"];
+          }
+          else if ([self isSameDay:dayModel.date date2:[NSDate date]]) {
+            cell.roundBgView.image = [UIImage imageNamed:@"scalear_today"];
+          }
+          else {
+            cell.roundBgView.image = [QMSGeneralHelpers createImageWithColor:QMHexColor(@"ffffff")];
+          }
         }
     }
     
@@ -480,7 +487,7 @@
 {
 	NSCalendar* calendar = [NSCalendar currentCalendar];
 	
-	unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit;
+	unsigned unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth |  NSCalendarUnitDay;
 	NSDateComponents* comp1 = [calendar components:unitFlags fromDate:date1];
 	NSDateComponents* comp2 = [calendar components:unitFlags fromDate:date2];
 	

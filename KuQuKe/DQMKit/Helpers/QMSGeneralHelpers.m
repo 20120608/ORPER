@@ -29,7 +29,19 @@
 }
 
 
-
+/**
+ 颜色转图片
+ */
++ (UIImage *)createImageWithColor:(UIColor *)color {
+  CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
+  UIGraphicsBeginImageContext(rect.size);
+  CGContextRef context = UIGraphicsGetCurrentContext();
+  CGContextSetFillColorWithColor(context, [color CGColor]);
+  CGContextFillRect(context, rect);
+  UIImage *theImage = UIGraphicsGetImageFromCurrentImageContext();
+  UIGraphicsEndImageContext();
+  return theImage;
+}
 
 
 /**
@@ -200,7 +212,6 @@
 		NSComparisonResult resuest = [obj1 compare:obj2];
 		return resuest;
 	}];
-	NSLog(@"afterSortKeyArray:%@",afterSortKeyArray);
 	//通过排列的key值获取value
 	NSMutableArray *valueArray = [NSMutableArray array];
 	for(NSString *sortsing in afterSortKeyArray)
@@ -216,6 +227,31 @@
 	[signString appendString:@"_666"];
 	return [signString md5String];
 }
+
+/**
+ 把params在get请求下转换成/a/b/c的字符串
+ */
++ (NSString *)changeParamsToString:(NSDictionary *)params {
+  NSArray *allKeyArray = [params allKeys];
+  NSArray *afterSortKeyArray = [allKeyArray sortedArrayUsingComparator:^NSComparisonResult(id _Nonnull obj1,id _Nonnull obj2) {
+    NSComparisonResult resuest = [obj1 compare:obj2];
+    return resuest;
+  }];
+  //通过排列的key值获取value
+  NSMutableArray *valueArray = [NSMutableArray array];
+  for(NSString *sortsing in afterSortKeyArray)
+  {
+    NSString *valueString = [params objectForKey:sortsing];
+    [valueArray addObject:valueString];
+  }
+  NSMutableString *signString = [[NSMutableString alloc] init];
+  for(int i =0; i < afterSortKeyArray.count; i++) {
+    NSString *keyValue = [NSString stringWithFormat:@"%@",valueArray[i]];
+    [signString appendString:[NSString stringWithFormat:@"/%@",keyValue]];
+  }
+  return signString;
+}
+
 
 
 /**

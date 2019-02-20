@@ -17,8 +17,15 @@
 //提现的金额数组设置
 #define CheckOutMoneyArray  @[@"20",@"50",@"100",@"200",@"500",@"1000"]
 
-
 //网络请求
 #import "KuQuKeNetWorkManager.h"
+
+
+#define HEADPIC @"HEADPIC"
+#define NICKNAME @"NICKNAME"
+#define USERID @"USERID"
+
+
+
 
 #endif /* PrefixHeader_pch */

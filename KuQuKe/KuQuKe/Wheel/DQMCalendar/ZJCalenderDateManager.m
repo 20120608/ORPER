@@ -36,7 +36,7 @@ static ZJCalenderDateManager *sharedManager = nil;
         
         NSMutableArray *monthModelArray = [NSMutableArray array];
 		
-		NSInteger timeSp = [[NSNumber numberWithDouble:[[NSDate date] timeIntervalSince1970]] integerValue] - 31536000;
+		NSInteger timeSp = [[NSNumber numberWithDouble:[[NSDate date] timeIntervalSince1970]] integerValue] ;// - 31536000一年的时间戳
 		NSDate *startDate = [NSDate dateWithTimeIntervalSince1970:timeSp];
 		
         NSInteger dayCount = [self totaldaysInMonth:startDate];  //月份的所有天数

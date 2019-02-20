@@ -51,18 +51,20 @@
 	//创建界面
 	[self createUI];
 	
-	[self loadTableViewListData];
+	[self loadData];
 
-	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
 		UserDetailModel *userModel = [[UserDetailModel alloc] init];
-		userModel.name = @"测试";
-		userModel.userId = @"1234";
-		userModel.userface = @"http://tupian.qqjay.com/u/2017/1221/4_143339_4.jpg";
+		userModel.name = GET_USERDEFAULT(NICKNAME);
+		userModel.userId = GET_USERDEFAULT(USERID);
+		userModel.userface = GET_USERDEFAULT(HEADPIC);
 		userModel.balance = @"1";
 		userModel.total = @"15";
 		userModel.students = @"3";
 		self.userModel = userModel;
 	});
+  
+  
 	
 }
 
@@ -164,7 +166,7 @@
 }
 
 
-- (void)loadTableViewListData {
+- (void)loadData {
 	NSArray<DQMTeam *> *firstSectionItemsArray =
   @[[DQMTeam initTeamWithName:@"账号安全" sortNumber:nil destVc:[MyViewController class] extensionDictionary:@{@"icon":@"006"}],
 	[DQMTeam initTeamWithName:@"QQ客服群" sortNumber:nil destVc:[MyViewController class] extensionDictionary:@{@"icon":@"007"}],

@@ -10,6 +10,7 @@
 #import "ZJCalenderCollectionView.h"
 #import "ZJCalenderDateManager.h"
 #import "ZJCalenderMonthModel.h"
+#import "ZJCalenderDayModel.h"
 #import "ZJCalenderConst.h"
 
 @interface ZJCalenderView()
@@ -98,7 +99,7 @@
 
 
 #pragma mark ---userInteraction---
-- (void)swichBtnClicked:(UIButton *)sender{
+- (void)swichBtnClicked:(UIButton *)sender {
 
     switch (sender.tag) {
         case 0:
@@ -117,9 +118,23 @@
     }
 }
 
+/**
+ 滚动到下一年
+ */
+- (void)scrollNestYear {
+  //bug:会在界面没创建前执行
+//  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//    self.visibleIndex = 12;
+//    _nextMonthBtn.enabled = YES;
+//    [_calenderCollectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:_visibleIndex] atScrollPosition:UICollectionViewScrollPositionTop animated:true];
+//    if (_visibleIndex == 0) _lastMonthBtn.enabled = NO;
+//    if (_visibleIndex == _monthModelArray.count - 1) _nextMonthBtn.enabled = NO;
+//  });
+}
+
 
 #pragma mark ---private---
-- (UIButton *)createButton{
+- (UIButton *)createButton {
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     btn.backgroundColor = ZJCalenderBackgroundColor;
     [btn addTarget:self action:@selector(swichBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
@@ -271,7 +286,7 @@
 }
 
 
-- (void)setupCalenderView{
+- (void)setupCalenderView {
     
     CGFloat calenderX = ZJPadding;
     CGFloat calenderY = CGRectGetMaxY(_weekView.frame);
@@ -288,12 +303,12 @@
     _calenderCollectionView = [[ZJCalenderCollectionView alloc] initWithFrame:CGRectMake(calenderX, calenderY, calenderW, calenderH) collectionViewLayout:layout];
     _calenderCollectionView.calenderMode = _calenderMode;
     _calenderCollectionView.monthModelArray = _monthModelArray.count ? _monthModelArray : nil;
-    
-    [self insertSubview:_calenderCollectionView atIndex:0];
+
+  [self insertSubview:_calenderCollectionView atIndex:0];
 }
 
 
-- (void)setupCalenderDate{
+- (void)setupCalenderDate {
     WeakObj(self);
 	[[ZJCalenderDateManager sharedManager] getCalenderDateComplete:^(NSMutableArray *monthModelArray) {
 		if (selfWeak.calenderCollectionView) {
@@ -306,5 +321,33 @@
 		});
 	}];
 }
+
+
+- (void)setCheckinHistoryArray:(NSMutableArray *)checkinHistoryArray {
+  _checkinHistoryArray = checkinHistoryArray;
+  
+  NSCalendar* calendar = [NSCalendar currentCalendar];
+  unsigned unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth |  NSCalendarUnitDay;
+  NSDateComponents* comp = [calendar components:unitFlags fromDate:[NSDate date]];
+  
+  QMWeak(self);
+  [self.monthModelArray enumerateObjectsUsingBlock:^(ZJCalenderMonthModel *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    if (obj.year == [comp year] && obj.month == [comp month]) {
+      obj = [weakself addSign_status:obj checkinHistoryArray:checkinHistoryArray];
+      [weakself.monthModelArray replaceObjectAtIndex:idx withObject:obj];
+    }
+  }];
+  [weakself.calenderCollectionView reloadData];
+  
+}
+
+- (ZJCalenderMonthModel *)addSign_status:(ZJCalenderMonthModel *)monthModel checkinHistoryArray:(NSMutableArray *)checkinHistoryArray {
+  [monthModel.dayModelArray enumerateObjectsUsingBlock:^(ZJCalenderDayModel *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    obj.signStatus = [checkinHistoryArray[idx][@"is_sign"] intValue];
+    [monthModel.dayModelArray replaceObjectAtIndex:idx withObject:obj];
+  }];
+  return monthModel;
+}
+
 
 @end

@@ -25,17 +25,10 @@
 	[self createUI];
 	
 	
-  [KuQuKeNetWorkManager GETWeather:nil AndView:self.view success:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
-    
-  } unknown:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
-    
+  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
     self.listModelArray = [GameListModel mj_objectArrayWithKeyValuesArray:@[@{},@{},@{},@{},@{}]];
     [self.tableView reloadData];
-    
-  } failure:^(NSError *error) {
-    
-  } CheckLoginStatus:false];
-  
+  });
   
 }
 

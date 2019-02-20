@@ -14,7 +14,10 @@
 +(instancetype)shareInstance;
 
 
-
+/**
+ 颜色转图片
+ */
++ (UIImage *)createImageWithColor:(UIColor *)color;
 
 
 /**
@@ -85,6 +88,10 @@
  */
 + (NSString *)md5Codesign:(NSDictionary *)dict;
 
+/**
+ 把params在get请求下转换成/a/b/c的字符串
+ */
++ (NSString *)changeParamsToString:(NSDictionary *)params;
 
 /**
  获取当前时间戳

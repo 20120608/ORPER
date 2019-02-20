@@ -112,62 +112,7 @@ static const NSInteger startingValue = 1;
     }
   }];
 	
-	
-	
-	NSString *str = [NSString stringWithFormat:@"kuquke_%@kuquke666_666",[[QMSGeneralHelpers currentTimeStr] md5String]];
-	NSString *token = [str md5String];
-	
-	NSDictionary *testDemoDic = [[NSMutableDictionary alloc] init];
-	[testDemoDic setValue:[QMSGeneralHelpers currentTimeStr] forKey:@"time"];
-	[testDemoDic setValue:token forKey:@"token"];
-	
-	[DQMCommonNetWorkingManager GET_KuqukeWithParams:testDemoDic View:self.currentVC.view success:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
-		NSLog(@"dataDic = %@",dataDic);
-	} unknown:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
-		NSLog(@"dataDic2 = %@",dataDic);
-	} failure:^(NSError *error) {
-		NSLog(@"error = %@",error);
-	}];
-	
-	NSString *uidString = @"1";
-	
-	NSString *md5uid = [[NSString stringWithFormat:@"kuquke_%@kuquke666%@kuquke666_666",[[QMSGeneralHelpers currentTimeStr] md5String],[uidString md5String]] md5String];
-	
-	NSDictionary *uidDemoDic = [[NSMutableDictionary alloc] init];
-	[uidDemoDic setValue:[QMSGeneralHelpers currentTimeStr] forKey:@"time"];
-	[uidDemoDic setValue:md5uid forKey:@"token"];
-	[uidDemoDic setValue:uidString forKey:@"uid"];
 
-	[DQMCommonNetWorkingManager GET_getIndexConfig:uidDemoDic View:self.currentVC.view success:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
-		NSLog(@"dataDic = %@",dataDic);
-	} unknown:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
-		NSLog(@"dataDic2 = %@",dataDic);
-	} failure:^(NSError *error) {
-		NSLog(@"error = %@",error);
-	}];
-	
-	NSString *timeString = [QMSGeneralHelpers currentTimeStr];
-	NSNumber *phonetype = [NSNumber numberWithInteger:2];
-	NSString *deviceid = [QMSGeneralHelpers getNowuniqueString];
-//	[[NSString stringWithFormat:@"kuquke_%@kuquke666%@kuquke666%@kuquke666_666",[deviceid md5String],[[NSString stringWithFormat:@"%@",phonetype] md5String],[timeString md5String]] md5String];
-	
-	NSMutableDictionary *postDic = [[NSMutableDictionary alloc] init];
-	[postDic setValue:deviceid forKey:@"deviceid"];
-	[postDic setValue:phonetype forKey:@"phonetype"];
-	[postDic setValue:timeString forKey:@"time"];
-	
-	NSString *postTokenString = [QMSGeneralHelpers md5Codesign:postDic];
-
-	[postDic setValue:postTokenString forKey:@"token"];
-
-
-	[DQMCommonNetWorkingManager POST_Kuqukelogin:postDic View:self.currentVC.view success:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
-		NSLog(@"dataDic = %@",dataDic);
-	} unknown:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
-		NSLog(@"dataDic2 = %@",dataDic);
-	} failure:^(NSError *error) {
-		NSLog(@"error = %@",error);
-	}];
 }
 
 

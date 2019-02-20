@@ -57,18 +57,7 @@
 
   [self createUI];
 	
-	
-  QMWeak(self);
-  //广告请求数据 推荐赚钱数据
-  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-	  
-	  //订阅余额
-	  self.myMoney = @"1";
-	  
-    [weakself.advScrollView reloadData];
-    
-   
-  });
+  [self loadData];
 
 }
 
@@ -141,7 +130,59 @@
 }
 
 
+#pragma mark - get data
+- (void)loadData {
+  
+  //用设备号登入
+  NSString *deviceID;
+  if (((NSString *)GET_USERDEFAULT(@"DEVICEID")).length == 0) {
+    deviceID = [QMSGeneralHelpers getNowuniqueString];
+    [kUserDefaults setValue:deviceID forKey:@"DEVICEID"];
+  } else {
+    deviceID = GET_USERDEFAULT(@"DEVICEID");
+  }
+  NSMutableDictionary *postDic = [[NSMutableDictionary alloc] init];
+  [postDic setValue:[QMSGeneralHelpers currentTimeStr] forKey:@"time"];
+  [postDic setValue:deviceID forKey:@"deviceid"];
+  [postDic setValue:[NSNumber numberWithInteger:2] forKey:@"phonetype"];
+  
+  [KuQuKeNetWorkManager POST_Kuqukelogin:postDic View:self.view success:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
+    
+    [kUserDefaults setValue:dataDic[@"data"][@"head_pic"] forKey:@"HEADPIC"];
+    [kUserDefaults setValue:dataDic[@"data"][@"nickname"] forKey:@"NICKNAME"];
+    [kUserDefaults setValue:dataDic[@"data"][@"user_id"] forKey:@"USERID"];
+    //获取广告信息
+    [self loadADData];
+    
+  } unknown:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
+    
+  } failure:^(NSError *error) {
+    
+  }];
+  
+}
 
+- (void)loadADData {
+  //广告请求数据 推荐赚钱数据
+  QMWeak(self);
+  NSDictionary *params = [[NSMutableDictionary alloc] init];
+  [params setValue:[QMSGeneralHelpers currentTimeStr] forKey:@"time"];
+  [params setValue:GET_USERDEFAULT(USERID) forKey:@"uid"];
+  
+  [KuQuKeNetWorkManager GET_getIndexConfig:params View:self.view success:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
+    
+    NSLog(@"dataDic = %@",dataDic);
+    //订阅余额
+    self.myMoney = @"1";
+    [weakself.advScrollView reloadData];
+    
+  } unknown:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
+    NSLog(@"dataDic2 = %@",dataDic);
+  } failure:^(NSError *error) {
+    NSLog(@"error = %@",error);
+  }];
+
+}
 
 
 #pragma mark - tableView DataSource

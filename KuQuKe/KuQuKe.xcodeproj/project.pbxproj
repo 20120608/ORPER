@@ -804,7 +804,6 @@
 				5910E77421FAF1C90098184A /* DQMRAC+MVVM */,
 				59DC11EB21EDB846003FE685 /* DQMNetWork */,
 				5930276B21F1AA6300FC68F1 /* DQMLogin */,
-				5930276921F033F500FC68F1 /* DQMUserInfoFMDB */,
 				5594A12C21E1BC1F009178B3 /* Helpers */,
 			);
 			path = DQMKit;
@@ -1085,13 +1084,6 @@
 				5918A77421E32CE900CF8431 /* UICollectionViewLeftAlignedLayout.m */,
 			);
 			path = UICollectionView;
-			sourceTree = "<group>";
-		};
-		5930276921F033F500FC68F1 /* DQMUserInfoFMDB */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = DQMUserInfoFMDB;
 			sourceTree = "<group>";
 		};
 		5930276B21F1AA6300FC68F1 /* DQMLogin */ = {

@@ -30,4 +30,15 @@ typedef NS_ENUM(NSInteger, ZJCalenderMode) {
  */
 - (void)reloadData;
 
+/**
+ 滚动到下一年
+ */
+- (void)scrollNestYear;
+
+/**
+ 后台返回的记录数组
+ */
+@property (nonatomic, strong) NSMutableArray *checkinHistoryArray;
+
+
 @end
