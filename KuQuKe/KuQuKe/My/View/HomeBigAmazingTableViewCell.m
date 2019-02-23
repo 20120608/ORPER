@@ -35,6 +35,11 @@
 			make.edges.mas_equalTo(UIEdgeInsetsMake(0, 0, 0, 0));
 			make.height.mas_equalTo(kScreenWidth/375*111);
 		}];
+    
+    [[RACObserve(self, adimgString) skip:1] subscribeNext:^(NSString *x) {
+      [headerView qm_setImageUrlString:x];
+    }];
+    
 
 	}
 	return self;

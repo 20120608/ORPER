@@ -128,6 +128,11 @@
 		59693EE021F95907002CAEF1 /* LoginCodeOrPassWordTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 59693EDF21F95907002CAEF1 /* LoginCodeOrPassWordTableViewCell.m */; };
 		59693EE321F969F6002CAEF1 /* LoginUseMsgcodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 59693EE221F969F6002CAEF1 /* LoginUseMsgcodeView.m */; };
 		59693EE621F96A0D002CAEF1 /* LoginUsePassWordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 59693EE521F96A0D002CAEF1 /* LoginUsePassWordView.m */; };
+		59698996221D2D3000081FFF /* HomeTaskRecommendModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 59698995221D2D3000081FFF /* HomeTaskRecommendModel.m */; };
+		5969899A221D3C0600081FFF /* APPPageViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 59698999221D3C0600081FFF /* APPPageViewModel.m */; };
+		596989A1221D3E9800081FFF /* APPTaskModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 596989A0221D3E9800081FFF /* APPTaskModel.m */; };
+		596989A6221E325500081FFF /* GameHomeViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 596989A5221E325500081FFF /* GameHomeViewModel.m */; };
+		596989A9221E326300081FFF /* GameTaskModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 596989A8221E326300081FFF /* GameTaskModel.m */; };
 		59ADCD1021E6D10F00A86C1F /* DQMRigthSwitchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 59ADCD0F21E6D10F00A86C1F /* DQMRigthSwitchTableViewCell.m */; };
 		59ADCD1321E6D52800A86C1F /* SettingUsetInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59ADCD1221E6D52800A86C1F /* SettingUsetInfoViewController.m */; };
 		59ADCD1621E6ECB200A86C1F /* CompleteInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59ADCD1521E6ECB200A86C1F /* CompleteInformationViewController.m */; };
@@ -401,6 +406,16 @@
 		59693EE221F969F6002CAEF1 /* LoginUseMsgcodeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginUseMsgcodeView.m; sourceTree = "<group>"; };
 		59693EE421F96A0D002CAEF1 /* LoginUsePassWordView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginUsePassWordView.h; sourceTree = "<group>"; };
 		59693EE521F96A0D002CAEF1 /* LoginUsePassWordView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginUsePassWordView.m; sourceTree = "<group>"; };
+		59698994221D2D3000081FFF /* HomeTaskRecommendModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeTaskRecommendModel.h; sourceTree = "<group>"; };
+		59698995221D2D3000081FFF /* HomeTaskRecommendModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeTaskRecommendModel.m; sourceTree = "<group>"; };
+		59698998221D3C0600081FFF /* APPPageViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APPPageViewModel.h; sourceTree = "<group>"; };
+		59698999221D3C0600081FFF /* APPPageViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = APPPageViewModel.m; sourceTree = "<group>"; };
+		5969899F221D3E9800081FFF /* APPTaskModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APPTaskModel.h; sourceTree = "<group>"; };
+		596989A0221D3E9800081FFF /* APPTaskModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = APPTaskModel.m; sourceTree = "<group>"; };
+		596989A4221E325500081FFF /* GameHomeViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameHomeViewModel.h; sourceTree = "<group>"; };
+		596989A5221E325500081FFF /* GameHomeViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameHomeViewModel.m; sourceTree = "<group>"; };
+		596989A7221E326300081FFF /* GameTaskModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameTaskModel.h; sourceTree = "<group>"; };
+		596989A8221E326300081FFF /* GameTaskModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameTaskModel.m; sourceTree = "<group>"; };
 		59ADCD0E21E6D10F00A86C1F /* DQMRigthSwitchTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DQMRigthSwitchTableViewCell.h; sourceTree = "<group>"; };
 		59ADCD0F21E6D10F00A86C1F /* DQMRigthSwitchTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DQMRigthSwitchTableViewCell.m; sourceTree = "<group>"; };
 		59ADCD1121E6D52800A86C1F /* SettingUsetInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingUsetInfoViewController.h; sourceTree = "<group>"; };
@@ -564,13 +579,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		5537064021E1C28D001E49BC /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		5537064121E1C290001E49BC /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -601,27 +609,6 @@
 				551A0A1821EB126200B2FB84 /* CheckOutCollectionView.m */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		5537064321E1C29C001E49BC /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		5537064421E1C2A2001E49BC /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		5537064521E1C2A5001E49BC /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		5537064621E1C2AB001E49BC /* Model */ = {
@@ -756,9 +743,9 @@
 		5594A0B121E1BB11009178B3 /* KuQuKe */ = {
 			isa = PBXGroup;
 			children = (
-				5594A0E421E1BC1F009178B3 /* DQMKit */,
 				5594A0B221E1BB11009178B3 /* AppDelegate.h */,
 				5594A0B321E1BB11009178B3 /* AppDelegate.m */,
+				5594A0E421E1BC1F009178B3 /* DQMKit */,
 				5537064721E1C2E7001E49BC /* Wheel */,
 				59D0AEB621E427C800F3A67C /* GeneralView */,
 				59DC11EF21EDC8B0003FE685 /* RequestManager */,
@@ -966,7 +953,7 @@
 		5594A15821E1BC6E009178B3 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				5537064321E1C29C001E49BC /* Model */,
+				59698993221D2D2700081FFF /* Model */,
 				5537063F21E1C287001E49BC /* View */,
 				5537063B21E1C262001E49BC /* Controller */,
 			);
@@ -986,8 +973,9 @@
 		5594A15D21E1BCF2009178B3 /* Game */ = {
 			isa = PBXGroup;
 			children = (
-				5537064521E1C2A5001E49BC /* Model */,
 				5537064121E1C290001E49BC /* View */,
+				596989A2221E310400081FFF /* Model */,
+				596989A3221E310A00081FFF /* ViewModel */,
 				5537063D21E1C26C001E49BC /* Controller */,
 			);
 			path = Game;
@@ -996,8 +984,8 @@
 		5594A15E21E1BCF4009178B3 /* APP */ = {
 			isa = PBXGroup;
 			children = (
-				5537064421E1C2A2001E49BC /* Model */,
-				5537064021E1C28D001E49BC /* View */,
+				5969899E221D3D9900081FFF /* Model */,
+				59698997221D3BE700081FFF /* ViewModel */,
 				5537063C21E1C26A001E49BC /* Controller */,
 			);
 			path = APP;
@@ -1118,6 +1106,51 @@
 				59693EDC21F9521C002CAEF1 /* DQMModalTableViewController.m */,
 			);
 			path = BasemodalControllers;
+			sourceTree = "<group>";
+		};
+		59698993221D2D2700081FFF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				59698994221D2D3000081FFF /* HomeTaskRecommendModel.h */,
+				59698995221D2D3000081FFF /* HomeTaskRecommendModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		59698997221D3BE700081FFF /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				59698998221D3C0600081FFF /* APPPageViewModel.h */,
+				59698999221D3C0600081FFF /* APPPageViewModel.m */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		5969899E221D3D9900081FFF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5969899F221D3E9800081FFF /* APPTaskModel.h */,
+				596989A0221D3E9800081FFF /* APPTaskModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		596989A2221E310400081FFF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				596989A7221E326300081FFF /* GameTaskModel.h */,
+				596989A8221E326300081FFF /* GameTaskModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		596989A3221E310A00081FFF /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				596989A4221E325500081FFF /* GameHomeViewModel.h */,
+				596989A5221E325500081FFF /* GameHomeViewModel.m */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		59D0AEB621E427C800F3A67C /* GeneralView */ = {
@@ -1393,6 +1426,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				596989A9221E326300081FFF /* GameTaskModel.m in Sources */,
+				59698996221D2D3000081FFF /* HomeTaskRecommendModel.m in Sources */,
 				59ADCD2521E7280200A86C1F /* AboutUSViewController.m in Sources */,
 				59ADCD1F21E70E5B00A86C1F /* SettingUserInfoWithTableViewController.m in Sources */,
 				5594A14621E1BC1F009178B3 /* DQMTextViewController.m in Sources */,
@@ -1406,6 +1441,7 @@
 				5594A13721E1BC1F009178B3 /* UIButton+DQM.m in Sources */,
 				59D0AEC921E4665E00F3A67C /* RotaryTableViewController.m in Sources */,
 				55542FB621E4F991000F8D45 /* DQMExpandImageView.m in Sources */,
+				596989A1221D3E9800081FFF /* APPTaskModel.m in Sources */,
 				55D1D0D821E22095008ECEE3 /* ZJCalenderMonthTitleView.m in Sources */,
 				5930277521F1B75F00FC68F1 /* DQMModalTextViewController.m in Sources */,
 				5594A14A21E1BC1F009178B3 /* DQMGroup.m in Sources */,
@@ -1415,6 +1451,7 @@
 				5918A77821E32D9900CF8431 /* ADHorizontalCollectionViewCell.m in Sources */,
 				59ADCD1021E6D10F00A86C1F /* DQMRigthSwitchTableViewCell.m in Sources */,
 				5594A14521E1BC1F009178B3 /* DQMNavUIBaseViewController.m in Sources */,
+				596989A6221E325500081FFF /* GameHomeViewModel.m in Sources */,
 				5594A14821E1BC1F009178B3 /* StaticListItem.m in Sources */,
 				551A0A1921EB126200B2FB84 /* CheckOutCollectionView.m in Sources */,
 				5910E77D21FAF4F20098184A /* RACMVVMListModel.m in Sources */,
@@ -1518,6 +1555,7 @@
 				5594A0B421E1BB11009178B3 /* AppDelegate.m in Sources */,
 				55D1D0DB21E22095008ECEE3 /* ZJCalenderView.m in Sources */,
 				55542FC421E61618000F8D45 /* MessageCenterViewController.m in Sources */,
+				5969899A221D3C0600081FFF /* APPPageViewModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

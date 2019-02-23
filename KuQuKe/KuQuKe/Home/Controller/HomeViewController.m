@@ -19,8 +19,8 @@
 #import "ShareToMyFriendViewController.h"//邀请赚钱
 #import "HomeMyTaskTableViewCell.h"//专属任务
 #import "EarnMoneyForRegisterViewController.h"//安装注册赚钱
+#import "RACMVVMListViewController.h"//解释rac+mvvm的界面
 
-#import "RACMVVMListViewController.h"
 
 
 @interface HomeViewController () <DQMHorizontalViewScrollerViewDataSource,AvgButtonMenuTableViewCellDelegate>
@@ -29,10 +29,13 @@
 }
 
 /** 滚动广告 */
-@property(nonatomic,strong) DQMHorizontalViewScrollerView *advScrollView;
+@property (nonatomic,strong  ) DQMHorizontalViewScrollerView *advScrollView;
 
-@property(nonatomic,copy) NSString *myMoney; /* 余额 */
-
+@property (nonatomic,copy    ) NSString                      *myMoney;/* 余额 */
+@property (nonatomic,copy    ) NSString                      *adimgString;/* 广告图 */
+@property (nonatomic,copy    ) NSString                      *getAllMoney;/* 全部任务可获得金钱 */
+@property (nonatomic,copy    ) NSString                      *num;/* 可接任务数量 */
+@property (nonatomic,strong  ) NSMutableArray                *listArray;/* 推荐赚钱数据数组 */
 
 @end
 
@@ -132,7 +135,6 @@
 
 #pragma mark - get data
 - (void)loadData {
-  
   //用设备号登入
   NSString *deviceID;
   if (((NSString *)GET_USERDEFAULT(@"DEVICEID")).length == 0) {
@@ -142,7 +144,6 @@
     deviceID = GET_USERDEFAULT(@"DEVICEID");
   }
   NSMutableDictionary *postDic = [[NSMutableDictionary alloc] init];
-  [postDic setValue:[QMSGeneralHelpers currentTimeStr] forKey:@"time"];
   [postDic setValue:deviceID forKey:@"deviceid"];
   [postDic setValue:[NSNumber numberWithInteger:2] forKey:@"phonetype"];
   
@@ -152,7 +153,7 @@
     [kUserDefaults setValue:dataDic[@"data"][@"nickname"] forKey:@"NICKNAME"];
     [kUserDefaults setValue:dataDic[@"data"][@"user_id"] forKey:@"USERID"];
     //获取广告信息
-    [self loadADData];
+    [self loadIndexConfig];
     
   } unknown:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
     
@@ -162,18 +163,21 @@
   
 }
 
-- (void)loadADData {
+- (void)loadIndexConfig {
   //广告请求数据 推荐赚钱数据
   QMWeak(self);
   NSDictionary *params = [[NSMutableDictionary alloc] init];
-  [params setValue:[QMSGeneralHelpers currentTimeStr] forKey:@"time"];
-  [params setValue:GET_USERDEFAULT(USERID) forKey:@"uid"];
   
   [KuQuKeNetWorkManager GET_getIndexConfig:params View:self.view success:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
-    
-    NSLog(@"dataDic = %@",dataDic);
+
     //订阅余额
-    self.myMoney = @"1";
+    self.myMoney = dataDic[@"data"][@"today_money"];
+    self.adimgString = dataDic[@"data"][@"ad_img"];
+    self.num = dataDic[@"data"][@"num"];
+    self.getAllMoney =  dataDic[@"data"][@"get_all_money"];
+    self.listArray = [HomeTaskRecommendModel mj_objectArrayWithKeyValuesArray:dataDic[@"data"][@"recommend_list"]];
+    
+    [self.tableView reloadData];
     [weakself.advScrollView reloadData];
     
   } unknown:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
@@ -193,7 +197,7 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 	if (section == 4) {
-		return 10;
+		return [_listArray count];
 	}
   return 1;
 }
@@ -260,6 +264,9 @@
 		case 1:
 		{
 			HomeBigAmazingTableViewCell *cell = [HomeBigAmazingTableViewCell cellWithTableView:tableView];
+      if (_adimgString != nil) {
+        cell.adimgString = _adimgString;
+      }
 			return cell;
 		}
 			break;
@@ -272,7 +279,9 @@
 		case 3:
 		{
 			HomeMyTaskTableViewCell *cell = [HomeMyTaskTableViewCell cellWithTableView:tableView];
-			cell.contentMAString = [QMSGeneralHelpers changeStringToMutableAttributedStringTitle:@"我的专属任务6个,全部完成可以获得23元奖励" font:[UIFont systemFontOfSize:14] rangeOfFont:NSMakeRange(6, 2) color:QMPriceColor rangeOfColor:NSMakeRange(6, 2)];
+      
+      NSString *title = [NSString stringWithFormat:@"我的专属任务%@个,全部完成可以获得%@元奖励",_num,_getAllMoney];
+			cell.contentMAString = [QMSGeneralHelpers changeStringToMutableAttributedStringTitle:title font:[UIFont systemFontOfSize:14] rangeOfFont:NSMakeRange(6, 2) color:QMPriceColor rangeOfColor:NSMakeRange(6, 2)];
 			return cell;
 		}
 			break;
@@ -280,6 +289,7 @@
 		{
 			TaskTableViewCell *cell = [TaskTableViewCell cellWithTableView:tableView initWithCellStyle:TaskTableViewCellStylePriceLabelGreenColor indexPath:indexPath andFixedHeightIfNeed:68];
 			cell.showSeperaterLine = true;
+      cell.homeTaskModel = _listArray[indexPath.row];
 			return cell;
 		}
 			break;

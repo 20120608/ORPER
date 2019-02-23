@@ -231,25 +231,15 @@
 /**
  把params在get请求下转换成/a/b/c的字符串
  */
-+ (NSString *)changeParamsToString:(NSDictionary *)params {
-  NSArray *allKeyArray = [params allKeys];
-  NSArray *afterSortKeyArray = [allKeyArray sortedArrayUsingComparator:^NSComparisonResult(id _Nonnull obj1,id _Nonnull obj2) {
-    NSComparisonResult resuest = [obj1 compare:obj2];
-    return resuest;
-  }];
-  //通过排列的key值获取value
-  NSMutableArray *valueArray = [NSMutableArray array];
-  for(NSString *sortsing in afterSortKeyArray)
-  {
-    NSString *valueString = [params objectForKey:sortsing];
-    [valueArray addObject:valueString];
-  }
++ (NSString *)changeParamsToString:(NSDictionary *)params keySortArray:(NSArray *)ksortArray {
+  
   NSMutableString *signString = [[NSMutableString alloc] init];
-  for(int i =0; i < afterSortKeyArray.count; i++) {
-    NSString *keyValue = [NSString stringWithFormat:@"%@",valueArray[i]];
-    [signString appendString:[NSString stringWithFormat:@"/%@",keyValue]];
+  for(int i =0; i < ksortArray.count; i++) {
+    NSString *value = params[[NSString stringWithFormat:@"%@",ksortArray[i]]];
+    [signString appendString:[NSString stringWithFormat:@"/%@",value]];
   }
   return signString;
+  
 }
 
 

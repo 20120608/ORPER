@@ -85,6 +85,7 @@
 			[self.contentView addSubview: imageView];
 			QMSetImage(imageView, @"logo");
 			QMViewBorderRadius(imageView, 4, 0, DQMMainColor);
+      imageView.contentMode = UIViewContentModeScaleAspectFit;
 			[imageView mas_makeConstraints:^(MASConstraintMaker *make) {
 				make.left.mas_equalTo(24);
 				make.top.mas_equalTo(13);
@@ -230,7 +231,46 @@
 		[RACObserve(self, showSeperaterLine) subscribeNext:^(id  _Nullable x) {
 			seperaterLine.hidden = ![x boolValue];
 		}];
-		
+    
+    
+    
+    //设置数据
+    [[RACObserve(self, homeTaskModel) skip:1] subscribeNext:^(HomeTaskRecommendModel *x) {
+      
+      /** 图标 */
+      [self.iconImageView qm_setImageUrlString:x.img_url];
+      
+      /** 标题 */
+      self.titleLabel.text = x.title;
+      
+      /** 子标题 */
+      self.subTitleLabel.text = x.desc;
+      
+      /** 价格 */
+      NSString *priceString = [NSString stringWithFormat:@"+%0.2f元",[x.price floatValue]];
+      self.priceLabel.attributedText = [QMSGeneralHelpers changeStringToMutableAttributedStringTitle:priceString font:kQmFont(16) rangeOfFont:NSMakeRange(0, priceString.length) color:DQMMainColor rangeOfColor:NSMakeRange(0, priceString.length)];
+      
+    }];
+    
+    //设置数据
+    [[RACObserve(self, appTaskModel) skip:1] subscribeNext:^(APPTaskModel *x) {
+      
+      /** 图标 */
+      [self.iconImageView qm_setImageUrlString:x.img_url];
+      
+      /** 标题 */
+      self.titleLabel.text = x.title;
+      
+      /** 子标题 */
+      self.subTitleLabel.text = x.desc;
+      
+      /** 价格 */
+      NSString *priceString = [NSString stringWithFormat:@"+%0.2f元",[x.price floatValue]];
+      self.priceLabel.attributedText = [QMSGeneralHelpers changeStringToMutableAttributedStringTitle:priceString font:kQmFont(16) rangeOfFont:NSMakeRange(0, priceString.length) color:QMPriceColor rangeOfColor:NSMakeRange(0, priceString.length)];
+      
+    }];
+    
+
 	}
 	return self;
 }

@@ -9,11 +9,13 @@
 #import "GameViewController.h"
 #import "GameHomeTaskListTableViewCell.h"//列表cell
 #import "GameTaskCheckInDetailViewController.h"//游戏活动详情页
-
+#import "GameHomeViewModel.h"//视图模型
 @interface GameViewController ()
 
 /** 数据数组 */
 @property(nonatomic,strong) NSMutableArray          *listModelArray;
+/** 视图模型 */
+@property(nonatomic,strong) GameHomeViewModel          *racViewModel;
 
 @end
 
@@ -24,13 +26,50 @@
 	
 	[self createUI];
 	
-	
-  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-    self.listModelArray = [GameListModel mj_objectArrayWithKeyValuesArray:@[@{},@{},@{},@{},@{}]];
-    [self.tableView reloadData];
-  });
+  //绑定
+  [self setupBind];
+  
+  //进入界面首次下拉刷新
+  [self.tableView.mj_header beginRefreshing];
+  
   
 }
+
+#pragma mark - Bind UI
+- (void)setupBind{
+  
+  self.racViewModel.currentVC = self;
+  self.tableView.dataSource = self.racViewModel;
+  self.tableView.delegate = self.racViewModel;
+  
+  //通知方法刷新表视图
+  @weakify(self)
+  [[[NSNotificationCenter defaultCenter] rac_addObserverForName:NotificationName_GameViewController object:nil] subscribeNext:^(NSNotification * _Nullable x) {
+    @strongify(self)
+    
+    [self.tableView reloadData];
+    [self resetRefreshView];
+  }];
+}
+
+- (void)resetRefreshView{
+  if ([self.tableView.mj_header isRefreshing]) {
+    [self.tableView.mj_header endRefreshing];
+  }
+  if ([self.tableView.mj_footer isRefreshing]) {
+    [self.tableView.mj_footer endRefreshing];
+  }
+}
+
+#pragma mark - load
+- (GameHomeViewModel *)racViewModel{
+  if (!_racViewModel) {
+    _racViewModel = [[GameHomeViewModel alloc] init];
+  }
+  return _racViewModel;
+}
+
+
 
 
 #pragma mark - createUI
@@ -45,34 +84,16 @@
     make.top.mas_equalTo(NAVIGATION_BAR_HEIGHT);
     make.bottom.mas_equalTo(self.view.mas_bottom).offset(-TAB_BAR_HEIGHT);
   }];
+  QMWeak(self);
+  //下拉刷新
+  self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+    [weakself.racViewModel.requestVideoListCommand execute:@{@"headerRefresh":@"1"}];
+  }];
+  //下拉加载更多
+  self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+    [weakself.racViewModel.requestVideoListCommand execute:@{@"headerRefresh":@"0"}];
+  }];
 }
-
-
-
-
-#pragma mark - tableViewDelegate
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-	return [_listModelArray count];
-}
-
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-	GameHomeTaskListTableViewCell *cell = [GameHomeTaskListTableViewCell cellWithTableView:tableView indexPath:indexPath FixedCellHeight:AdaptedHeight(200)];
-	
-	return cell;
-}
-
-
-
-#pragma mark - tableView delegate
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-  GameTaskCheckInDetailViewController *vc = [[GameTaskCheckInDetailViewController alloc] initWithTitle:@"任务详情"];
-  [self.navigationController pushViewController:vc animated:true];
-}
-
-
-
 
 
 #pragma mark - dqm_navibar

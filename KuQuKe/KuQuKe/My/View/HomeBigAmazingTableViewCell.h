@@ -15,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 +(HomeBigAmazingTableViewCell *)cellWithTableView:(UITableView *)tableview;
 
+@property (nonatomic,copy  ) NSString                      *adimgString;/* 广告图 */
+
 
 @end
 

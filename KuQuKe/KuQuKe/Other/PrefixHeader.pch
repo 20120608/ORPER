@@ -24,6 +24,9 @@
 #define HEADPIC @"HEADPIC"
 #define NICKNAME @"NICKNAME"
 #define USERID @"USERID"
+#define SHARECODE @"SHARECODE"
+#define USERMONEY @"USERMONEY"
+#define ALLMONEY @"ALLMONEY"
 
 
 

@@ -7,14 +7,13 @@
 //
 
 #import "APPViewController.h"
-#import "LeftAndRightLabelHeaderView.h"//组头
-#import "TaskTableViewCell.h"//任务列表cell
-
+#import "APPPageViewModel.h"
 @interface APPViewController ()
 
 /** 数组 */
 @property(nonatomic,strong) NSMutableArray       *listDataArray;
-
+/** 视图模型 */
+@property(nonatomic,strong) APPPageViewModel          *racViewModel;
 @end
 
 @implementation APPViewController
@@ -22,58 +21,77 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	
-	//重置tableView
-	self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
-	[self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-		make.left.right.mas_equalTo(0);
-		make.top.mas_equalTo(self.dqm_navgationBar.mas_bottom);
-		make.bottom.mas_equalTo(self.view.mas_bottom).offset(-TAB_BAR_HEIGHT);
-	}];
-	
-	
-	
-	
-	//模拟请求数据
-	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-		
-		
-		[UIView transitionWithView:self.tableView duration:0.2 options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
-			
-			[self.tableView reloadData];
-			
-		} completion:nil];
-	});
+  //UI
+  [self createUI];
+  
+  //绑定
+  [self setupBind];
+  
+  //进入界面首次下拉刷新
+  [self.tableView.mj_header beginRefreshing];
+  
 	
 }
 
-
-#pragma mark - tableView dataSource
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-	return 10;
-	return [_listDataArray count];
+#pragma mark - createUI
+- (void)createUI {
+  //重置tableView
+  self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+  [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+    make.left.right.mas_equalTo(0);
+    make.top.mas_equalTo(self.dqm_navgationBar.mas_bottom);
+    make.bottom.mas_equalTo(self.view.mas_bottom).offset(-TAB_BAR_HEIGHT);
+  }];
+  QMWeak(self);
+  //下拉刷新
+  self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+    [weakself.racViewModel.requestVideoListCommand execute:@{@"headerRefresh":@"1"}];
+  }];
+  //下拉加载更多
+  self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+    [weakself.racViewModel.requestVideoListCommand execute:@{@"headerRefresh":@"0"}];
+  }];
+  
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-	return 30;
+#pragma mark - Bind UI
+- (void)setupBind{
+  
+  self.racViewModel.currentVC = self;
+  self.tableView.dataSource = self.racViewModel;
+  self.tableView.delegate = self.racViewModel;
+  
+  //通知方法刷新表视图
+  @weakify(self)
+  [[[NSNotificationCenter defaultCenter] rac_addObserverForName:NotificationName_APPViewController object:nil] subscribeNext:^(NSNotification * _Nullable x) {
+    @strongify(self)
+
+    [self.tableView reloadData];
+    [self resetRefreshView];
+  }];
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-	LeftAndRightLabelHeaderView *heaerView = [[LeftAndRightLabelHeaderView alloc] initWithFrame:CGRectZero];
-	LeftAndRightLabelHeaderViewModel *heaerModel = [LeftAndRightLabelHeaderViewModel initWithleftString:@"投放中" rightString:@""];
-	heaerView.headerModel = heaerModel;
-	return heaerView;
-}
 
-
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-	TaskTableViewCell *cell = [TaskTableViewCell cellWithTableView:tableView initWithCellStyle:TaskTableViewCellStyleSubTag indexPath:indexPath andFixedHeightIfNeed:80];
-	return cell;
+- (void)resetRefreshView{
+  if ([self.tableView.mj_header isRefreshing]) {
+    [self.tableView.mj_header endRefreshing];
+  }
+  if ([self.tableView.mj_footer isRefreshing]) {
+    [self.tableView.mj_footer endRefreshing];
+  }
 }
 
 
 
+
+
+#pragma mark - load
+- (APPPageViewModel *)racViewModel{
+  if (!_racViewModel) {
+    _racViewModel = [[APPPageViewModel alloc] init];
+  }
+  return _racViewModel;
+}
 
 
 #pragma mark - dqm_navibar

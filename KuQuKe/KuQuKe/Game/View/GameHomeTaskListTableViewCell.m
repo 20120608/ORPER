@@ -128,12 +128,16 @@
 			label;
 		});
 
-		[[RACObserve(self, gameListModel) skip:1] subscribeNext:^(GameListModel *x) {
-			[backImageView qm_setImageUrlString:x.backIamgeUrl];
-			[iconImageView qm_setImageUrlString:x.logoImageUrl];
-			nameLabel.text = x.name;
-			priceLabel.text = [NSString stringWithFormat:@"  %.2lf元  ",[x.price floatValue]];
-		}];
+    //设置数据
+    [[RACObserve(self, gameTaskModel) skip:1] subscribeNext:^(GameTaskModel *x) {
+      
+      //      [backImageView qm_setImageUrlString:x.backIamgeUrl];
+      //      [iconImageView qm_setImageUrlString:x.logoImageUrl];
+      //      nameLabel.text = x.name;
+      //      priceLabel.text = [NSString stringWithFormat:@"  %.2lf元  ",[x.price floatValue]];
+      
+    }];
+    
 	}
 	return self;
 }
@@ -151,10 +155,5 @@
 
 
 
-
-@end
-
-
-@implementation GameListModel
 
 @end

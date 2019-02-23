@@ -9,6 +9,9 @@
 //任务cell
 #import <UIKit/UIKit.h>
 
+#import "HomeTaskRecommendModel.h"//首页_推荐赚钱模型
+#import "APPTaskModel.h"//应用_任务列表模型
+
 NS_ASSUME_NONNULL_BEGIN
 
 typedef NS_ENUM(NSUInteger, TaskTableViewCellStyle) {
@@ -29,6 +32,12 @@ typedef NS_ENUM(NSUInteger, TaskTableViewCellStyle) {
 @property(nonatomic,assign) BOOL          showSeperaterLine;
 
 +(TaskTableViewCell *)cellWithTableView:(UITableView *)tableview initWithCellStyle:(TaskTableViewCellStyle)style indexPath:(NSIndexPath *)indexPath andFixedHeightIfNeed:(CGFloat)height;
+
+
+/** 首页_推荐赚钱模型 */
+@property (nonatomic,strong) HomeTaskRecommendModel *homeTaskModel;
+/** 应用_任务列表模型 */
+@property (nonatomic,strong) APPTaskModel           *appTaskModel;
 
 
 

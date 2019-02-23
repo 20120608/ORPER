@@ -53,19 +53,58 @@
 	
 	[self loadData];
 
-	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-		UserDetailModel *userModel = [[UserDetailModel alloc] init];
-		userModel.name = GET_USERDEFAULT(NICKNAME);
-		userModel.userId = GET_USERDEFAULT(USERID);
-		userModel.userface = GET_USERDEFAULT(HEADPIC);
-		userModel.balance = @"1";
-		userModel.total = @"15";
-		userModel.students = @"3";
-		self.userModel = userModel;
-	});
+
+  //获取用户基本信息
+  NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+  [KuQuKeNetWorkManager GET_UserInfoParams:params View:self.view success:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
+    
+    if ([dataDic[@"data"][@"share_code"] isEqual:[NSNull class]]) {
+      [kUserDefaults setValue:dataDic[@"data"][@"share_code"] forKey:SHARECODE];
+    }
+    [kUserDefaults setValue:dataDic[@"data"][@"nickname"] forKey:NICKNAME];
+    [kUserDefaults setValue:dataDic[@"data"][@"head_pic"] forKey:HEADPIC];
+    [kUserDefaults setValue:dataDic[@"data"][@"user_money"] forKey:USERMONEY];
+    [kUserDefaults setValue:dataDic[@"data"][@"all_money"] forKey:ALLMONEY];
+    [kUserDefaults setValue:dataDic[@"data"][@"user_id"] forKey:USERID];
+
+    //制作模型和触发信令
+    UserDetailModel *userModel = [[UserDetailModel alloc] init];
+    userModel.name = GET_USERDEFAULT(NICKNAME);
+    userModel.userId = GET_USERDEFAULT(USERID);
+    userModel.userface = GET_USERDEFAULT(HEADPIC);
+    userModel.balance = GET_USERDEFAULT(USERMONEY);
+    userModel.total = GET_USERDEFAULT(ALLMONEY);;
+    userModel.students = @"0";//学生人数还没有
+    self.userModel = userModel;
+
+  } unknown:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
+    
+  } failure:^(NSError *error) {
+    
+  }];
   
   
 	
+}
+
+- (BOOL)dx_isNullOrNilWithObject:(id)object;
+{
+  if (object == nil || [object isEqual:[NSNull null]]) {
+    return YES;
+  } else if ([object isKindOfClass:[NSString class]]) {
+    if ([object isEqualToString:@""]) {
+      return YES;
+    } else {
+      return NO;
+    }
+  } else if ([object isKindOfClass:[NSNumber class]]) {
+    if ([object isEqualToNumber:@0]) {
+      return YES;
+    } else {
+      return NO;
+    }
+  }
+  return NO;
 }
 
 #pragma mark - createUI

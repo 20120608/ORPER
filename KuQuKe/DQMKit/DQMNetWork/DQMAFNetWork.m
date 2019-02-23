@@ -80,15 +80,15 @@
               }
             });
           } else {
-            if (showError) {
-              [view makeToast:dataDic[@"msg"]];
-            }
             unknown(reqsModel,dataDic);
           }
         }
           break;
         default://不成功,也不是登入过期
         {
+          if (showError) {
+            [view makeToast:dataDic[@"msg"]];
+          }
           unknown(reqsModel,dataDic);
         }
           break;
@@ -133,15 +133,15 @@
               }
             });
           } else {
-            if (showError) {
-              [view makeToast:dataDic[@"msg"]];
-            }
             unknown(reqsModel,dataDic);
           }
         }
           break;
         default://不成功,也不是登入过期
         {
+          if (showError) {
+            [view makeToast:dataDic[@"msg"]];
+          }
           unknown(reqsModel,dataDic);
         }
           break;

@@ -248,7 +248,7 @@ static NSMutableArray *tasks;
   AFHTTPSessionManager *manager=[self getAFManager];
   [manager.requestSerializer setValue:@"multipart/form-data" forHTTPHeaderField:@"Content-Type"];
   
-  QMURLSessionTask *sessionTask = [manager POST:urlStr parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+  __block QMURLSessionTask *sessionTask = [manager POST:urlStr parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
     //压缩图片
     NSData *imageData = UIImageJPEGRepresentation(image, 0.15);
     if (imageData.length >= 1000000) { imageData = UIImageJPEGRepresentation(image, 0.1);}

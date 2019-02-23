@@ -1,21 +1,20 @@
 //
-//  RACMVVMViewModel.m
+//  GameHomeViewModel.m
 //  KuQuKe
 //
-//  Created by 漂读网 on 2019/1/25.
+//  Created by 漂读网 on 2019/2/21.
 //  Copyright © 2019 kuquke. All rights reserved.
 //
 
-#import "RACMVVMViewModel.h"
-#import "RACMVVMListTableViewCell.h"
-#import "DQMCommonNetWorkingManager.h"//常见的网络请求
-#import "DQMLoginViewController.h"
+#import "GameHomeViewModel.h"
 #import "NSData+YYAdd.h"
 
+#import "GameHomeTaskListTableViewCell.h"//游戏任务列表cell
+#import "LeftAndRightLabelHeaderView.h"//组头
 
-@interface RACMVVMViewModel()
+@interface GameHomeViewModel()
 //数据源
-@property(nonatomic,strong)NSMutableArray *videoModels;
+@property(nonatomic,strong)NSMutableArray *taskListModelArray;
 @property(nonatomic,assign)NSInteger currentPage;
 
 @end
@@ -24,7 +23,7 @@
 static const NSInteger startingValue = 1;
 
 
-@implementation RACMVVMViewModel
+@implementation GameHomeViewModel
 #pragma mark - Life Cycle
 - (id) init{
   if (self = [super init]) {
@@ -46,26 +45,24 @@ static const NSInteger startingValue = 1;
       NSDictionary *inputData = (NSDictionary *)input;
       BOOL headerRefresh = [inputData[@"headerRefresh"] boolValue];
       NSInteger requestPage = headerRefresh ? startingValue : self.currentPage + 1;
-      NSMutableDictionary *params = [NSMutableDictionary dictionary];
       NSString *paramPage = [NSString stringWithFormat:@"%ld",requestPage];
-      [params setObject:paramPage forKey:@"page"];
-      [params setObject:[NSNumber numberWithInt:10] forKey:@"pagesize"];
-      [params setValue:@"爱" forKey:@"keyword"];
-      [params setValue:@"4d183277-94ac-4238-aed1-bf1d7e3858b5" forKey:@"cabinetId"];
-
-      //请求列表数据
-      [DQMCommonNetWorkingManager GET_PDWSearchBookWithBookName:params AndView:self.currentVC.view success:^(RequestStatusModel * _Nonnull reqsModel, NSDictionary * _Nonnull dataDic) {
+      
+      NSMutableDictionary *params = [NSMutableDictionary dictionary];
+      [params setValue:@"2" forKey:@"type"];//1应用赚 2游戏赚
+      [params setValue:[NSNumber numberWithInt:10] forKey:@"num"];
+      [params setValue:paramPage forKey:@"page"];
+      
+      [KuQuKeNetWorkManager GET_getTaskListParams:params View:self.currentVC.view success:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
         
-        NSLog(@"数据");
-        NSArray *dataArray = [RACMVVMListModel mj_objectArrayWithKeyValuesArray:dataDic[@"res"]];
+        NSArray *dataArray = [GameTaskModel mj_objectArrayWithKeyValuesArray:dataDic[@"data"][@"list"]];
         if(dataArray.count > 0){
           if(requestPage == startingValue){
             self.currentPage = startingValue;
-            [self.videoModels removeAllObjects];
+            [self.taskListModelArray removeAllObjects];
           } else {
             self.currentPage = requestPage;
           }
-          [self.videoModels addObjectsFromArray:dataArray];
+          [self.taskListModelArray addObjectsFromArray:dataArray];
         } else {
           
         }
@@ -73,7 +70,7 @@ static const NSInteger startingValue = 1;
         [subscriber sendNext:dataDic];
         [subscriber sendCompleted];
         
-      } unknown:^(RequestStatusModel * _Nonnull reqsModel, NSDictionary * _Nonnull dataDic) {
+      } unknown:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
         
         //发送请求的数据
         [subscriber sendNext:dataDic];
@@ -87,63 +84,67 @@ static const NSInteger startingValue = 1;
         
       }];
       
+      
       return nil;
     }];
   }];
   
-  //监听登录操作产生的数据
   //switchToLatest获取最新发送的信号，只能用于信号中信号
   [_requestVideoListCommand.executionSignals.switchToLatest subscribeNext:^(id  _Nullable x) {
-//    NSLog(@"请求完成后的回调");
-    [[NSNotificationCenter defaultCenter] postNotificationName: NotificationName_RefreshMainVC object:x];
+    //    NSLog(@"请求完成后的回调");
+    [[NSNotificationCenter defaultCenter] postNotificationName: NotificationName_GameViewController object:x];
   }];
-
+  
   //监听登录操作的状态：正在进行或者已经结束
   //默认会监测一次，所以这里使用skip表示跳过第一次信号。
   [[_requestVideoListCommand.executing skip:1] subscribeNext:^(NSNumber * _Nullable x) {
     if ([x isEqual:@(YES)]) {
-//      NSLog(@"开始请求的回调");
+      //      NSLog(@"开始请求的回调");
       //正在执行，显示MBProgressHUD
     }else{
-//      NSLog(@"结束请求的回调");
+      //      NSLog(@"结束请求的回调");
       //正在执行或者没有执行，隐藏MBProgressHUD
     }
   }];
-	
-
+  
+  
 }
 
 
 
 
 #pragma mark - Delegate：UITableViewDelegate
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-  return 1;
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+  return [_taskListModelArray count];
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-  return self.videoModels.count;
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+  return 30;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-  RACMVVMListTableViewCell *cell = [RACMVVMListTableViewCell cellWithTableView:tableView indexPath:indexPath FixedCellHeight:104];
-  cell.cellModel = self.videoModels[indexPath.row];
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+  LeftAndRightLabelHeaderView *heaerView = [[LeftAndRightLabelHeaderView alloc] initWithFrame:CGRectZero];
+  LeftAndRightLabelHeaderViewModel *heaerModel = [LeftAndRightLabelHeaderViewModel initWithleftString:@"投放中" rightString:@""];
+  heaerView.headerModel = heaerModel;
+  return heaerView;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+  GameHomeTaskListTableViewCell *cell = [GameHomeTaskListTableViewCell cellWithTableView:tableView indexPath:indexPath FixedCellHeight:AdaptedHeight(200)];
+  cell.gameTaskModel = _taskListModelArray[indexPath.row];
   return cell;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-  DQMLoginViewController *vc = [[DQMLoginViewController alloc] init];
-  [self.currentVC presentViewController:vc animated:true completion:nil];
 }
 
 
 
 #pragma mark - Getter && Setter
-- (NSMutableArray *)videoModels {
-  if (!_videoModels) {
-    _videoModels = [NSMutableArray array];
+- (NSMutableArray *)taskListModelArray {
+  if (!_taskListModelArray) {
+    _taskListModelArray = [NSMutableArray array];
   }
-  return _videoModels;
+  return _taskListModelArray;
 }
 
 @end

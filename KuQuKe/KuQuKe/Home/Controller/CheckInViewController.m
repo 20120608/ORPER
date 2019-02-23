@@ -90,8 +90,6 @@
 - (void)loadCheckinListData {
   
   NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
-  [params setValue:[QMSGeneralHelpers currentTimeStr] forKey:@"time"];
-  [params setValue:GET_USERDEFAULT(USERID) forKey:@"uid"];
   
   [KuQuKeNetWorkManager GET_kuqukeSignIndex:params View:self.view success:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
 
@@ -143,7 +141,6 @@
   
   NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
   [params setValue:[QMSGeneralHelpers currentTimeStr] forKey:@"time"];
-  [params setValue:GET_USERDEFAULT(USERID) forKey:@"uid"];
   
   [KuQuKeNetWorkManager POST_CheckIn:params View:self.view success:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
     //签到成功

@@ -54,8 +54,8 @@
 		
 		
 		//订阅
-		[RACObserve(self, contentMAString) subscribeNext:^(NSString *x) {
-			contentLabel.attributedText = x;
+		[RACObserve(self, contentMAString) subscribeNext:^(NSMutableAttributedString *x) {
+      contentLabel.attributedText = x;
 		}];
 		
 	}
