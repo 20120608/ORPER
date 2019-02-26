@@ -134,6 +134,8 @@
 		596989A6221E325500081FFF /* GameHomeViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 596989A5221E325500081FFF /* GameHomeViewModel.m */; };
 		596989A9221E326300081FFF /* GameTaskModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 596989A8221E326300081FFF /* GameTaskModel.m */; };
 		596989AF2223769000081FFF /* CheckInvitationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 596989AE2223769000081FFF /* CheckInvitationView.m */; };
+		596989B82224E27800081FFF /* EarnMoneyDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 596989B72224E27800081FFF /* EarnMoneyDetailModel.m */; };
+		596989BC2224E58400081FFF /* EarnMoneyViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 596989BB2224E58400081FFF /* EarnMoneyViewModel.m */; };
 		59ADCD1021E6D10F00A86C1F /* DQMRigthSwitchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 59ADCD0F21E6D10F00A86C1F /* DQMRigthSwitchTableViewCell.m */; };
 		59ADCD1321E6D52800A86C1F /* SettingUsetInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59ADCD1221E6D52800A86C1F /* SettingUsetInfoViewController.m */; };
 		59ADCD1621E6ECB200A86C1F /* CompleteInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59ADCD1521E6ECB200A86C1F /* CompleteInformationViewController.m */; };
@@ -419,6 +421,10 @@
 		596989A8221E326300081FFF /* GameTaskModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameTaskModel.m; sourceTree = "<group>"; };
 		596989AD2223769000081FFF /* CheckInvitationView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckInvitationView.h; sourceTree = "<group>"; };
 		596989AE2223769000081FFF /* CheckInvitationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckInvitationView.m; sourceTree = "<group>"; };
+		596989B62224E27800081FFF /* EarnMoneyDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EarnMoneyDetailModel.h; sourceTree = "<group>"; };
+		596989B72224E27800081FFF /* EarnMoneyDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EarnMoneyDetailModel.m; sourceTree = "<group>"; };
+		596989BA2224E58300081FFF /* EarnMoneyViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EarnMoneyViewModel.h; sourceTree = "<group>"; };
+		596989BB2224E58400081FFF /* EarnMoneyViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EarnMoneyViewModel.m; sourceTree = "<group>"; };
 		59ADCD0E21E6D10F00A86C1F /* DQMRigthSwitchTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DQMRigthSwitchTableViewCell.h; sourceTree = "<group>"; };
 		59ADCD0F21E6D10F00A86C1F /* DQMRigthSwitchTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DQMRigthSwitchTableViewCell.m; sourceTree = "<group>"; };
 		59ADCD1121E6D52800A86C1F /* SettingUsetInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingUsetInfoViewController.h; sourceTree = "<group>"; };
@@ -648,8 +654,9 @@
 		55542FC521E6165A000F8D45 /* Task */ = {
 			isa = PBXGroup;
 			children = (
-				55542FC821E61687000F8D45 /* Model */,
 				55542FC721E61681000F8D45 /* View */,
+				55542FC821E61687000F8D45 /* Model */,
+				596989B92224E54600081FFF /* ViewModel */,
 				55542FC621E6166F000F8D45 /* Controller */,
 			);
 			path = Task;
@@ -696,6 +703,8 @@
 			children = (
 				55B4994C21EF4662005F31AE /* TaskPreviewStepModel.h */,
 				55B4994D21EF4662005F31AE /* TaskPreviewStepModel.m */,
+				596989B62224E27800081FFF /* EarnMoneyDetailModel.h */,
+				596989B72224E27800081FFF /* EarnMoneyDetailModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1158,6 +1167,15 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		596989B92224E54600081FFF /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				596989BA2224E58300081FFF /* EarnMoneyViewModel.h */,
+				596989BB2224E58400081FFF /* EarnMoneyViewModel.m */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		59D0AEB621E427C800F3A67C /* GeneralView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1440,12 +1458,14 @@
 				59ADCD1C21E70E3500A86C1F /* SettingUserInfoWithInputViewController.m in Sources */,
 				55542FBE21E61601000F8D45 /* UILabel+LineSpacing.m in Sources */,
 				5594A14D21E1BC1F009178B3 /* DQMNavigationBar.m in Sources */,
+				596989BC2224E58400081FFF /* EarnMoneyViewModel.m in Sources */,
 				5594A15321E1BC1F009178B3 /* YYFPSLabel.m in Sources */,
 				5594A13821E1BC1F009178B3 /* UIColor+HexString.m in Sources */,
 				59185E7921F70AD400EEC8B3 /* GameHeaderADCollectionViewCell.m in Sources */,
 				5594A13721E1BC1F009178B3 /* UIButton+DQM.m in Sources */,
 				59D0AEC921E4665E00F3A67C /* RotaryTableViewController.m in Sources */,
 				55542FB621E4F991000F8D45 /* DQMExpandImageView.m in Sources */,
+				596989B82224E27800081FFF /* EarnMoneyDetailModel.m in Sources */,
 				596989A1221D3E9800081FFF /* APPTaskModel.m in Sources */,
 				55D1D0D821E22095008ECEE3 /* ZJCalenderMonthTitleView.m in Sources */,
 				5930277521F1B75F00FC68F1 /* DQMModalTextViewController.m in Sources */,

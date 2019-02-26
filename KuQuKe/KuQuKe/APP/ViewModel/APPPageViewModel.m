@@ -11,6 +11,7 @@
 
 #import "TaskTableViewCell.h"//任务列表cell
 #import "LeftAndRightLabelHeaderView.h"//组头
+#import "EarnMoneyForRegisterViewController.h"//注册赚钱
 
 
 
@@ -138,6 +139,13 @@ static const NSInteger startingValue = 1;
   return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+  
+  EarnMoneyForRegisterViewController *vc = [[EarnMoneyForRegisterViewController alloc] init];
+  vc.taskID = ((APPTaskModel *)_taskListModelArray[indexPath.row]).id;
+  [self.currentVC.navigationController pushViewController:vc animated:true];
+  
+}
 
 
 #pragma mark - Getter && Setter

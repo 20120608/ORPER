@@ -159,7 +159,7 @@
     if ([dataDic[@"code"] intValue] == 300) {
       CheckInvitationView *view = ({
         CheckInvitationView *view = [[CheckInvitationView alloc] init];
-        [self.view addSubview: view];
+        [self.view.window addSubview: view];
         view.delegate = self;
         [view mas_makeConstraints:^(MASConstraintMaker *make) {
           make.edges.mas_equalTo(self.view);

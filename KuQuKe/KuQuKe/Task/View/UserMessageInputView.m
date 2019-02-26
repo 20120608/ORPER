@@ -120,7 +120,7 @@ static const CGFloat printScreensViewMargin = 12.0;
     self.codeTextFiled = ({
       UITextField *textField = [[UITextField alloc] init];
       [self addSubview:textField];
-      textField.placeholder = @"注册所用姓名";
+      textField.placeholder = @"短信验证码";
       textField.textColor = QMTextColor;
       textField.font = KQMFont(16);
       [textField mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -264,6 +264,9 @@ static const CGFloat printScreensViewMargin = 12.0;
 - (void)photoView:(HXPhotoView *)photoView changeComplete:(NSArray<HXPhotoModel *> *)allList photos:(NSArray<HXPhotoModel *> *)photos videos:(NSArray<HXPhotoModel *> *)videos original:(BOOL)isOriginal {
   NSSLog(@"所有:%ld - 照片:%ld - 视频:%ld",allList.count,photos.count,videos.count);
   
+  //将获取到的图片暴露出去
+  self.imageArray = photos;
+  
   //    [self.toolManager writeSelectModelListToTempPathWithList:allList requestType:0 success:^(NSArray<NSURL *> *allURL, NSArray<NSURL *> *photoURL, NSArray<NSURL *> *videoURL) {
   //        NSSLog(@"%@",allURL);
   //    } failed:^{
@@ -306,11 +309,15 @@ static const CGFloat printScreensViewMargin = 12.0;
 
 #pragma mark - event
 - (void)codeButtonClick:(UIButton *)sender {
-  
+  if ([self.delegate respondsToSelector:@selector(getCodeWithUserMessageInputView:code:phone:name:)]) {
+    [self.delegate getCodeWithUserMessageInputView:self code:_codeLabel.text phone:_phoneLabel.text name:_nameLabel.text];
+  }
 }
 
 - (void)beginButtonClick:(UIButton *)sender {
-  
+  if ([self.delegate respondsToSelector:@selector(saveToInvestigateWithUserMessageInputView:ImageArray:code:phone:name:)]) {
+    [self.delegate saveToInvestigateWithUserMessageInputView:self ImageArray:_imageArray code:_codeLabel.text phone:_phoneLabel.text name:_nameLabel.text];
+  }
 }
 
 

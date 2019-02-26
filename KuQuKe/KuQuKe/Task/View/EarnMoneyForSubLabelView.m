@@ -52,7 +52,7 @@
     self.subLabel1 = ({
       UILabel *label = [[UILabel alloc] init];
       [self addSubview:label];
-//      label.hidden = true;
+      label.hidden = true;
       label.backgroundColor = QMBackColor;
       QMViewBorderRadius(label, 2, 1, QMSubTextColor);
       QMLabelFontColorText(label, @" 子标签1 ", QMSubTextColor, 12);
@@ -67,7 +67,7 @@
     self.subLabel2 = ({
       UILabel *label = [[UILabel alloc] init];
       [self addSubview:label];
-//      label.hidden = true;
+      label.hidden = true;
       label.backgroundColor = QMBackColor;
       QMViewBorderRadius(label, 2, 1, QMSubTextColor);
       QMLabelFontColorText(label, @" 子标签2 ", QMSubTextColor, 12);
@@ -82,7 +82,7 @@
     self.subLabel3 = ({
       UILabel *label = [[UILabel alloc] init];
       [self addSubview:label];
-//      label.hidden = true;
+      label.hidden = true;
       label.backgroundColor = QMBackColor;
       QMViewBorderRadius(label, 2, 1, QMSubTextColor);
       QMLabelFontColorText(label, @" 子标签3 ", QMSubTextColor, 12);
@@ -97,7 +97,7 @@
     self.subLabel4 = ({
       UILabel *label = [[UILabel alloc] init];
       [self addSubview:label];
-//      label.hidden = true;
+      label.hidden = true;
       label.backgroundColor = QMBackColor;
       QMViewBorderRadius(label, 2, 1, QMSubTextColor);
       QMLabelFontColorText(label, @" 子标签4 ", QMSubTextColor, 12);
@@ -122,6 +122,29 @@
     });
     garyView.backgroundColor = QMBackColor;
 
+    
+    @weakify(self)
+    [[RACObserve(self, earnModel) skip:1] subscribeNext:^(EarnMoneyDetailModel*  _Nullable x) {
+      @strongify(self)
+      [self.iconImageView qm_setImageUrlString:x.img_url];
+      
+      for (int i = 0; i < [x.mark count]; i++) {
+        
+        if (i == 0) {
+          self.subLabel1.hidden = false;
+          self.subLabel1.text = x.mark[i];
+        } else if (i == 1) {
+          self.subLabel2.hidden = false;
+          self.subLabel2.text = x.mark[i];
+        } else if (i == 2) {
+          self.subLabel3.hidden = false;
+          self.subLabel3.text = x.mark[i];
+        } else if (i == 3) {
+          self.subLabel4.hidden = false;
+          self.subLabel4.text = x.mark[i];
+        }
+      }
+    }];
     
   }
   return self;

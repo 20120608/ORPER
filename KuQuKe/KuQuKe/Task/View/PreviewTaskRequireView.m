@@ -115,6 +115,32 @@
     });
     garyView.backgroundColor = QMBackColor;
     
+    
+    //订阅模型
+    @weakify(self)
+    [[RACObserve(self, earnModel) skip:1] subscribeNext:^(EarnMoneyDetailModel*  _Nullable x) {
+      @strongify(self)
+      
+      /** 价格 */
+      self.priceLabel.text = [NSString stringWithFormat:@"+%@元",x.price];
+      
+      /** 截止时间或开始时间 */
+      self.timeLabel.text = [NSString stringWithFormat:@"有效时间:%@分钟",x.dealy_time];
+      
+      /** 图标 */
+      [self.iconImageView qm_setImageUrlString:x.appicon_url];
+      
+      /** 名称 */
+      self.nameLabel.text = x.appname;
+      
+      /** 任务描述 */
+      __block NSString *stempString;
+      [x.step_info enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        stempString = [NSString stringWithFormat:@"%@\n%@",[stempString length]==0 ? @"":stempString, obj];
+      }];
+      NSString *content = [NSString stringWithFormat:@"%@%@",x.desc,stempString];
+      QMLabelFontColorText(self.contentLabel, content, QMTextColor, 13);
+    }];
 
   }
   return self;

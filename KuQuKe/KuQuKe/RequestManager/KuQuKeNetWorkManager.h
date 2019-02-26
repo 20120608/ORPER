@@ -124,4 +124,54 @@
  */
 + (QMURLSessionTask *)GET_shareInfoParams:(NSDictionary *)params View:(UIView *)view success:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))success unknown:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))unknown failure:(void(^)(NSError *error))failure;
 
+
+
+/**
+ 任务详情
+ get kuquke.yiyunrj.xyz/task/taskDetail
+ 
+ 参数  类型  必需/可选  默认  描述
+ time  int  必需  无  时间戳(用于判断请求是否超时)
+ token  string  必需  无  确定来访者身份
+ id  int  必需  1  任务id
+ uid  int  必需  1  用户id
+ */
++ (QMURLSessionTask *)GET_taskDetailParams:(NSDictionary *)params View:(UIView *)view success:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))success unknown:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))unknown failure:(void(^)(NSError *error))failure;
+
+
+
+/**
+ 图片上传
+ post kuquke.yiyunrj.xyz/api/upload/taskImgUpload
+ 
+ 参数  类型  必需/可选  默认  描述
+ file  图片文件  必需  1  图片文件
+ */
++ (QMURLSessionTask *)POST_taskImgUploadParams:(NSDictionary *)params uploadWithImage:(UIImage *)image filename:(NSString *)filename name:(NSString *)name View:(UIView *)view success:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))success unknown:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))unknown failure:(void(^)(NSError *error))failure showHUD:(BOOL)showhud networkstatus:(BOOL)netstatus showError:(BOOL)showError checkLoginStatus:(BOOL)checkLoginStatus;
+
+
+
+
+/**
+ 提交任务
+ post kuquke.yiyunrj.xyz/task/addTaskOk
+ 
+ 参数  类型  必需/可选  默认  描述
+ time  int  必需  无  时间戳(用于判断请求是否超时)
+ token  string  必需  无  确定来访者身份
+ id  int  必需  1  任务id
+ uid  int  必需  无  用户id
+ applyid  int  必需  1  参加id，详情中会有返回
+ account  string  必需  无  账号
+ mobile  string  必需  1  手机号
+ code  string  必需  无  验证吗
+ img  string  必需  无  图片
+ */
++ (QMURLSessionTask *)POST_addTaskOkParams:(NSDictionary *)params View:(UIView *)view success:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))success unknown:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))unknown failure:(void(^)(NSError *error))failure;
+
+
+
+
+
+
 @end

@@ -88,6 +88,24 @@ networkstatus:(BOOL)netstatus;
            checkLoginStatus:(BOOL)checkLoginStatus;
 
 
++ (QMURLSessionTask *) uploadWithImage:(UIImage *)image
+                          withchildUrl:(NSString *)childUrl
+                             andparams:(NSDictionary *)params
+                              filename:(NSString *)filename
+                                  name:(NSString *)name
+                                  view:(UIView *)view
+                                HUDMsg:(NSString *)msg
+                               success:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))success
+                               unknown:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))unknown
+                               failure:(void(^)(NSError *error))failure
+                             graceTime:(NSTimeInterval)graceTime
+                               showHUD:(BOOL)showhud
+                         networkstatus:(BOOL)netstatus
+                             showError:(BOOL)showError
+                      checkLoginStatus:(BOOL)checkLoginStatus;
+
+
+
 @end
 
 

@@ -209,6 +209,97 @@
 }
 
 
+
+/**
+ 基本的上传单张图片的接口
+ */
++ (QMURLSessionTask *) uploadWithImage:(UIImage *)image
+                          withchildUrl:(NSString *)childUrl
+                             andparams:(NSDictionary *)params
+                              filename:(NSString *)filename
+                                  name:(NSString *)name
+                                  view:(UIView *)view
+                                HUDMsg:(NSString *)msg
+                               success:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))success
+                               unknown:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))unknown
+                               failure:(void(^)(NSError *error))failure
+                             graceTime:(NSTimeInterval)graceTime
+                               showHUD:(BOOL)showhud
+                         networkstatus:(BOOL)netstatus
+                             showError:(BOOL)showError
+                      checkLoginStatus:(BOOL)checkLoginStatus  {
+  
+  //  单利
+  DQMAFNetWork *netWork = [DQMAFNetWork sharedDQMAFNetWork];
+  NSString *URLString;
+  if ([childUrl rangeOfString:@"http"].location != NSNotFound) {
+    URLString = childUrl;
+  } else {
+    URLString = [NSString stringWithFormat:@"%@%@",BASEURL,childUrl];
+  }
+  
+  //进行post请求
+  NSLog(@"请求地址----%@\n    请求参数----%@",URLString,params);
+  
+  return [QMBaseNetworking uploadWithImage:image url:URLString filename:filename name:name params:params showView:view showmsg:msg progress:^(int64_t bytesProgress, int64_t totalBytesProgress) {
+    
+  } success:^(id response) {
+    
+    NSDictionary *dataDic = kJSON(response);
+    
+    RequestStatusModel *reqsModel = [RequestStatusModel mj_objectWithKeyValues:dataDic];
+    
+    switch ([reqsModel.code intValue]) {
+      case 200:
+      {
+        if (success) {
+          success(reqsModel,dataDic);
+        }
+      }
+        break;
+      case 999://登入过期
+      {
+        if (checkLoginStatus) {
+          [view makeToast:([reqsModel.msg length] == 0 ? @"登入状态失效!请重新登入。" : reqsModel.msg)];
+        }
+        if (checkLoginStatus && !netWork.loging) {
+          dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            netWork.loging = true;
+            UIViewController *visibleVc = [QMSGeneralHelpers visibleViewControllerInNavi];
+            UIViewController *currentVc = [QMSGeneralHelpers topViewControllerInNavi];
+            if (currentVc != nil && ![visibleVc isKindOfClass: [DQMLoginViewController class]]) {
+              DQMLoginViewController *loginVc = [[DQMLoginViewController alloc] initWithTitle:@"登录"];
+              [currentVc presentViewController:loginVc animated:true completion:^{
+                netWork.loging = false;
+              }];
+            }
+          });
+        } else {
+          unknown(reqsModel,dataDic);
+        }
+      }
+        break;
+      default://不成功,也不是登入过期
+      {
+        if (showError) {
+          [view makeToast:dataDic[@"msg"]];
+        }
+        unknown(reqsModel,dataDic);
+      }
+        break;
+    }
+    
+  } fail:^(NSError *error) {
+    if (failure) {
+      failure(error);
+    }
+  }  showHUD:showhud networkstatus:netstatus];
+  
+  
+  NSAssert(NO, @"get post没有传参");
+  return nil;
+}
+
 @end
 
 

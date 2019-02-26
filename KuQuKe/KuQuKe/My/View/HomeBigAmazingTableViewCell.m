@@ -37,7 +37,17 @@
 		}];
     
     [[RACObserve(self, adimgString) skip:1] subscribeNext:^(NSString *x) {
-      [headerView qm_setImageUrlString:x];
+      [headerView sd_setImageWithURL:[NSURL URLWithString:x]
+                    placeholderImage:[UIImage imageNamed:@"banner.jpg"]
+                           completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+                             if (image && cacheType == SDImageCacheTypeNone) {
+                               CATransition *transition = [CATransition animation];
+                               transition.type = kCATransitionFade;
+                               transition.duration = 0.5;
+                               transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+                               [headerView.layer addAnimation:transition forKey:nil];
+                             }
+                           }];
     }];
     
 

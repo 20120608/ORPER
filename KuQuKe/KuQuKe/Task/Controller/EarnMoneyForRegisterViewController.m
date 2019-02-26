@@ -10,14 +10,19 @@
 #import "EarnMoneyForSubLabelView.h"//标签
 #import "PreviewTaskRequireView.h"  //任务内容
 #import "UserMessageInputView.h"//输入用户信息
+#import "EarnMoneyDetailModel.h"//注册赚钱模型
+#import "EarnMoneyViewModel.h"//视图模型
 
-@interface EarnMoneyForRegisterViewController ()
+
+@interface EarnMoneyForRegisterViewController () <UserMessageInputViewDelegate>
+
+@property (nonatomic, strong) EarnMoneyViewModel *racViewModel;
 
 /** 滚动的背景 */
 @property(nonatomic,strong) UIScrollView          *scrollView;
-/** 任务步骤图片数组 */
-@property (nonatomic, copy) NSMutableArray<NSString *> *imagesUrlStringArray;
 
+/** 任务模型 */
+@property(nonatomic,strong) EarnMoneyDetailModel          *earnModel;
 
 @end
 
@@ -27,24 +32,40 @@
     [super viewDidLoad];
   
   [self createUI];
+
+  //绑定
+  [self setupBind];
   
-  
-  //模拟请求
-  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-    self.imagesUrlStringArray = [[NSMutableArray alloc] initWithArray:@[@"http://img4.duitang.com/uploads/item/201601/15/20160115231312_TWuG5.gif",
-                                                                        @"http://c.hiphotos.baidu.com/baike/pic/item/d1a20cf431adcbefd4018f2ea1af2edda3cc9fe5.jpg",
-                                                                        @"http://img3.duitang.com/uploads/item/201605/28/20160528202026_BvuWP.jpeg",
-                                                                        @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1524118823131&di=aa588a997ac0599df4e87ae39ebc7406&imgtype=0&src=http%3A%2F%2Fimg3.duitang.com%2Fuploads%2Fitem%2F201605%2F08%2F20160508154653_AQavc.png",
-                                                                        @"https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=722693321,3238602439&fm=27&gp=0.jpg",
-                                                                        @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1524118892596&di=5e8f287b5c62ca0c813a548246faf148&imgtype=0&src=http%3A%2F%2Fwx1.sinaimg.cn%2Fcrop.0.0.1080.606.1000%2F8d7ad99bly1fcte4d1a8kj20u00u0gnb.jpg",
-                                                                        @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1524118914981&di=7fa3504d8767ab709c4fb519ad67cf09&imgtype=0&src=http%3A%2F%2Fimg5.duitang.com%2Fuploads%2Fitem%2F201410%2F05%2F20141005221124_awAhx.jpeg",
-                                                                        @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1524118934390&di=fbb86678336593d38c78878bc33d90c3&imgtype=0&src=http%3A%2F%2Fi2.hdslb.com%2Fbfs%2Farchive%2Fe90aa49ddb2fa345fa588cf098baf7b3d0e27553.jpg",
-                                                                        @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1524118984884&di=7c73ddf9d321ef94a19567337628580b&imgtype=0&src=http%3A%2F%2Fimg5q.duitang.com%2Fuploads%2Fitem%2F201506%2F07%2F20150607185100_XQvYT.jpeg"]];
-    
-  });
-  
-  
+  [self.racViewModel.requestVideoListCommand execute:@{@"reloadData":@"1"}];
+
 }
+
+
+
+#pragma mark - Bind UI
+- (void)setupBind{
+  
+  self.racViewModel.currentVC = self;
+  
+  //通知方法刷新表视图
+  @weakify(self)
+  [[[NSNotificationCenter defaultCenter] rac_addObserverForName:NotificationName_EarnMoneyForRegisterViewController object:nil] subscribeNext:^(NSNotification * _Nullable x) {
+    @strongify(self)
+    NSDictionary * dataDic = [x object];
+    [self resetRefreshView:dataDic];
+  }];
+}
+
+
+
+/**
+ 请求成功后的刷新
+ */
+- (void)resetRefreshView:(NSDictionary *)dataDic {
+  self.earnModel = [EarnMoneyDetailModel mj_objectWithKeyValues:dataDic];
+}
+
+
 
 
 #pragma mark - UI
@@ -52,11 +73,11 @@
   
   EarnMoneyForSubLabelView *subTagView = ({
     EarnMoneyForSubLabelView *view = [[EarnMoneyForSubLabelView alloc] init];
-    [self.scrollView addSubview: view];
+    [self.scrollView addSubview:view];
     [view mas_makeConstraints:^(MASConstraintMaker *make) {
-      make.left.mas_equalTo(_scrollView.mas_left);
-      make.top.mas_equalTo(_scrollView.mas_top);
-      make.right.mas_equalTo(_scrollView.mas_right);
+      make.left.mas_equalTo(self.scrollView.mas_left);
+      make.top.mas_equalTo(self.scrollView.mas_top);
+      make.right.mas_equalTo(self.scrollView.mas_right);
     }];
     view;
   });
@@ -67,37 +88,96 @@
     [self.scrollView addSubview: view];
     view.backgroundColor = UIColor.whiteColor;
     [view mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(_scrollView.mas_left);
-            make.top.mas_equalTo(subTagView.mas_bottom);
-            make.right.mas_equalTo(_scrollView.mas_right);
+      make.left.mas_equalTo(self.scrollView.mas_left);
+      make.top.mas_equalTo(subTagView.mas_bottom);
+      make.right.mas_equalTo(self.scrollView.mas_right);
     }];
     view;
   });
   
-  [[RACObserve(self, imagesUrlStringArray) skip:1] subscribeNext:^(NSMutableArray<NSString *> *x) {
-    preTaskView.imagesUrlStringArray = x;
-  }];
-  
-  
   UserMessageInputView *userMessageView = ({
     UserMessageInputView *view = [[UserMessageInputView alloc] init];
     [self.scrollView addSubview: view];
+    view.delegate = self;
     [view mas_makeConstraints:^(MASConstraintMaker *make) {
-      make.left.mas_equalTo(_scrollView.mas_left);
+      make.left.mas_equalTo(self.scrollView.mas_left);
       make.top.mas_equalTo(preTaskView.mas_bottom);
-      make.right.mas_equalTo(_scrollView.mas_right);
-      make.bottom.mas_equalTo(_scrollView.mas_bottom);
+      make.right.mas_equalTo(self.scrollView.mas_right);
+      make.bottom.mas_equalTo(self.scrollView.mas_bottom);
     }];
     view;
   });
   userMessageView.backgroundColor = UIColor.whiteColor;
   
   
+  [[RACObserve(self, earnModel) skip:1] subscribeNext:^(EarnMoneyDetailModel *x) {
+    preTaskView.imagesUrlStringArray = [[NSMutableArray alloc] initWithArray:x.exp_img];
+    subTagView.earnModel = x;
+    preTaskView.earnModel = x;
+  }];
+}
+
+
+#pragma mark - 提交审核按钮
+- (void)getCodeWithUserMessageInputView:(UserMessageInputView *)userMessageInputView ImageArray:(NSArray *)imageArray code:(NSString *)code phone:(NSString *)phone name:(NSString *)name {
+  NSLog(@"获取验证码");
+
+}
+
+- (void)saveToInvestigateWithUserMessageInputView:(UserMessageInputView *)userMessageInputView ImageArray:(NSArray<HXPhotoModel *> *)imageArray code:(NSString *)code phone:(NSString *)phone name:(NSString *)name {
+  NSLog(@"上传图片中");
   
+  NSMutableArray *imageUrlArray = [[NSMutableArray alloc] init];
+  
+  [imageArray enumerateObjectsUsingBlock:^(HXPhotoModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    
+    HXPhotoModel *hxPhotoModel = imageArray[idx];
+    [KuQuKeNetWorkManager POST_taskImgUploadParams:[NSDictionary new] uploadWithImage:hxPhotoModel.tempImage filename:nil name:@"file" View:self.view success:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
+      
+      [imageUrlArray addObject:dataDic[@"data"][@"real_img_url"]];
+      if (imageUrlArray.count == imageArray.count) {
+        //图片都传好后保存
+        [self saveUserMessageToAudit:imageUrlArray];
+      }
+      
+    } unknown:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
+      
+    } failure:^(NSError *error) {
+      
+    } showHUD:false networkstatus:false showError:true checkLoginStatus:false];
+  }];
+}
+
+/**
+ 图片上传后提交审核
+ */
+- (void)saveUserMessageToAudit:(NSMutableArray *)imageUrlArray {
+  //要删除第一个
+  __block NSString *imgString;
+  [imageUrlArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    imgString = [imgString stringByAppendingFormat:[NSString stringWithFormat:@",%@",obj]];
+  }];
+  
+  NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+  [params setValue:_taskID forKey:@"id"];
+  [params setValue:_applyid forKey:@"applyid"];
+  [params setValue:imgString forKey:@"img"];
+
+  
+  KuQuKeNetWorkManager POST_addTaskOkParams:<#(NSDictionary *)#> View:<#(UIView *)#> success:<#^(RequestStatusModel *reqsModel, NSDictionary *dataDic)success#> unknown:<#^(RequestStatusModel *reqsModel, NSDictionary *dataDic)unknown#> failure:<#^(NSError *error)failure#>
   
 }
 
 
+
+
+#pragma mark - load
+- (EarnMoneyViewModel *)racViewModel{
+  if (!_racViewModel) {
+    _racViewModel = [[EarnMoneyViewModel alloc] init];
+  }
+  return _racViewModel;
+}
 
 #pragma mark - load UI
 -(UIScrollView *)scrollView {
@@ -113,8 +193,6 @@
   }
   return _scrollView;
 }
-
-
 
 #pragma mark - dqm_navibar
 - (BOOL)dqmNavigationIsHideBottomLine:(DQMNavigationBar *)navigationBar {

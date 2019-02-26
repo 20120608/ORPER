@@ -20,12 +20,13 @@ NS_ASSUME_NONNULL_BEGIN
 /** 图片 */
 @property(nonatomic,copy) NSString          *img_url;
 /** mark */
-@property(nonatomic,copy) NSString          *mark;
+@property(nonatomic,copy) NSArray           *mark;
 /** 价格 */
 @property(nonatomic,copy) NSString          *price;
 /** 标题 */
 @property(nonatomic,copy) NSString          *title;
-
+/** 标题 */
+@property(nonatomic,copy) NSString          *id;
 
 @end
 

@@ -443,6 +443,138 @@
              checkLoginStatus:false];
 }
 
+/**
+ 任务详情
+ get kuquke.yiyunrj.xyz/task/taskDetail
+ 
+ 参数  类型  必需/可选  默认  描述
+ time  int  必需  无  时间戳(用于判断请求是否超时)
+ token  string  必需  无  确定来访者身份
+ id  int  必需  1  任务id
+ uid  int  必需  1  用户id
+ */
++ (QMURLSessionTask *)GET_taskDetailParams:(NSDictionary *)params View:(UIView *)view success:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))success unknown:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))unknown failure:(void(^)(NSError *error))failure {
+  [params setValue:[QMSGeneralHelpers currentTimeStr] forKey:@"time"];
+  [params setValue:GET_USERDEFAULT(USERID) forKey:@"uid"];
+  NSString *token = [QMSGeneralHelpers md5Codesign:params];
+  [params setValue:token forKey:@"token"];
+  
+  NSString *url = [NSString stringWithFormat:@"%@%@",@"http://kuquke.yiyunrj.xyz/task/taskDetail",[QMSGeneralHelpers changeParamsToString:params keySortArray:@[@"time",@"token",@"id",@"uid"]]];
+  
+  return [DQMAFNetWork method:GET
+                 withchildUrl:url
+                    andparams:nil
+                         view:view
+                       HUDMsg:@"任务详情"
+                      success:^(RequestStatusModel * _Nonnull reqsModel, NSDictionary * _Nonnull dataDic) {
+                        if (success) {
+                          success(reqsModel,dataDic);
+                        }
+                      }
+                      unknown:^(RequestStatusModel * _Nonnull reqsModel, NSDictionary * _Nonnull dataDic) {
+                        if (unknown) {
+                          unknown(reqsModel,dataDic);
+                        }
+                      }
+                      failure:^(NSError * _Nonnull error) {
+                        if (failure) {
+                          failure(error);
+                        }
+                      }
+                    graceTime:3
+                      showHUD:true
+                networkstatus:true
+             checkLoginStatus:false];
+}
+
+
+/**
+ 图片上传
+ post kuquke.yiyunrj.xyz/api/upload/taskImgUpload
+ 
+ 参数  类型  必需/可选  默认  描述
+ file  图片文件  必需  1  图片文件
+ */
++ (QMURLSessionTask *)POST_taskImgUploadParams:(NSDictionary *)params uploadWithImage:(UIImage *)image filename:(NSString *)filename name:(NSString *)name View:(UIView *)view success:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))success unknown:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))unknown failure:(void(^)(NSError *error))failure showHUD:(BOOL)showhud networkstatus:(BOOL)netstatus showError:(BOOL)showError checkLoginStatus:(BOOL)checkLoginStatus {
+  
+  return [DQMAFNetWork uploadWithImage:image
+                          withchildUrl:@"http://kuquke.yiyunrj.xyz/api/upload/taskImgUpload"
+                             andparams:params
+                              filename:filename
+                                  name:name
+                                  view:view
+                                HUDMsg:@"图片上传"
+                               success:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
+                                 if (success) {
+                                   success(reqsModel,dataDic);
+                                 }
+                               }
+                               unknown:^(RequestStatusModel * _Nonnull reqsModel, NSDictionary * _Nonnull dataDic) {
+                                 if (unknown) {
+                                   unknown(reqsModel,dataDic);
+                                 }
+                               }
+                               failure:^(NSError * _Nonnull error) {
+                                 if (failure) {
+                                   failure(error);
+                                 }
+                               } graceTime:1000 showHUD:false networkstatus:false showError:true checkLoginStatus:false];
+  
+}
+
+
+/**
+ 提交任务
+ post kuquke.yiyunrj.xyz/task/addTaskOk
+ 
+ 参数  类型  必需/可选  默认  描述
+ time  int  必需  无  时间戳(用于判断请求是否超时)
+ token  string  必需  无  确定来访者身份
+ id  int  必需  1  任务id
+ uid  int  必需  无  用户id
+ applyid  int  必需  1  参加id，详情中会有返回
+ account  string  必需  无  账号
+ mobile  string  必需  1  手机号
+ code  string  必需  无  验证吗
+ img  string  必需  无  图片
+ */
++ (QMURLSessionTask *)POST_addTaskOkParams:(NSDictionary *)params View:(UIView *)view success:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))success unknown:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))unknown failure:(void(^)(NSError *error))failure {
+  
+  [params setValue:[QMSGeneralHelpers currentTimeStr] forKey:@"time"];
+  [params setValue:GET_USERDEFAULT(USERID) forKey:@"uid"];
+  NSString *postTokenString = [QMSGeneralHelpers md5Codesign:params];
+  [params setValue:postTokenString forKey:@"token"];
+  
+  NSString *url = [NSString stringWithFormat:@"http://kuquke.yiyunrj.xyz/task/addTaskOk"];
+  return [DQMAFNetWork method:POST
+                 withchildUrl:url
+                    andparams:params
+                         view:view
+                       HUDMsg:@"提交任务"
+                      success:^(RequestStatusModel * _Nonnull reqsModel, NSDictionary * _Nonnull dataDic) {
+                        if (success) {
+                          success(reqsModel,dataDic);
+                        }
+                      }
+                      unknown:^(RequestStatusModel * _Nonnull reqsModel, NSDictionary * _Nonnull dataDic) {
+                        if (unknown) {
+                          unknown(reqsModel,dataDic);
+                        }
+                      }
+                      failure:^(NSError * _Nonnull error) {
+                        if (failure) {
+                          failure(error);
+                        }
+                      }
+                    graceTime:3
+                      showHUD:true
+                networkstatus:true
+             checkLoginStatus:false];
+}
+
+
+
+
 
 
 @end

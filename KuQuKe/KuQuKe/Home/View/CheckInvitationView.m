@@ -108,11 +108,10 @@
         make.centerX.mas_equalTo(self.mas_centerX);
         make.height.mas_equalTo(backImageView.height*50/709);
         make.bottom.mas_equalTo(backImageView.mas_bottom).offset(-10);
-        make.width.mas_equalTo(backImageView.width*0.64);
       }];
       button;
     });
-    QMSetButton(QQqunButton, @"还没有邀请码,加群获取》", 14, nil, QMHexColor(@"d88523"), UIControlStateNormal);
+    QMSetButton(QQqunButton, @"  还没有邀请码,加群获取》  ", 14, nil, QMHexColor(@"d88523"), UIControlStateNormal);
 
     [[receiveButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
       if ([_delegate respondsToSelector:@selector(CheckInvitationView:DidSelectInvitation:)]) {

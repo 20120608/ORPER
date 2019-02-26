@@ -126,7 +126,7 @@ static NSMutableArray *tasks;
   
   //检查地址中是否有中文
   NSString *urlStr=[NSURL URLWithString:url]?url:[self strUTF8Encoding:url];
-  AFHTTPSessionManager *manager=[self getAFManager];
+  AFHTTPSessionManager *manager = [self getAFManager];
   //请求头设置sessionId  token
   NSString *sessionId = [kUserDefaults objectForKey:@"sessionId"];
   if (sessionId != nil) {
@@ -241,14 +241,15 @@ static NSMutableArray *tasks;
   }
   
   if (showHUD==YES || showHUD == true) {
+    
   }
   
   //检查地址中是否有中文
   NSString *urlStr = [NSURL URLWithString:url]?url:[self strUTF8Encoding:url];
   
-  AFHTTPSessionManager *manager=[self getAFManager];
+  AFHTTPSessionManager *manager = [self getAFManager];
   [manager.requestSerializer setValue:@"multipart/form-data" forHTTPHeaderField:@"Content-Type"];
-  
+
   __block QMURLSessionTask *sessionTask = [manager POST:urlStr parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
     //压缩图片
     NSData *imageData = UIImageJPEGRepresentation(image, 0.15);
@@ -263,23 +264,22 @@ static NSMutableArray *tasks;
     
     // 上传图片，以文件流的格式
     [formData appendPartWithFileData:imageData name:name fileName:imageFileName mimeType:@"image/jpeg"];
+    
   } progress:^(NSProgress * _Nonnull uploadProgress) {
     NSLog(@"上传进度--%lld,总进度---%lld",uploadProgress.completedUnitCount,uploadProgress.totalUnitCount);
     if (progress) {
       progress(uploadProgress.completedUnitCount, uploadProgress.totalUnitCount);
     }
   } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-    NSLog(@"上传图片成功=%@",responseObject);
+    NSLog(@"上传图片成功 = %@", responseObject);
     if (showHUD==YES || showHUD == true) {
-      //            [MBProgressHUD hideHUDForView:view animated:false];
+
     }
     if (success) {
       success(responseObject);
     }
     
     [[self tasks] removeObject:sessionTask];
-    
-    
     
   } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
     NSLog(@"error=%@",error);
@@ -295,8 +295,6 @@ static NSMutableArray *tasks;
     }
     
     [[self tasks] removeObject:sessionTask];
-    
-    
     
   }];
   

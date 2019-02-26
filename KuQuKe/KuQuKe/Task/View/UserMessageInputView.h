@@ -7,10 +7,30 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HXPhotoPicker.h"
+#import "SDWebImageManager.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class UserMessageInputView;
+@protocol UserMessageInputViewDelegate <NSObject>
+
+/**
+ 提交审核
+ */
+- (void)saveToInvestigateWithUserMessageInputView:(UserMessageInputView *)userMessageInputView ImageArray:(NSArray <HXPhotoModel *>  *)imageArray code:(NSString *)code phone:(NSString *)phone name:(NSString *)name;
+
+/**
+ 开始任务
+ */
+- (void)getCodeWithUserMessageInputView:(UserMessageInputView *)userMessageInputView code:(NSString *)code phone:(NSString *)phone name:(NSString *)name;
+
+@end
+
 @interface UserMessageInputView : UIView
+
+/** 代理 */
+@property(nonatomic,weak) id<UserMessageInputViewDelegate>          delegate;
 
 /** 姓名 */
 @property (nonatomic,strong) UILabel     *nameLabel;
@@ -36,6 +56,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong) UIButton    *putButton;
 /** 介绍 */
 @property (nonatomic,strong) UILabel     *msgLabel;
+
+/** 数据 */
+@property(nonatomic,strong) NSArray <HXPhotoModel *> *imageArray;
 
 @end
 
