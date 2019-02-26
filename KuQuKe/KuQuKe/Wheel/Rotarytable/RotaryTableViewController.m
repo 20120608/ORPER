@@ -12,21 +12,20 @@
 @interface RotaryTableViewController () <CAAnimationDelegate>
 
 /** 转盘图片 */
-@property (nonatomic,strong) UIImageView *bgImageView;
+@property (nonatomic,strong) UIImageView    *bgImageView;
 /** 角度 */
-@property (nonatomic,assign) CGFloat     circleAngle;
+@property (nonatomic,assign) CGFloat        circleAngle;
 /** 动画中 */
-@property (nonatomic,assign) BOOL        isAnimation;
+@property (nonatomic,assign) BOOL           isAnimation;
 /** 按钮 */
-@property(nonatomic,strong) UIImageView  *btnimage;
+@property (nonatomic,strong) UIImageView    *btnimage;
 /** 数据 */
-@property(nonatomic,strong) NSArray      *prizeArray;
+@property (nonatomic,strong) NSMutableArray *prizeArray;
 /** 剩余次数 */
-@property(nonatomic,copy) NSString       *chanceNum;
+@property (nonatomic,copy  ) NSString       *chanceNum;
+/** 抽奖到的字典 */
+@property (nonatomic,copy  ) NSDictionary   *winDataDic;
 
-/** 概率下一次抽中几 */
-@property(nonatomic,strong) NSArray      *winNumArr;
-@property(nonatomic,assign) NSInteger    nowNum;//第几次了
 
 @end
 
@@ -39,13 +38,34 @@
 	
 	[self initView];
 	
-	//模拟请求
-	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-		self.chanceNum = @"1";
-	});
-	
-	
+  [KuQuKeNetWorkManager GET_turntableListParams:[NSMutableDictionary new] View:self.view success:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
+    
+    self.chanceNum = dataDic[@"data"][@"prize_num"];//可用次数
+
+    NSString *imageString = dataDic[@"data"][@"prize_info"][@"bgimg_url"];
+    [_bgImageView sd_setImageWithURL:[NSURL URLWithString:imageString]
+                    placeholderImage:[UIImage imageNamed:@"zhuanpan"]
+                           completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+                             if (image && cacheType == SDImageCacheTypeNone) {
+                               CATransition *transition = [CATransition animation];
+                               transition.type = kCATransitionFade;
+                               transition.duration = 0.5;
+                               transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+                               [_bgImageView.layer addAnimation:transition forKey:nil];
+                             }
+                           }];
+    //添加文字
+    self.prizeArray = [[NSMutableArray alloc] initWithArray:dataDic[@"data"][@"prize_arr"]];
+   
+  } unknown:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
+    
+  } failure:^(NSError *error) {
+    
+  }];
+  
 }
+
+
 
 #pragma mark 初始化View
 -(void)initView{
@@ -105,15 +125,6 @@
 	[RACObserve(self, chanceNum) subscribeNext:^(NSString *x) {
 		chanceNumLabel.text = [NSString stringWithFormat:@"%@次机会",x];
 	}];
-	
-  
-  //添加文字
-  self.prizeArray = @[@"0.01元现金",@"很遗憾",@"20元旅游卡",@"很遗憾",@"0.01元现金",@"2元现金",@"20元旅游卡",@"1元现金"];
- 
-  
-  self.winNumArr = @[@(1),@(2),@(3),@(4)];
-  self.nowNum = 0;
-	
 	
 	UIImageView *IlikeRotaryImageView = ({
 		UIImageView *imageView = [[UIImageView alloc] init];
@@ -184,7 +195,7 @@
 
 
 #pragma mark 点击Go按钮
--(void)btnClick{
+- (void)btnClick {
   
   NSLog(@"点击Go");
   
@@ -192,111 +203,85 @@
   if (_isAnimation || [_chanceNum intValue] == 0) {
     return;
   }
+  if (self.prizeArray.count != 8) {
+    [self.view makeToast:@"奖品数量不足"];
+    return;
+  }
+  
   _isAnimation = YES;
   
   //控制概率[0,80)
-  NSInteger lotteryPro = arc4random()%80;
-  //设置转圈的圈数
-  NSInteger circleNum = 6;
+//  NSInteger lotteryPro = arc4random()%80;
   
-//  if (lotteryPro < 10) {
-//    _circleAngle = 22.5;
-//  }else if (lotteryPro < 20){
-//    _circleAngle = 67.5;
-//  }else if (lotteryPro < 30){
-//    _circleAngle = 112.5;
-//  }else if (lotteryPro < 40){
-//    _circleAngle = 157.5;
-//  }else if (lotteryPro < 50){
-//    _circleAngle = 202.5;
-//  }else if (lotteryPro < 60){
-//    _circleAngle = 247.5;
-//  }else if (lotteryPro < 70){
-//    _circleAngle = 292.5;
-//  }else if (lotteryPro < 80){
-//    _circleAngle = 337.5;
-//  }
-  
-  
-  if (_nowNum >= self.winNumArr.count) {
-    _circleAngle = 67.5;//其他的都是不中的
-  } else if ([self.winNumArr[_nowNum] intValue] == 1) {
-    _circleAngle = 22.5;
-  } else if ([self.winNumArr[_nowNum] intValue] == 2) {
-    _circleAngle = 67.5;
-  } else if ([self.winNumArr[_nowNum] intValue] == 3) {
-    _circleAngle = 112.5;
-  } else if ([self.winNumArr[_nowNum] intValue] == 4) {
-    _circleAngle = 157.5;
-  } else if ([self.winNumArr[_nowNum] intValue] == 5) {
-    _circleAngle = 202.5;
-  } else if ([self.winNumArr[_nowNum] intValue] == 6) {
-    _circleAngle = 247.5;
-  } else if ([self.winNumArr[_nowNum] intValue] == 7) {
-    _circleAngle = 292.5;
-  } else if ([self.winNumArr[_nowNum] intValue] == 8) {
-    _circleAngle = 337.5;
-  }
-
-  self.nowNum = self.nowNum +1;
-  
-  
-  CGFloat perAngle = M_PI/180.0;
-  
-  
-  NSLog(@"turnAngle = %.1ld",(long)_circleAngle);
-  
-  CABasicAnimation *rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation"];
-  rotationAnimation.toValue = [NSNumber numberWithFloat:_circleAngle * perAngle + 360 * perAngle * circleNum];
-  rotationAnimation.duration = 3.0f;
-  rotationAnimation.cumulative = YES;
-  rotationAnimation.delegate = self;
-  
-  
-  //由快变慢
-  rotationAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
-  rotationAnimation.fillMode=kCAFillModeForwards;
-  rotationAnimation.removedOnCompletion = NO;
-  [_btnimage.layer addAnimation:rotationAnimation forKey:@"rotationAnimation"];
+  //请求抽奖的名次
+  [self turntableData];
   
 }
+
+/**
+ 抽奖后获得抽奖的名次
+ */
+- (void)turntableData {
+  
+  [KuQuKeNetWorkManager POST_turntable:[NSMutableDictionary new] View:self.view success:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
+    
+    self.winDataDic = dataDic;
+    
+    //设置转圈的圈数
+    NSInteger circleNum = 6;
+    self.chanceNum = [NSString stringWithFormat:@"%d",[self.chanceNum intValue] - 1];
+    
+    
+    __block int index = 99999;
+    [self.prizeArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+      if ([dataDic[@"data"][@"id"] intValue] == [obj[@"id"] intValue]) {
+        index = (int)idx;
+      }
+    }];
+    
+    _circleAngle = 22.5 + index * 45;
+    
+    CGFloat perAngle = M_PI/180.0;
+    
+    //回主线程刷新数据
+    dispatch_async(dispatch_get_main_queue(), ^{
+      
+      NSLog(@"turnAngle = %.1ld",(long)_circleAngle);
+
+      CABasicAnimation *rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation"];
+      rotationAnimation.toValue = [NSNumber numberWithFloat:_circleAngle * perAngle + 360 * perAngle * circleNum];
+      rotationAnimation.duration = 3.0f;
+      rotationAnimation.cumulative = YES;
+      rotationAnimation.delegate = self;
+      
+      //由快变慢
+      rotationAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
+      rotationAnimation.fillMode=kCAFillModeForwards;
+      rotationAnimation.removedOnCompletion = NO;
+      [_btnimage.layer addAnimation:rotationAnimation forKey:@"rotationAnimation"];
+    });
+    
+  } unknown:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
+    
+  } failure:^(NSError *error) {
+    
+  }];
+}
+
 
 
 
 
 #pragma mark 动画结束
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag{
-  
   NSLog(@"动画停止");
-  
-  
-  self.prizeArray = @[@"0.01元现金",@"很遗憾",@"20元旅游卡",@"很遗憾",@"0.01元现金",@"2元现金",@"20元旅游卡",@"1元现金"];
+  UIAlertController *alert = [UIAlertController alertControllerWithTitle:_winDataDic[@"data"][@"name"] message:@"" preferredStyle:UIAlertControllerStyleAlert];
+  UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
 
-  
-  NSString *title;
-  
-  if (_circleAngle == 22.5) {
-    title = _prizeArray[0];
-  }else if (_circleAngle == 67.5){
-    title = _prizeArray[1];
-  }else if (_circleAngle == 112.5){
-    title = _prizeArray[2];
-  }else if (_circleAngle == 157.5){
-    title = _prizeArray[3];
-  }else if (_circleAngle == 202.5){
-    title = _prizeArray[4];
-  }else if (_circleAngle == 247.5){
-    title = _prizeArray[5];
-  }else if (_circleAngle == 292.5){
-    title = _prizeArray[6];
-  }else if (_circleAngle == 337.5){
-    title = _prizeArray[7];
-  }
-  UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"温馨提示" message:title delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-  [alert show];
-  
+  }];
+  [alert addAction:sureAction];
+  [self presentViewController:alert animated:YES completion:nil];
   _isAnimation = false;
-  
 }
 
 #pragma mark - dqm_navibar

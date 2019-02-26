@@ -80,4 +80,48 @@
  */
 + (QMURLSessionTask *)GET_UserInfoParams:(NSDictionary *)params View:(UIView *)view success:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))success unknown:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))unknown failure:(void(^)(NSError *error))failure;
 
+
+/**
+ 关于我们
+ 参数  类型  必需/可选  默认  描述
+ time  int  必需  无  时间戳(用于判断请求是否超时)
+ token  string  必需  无  确定来访者身份
+ uid  int  必需  1  用户id
+ */
++ (QMURLSessionTask *)GET_aboutUsParams:(NSDictionary *)params View:(UIView *)view success:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))success unknown:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))unknown failure:(void(^)(NSError *error))failure;
+
+
+/**
+ 大转盘列表信息
+ get kuquke.yiyunrj.xyz/User/turntableList
+ 
+ 参数  类型  必需/可选  默认  描述
+ time  int  必需  无  时间戳(用于判断请求是否超时)
+ token  string  必需  无  确定来访者身份
+ */
++ (QMURLSessionTask *)GET_turntableListParams:(NSDictionary *)params View:(UIView *)view success:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))success unknown:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))unknown failure:(void(^)(NSError *error))failure;
+
+/**
+ 大转盘抽奖
+ post kuquke.yiyunrj.xyz/User/turntable
+ 
+ 参数  类型  必需/可选  默认  描述
+ time  int  必需  无  时间戳(用于判断请求是否超时)
+ token  string  必需  无  确定来访者身份
+ uid  int  必需  无  用户唯一id
+ */
++ (QMURLSessionTask *)POST_turntable:(NSDictionary *)params View:(UIView *)view success:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))success unknown:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))unknown failure:(void(^)(NSError *error))failure;
+
+
+/**
+ 分享页面基本信息
+ get kuquke.yiyunrj.xyz/User/shareInfo
+ 
+ 参数  类型  必需/可选  默认  描述
+ time  int  必需  无  时间戳(用于判断请求是否超时)
+ token  string  必需  无  确定来访者身份
+ uid  int  必需  无  用户唯一id
+ */
++ (QMURLSessionTask *)GET_shareInfoParams:(NSDictionary *)params View:(UIView *)view success:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))success unknown:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))unknown failure:(void(^)(NSError *error))failure;
+
 @end

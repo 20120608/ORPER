@@ -14,6 +14,9 @@
 
 @interface ShareToMyFriendViewController ()
 
+@property(nonatomic,copy) NSDictionary *dataDic; /* 分享的数据 */
+
+
 @end
 
 @implementation ShareToMyFriendViewController
@@ -23,8 +26,17 @@
 	
 	[self createUI];
 
-	
-	
+  //分享的数据
+  [KuQuKeNetWorkManager GET_shareInfoParams:[NSMutableDictionary new] View:self.view success:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
+    
+    self.dataDic = dataDic;
+    [self.tableView reloadData];
+    
+  } unknown:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
+    
+  } failure:^(NSError *error) {
+    
+  }];
 	
 	
 }
@@ -84,6 +96,9 @@
 		return cell;
 	} else if (indexPath.section == 1) {
 		ShareResultsTableViewCell *cell = [ShareResultsTableViewCell cellWithTableView:tableView];
+    if (_dataDic) {
+      cell.dataDic = _dataDic;
+    }
 		return cell;
 	} else if (indexPath.section == 2) {
 		DQMLabelSizeToFitTableViewCell *cell = [DQMLabelSizeToFitTableViewCell cellWithTableView:tableView];
@@ -125,4 +140,5 @@
 - (UIColor *)dqmNavigationBackgroundColor:(DQMNavigationBar *)navigationBar {
 	return DQMMainColor;
 }
+
 @end

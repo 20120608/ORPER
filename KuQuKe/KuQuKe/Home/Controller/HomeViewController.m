@@ -20,10 +20,11 @@
 #import "HomeMyTaskTableViewCell.h"//专属任务
 #import "EarnMoneyForRegisterViewController.h"//安装注册赚钱
 #import "RACMVVMListViewController.h"//解释rac+mvvm的界面
+#import "CheckInvitationView.h"//绑定界面
+#import "AboutUSViewController.h"//关于酷趣客
 
 
-
-@interface HomeViewController () <DQMHorizontalViewScrollerViewDataSource,AvgButtonMenuTableViewCellDelegate>
+@interface HomeViewController () <DQMHorizontalViewScrollerViewDataSource,AvgButtonMenuTableViewCellDelegate,CheckInvitationViewDelegate>
 {
 	UIStatusBarStyle _barStyle;
 }
@@ -149,18 +150,28 @@
   
   [KuQuKeNetWorkManager POST_Kuqukelogin:postDic View:self.view success:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
     
-    [kUserDefaults setValue:dataDic[@"data"][@"head_pic"] forKey:@"HEADPIC"];
-    [kUserDefaults setValue:dataDic[@"data"][@"nickname"] forKey:@"NICKNAME"];
-    [kUserDefaults setValue:dataDic[@"data"][@"user_id"] forKey:@"USERID"];
-    //获取广告信息
-    [self loadIndexConfig];
+    //登录成功
+    [self logInSuccess:dataDic];
     
   } unknown:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
+    
+    //判断是否弹出邀请码页
+    if ([dataDic[@"code"] intValue] == 300) {
+      CheckInvitationView *view = ({
+        CheckInvitationView *view = [[CheckInvitationView alloc] init];
+        [self.view addSubview: view];
+        view.delegate = self;
+        [view mas_makeConstraints:^(MASConstraintMaker *make) {
+          make.edges.mas_equalTo(self.view);
+        }];
+        view;
+      });
+      [view show];
+    }
     
   } failure:^(NSError *error) {
     
   }];
-  
 }
 
 - (void)loadIndexConfig {
@@ -185,8 +196,49 @@
   } failure:^(NSError *error) {
     NSLog(@"error = %@",error);
   }];
-
 }
+
+/**
+ 登录成功 设置信息并 请求广告信息
+ */
+- (void)logInSuccess:(NSDictionary *)dataDic {
+  [kUserDefaults setValue:dataDic[@"data"][@"head_pic"] forKey:@"HEADPIC"];
+  [kUserDefaults setValue:dataDic[@"data"][@"nickname"] forKey:@"NICKNAME"];
+  [kUserDefaults setValue:dataDic[@"data"][@"user_id"] forKey:@"USERID"];
+  //获取广告信息
+  [self loadIndexConfig];
+}
+
+#pragma mark - CheckIncitationView Delegate
+- (void)CheckInvitationView:(CheckInvitationView *)invitationView DidSelectInvitation:(NSString *)codeString {
+  if ([codeString length] >= 1) {
+    //用设备号登入
+
+    NSMutableDictionary *postDic = [[NSMutableDictionary alloc] init];
+    [postDic setValue:GET_USERDEFAULT(@"DEVICEID") forKey:@"deviceid"];
+    [postDic setValue:[NSNumber numberWithInteger:2] forKey:@"phonetype"];
+    [postDic setValue:codeString forKey:@"parentcode"];
+
+    [KuQuKeNetWorkManager POST_Kuqukelogin:postDic View:self.view success:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
+      
+      //登录成功
+      [self logInSuccess:dataDic];
+      //成功后关闭绑定弹窗
+      [invitationView hide];
+      
+    } unknown:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
+      
+    } failure:^(NSError *error) {
+      
+    }];
+  }
+}
+
+- (void)CheckInvitationViewDidSelectAddQQSection:(CheckInvitationView *)invitationView {
+  NSLog(@"点击了弹出QQ群信息页面");
+}
+
+
 
 
 #pragma mark - tableView DataSource

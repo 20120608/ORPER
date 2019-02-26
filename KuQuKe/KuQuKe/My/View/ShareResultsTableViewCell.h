@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 +(ShareResultsTableViewCell *)cellWithTableView:(UITableView *)tableview;
 
+/** 我的成绩字典 */
+@property(nonatomic,copy) NSDictionary          *dataDic;
 
 @end
 

@@ -22,27 +22,28 @@
 
   [self createTableViewHeader];
   
-  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-   
-    //触发信号
-    self.companyDictionay = @{@"QQ":@"787765489",@"tieba":@"酷趣客吧",@"weibo":@"@酷趣客-手机赚钱",@"QQSection":@"198067852",@"advice":@"789678956@qq.com",@"businessQQ":@"1011078954",@"needKnow":@"查看",@"icon":@"logo",@"name":@"酷趣客-手机赚钱",@"version":@"版本4.1.1"};
+  [KuQuKeNetWorkManager GET_aboutUsParams:[NSMutableDictionary new] View:self.view success:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
+
+    NSMutableDictionary *tempDic = [[NSMutableDictionary alloc] initWithDictionary:dataDic[@"data"]];
+    [tempDic setValue:@"用户须知" forKey:@"needKnow"];
+    self.companyDictionay = tempDic;
     
-    self.addItem([StaticListItem itemAdditionalExtensionWithTitle:@"客服QQ" subTitle:_companyDictionay[@"QQ"] extensionDictionary:nil itemOperation:^(NSIndexPath *indexPath) {
+    self.addItem([StaticListItem itemAdditionalExtensionWithTitle:@"客服QQ" subTitle:_companyDictionay[@"kfqq"] extensionDictionary:nil itemOperation:^(NSIndexPath *indexPath) {
       
     }])
-    .addItem([StaticListItem itemAdditionalExtensionWithTitle:@"百度贴吧" subTitle:_companyDictionay[@"tieba"] extensionDictionary:nil itemOperation:^(NSIndexPath *indexPath) {
+    .addItem([StaticListItem itemAdditionalExtensionWithTitle:@"百度贴吧" subTitle:_companyDictionay[@"baidutb"] extensionDictionary:nil itemOperation:^(NSIndexPath *indexPath) {
       
     }])
-    .addItem([StaticListItem itemAdditionalExtensionWithTitle:@"新浪微博" subTitle:_companyDictionay[@"weibo"] extensionDictionary:nil itemOperation:^(NSIndexPath *indexPath) {
+    .addItem([StaticListItem itemAdditionalExtensionWithTitle:@"新浪微博" subTitle:_companyDictionay[@"sianweibo"] extensionDictionary:nil itemOperation:^(NSIndexPath *indexPath) {
       
     }])
-    .addItem([StaticListItem itemAdditionalExtensionWithTitle:@"QQ群" subTitle:_companyDictionay[@"QQSection"] extensionDictionary:nil itemOperation:^(NSIndexPath *indexPath) {
+    .addItem([StaticListItem itemAdditionalExtensionWithTitle:@"QQ群" subTitle:_companyDictionay[@"qqun"] extensionDictionary:nil itemOperation:^(NSIndexPath *indexPath) {
       
     }])
-    .addItem([StaticListItem itemAdditionalExtensionWithTitle:@"商务QQ群" subTitle:_companyDictionay[@"businessQQ"] extensionDictionary:nil itemOperation:^(NSIndexPath *indexPath) {
+    .addItem([StaticListItem itemAdditionalExtensionWithTitle:@"商务QQ群" subTitle:_companyDictionay[@"syqqun"] extensionDictionary:nil itemOperation:^(NSIndexPath *indexPath) {
       
     }])
-    .addItem([StaticListItem itemAdditionalExtensionWithTitle:@"意见反馈" subTitle:_companyDictionay[@"advice"] extensionDictionary:nil itemOperation:^(NSIndexPath *indexPath) {
+    .addItem([StaticListItem itemAdditionalExtensionWithTitle:@"意见反馈" subTitle:_companyDictionay[@"email"] extensionDictionary:nil itemOperation:^(NSIndexPath *indexPath) {
       
     }])
     .addItem([StaticListItem itemAdditionalExtensionWithTitle:@"用户须知" subTitle:_companyDictionay[@"needKnow"] extensionDictionary:nil itemOperation:^(NSIndexPath *indexPath) {
@@ -51,7 +52,11 @@
     
     [self.tableView reloadData];
     
-  });
+  } unknown:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
+    
+  } failure:^(NSError *error) {
+    
+  }];
   
 
 }
@@ -103,6 +108,13 @@
     }];
     label;
   });
+  NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+  NSString *app_Name = [infoDictionary objectForKey:@"CFBundleDisplayName"];// app名称
+  NSString *app_Version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];// app版本
+  nameLabel.text = app_Name;
+  msgLabel.text = [NSString stringWithFormat:@"版本:%@",app_Version];
+  
+  
   
   UIView *footerView = ({
       UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 60)];
@@ -118,15 +130,6 @@
     label;
   });
   QMLabelFontColorText(footerLabel, @"每天赚一点,满足零花钱", QMSubTextColor, 12);
-
-  
-  //订阅信号  改变标题
-  [RACObserve(self, companyDictionay) subscribeNext:^(NSDictionary *x) {
-    QMSetImage(iconImageView, x[@"icon"]);
-    nameLabel.text = x[@"name"];
-    msgLabel.text = x[@"version"];
-  }];
-  
   
 }
 

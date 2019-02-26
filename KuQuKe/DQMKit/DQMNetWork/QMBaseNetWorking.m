@@ -120,6 +120,7 @@ static NSMutableArray *tasks;
     hud.bezelView.backgroundColor = QMHexColor(@"4D4D4D");
     hud.graceTime = graceTime;//宽恕时间
     hud.minShowTime = 0.5;//最短显示时间
+    hud.removeFromSuperViewOnHide = true;//从图层关系中移除
     [hud showAnimated:true];
   }
   

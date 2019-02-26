@@ -133,6 +133,7 @@
 		596989A1221D3E9800081FFF /* APPTaskModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 596989A0221D3E9800081FFF /* APPTaskModel.m */; };
 		596989A6221E325500081FFF /* GameHomeViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 596989A5221E325500081FFF /* GameHomeViewModel.m */; };
 		596989A9221E326300081FFF /* GameTaskModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 596989A8221E326300081FFF /* GameTaskModel.m */; };
+		596989AF2223769000081FFF /* CheckInvitationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 596989AE2223769000081FFF /* CheckInvitationView.m */; };
 		59ADCD1021E6D10F00A86C1F /* DQMRigthSwitchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 59ADCD0F21E6D10F00A86C1F /* DQMRigthSwitchTableViewCell.m */; };
 		59ADCD1321E6D52800A86C1F /* SettingUsetInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59ADCD1221E6D52800A86C1F /* SettingUsetInfoViewController.m */; };
 		59ADCD1621E6ECB200A86C1F /* CompleteInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59ADCD1521E6ECB200A86C1F /* CompleteInformationViewController.m */; };
@@ -416,6 +417,8 @@
 		596989A5221E325500081FFF /* GameHomeViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameHomeViewModel.m; sourceTree = "<group>"; };
 		596989A7221E326300081FFF /* GameTaskModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameTaskModel.h; sourceTree = "<group>"; };
 		596989A8221E326300081FFF /* GameTaskModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameTaskModel.m; sourceTree = "<group>"; };
+		596989AD2223769000081FFF /* CheckInvitationView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckInvitationView.h; sourceTree = "<group>"; };
+		596989AE2223769000081FFF /* CheckInvitationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckInvitationView.m; sourceTree = "<group>"; };
 		59ADCD0E21E6D10F00A86C1F /* DQMRigthSwitchTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DQMRigthSwitchTableViewCell.h; sourceTree = "<group>"; };
 		59ADCD0F21E6D10F00A86C1F /* DQMRigthSwitchTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DQMRigthSwitchTableViewCell.m; sourceTree = "<group>"; };
 		59ADCD1121E6D52800A86C1F /* SettingUsetInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingUsetInfoViewController.h; sourceTree = "<group>"; };
@@ -575,6 +578,8 @@
 				551A0A0021EA349100B2FB84 /* HomeHeaderView.m */,
 				551A0A0B21EAFAF900B2FB84 /* HomeMyTaskTableViewCell.h */,
 				551A0A0C21EAFAF900B2FB84 /* HomeMyTaskTableViewCell.m */,
+				596989AD2223769000081FFF /* CheckInvitationView.h */,
+				596989AE2223769000081FFF /* CheckInvitationView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1507,6 +1512,7 @@
 				55B4994E21EF4662005F31AE /* TaskPreviewStepModel.m in Sources */,
 				5918A77521E32CE900CF8431 /* UICollectionViewLeftAlignedLayout.m in Sources */,
 				5594A13A21E1BC1F009178B3 /* UIView+DQMFrame.m in Sources */,
+				596989AF2223769000081FFF /* CheckInvitationView.m in Sources */,
 				551A09E321E9AF6C00B2FB84 /* MyWithdrawViewController.m in Sources */,
 				5594A0C221E1BB12009178B3 /* main.m in Sources */,
 				551A09C721E992BE00B2FB84 /* CustomerServiceOfQQViewController.m in Sources */,

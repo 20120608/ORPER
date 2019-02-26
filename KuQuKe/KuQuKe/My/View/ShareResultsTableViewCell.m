@@ -43,6 +43,8 @@
 		
 		
 		NSMutableArray *labelsArray = [[NSMutableArray alloc] init];
+    NSMutableArray *contentsArray = [[NSMutableArray alloc] init];
+
 		NSArray *titleArray = @[@"我的徒弟",@"今日提成",@"累计提成"];
 		NSArray *priceArray = @[@"0人",@"0.00元",@"0.00元"];
 
@@ -75,6 +77,7 @@
 			QMLabelFontColorText(contentLabel, priceArray[i], QMPriceColor, 20);
 			QMLabelFontColorText(titleLabel, titleArray[i], QMTextColor, 13);
 			
+      [contentsArray addObject:contentLabel];
 			[labelsArray addObject:backView];
 		}
 		
@@ -84,7 +87,26 @@
 			make.height.mas_equalTo(100);
 		}];
 		
-		
+    [[RACObserve(self, dataDic) skip:1] subscribeNext:^(id _Nullable x) {
+      
+      NSDictionary *dic = (NSDictionary *)x;
+      [contentsArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        UILabel *label = contentsArray[idx];
+        if (idx == 0) {
+          NSString *string = [NSString stringWithFormat:@"%@人",dic[@"data"][@"num"]];
+          QMLabelFontColorText(label, string, QMPriceColor, 20);
+        } else if (idx == 1) {
+          NSString *string = [NSString stringWithFormat:@"%.2f元", [dic[@"data"][@"today_price"] floatValue]];
+          QMLabelFontColorText(label, string, QMPriceColor, 20);
+        } else if (idx == 2) {
+          NSString *string = [NSString stringWithFormat:@"%.2f元",[dic[@"data"][@"all_price"] floatValue]];
+          QMLabelFontColorText(label, string, QMPriceColor, 20);
+        }
+        
+      }];
+      
+      
+    }];
 		
 		
 	}
