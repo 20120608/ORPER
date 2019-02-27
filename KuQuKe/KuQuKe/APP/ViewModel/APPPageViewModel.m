@@ -141,7 +141,7 @@ static const NSInteger startingValue = 1;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   
-  EarnMoneyForRegisterViewController *vc = [[EarnMoneyForRegisterViewController alloc] init];
+  EarnMoneyForRegisterViewController *vc = [[EarnMoneyForRegisterViewController alloc] initWithTitle:@"注册赚钱"];
   vc.taskID = ((APPTaskModel *)_taskListModelArray[indexPath.row]).id;
   [self.currentVC.navigationController pushViewController:vc animated:true];
   

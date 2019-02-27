@@ -356,6 +356,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
 	EarnMoneyForRegisterViewController *vc = [[EarnMoneyForRegisterViewController alloc] initWithTitle:@"注册赚钱"];
+	vc.taskID = [NSString stringWithFormat:@"%ld",(long)((HomeTaskRecommendModel *)_listArray[indexPath.row]).id];
 	[self.navigationController pushViewController:vc animated:true];
 }
 

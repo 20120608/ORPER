@@ -34,10 +34,21 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,copy) NSArray          *step_info;
 /** 步骤图片 */
 @property(nonatomic,copy) NSArray<NSString *>  *exp_img;
-/** 信息 */
+/** 信息
+ "join_info" =     {
+ applyid = 3;
+ "join_status" = 0;
+ "start_time" = 1551181440;
+ };
+  join_status  5是未参与 0是已经开始任务了 1是已经提交任务审核了 2是审核通过 3是审核不通过 6是过时失效了
+ */
 @property(nonatomic,copy) NSDictionary     *join_info;
+
 /** 最多时间内要提交 */
 @property(nonatomic,copy) NSString          *dealy_time;
+
+
+- (NSString *)msgForJoinStatus;
 
 
 @end

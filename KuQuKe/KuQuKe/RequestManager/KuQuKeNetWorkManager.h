@@ -170,7 +170,17 @@
 + (QMURLSessionTask *)POST_addTaskOkParams:(NSDictionary *)params View:(UIView *)view success:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))success unknown:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))unknown failure:(void(^)(NSError *error))failure;
 
 
-
+/**
+ 开始任务
+ post kuquke.yiyunrj.xyz/task/taskStart
+ 参数	类型	必需/可选	默认	描述
+ time	int	必需	无	时间戳(用于判断请求是否超时)
+ token	string	必需	无	确定来访者身份
+ id	int	必需	1	任务id
+ uid	int	必需	无	用户id
+ 
+ */
++ (QMURLSessionTask *)POST_taskStartParams:(NSDictionary *)params View:(UIView *)view success:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))success unknown:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))unknown failure:(void(^)(NSError *error))failure;
 
 
 

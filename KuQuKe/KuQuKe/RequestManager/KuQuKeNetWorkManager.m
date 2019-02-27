@@ -171,9 +171,11 @@
  现金签到
  */
 + (QMURLSessionTask *)POST_CheckIn:(NSDictionary *)params View:(UIView *)view success:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))success unknown:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))unknown failure:(void(^)(NSError *error))failure  {
+	
+[params setValue:GET_USERDEFAULT(USERID) forKey:@"uid"];
+
   NSString *postTokenString = [QMSGeneralHelpers md5Codesign:params];
   [params setValue:postTokenString forKey:@"token"];
-  [params setValue:GET_USERDEFAULT(USERID) forKey:@"uid"];
 
   NSString *url = [NSString stringWithFormat:@"http://kuquke.yiyunrj.xyz/User/sign"];
   return [DQMAFNetWork method:POST
@@ -283,7 +285,6 @@
  */
 + (QMURLSessionTask *)GET_aboutUsParams:(NSDictionary *)params View:(UIView *)view success:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))success unknown:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))unknown failure:(void(^)(NSError *error))failure {
   [params setValue:[QMSGeneralHelpers currentTimeStr] forKey:@"time"];
-  [params setValue:GET_USERDEFAULT(USERID) forKey:@"uid"];
   NSString *token = [QMSGeneralHelpers md5Codesign:params];
   [params setValue:token forKey:@"token"];
   
@@ -573,7 +574,49 @@
 }
 
 
+/**
+ 开始任务
+ post kuquke.yiyunrj.xyz/task/taskStart
+ 参数	类型	必需/可选	默认	描述
+ time	int	必需	无	时间戳(用于判断请求是否超时)
+ token	string	必需	无	确定来访者身份
+ id	int	必需	1	任务id
+ uid	int	必需	无	用户id
 
+ */
++ (QMURLSessionTask *)POST_taskStartParams:(NSDictionary *)params View:(UIView *)view success:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))success unknown:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))unknown failure:(void(^)(NSError *error))failure {
+	
+	[params setValue:[QMSGeneralHelpers currentTimeStr] forKey:@"time"];
+	[params setValue:GET_USERDEFAULT(USERID) forKey:@"uid"];
+	NSString *postTokenString = [QMSGeneralHelpers md5Codesign:params];
+	[params setValue:postTokenString forKey:@"token"];
+	
+	NSString *url = [NSString stringWithFormat:@"http://kuquke.yiyunrj.xyz/task/taskStart"];
+	return [DQMAFNetWork method:POST
+				   withchildUrl:url
+					  andparams:params
+						   view:view
+						 HUDMsg:@"开始任务"
+						success:^(RequestStatusModel * _Nonnull reqsModel, NSDictionary * _Nonnull dataDic) {
+							if (success) {
+								success(reqsModel,dataDic);
+							}
+						}
+						unknown:^(RequestStatusModel * _Nonnull reqsModel, NSDictionary * _Nonnull dataDic) {
+							if (unknown) {
+								unknown(reqsModel,dataDic);
+							}
+						}
+						failure:^(NSError * _Nonnull error) {
+							if (failure) {
+								failure(error);
+							}
+						}
+					  graceTime:3
+						showHUD:true
+				  networkstatus:true
+			   checkLoginStatus:false];
+}
 
 
 

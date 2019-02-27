@@ -12,8 +12,17 @@
 #import "EarnMoneyDetailModel.h"//模型
 
 NS_ASSUME_NONNULL_BEGIN
+@class PreviewTaskRequireView;
+@protocol PreviewTaskRequireViewDelegate <NSObject>
+
+- (void)beginButtonClickPreviewTaskRequireView:(PreviewTaskRequireView *)view;
+
+@end
 
 @interface PreviewTaskRequireView : UIView
+
+/** 代理 */
+@property(nonatomic,weak) id<PreviewTaskRequireViewDelegate>  delegate;
 
 /** 数据 */
 @property(nonatomic,strong) EarnMoneyDetailModel          *earnModel;

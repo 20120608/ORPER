@@ -14,7 +14,7 @@
 #import "EarnMoneyViewModel.h"//视图模型
 
 
-@interface EarnMoneyForRegisterViewController () <UserMessageInputViewDelegate>
+@interface EarnMoneyForRegisterViewController () <UserMessageInputViewDelegate,PreviewTaskRequireViewDelegate>
 
 @property (nonatomic, strong) EarnMoneyViewModel *racViewModel;
 
@@ -86,6 +86,7 @@
   PreviewTaskRequireView *preTaskView = ({
     PreviewTaskRequireView *view = [[PreviewTaskRequireView alloc] init];
     [self.scrollView addSubview: view];
+	view.delegate = self;
     view.backgroundColor = UIColor.whiteColor;
     [view mas_makeConstraints:^(MASConstraintMaker *make) {
       make.left.mas_equalTo(self.scrollView.mas_left);
@@ -98,7 +99,7 @@
   UserMessageInputView *userMessageView = ({
     UserMessageInputView *view = [[UserMessageInputView alloc] init];
     [self.scrollView addSubview: view];
-    view.delegate = self;
+	view.delegate = self;
     [view mas_makeConstraints:^(MASConstraintMaker *make) {
       make.left.mas_equalTo(self.scrollView.mas_left);
       make.top.mas_equalTo(preTaskView.mas_bottom);
@@ -117,14 +118,43 @@
   }];
 }
 
-
-#pragma mark - 提交审核按钮
-- (void)getCodeWithUserMessageInputView:(UserMessageInputView *)userMessageInputView ImageArray:(NSArray *)imageArray code:(NSString *)code phone:(NSString *)phone name:(NSString *)name {
-  NSLog(@"获取验证码");
-
+#pragma mark - 开始任务
+- (void)beginButtonClickPreviewTaskRequireView:(PreviewTaskRequireView *)view {
+	NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+	[params setValue:_taskID forKey:@"id"];
+	
+	[KuQuKeNetWorkManager POST_taskStartParams:params View:self.view success:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
+		
+		[self.view makeToast:@"现在开始任务了!"];
+		//刷新数据一下
+		[self.racViewModel.requestVideoListCommand execute:@{@"reloadData":@"1"}];
+		
+		
+	} unknown:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
+		
+	} failure:^(NSError *error) {
+		
+	}];
 }
 
-- (void)saveToInvestigateWithUserMessageInputView:(UserMessageInputView *)userMessageInputView ImageArray:(NSArray<HXPhotoModel *> *)imageArray code:(NSString *)code phone:(NSString *)phone name:(NSString *)name {
+#pragma mark - 提交审核按钮
+- (void)getCodeWithUserMessageInputView:(UserMessageInputView *)userMessageInputView code:(NSString *)code phone:(NSString *)phone name:(NSString *)name {
+  NSLog(@"获取验证码");
+	
+}
+
+- (void)saveToInvestigateWithUserMessageInputView:(UserMessageInputView *)userMessageInputView ImageArray:(NSArray <HXPhotoModel *>  *)imageArray code:(NSString *)code phone:(NSString *)phone name:(NSString *)name {
+	if ([_earnModel.join_info[@"join_status"] intValue] != 0) {
+		[self.view makeToast:[_earnModel msgForJoinStatus]];
+		return;
+	} else if ([code length] == 0 || [phone length] == 0 || [name length] == 0) {
+		[self.view makeToast:@"请填写个人信息!"];
+		return;
+	} else if([imageArray count] == 0) {
+		[self.view makeToast:@"请先选择截图!"];
+		return;
+	}
+	
   NSLog(@"上传图片中");
   
   NSMutableArray *imageUrlArray = [[NSMutableArray alloc] init];
@@ -132,12 +162,12 @@
   [imageArray enumerateObjectsUsingBlock:^(HXPhotoModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
     
     HXPhotoModel *hxPhotoModel = imageArray[idx];
-    [KuQuKeNetWorkManager POST_taskImgUploadParams:[NSDictionary new] uploadWithImage:hxPhotoModel.tempImage filename:nil name:@"file" View:self.view success:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
+    [KuQuKeNetWorkManager POST_taskImgUploadParams:[NSDictionary new] uploadWithImage:hxPhotoModel.previewPhoto filename:nil name:@"file" View:self.view success:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
       
       [imageUrlArray addObject:dataDic[@"data"][@"real_img_url"]];
       if (imageUrlArray.count == imageArray.count) {
         //图片都传好后保存
-        [self saveUserMessageToAudit:imageUrlArray];
+        [self saveUserMessageToAudit:imageUrlArray code:code phone:phone name:name];
       }
       
     } unknown:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
@@ -151,21 +181,27 @@
 /**
  图片上传后提交审核
  */
-- (void)saveUserMessageToAudit:(NSMutableArray *)imageUrlArray {
-  //要删除第一个
-  __block NSString *imgString;
-  [imageUrlArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-    imgString = [imgString stringByAppendingFormat:[NSString stringWithFormat:@",%@",obj]];
-  }];
-  
-  NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
-  [params setValue:_taskID forKey:@"id"];
-  [params setValue:_applyid forKey:@"applyid"];
-  [params setValue:imgString forKey:@"img"];
+- (void)saveUserMessageToAudit:(NSMutableArray *)imageUrlArray code:(NSString *)code phone:(NSString *)phone name:(NSString *)name {
+	//要删除第一个
+	NSString *imgString = [imageUrlArray componentsJoinedByString:@","];
+	NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+	[params setValue:_taskID forKey:@"id"];
+	[params setValue:_earnModel.join_info[@"applyid"] forKey:@"applyid"];
+	[params setValue:imgString forKey:@"img"];
+	[params setValue:name forKey:@"account"];
+	[params setValue:phone forKey:@"mobile"];
+	[params setValue:code forKey:@"code"];
 
-  
-  KuQuKeNetWorkManager POST_addTaskOkParams:<#(NSDictionary *)#> View:<#(UIView *)#> success:<#^(RequestStatusModel *reqsModel, NSDictionary *dataDic)success#> unknown:<#^(RequestStatusModel *reqsModel, NSDictionary *dataDic)unknown#> failure:<#^(NSError *error)failure#>
-  
+	[KuQuKeNetWorkManager POST_addTaskOkParams:params View:self.view success:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
+		
+		NSLog(@"完成了提交审核！");
+		[self.view makeToast:@"提交成功,请等待审核"];
+		
+	} unknown:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
+		
+	} failure:^(NSError *error) {
+		
+	}];
 }
 
 

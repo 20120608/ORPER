@@ -354,7 +354,9 @@
 
 #pragma mark - event
 - (void)beginButtonClick:(UIButton *)sender {
-  
+	if ([self.delegate respondsToSelector:@selector(beginButtonClickPreviewTaskRequireView:)]) {
+		[self.delegate beginButtonClickPreviewTaskRequireView:self];
+	}
 }
 
 
