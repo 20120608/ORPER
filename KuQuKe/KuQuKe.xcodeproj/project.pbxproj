@@ -1756,7 +1756,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4A6RMPCXH3;
+				DEVELOPMENT_TEAM = 5JG628995P;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/KuQuKe/Other/PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/KuQuKe/Other/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -1764,7 +1764,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.kuquke.kuquke;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kqk.kuquke;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1780,7 +1780,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4A6RMPCXH3;
+				DEVELOPMENT_TEAM = 5JG628995P;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/KuQuKe/Other/PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/KuQuKe/Other/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -1788,7 +1788,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.kuquke.kuquke;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kqk.kuquke;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
