@@ -22,7 +22,7 @@
 #import "CheckOutAliPayViewController.h"//兑换到支付宝
 
 
-#define HEADER_TOP 330 //滚动到多少导航栏变不透明
+#define HEADER_TOP 338 //滚动到多少导航栏变不透明
 
 @interface MyViewController () <MyMoneyAndStdentsViewDelegate,MyBalanceCheckOutViewDelegate>
 {
@@ -53,7 +53,10 @@
 	
 	[self loadData];
 
+}
 
+- (void)viewWillAppear:(BOOL)animated {
+  
   //获取用户基本信息
   NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
   [KuQuKeNetWorkManager GET_UserInfoParams:params View:self.view success:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
@@ -66,7 +69,7 @@
     [kUserDefaults setValue:dataDic[@"data"][@"user_money"] forKey:USERMONEY];
     [kUserDefaults setValue:dataDic[@"data"][@"all_money"] forKey:ALLMONEY];
     [kUserDefaults setValue:dataDic[@"data"][@"user_id"] forKey:USERID];
-
+    
     //制作模型和触发信令
     UserDetailModel *userModel = [[UserDetailModel alloc] init];
     userModel.name = GET_USERDEFAULT(NICKNAME);
@@ -76,15 +79,12 @@
     userModel.total = GET_USERDEFAULT(ALLMONEY);;
     userModel.students = @"0";//学生人数还没有
     self.userModel = userModel;
-
+    
   } unknown:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
     
   } failure:^(NSError *error) {
     
   }];
-  
-  
-	
 }
 
 - (BOOL)dx_isNullOrNilWithObject:(id)object;
@@ -138,9 +138,9 @@
 		view.userInteractionEnabled = true;
 		view.backgroundColor = UIColor.whiteColor;
 		view.layer.shadowOffset =CGSizeMake(1,2);
-		view.layer.shadowColor = [UIColor lightGrayColor].CGColor;
-		view.layer.shadowRadius = 5;
-		view.layer.shadowOpacity = 2;
+		view.layer.shadowColor = [UIColor colorWithHexString:@"000000" alpha:0.19].CGColor;
+		view.layer.shadowRadius = 2;
+		view.layer.shadowOpacity = 1;
 		view.layer.cornerRadius = 5;
 		[view mas_makeConstraints:^(MASConstraintMaker *make) {
 			make.centerX.mas_equalTo(self.view);
@@ -183,6 +183,14 @@
 		}];
 		label;
 	});
+  
+  UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 8)];
+  footerView.backgroundColor = QMBackColor;
+  [expandImageView addSubview:footerView];
+  [footerView mas_makeConstraints:^(MASConstraintMaker *make) {
+    make.left.right.bottom.mas_equalTo(0);
+    make.height.mas_equalTo(8);
+  }];
 	
 	//订阅用户信息的改变
 	[RACObserve(self, userModel) subscribeNext:^(UserDetailModel *x) {
@@ -246,7 +254,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  return 50;
+  return 60;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -300,8 +308,14 @@
 }
 
 - (void)MyBalanceCheckOutView:(MyBalanceCheckOutView *)checkOutView didSelected:(NSInteger)index {
-	if (index == 1) {
+  if (index == 2) {
+    CheckOutAliPayViewController *vc = [[CheckOutAliPayViewController alloc] initWithTitle:@"兑换微信"];
+    vc.checkOutThreePartType = CheckOutThreePartTypeWeChat;
+    [self.navigationController pushViewController:vc animated:true];
+  }
+  else if (index == 3) {
 		CheckOutAliPayViewController *vc = [[CheckOutAliPayViewController alloc] initWithTitle:@"兑换支付宝"];
+    vc.checkOutThreePartType = CheckOutThreePartTypeAliPay;
 		[self.navigationController pushViewController:vc animated:true];
 	}
 }

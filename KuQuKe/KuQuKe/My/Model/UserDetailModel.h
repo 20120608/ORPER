@@ -23,6 +23,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,copy) NSString       	*userface;
 
 /** weChat */
+@property(nonatomic,copy) NSString          *aliPay;
+/** weChat */
+@property(nonatomic,copy) NSString          *email;
+/** weChat */
 @property(nonatomic,copy) NSString          *weChat;
 /** QQ */
 @property(nonatomic,copy) NSString          *QQ;

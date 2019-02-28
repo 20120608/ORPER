@@ -620,4 +620,50 @@
 
 
 
+
+/**
+ 更新用户信息
+ post kuquke.yiyunrj.xyz/User/updateUserInfo
+ 
+ 参数  类型  必需/可选  默认  描述
+ time  int  必需  无  时间戳(用于判断请求是否超时)
+ token  string  必需  无  确定来访者身份
+ type  int  必需  1  识别字段，提交对应修改
+ data  string  必需  无  需要修改的值
+ */
++ (QMURLSessionTask *)POST_updateUserInfoParams:(NSDictionary *)params View:(UIView *)view success:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))success unknown:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))unknown failure:(void(^)(NSError *error))failure {
+  
+  [params setValue:[QMSGeneralHelpers currentTimeStr] forKey:@"time"];
+  [params setValue:GET_USERDEFAULT(USERID) forKey:@"uid"];
+  
+  NSString *postTokenString = [QMSGeneralHelpers md5Codesign:params];
+  [params setValue:postTokenString forKey:@"token"];
+  
+  NSString *url = [NSString stringWithFormat:@"http://kuquke.yiyunrj.xyz/User/updateUserInfo"];
+  return [DQMAFNetWork method:POST
+                 withchildUrl:url
+                    andparams:params
+                         view:view
+                       HUDMsg:@"更新用户信息"
+                      success:^(RequestStatusModel * _Nonnull reqsModel, NSDictionary * _Nonnull dataDic) {
+                        if (success) {
+                          success(reqsModel,dataDic);
+                        }
+                      }
+                      unknown:^(RequestStatusModel * _Nonnull reqsModel, NSDictionary * _Nonnull dataDic) {
+                        if (unknown) {
+                          unknown(reqsModel,dataDic);
+                        }
+                      }
+                      failure:^(NSError * _Nonnull error) {
+                        if (failure) {
+                          failure(error);
+                        }
+                      }
+                    graceTime:3
+                      showHUD:true
+                networkstatus:true
+             checkLoginStatus:false];
+}
+
 @end

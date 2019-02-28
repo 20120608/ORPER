@@ -11,7 +11,7 @@
 
 #import "dqmBasePrefix.pch"
 
-#define DQMMainColor  QMHexColor(@"27B678")
+#define DQMMainColor  QMHexColor(@"1aad00")
 #import "ZJCalenderConst.h"	//日历的宏定义
 
 //提现的金额数组设置

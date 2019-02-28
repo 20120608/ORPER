@@ -130,7 +130,7 @@
 			[label mas_makeConstraints:^(MASConstraintMaker *make) {
 				make.left.mas_equalTo(_iconImageView.mas_right).offset(8);
 				make.bottom.mas_equalTo(_iconImageView.mas_bottom);
-				make.height.mas_equalTo(15);
+				make.height.mas_equalTo(18);
 			}];
 			label;
 		});
@@ -144,7 +144,7 @@
 			[label mas_makeConstraints:^(MASConstraintMaker *make) {
 				make.left.mas_equalTo(_subLabel1.mas_right).offset(4);
 				make.bottom.mas_equalTo(_iconImageView.mas_bottom);
-				make.height.mas_equalTo(15);
+				make.height.mas_equalTo(18);
 			}];
 			label;
 		});
@@ -158,7 +158,7 @@
 			[label mas_makeConstraints:^(MASConstraintMaker *make) {
 				make.left.mas_equalTo(_subLabel2.mas_right).offset(4);
 				make.bottom.mas_equalTo(_iconImageView.mas_bottom);
-				make.height.mas_equalTo(15);
+				make.height.mas_equalTo(18);
 			}];
 			label;
 		});
@@ -172,7 +172,7 @@
 			[label mas_makeConstraints:^(MASConstraintMaker *make) {
 				make.left.mas_equalTo(_subLabel3.mas_right).offset(4);
 				make.bottom.mas_equalTo(_iconImageView.mas_bottom);
-				make.height.mas_equalTo(15);
+				make.height.mas_equalTo(18);
 			}];
 			label;
 		});
@@ -274,16 +274,16 @@
         for (int i = 0; i < [x.mark count]; i++) {
           if (i == 0) {
             self.subLabel1.hidden = false;
-            self.subLabel1.text = x.mark[i];
+            self.subLabel1.text = [NSString stringWithFormat:@"  %@  ",x.mark[i]];
           } else if (i == 1) {
             self.subLabel2.hidden = false;
-            self.subLabel2.text = x.mark[i];
+            self.subLabel2.text = [NSString stringWithFormat:@"  %@  ",x.mark[i]];
           } else if (i == 2) {
             self.subLabel3.hidden = false;
-            self.subLabel3.text = x.mark[i];
+            self.subLabel3.text = [NSString stringWithFormat:@"  %@  ",x.mark[i]];
           } else if (i == 3) {
             self.subLabel4.hidden = false;
-            self.subLabel4.text = x.mark[i];
+            self.subLabel4.text = [NSString stringWithFormat:@"  %@  ",x.mark[i]];
           }
         }
       }];

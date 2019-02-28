@@ -39,28 +39,29 @@
 	if (self)
 	{
 		
-		UIView *shadowView = ({
-			UIView *view = [[UIView alloc] init];
-			[self.contentView addSubview: view];
-			[view.layer setShadowOffset:CGSizeMake(3,3)];
-			[view.layer setShadowColor:QMBackColor.CGColor];
-			[view.layer setShadowRadius:3];
-			[view.layer setShadowOpacity:0.8];
-			[view.layer setCornerRadius:20];
-			[view mas_makeConstraints:^(MASConstraintMaker *make) {
-				make.edges.mas_equalTo(UIEdgeInsetsMake(10, 20, 10, 20));
-			}];
-			view;
-		});
-		shadowView.backgroundColor = UIColor.whiteColor;
+//    UIView *shadowView = ({
+//      UIView *view = [[UIView alloc] init];
+//      [self.contentView addSubview: view];
+//      [view.layer setShadowOffset:CGSizeMake(3,3)];
+//      [view.layer setShadowColor:QMBackColor.CGColor];
+//      [view.layer setShadowRadius:3];
+//      [view.layer setShadowOpacity:0.8];
+//      [view.layer setCornerRadius:10];
+//      [view mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.edges.mas_equalTo(UIEdgeInsetsMake(10, 15, 10, 15));
+//      }];
+//      view;
+//    });
+//    shadowView.backgroundColor = UIColor.whiteColor;
 		
+    self.backgroundColor = QMBackColor;
 		
 		self.backView = ({
 			UIView *view = [[UIView alloc] init];
 			[self.contentView addSubview: view];
-			QMViewBorderRadius(view, 20, 0, DQMMainColor);
+			QMViewBorderRadius(view, 10, 0, DQMMainColor);
 			[view mas_makeConstraints:^(MASConstraintMaker *make) {
-				make.edges.mas_equalTo(UIEdgeInsetsMake(10, 20, 10, 20));
+        make.edges.mas_equalTo(UIEdgeInsetsMake(10, 15, 10, 15));
 			}];
 			view;
 		});
@@ -69,12 +70,13 @@
 		UIImageView *backImageView = ({
 			UIImageView *imageView = [[UIImageView alloc] init];
 			[_backView addSubview: imageView];
-			QMSetImage(imageView, @"horizontal_placehold_image");
 			[imageView mas_makeConstraints:^(MASConstraintMaker *make) {
 				make.edges.mas_equalTo(UIEdgeInsetsMake(0, 0, 0, 0));
 			}];
 			imageView;
 		});
+    QMSetImage(backImageView, @"horizontal_placehold_image");
+
 
 		/** 波浪 */
 		UIImageView *wavesImageView = ({
@@ -92,7 +94,8 @@
 			UIImageView *imageView = [[UIImageView alloc] init];
 			[_backView addSubview: imageView];
 			QMSetImage(imageView, @"logo");
-			QMViewBorderRadius(imageView, 8, 2, UIColor.whiteColor);
+      imageView.contentMode = UIViewContentModeScaleAspectFill;
+			QMViewBorderRadius(imageView, 8, 1, UIColor.whiteColor);
 			[imageView mas_makeConstraints:^(MASConstraintMaker *make) {
 				make.left.mas_equalTo(_backView.mas_left).offset(20);
 				make.bottom.mas_equalTo(_backView.mas_bottom).offset(-40);
@@ -104,7 +107,6 @@
 		UILabel *nameLabel = ({
 			UILabel *label = [[UILabel alloc] init];
 			[_backView addSubview:label];
-			QMLabelFontColorText(label, @"酷趣客", QMTextColor, 18);
 			label.font = [UIFont boldSystemFontOfSize:18];
 			[label mas_makeConstraints:^(MASConstraintMaker *make) {
 				make.left.mas_equalTo(_backView.mas_left).offset(16);
@@ -112,13 +114,14 @@
 			}];
 			label;
 		});
+    QMLabelFontColorText(nameLabel, @"酷趣客", QMTextColor, 18);
+
 
 		UILabel *priceLabel = ({
 			UILabel *label = [[UILabel alloc] init];
 			[_backView addSubview:label];
 			label.backgroundColor = QMHexColor(@"feeef2");
 			QMViewBorderRadius(label, 15, 0, DQMMainColor);
-			QMLabelFontColorText(label, @"  +0.00元  ", QMPriceColor, 18);
 			label.font = [UIFont boldSystemFontOfSize:18];
 			[label mas_makeConstraints:^(MASConstraintMaker *make) {
 				make.right.mas_equalTo(_backView.mas_right).offset(-16);
@@ -127,6 +130,8 @@
 			}];
 			label;
 		});
+    QMLabelFontColorText(priceLabel, @"  +0.00元  ", QMPriceColor, 18);
+
 
     //设置数据
     [[RACObserve(self, gameTaskModel) skip:1] subscribeNext:^(GameTaskModel *x) {
@@ -147,7 +152,7 @@
 	_fixedCellHeight = fixedCellHeight;
 	if (fixedCellHeight != 0) {
 		[_backView mas_remakeConstraints:^(MASConstraintMaker *make) {
-			make.edges.mas_equalTo(UIEdgeInsetsMake(10, 20, 10, 20));
+			make.edges.mas_equalTo(UIEdgeInsetsMake(10, 15, 10, 15));
 			make.height.mas_equalTo(fixedCellHeight);
 		}];
 	}

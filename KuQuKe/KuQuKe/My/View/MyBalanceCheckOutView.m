@@ -55,7 +55,7 @@
 			[view mas_makeConstraints:^(MASConstraintMaker *make) {
 				make.centerX.mas_equalTo(self.mas_centerX);
 				make.centerY.mas_equalTo(self.mas_centerY).offset(-40);
-				make.size.mas_equalTo(CGSizeMake(250, 217));
+				make.size.mas_equalTo(CGSizeMake(250, 187));//217去掉按钮剩下187
 			}];
 			view;
 		});
@@ -91,26 +91,27 @@
 			[label mas_makeConstraints:^(MASConstraintMaker *make) {
 				make.centerX.mas_equalTo(whiteBackView.mas_centerX);
 				make.top.mas_equalTo(priceLabel.mas_bottom).offset(7);
+        make.bottom.mas_equalTo(whiteBackView.mas_bottom).offset(-7);
 			}];
 			label;
 		});
 		QMLabelFontColorText(msgLabel, @"可用余额", QMTextColor, 13);
 
-		UIButton *checkOutBtn = ({
-			UIButton *button = [[UIButton alloc] init];
-			[whiteBackView addSubview:button];
-			button.tag = 1;
-			[button setBackgroundColor:QMHexColor(@"#75E69D") forState:UIControlStateNormal];
-			QMSetButton(button, @"余额提现", 13, nil, UIColor.whiteColor, UIControlStateNormal);
-			QMViewBorderRadius(button, 21.5, 0, QMTextColor);
-			[button mas_makeConstraints:^(MASConstraintMaker *make) {
-				make.centerX.mas_equalTo(whiteBackView.mas_centerX);
-				make.size.mas_equalTo(CGSizeMake(200,43));
-				make.bottom.mas_equalTo(whiteBackView.mas_bottom).offset(-7);
-			}];
-			button;
-		});
-		[checkOutBtn addTarget:self action:@selector(AlertViewbuttonClick:) forControlEvents:UIControlEventTouchUpInside];
+//    UIButton *checkOutBtn = ({
+//      UIButton *button = [[UIButton alloc] init];
+//      [whiteBackView addSubview:button];
+//      button.tag = 1;
+//      [button setBackgroundColor:QMHexColor(@"#75E69D") forState:UIControlStateNormal];
+//      QMSetButton(button, @"余额提现", 13, nil, UIColor.whiteColor, UIControlStateNormal);
+//      QMViewBorderRadius(button, 21.5, 0, QMTextColor);
+//      [button mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.centerX.mas_equalTo(whiteBackView.mas_centerX);
+//        make.size.mas_equalTo(CGSizeMake(200,43));
+//        make.bottom.mas_equalTo(whiteBackView.mas_bottom).offset(-7);
+//      }];
+//      button;
+//    });
+//    [checkOutBtn addTarget:self action:@selector(AlertViewbuttonClick:) forControlEvents:UIControlEventTouchUpInside];
 
 		NSArray *imgaRRAY = @[@"s01",@"s07"];
 		NSMutableArray *buttonArray = [[NSMutableArray alloc] init];
@@ -120,7 +121,7 @@
 				[_backView addSubview:button];
 				button.tag = i + 2;
 				button.imageView.contentMode = UIViewContentModeScaleAspectFit;
-				QMViewBorderRadius(button, 26.5, 0, DQMMainColor);
+				QMViewBorderRadius(button, 38, 0, DQMMainColor);
 				[button setImage:[UIImage imageNamed:imgaRRAY[i]] forState:UIControlStateNormal];
 				[button addTarget:self action:@selector(AlertViewbuttonClick:) forControlEvents:UIControlEventTouchUpInside];
 				
@@ -128,10 +129,10 @@
 			});
 			[buttonArray addObject: button];
 		}
-		[buttonArray mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedItemLength:53 leadSpacing:(kScreenWidth-106)/3 tailSpacing:(kScreenWidth-106)/3];
+		[buttonArray mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedItemLength:76 leadSpacing:(kScreenWidth-152)/3 tailSpacing:(kScreenWidth-152)/3];
 		[buttonArray mas_makeConstraints:^(MASConstraintMaker *make) {
 			make.top.mas_equalTo(whiteBackView.mas_bottom).offset(70);
-			make.height.mas_equalTo(53);
+			make.height.mas_equalTo(76);
 		}];
 		
 		

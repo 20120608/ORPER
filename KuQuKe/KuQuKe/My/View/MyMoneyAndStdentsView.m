@@ -37,12 +37,12 @@
 				[backView addSubview:label];
 				label.textAlignment = NSTextAlignmentCenter;
 				label.userInteractionEnabled = NO;
-				QMLabelFontColorText(label, @"说明文字", QMTextColor, 12);
+				QMLabelFontColorText(label, @"说明文字", QMTextColor, 14);
 				[label mas_makeConstraints:^(MASConstraintMaker *make) {
 					make.left.right.mas_equalTo(0);
 					make.bottom.mas_equalTo(backView.mas_bottom).offset(-10);
 					make.centerX.mas_equalTo(backView.mas_centerX);
-					make.height.mas_equalTo(12);
+					make.height.mas_equalTo(14);
 				}];
 				label;
 			});
@@ -52,12 +52,12 @@
 				[backView addSubview:label];
 				label.textAlignment = NSTextAlignmentCenter;
 				label.userInteractionEnabled = NO;
-				QMLabelFontColorText(label, @"0.00", DQMMainColor, 15);
+				QMLabelFontColorText(label, @"0.00", DQMMainColor, 18);
 				[label mas_makeConstraints:^(MASConstraintMaker *make) {
 					make.left.right.mas_equalTo(0);
 					make.bottom.mas_equalTo(msgLabel.mas_top).offset(-6);
 					make.centerX.mas_equalTo(backView.mas_centerX);
-					make.height.mas_equalTo(15);
+					make.height.mas_equalTo(18);
 				}];
 				label;
 			});

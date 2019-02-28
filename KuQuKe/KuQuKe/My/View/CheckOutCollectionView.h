@@ -18,6 +18,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 @end
+
+typedef NS_ENUM(NSInteger, CheckOutThreePartType) {
+  CheckOutThreePartTypeWeChat,
+  CheckOutThreePartTypeAliPay,
+};
+
+
 @interface CheckOutCollectionView : UIView
 
 /** 代理 */
@@ -26,6 +33,8 @@ NS_ASSUME_NONNULL_BEGIN
 /** 我的余额 */
 @property(nonatomic,copy) NSString          *myBalane;
 
+/** 类型 */
+@property(nonatomic,assign) CheckOutThreePartType          checkOutThreePartType;
 
 
 @end

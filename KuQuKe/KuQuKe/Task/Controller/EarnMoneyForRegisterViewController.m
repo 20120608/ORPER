@@ -70,6 +70,7 @@
 
 #pragma mark - UI
 - (void)createUI {
+  self.scrollView.hidden = true;
   
   EarnMoneyForSubLabelView *subTagView = ({
     EarnMoneyForSubLabelView *view = [[EarnMoneyForSubLabelView alloc] init];
@@ -115,6 +116,7 @@
     preTaskView.imagesUrlStringArray = [[NSMutableArray alloc] initWithArray:x.exp_img];
     subTagView.earnModel = x;
     preTaskView.earnModel = x;
+    self.scrollView.hidden = false;//打开
   }];
 }
 
@@ -164,7 +166,7 @@
     HXPhotoModel *hxPhotoModel = imageArray[idx];
     [KuQuKeNetWorkManager POST_taskImgUploadParams:[NSDictionary new] uploadWithImage:hxPhotoModel.previewPhoto filename:nil name:@"file" View:self.view success:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
       
-      [imageUrlArray addObject:dataDic[@"data"][@"real_img_url"]];
+      [imageUrlArray addObject:dataDic[@"data"][@"img_url"]];
       if (imageUrlArray.count == imageArray.count) {
         //图片都传好后保存
         [self saveUserMessageToAudit:imageUrlArray code:code phone:phone name:name];

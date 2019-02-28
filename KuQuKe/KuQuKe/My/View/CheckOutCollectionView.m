@@ -179,9 +179,6 @@
     }];
 		
 		
-	
-    
-    
 		UIButton *checkOutButton = ({
 			UIButton *button = [[UIButton alloc] init];
 			[self addSubview:button];
@@ -209,8 +206,16 @@
 			}];
 			label;
 		});
-    QMLabelFontColorText(msgLabel, @"提现到支付宝,审核后立即到账;\n所产生的手续费由学生赚官方承担。", QMSubTextColor, 14);
+    QMLabelFontColorText(msgLabel, @"审核后立即到账;\n所产生的手续费由官方承担。", QMSubTextColor, 14);
 
+    [[RACObserve(self, checkOutThreePartType) skip:1] subscribeNext:^(id  _Nullable x) {
+      CheckOutThreePartType type = [x intValue];
+      QMSetImage(icon1, type == CheckOutThreePartTypeWeChat ? @"s01" : @"支付宝");
+      alipayTF.placeholder = type == CheckOutThreePartTypeWeChat ? @"请输入微信账号" : @"请输入支付宝账号";
+      alpayCodeTF.placeholder = type == CheckOutThreePartTypeWeChat ? @"请输入微信认证的姓名" : @"请输入支付宝认证的姓名";
+      NSString *string = [NSString stringWithFormat:@"提现到%@,审核后立即到账;\n所产生的手续费由官方承担。", type == CheckOutThreePartTypeWeChat ? @"微信" : @"支付宝"];
+      QMLabelFontColorText(msgLabel, string, QMSubTextColor, 14);
+    }];
 		
 	}
 	return self;

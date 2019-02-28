@@ -87,7 +87,8 @@
         default://不成功,也不是登入过期
         {
           if (showError) {
-            [view makeToast:dataDic[@"msg"]];
+//            [view makeToast:dataDic[@"msg"]];
+            [view makeToast:@"数据错误,请重试"];
           }
           unknown(reqsModel,dataDic);
         }

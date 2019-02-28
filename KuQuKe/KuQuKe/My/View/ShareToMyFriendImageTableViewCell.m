@@ -112,7 +112,9 @@
 
 
 -(void)buttonClick:(QMButton *)sender {
-	
+  if (_copyCodeSuccess) {
+    _copyCodeSuccess();
+  }
 }
 
 @end

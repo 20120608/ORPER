@@ -8,10 +8,14 @@
 
 //兑换支付宝
 #import "DQMBaseViewController.h"
+#import "CheckOutCollectionView.h"//选择金额
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface CheckOutAliPayViewController : DQMBaseViewController
+
+/** 类型 */
+@property(nonatomic,assign) CheckOutThreePartType checkOutThreePartType;
 
 @end
 

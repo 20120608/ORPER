@@ -178,10 +178,21 @@
  token	string	必需	无	确定来访者身份
  id	int	必需	1	任务id
  uid	int	必需	无	用户id
- 
  */
 + (QMURLSessionTask *)POST_taskStartParams:(NSDictionary *)params View:(UIView *)view success:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))success unknown:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))unknown failure:(void(^)(NSError *error))failure;
 
+
+/**
+ 更新用户信息
+ post kuquke.yiyunrj.xyz/User/updateUserInfo
+ 
+ 参数  类型  必需/可选  默认  描述
+ time  int  必需  无  时间戳(用于判断请求是否超时)
+ token  string  必需  无  确定来访者身份
+ type  int  必需  1  识别字段，提交对应修改
+ data  string  必需  无  需要修改的值
+ */
++ (QMURLSessionTask *)POST_updateUserInfoParams:(NSDictionary *)params View:(UIView *)view success:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))success unknown:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))unknown failure:(void(^)(NSError *error))failure;
 
 
 @end

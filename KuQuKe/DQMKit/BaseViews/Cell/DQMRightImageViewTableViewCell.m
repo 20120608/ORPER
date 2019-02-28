@@ -175,7 +175,7 @@
 	else if ([model.subImageUrl length] > 1) {
 		self.iconImageView.hidden = false;
 		self.subTitleLabel.text = @"";
-		[self.iconImageView qm_setImageUrlString:model.subImageUrl];
+		[self.iconImageView qm_setImageUrlString:GET_USERDEFAULT(HEADPIC)];
 	}
 }
 @end
@@ -190,7 +190,6 @@
   model.subTitle = subTitle;
   model.subImageUrl = subImageUrl;
   return model;
-  
 }
 
 

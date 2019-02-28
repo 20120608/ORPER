@@ -22,9 +22,10 @@
 #import "RACMVVMListViewController.h"//解释rac+mvvm的界面
 #import "CheckInvitationView.h"//绑定界面
 #import "AboutUSViewController.h"//关于酷趣客
+#import "MyBalanceCheckOutView.h"//提现弹窗
+#import "CheckOutAliPayViewController.h"//提现功能页面
 
-
-@interface HomeViewController () <DQMHorizontalViewScrollerViewDataSource,AvgButtonMenuTableViewCellDelegate,CheckInvitationViewDelegate>
+@interface HomeViewController () <DQMHorizontalViewScrollerViewDataSource,AvgButtonMenuTableViewCellDelegate,CheckInvitationViewDelegate,MyBalanceCheckOutViewDelegate>
 {
 	UIStatusBarStyle _barStyle;
 }
@@ -63,6 +64,10 @@
 	
   [self loadData];
 
+  
+//  测试
+//  RACMVVMListViewController *vc = [[RACMVVMListViewController alloc] initWithTitle:@"RAC&&MVVM"];
+//  [weakself.navigationController pushViewController:vc animated:true];
 }
 
 #pragma mark - UI
@@ -79,7 +84,7 @@
 	self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
 	[self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
 		make.left.right.mas_equalTo(0);
-		make.top.mas_equalTo(_advScrollView.mas_bottom);
+		make.top.mas_equalTo(_advScrollView.mas_bottom).offset(5);
 		make.bottom.mas_equalTo(self.view.mas_bottom).offset(-TAB_BAR_HEIGHT);
 	}];
 	
@@ -115,10 +120,11 @@
   QMWeak(self);
 	UIButton *withdrawMoneyButton = [UIButton initWithFrame:CGRectZero buttonTitle:@"提现" normalColor:DQMMainColor cornerRadius:AdaptedWidth(11) doneBlock:^(UIButton *sender) {
 		NSLog(@"提现");
-    
-    RACMVVMListViewController *vc = [[RACMVVMListViewController alloc] initWithTitle:@"RAC&&MVVM"];
-    [weakself.navigationController pushViewController:vc animated:true];
-    
+    //提现
+    MyBalanceCheckOutView *checkOutView = [[MyBalanceCheckOutView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
+    [[UIApplication sharedApplication].keyWindow addSubview:checkOutView];
+    checkOutView.delegete = self;
+    [checkOutView showAnimation];
 	}];
 	
 	[navi addSubview:withdrawMoneyButton];
@@ -238,7 +244,18 @@
   NSLog(@"点击了弹出QQ群信息页面");
 }
 
-
+- (void)MyBalanceCheckOutView:(MyBalanceCheckOutView *)checkOutView didSelected:(NSInteger)index {
+  if (index == 2) {
+    CheckOutAliPayViewController *vc = [[CheckOutAliPayViewController alloc] initWithTitle:@"兑换微信"];
+    vc.checkOutThreePartType = CheckOutThreePartTypeWeChat;
+    [self.navigationController pushViewController:vc animated:true];
+  }
+  else if (index == 3) {
+    CheckOutAliPayViewController *vc = [[CheckOutAliPayViewController alloc] initWithTitle:@"兑换支付宝"];
+    vc.checkOutThreePartType = CheckOutThreePartTypeAliPay;
+    [self.navigationController pushViewController:vc animated:true];
+  }
+}
 
 
 #pragma mark - tableView DataSource

@@ -35,6 +35,8 @@
 
 #pragma mark - createUI
 - (void)createUI {
+  self.tableView.backgroundColor = UIColor.whiteColor;
+  self.tableView.tableFooterView = [UIView new];
   //重置tableView
   self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
   [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {

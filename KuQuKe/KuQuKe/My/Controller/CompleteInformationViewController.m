@@ -48,10 +48,12 @@
     userModel.students = @"3";
     userModel.allowPushNotification = @"1";
     
-    userModel.weChat = @"QM22231213";
+    userModel.aliPay = @"18659740507";
+    userModel.email = @"94606@qq.com";
+    userModel.weChat = @"QM31213";
     userModel.nickName = @"测试昵称";
-    userModel.QQ = @"946067151";
-    userModel.phone = @"18659740507";
+    userModel.QQ = @"946061";
+    userModel.phone = @"186597507";
     userModel.job = @"工作";
     userModel.birthday = @"生日";
     userModel.sex = @"0";
@@ -86,13 +88,13 @@
   
   
   self.sectionsArray = [[NSMutableArray alloc] init];
-  NSArray *titleArray = @[@[@"上传头像"],@[@"昵称",@"性别",@"出生日期"],@[@"职业",@"微信号",@"QQ",@"手机号"]];
-  NSArray *subtitleArray = @[@[@""],@[_userModel.nickName,_userModel.sex,_userModel.birthday],@[_userModel.job,_userModel.weChat,_userModel.QQ,_userModel.phone]];
-  NSArray *subImageArray = @[@[_userModel.userface],@[@"",@"",@""],@[@"",@"",@"",@""]];
+  NSArray *titleArray = @[@[@"上传头像"],@[@"昵称",@"性别",@"出生日期"],@[@"职业",@"微信号",@"支付宝号",@"邮箱",@"QQ",@"手机号"]];
+  NSArray *subtitleArray = @[@[@""],@[_userModel.nickName,_userModel.sex,_userModel.birthday],@[_userModel.job,_userModel.weChat,_userModel.aliPay,_userModel.email,_userModel.QQ,_userModel.phone]];
+  NSArray *subImageArray = @[@[_userModel.userface],@[@"",@"",@""],@[@"",@"",@"",@"",@"",@""]];
   //对应跳转的界面 0 为不跳转
-  NSArray *destVcArray = @[@[[UIViewController class]],@[[SettingUserInfoWithInputViewController class],[SettingUserInfoWithTableViewController class],[UIViewController class]],@[[SettingUserInfoWithTableViewController class],[SettingUserInfoWithInputViewController class],[SettingUserInfoWithInputViewController class],[SettingUserInfoWithInputViewController class]]];
+  NSArray *destVcArray = @[@[[UIViewController class]],@[[SettingUserInfoWithInputViewController class],[SettingUserInfoWithTableViewController class],[UIViewController class]],@[[SettingUserInfoWithTableViewController class],[SettingUserInfoWithInputViewController class],[SettingUserInfoWithInputViewController class],[SettingUserInfoWithInputViewController class],[SettingUserInfoWithInputViewController class],[SettingUserInfoWithInputViewController class]]];
   //样式的数组
-  NSArray *viewTpyeArray = @[@[@(0)],@[@(SettingInputStyleNickName),@(0),@(0)],@[@(SettingTableStyleJob),@(SettingInputStyleWeChat),@(SettingInputStyleQQ),@(SettingInputStylePhone)]];
+  NSArray *viewTpyeArray = @[@[@(0)],@[@(SettingInputStyleNickName),@(0),@(0)],@[@(SettingTableStyleJob),@(SettingInputStyleWeChat),@(SettingInputStyleAliPay),@(SettingInputStyleEmail),@(SettingInputStyleQQ),@(SettingInputStylePhone)]];
   
   for (int i = 0; i < 3; i++) {
     NSMutableArray<DQMRightImageViewTableViewCellModel *> *itemArray = [[NSMutableArray alloc] init];
@@ -123,12 +125,12 @@
 #pragma mark - tableView dataSource
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-  return [_sectionsArray count] + 1;
+  return [_sectionsArray count];
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
   //返回1 3 1 1
-  return section == 1 ? 3 : section == 2 ? 4 : 1;
+  return section == 1 ? 3 : section == 2 ? 6 : 1;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
@@ -207,20 +209,23 @@
 	  //性别
 	  UIAlertController *alertC = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
 	  UIAlertAction *cancleAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-		  
-	  }];
+
+    }];
 	  UIAlertAction *manAction = [UIAlertAction actionWithTitle:@"男" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-		  
+      [self saveUserInfoWithType:@"2" Value:@"1"];
 	  }];
 	  UIAlertAction *wumanAction = [UIAlertAction actionWithTitle:@"女" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-		  
+		  [self saveUserInfoWithType:@"2" Value:@"2"];
 	  }];
+    UIAlertAction *nillAction = [UIAlertAction actionWithTitle:@"保密" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+      [self saveUserInfoWithType:@"2" Value:@"0"];
+    }];
 	  
 	  [alertC addAction:cancleAction];
 	  [alertC addAction:manAction];
 	  [alertC addAction:wumanAction];
+    [alertC addAction:nillAction];
 	  [self presentViewController:alertC animated:true completion:^{
-		  
 	  }];
   }
   
@@ -262,9 +267,31 @@
 }
 
 
+/**
+ 保存到后台
+ */
+- (void)saveUserInfoWithType:(NSString *)type Value:(NSString *)value {
+  NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+  [params setValue:type forKey:@"type"];
+  [params setValue:value forKey:@"data"];
+
+  [KuQuKeNetWorkManager POST_updateUserInfoParams:params View:self.view success:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
+    
+    [self.view makeToast:@"修改成功"];
+    
+  } unknown:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
+    
+  } failure:^(NSError *error) {
+    
+  }];
+}
+
 #pragma mark - PGDatePickerDelegate
 - (void)datePicker:(PGDatePicker *)datePicker didSelectDate:(NSDateComponents *)dateComponents {
-	NSLog(@"选中的日期 dateComponents = %@", dateComponents);
+  NSTimeInterval time=[dateComponents.date timeIntervalSince1970]*10;// *1000 是精确到毫秒，不乘就是精确到秒
+  NSString *timeString = [NSString stringWithFormat:@"%.0f", time];
+  NSLog(@"选中的日期 dateComponents = %@   %@", dateComponents,timeString);
+   [self saveUserInfoWithType:@"3" Value:timeString];
 }
 
 
@@ -339,6 +366,23 @@
 
 -(void)getThePicture:(NSArray<HXPhotoModel *> *)imagesArray {
 	self.faceImage = imagesArray[0].tempImage;
+  
+  //上传图片到服务器
+  [KuQuKeNetWorkManager POST_taskImgUploadParams:[NSDictionary new] uploadWithImage:self.faceImage filename:nil name:@"file" View:self.view success:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
+    
+    //图片都传好后保存
+    dispatch_async(dispatch_get_main_queue(), ^{
+      NSString *urlString = dataDic[@"data"][@"img_url"];
+      [kUserDefaults setValue:urlString forKey:@"HEADPIC"];//保存
+      [self saveUserInfoWithType:@"8" Value:urlString];
+    });
+    
+  } unknown:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
+    
+  } failure:^(NSError *error) {
+    
+  } showHUD:false networkstatus:false showError:true checkLoginStatus:false];
+  
 }
 
 

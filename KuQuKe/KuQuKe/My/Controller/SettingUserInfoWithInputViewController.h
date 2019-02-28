@@ -15,15 +15,15 @@ typedef NS_ENUM(NSInteger, SettingInputStyle) {
   SettingInputStyleBirthday,//生日
   SettingInputStyleWeChat,//微信
   SettingInputStyleQQ,//QQ
-  SettingInputStylePhone//电话
+  SettingInputStylePhone,//电话
+  SettingInputStyleAliPay,//支付宝
+  SettingInputStyleEmail,//邮箱
 };
 
 @interface SettingUserInfoWithInputViewController : DQMBaseViewController
 
 /** 类型 */
 @property(nonatomic,assign) SettingInputStyle          settingInputStyle;
-
-
 
 
 @end

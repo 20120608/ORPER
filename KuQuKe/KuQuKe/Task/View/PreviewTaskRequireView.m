@@ -49,14 +49,14 @@
       make.left.mas_equalTo(self.mas_left);
       make.right.mas_equalTo(self.mas_right);
       make.width.mas_equalTo(kScreenWidth);
-      make.top.mas_equalTo(self.mas_top).offset(20);
+      make.top.mas_equalTo(self.mas_top).offset(40);
     }];
     
     /** 截止时间或开始时间 */
     [self.timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-      make.left.mas_equalTo(self.mas_left);
-      make.right.mas_equalTo(self.mas_right);
-      make.top.mas_equalTo(_priceLabel.mas_bottom).offset(10);
+      make.centerX.mas_equalTo(self.mas_centerX);
+      make.height.mas_equalTo(30);
+      make.top.mas_equalTo(_priceLabel.mas_bottom).offset(15);
     }];
     
     /** 图标 */
@@ -122,10 +122,11 @@
       @strongify(self)
       
       /** 价格 */
-      self.priceLabel.text = [NSString stringWithFormat:@"+%@元",x.price];
+      NSString *price = [NSString stringWithFormat:@"+%@元",x.price];
+      self.priceLabel.attributedText = [QMSGeneralHelpers changeStringToMutableAttributedStringTitle:price font:KQMFont(40) rangeOfFont:NSMakeRange(0, price.length-1) color:QMPriceColor rangeOfColor:NSMakeRange(0, price.length-1)] ;
       
       /** 截止时间或开始时间 */
-      self.timeLabel.text = [NSString stringWithFormat:@"有效时间:%@分钟",x.dealy_time];
+      self.timeLabel.text = [NSString stringWithFormat:@"  有效时间:%@分钟  ",x.dealy_time];
       
       /** 图标 */
       [self.iconImageView qm_setImageUrlString:x.appicon_url];
@@ -136,12 +137,44 @@
       /** 任务描述 */
       __block NSString *stempString;
       [x.step_info enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        stempString = [NSString stringWithFormat:@"%@\n%@",[stempString length]==0 ? @"":stempString, obj];
+        stempString = [NSString stringWithFormat:@"%@\n\n%@",[stempString length]==0 ? @"":stempString, obj];
       }];
       NSString *content = [NSString stringWithFormat:@"%@%@",x.desc,stempString];
       QMLabelFontColorText(self.contentLabel, content, QMTextColor, 13);
-    }];
+      
+      
+      //是否可以点击开始按钮  join_status  5是未参与 0是已经开始任务了 1是已经提交任务审核了 2是审核通过 3是审核不通过 6是过时失效了
+      [self.beginButton setEnabled:false];
+      [self.beginButton setBackgroundColor:QMBackColor forState:UIControlStateNormal];
 
+      switch ([x.join_info[@"join_status"] intValue]) {
+          case 5:
+          [self.beginButton setEnabled:true];
+          [self.beginButton setBackgroundColor:QMBlueColor forState:UIControlStateNormal];
+          break;
+          case 0:
+          [self.beginButton setTitle:@"任务进行中" forState:UIControlStateNormal];
+          break;
+          case 1:
+          [self.beginButton setTitle:@"审核中" forState:UIControlStateNormal];
+          break;
+          case 2:
+          [self.beginButton setTitle:@"审核已通过" forState:UIControlStateNormal];
+          break;
+          case 3:
+          [self.beginButton setTitle:@"审核不通过" forState:UIControlStateNormal];
+          [self.beginButton setBackgroundColor:QMPriceColor forState:UIControlStateNormal];
+
+          break;
+          case 6:
+          [self.beginButton setTitle:@"任务超时失效" forState:UIControlStateNormal];
+          [self.beginButton setBackgroundColor:QMPriceColor forState:UIControlStateNormal];
+          break;
+        default:
+          break;
+      }
+    }];
+    
   }
   return self;
 }
@@ -259,7 +292,7 @@
       UILabel *label = [[UILabel alloc] init];
       [self addSubview:label];
       label.textAlignment = NSTextAlignmentCenter;
-      QMLabelFontColorText(label, @"+7.50元", QMPriceColor, 18);
+      QMLabelFontColorText(label, @"+7.50元", QMPriceColor, 20);
       label;
     });
   }
@@ -273,7 +306,9 @@
       UILabel *label = [[UILabel alloc] init];
       [self addSubview:label];
       label.textAlignment = NSTextAlignmentCenter;
-      QMLabelFontColorText(label, @"2019年01月09日  11:42:57", QMSubTextColor, 12);
+      QMViewBorderRadius(label, 8, 0, DQMMainColor);
+      label.backgroundColor = QMBackColor;
+      QMLabelFontColorText(label, @"2019年01月09日  11:42:57", QMSubTextColor, 15);
       label;
     });
   }
@@ -300,7 +335,7 @@
       UILabel *label = [[UILabel alloc] init];
       [self addSubview:label];
       label.textAlignment = NSTextAlignmentCenter;
-      QMLabelFontColorText(label, @"招商银行", QMTextColor, 14);
+      QMLabelFontColorText(label, @"招商银行", QMTextColor, 16);
       label;
     });
   }

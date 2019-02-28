@@ -7,7 +7,6 @@
 //
 
 #import "CheckOutAliPayViewController.h"
-#import "CheckOutCollectionView.h"//选择金额
 
 @interface CheckOutAliPayViewController () <CheckOutCollectionViewDelegate>
 
@@ -23,20 +22,19 @@
   self.withdrawalMoney = CheckOutMoneyArray[0];
 	self.view.backgroundColor = QMBackColor;
 	
+}
+
+- (void)setCheckOutThreePartType:(CheckOutThreePartType)checkOutThreePartType {
+  _checkOutThreePartType = checkOutThreePartType;
   
-	
-	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-		
-		[self createUI];
-		
-	});
-	
+  [self createUI];
 }
 
 - (void)createUI {
 	
 	CheckOutCollectionView *moneyView = [[CheckOutCollectionView alloc] initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT+20, kScreenWidth, 360)];
 	moneyView.delegate = self;
+  moneyView.checkOutThreePartType = _checkOutThreePartType;
 	[self.view addSubview:moneyView];
 	
 }
@@ -66,7 +64,7 @@
 	myBalanceLabel.font = kQmFont(13);
 	myBalanceLabel.textColor = UIColor.whiteColor;
 	myBalanceLabel.textAlignment = NSTextAlignmentRight;
-	myBalanceLabel.text = @"余额:00.00元";
+	myBalanceLabel.text = @"余额:00.00元  ";
 	return myBalanceLabel;
 }
 

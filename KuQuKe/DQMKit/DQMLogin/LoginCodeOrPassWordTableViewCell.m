@@ -79,11 +79,11 @@
       UIView *view = [[UIView alloc] init];
       [_backView addSubview: view];
       view.backgroundColor = UIColor.whiteColor;
-      view.layer.shadowOffset =CGSizeMake(2,2);
-      view.layer.shadowColor = DQMMainColor.CGColor;
-      view.layer.cornerRadius = 6;
-      view.layer.shadowRadius = 6;
-      view.layer.shadowOpacity = 0.3;
+      view.layer.shadowOffset =CGSizeMake(1,2);
+      view.layer.shadowColor = QMHexColor(@"c6c6c6").CGColor;
+      view.layer.shadowRadius = 2;
+      view.layer.shadowOpacity = 1;
+      view.layer.cornerRadius = 5;
       [view mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(whiteView);
       }];

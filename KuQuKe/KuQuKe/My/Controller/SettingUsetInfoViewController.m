@@ -61,7 +61,7 @@
 #pragma mark - UITableViewDelegate
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-  return 4;
+  return 3;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -87,7 +87,7 @@
   if (indexPath.section == 0) {
     
     DQMRightImageViewTableViewCell *cell = [DQMRightImageViewTableViewCell cellWithTableView:tableView indexPath:indexPath andFixedHeightIfNeed:90 showArrow:true];
-    DQMRightImageViewTableViewCellModel *model = [DQMRightImageViewTableViewCellModel initWithtitle:@"完善资料" andSubTitle:@"" andsubImageUrl:@"https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=542856769,437986106&fm=173&app=25&f=JPEG?w=550&h=365&s=F59B1DD50C581AC24EB1113C03008073"];
+    DQMRightImageViewTableViewCellModel *model = [DQMRightImageViewTableViewCellModel initWithtitle:@"完善资料" andSubTitle:@"" andsubImageUrl:GET_USERDEFAULT(HEADPIC)];
     cell.model = model;
     return cell;
     
@@ -142,11 +142,22 @@
     CompleteInformationViewController *vc = [[CompleteInformationViewController alloc] initWithTitle:@"个人资料"];
     [self.navigationController pushViewController:vc animated:true];
   }
+  if (indexPath.section == 1 && indexPath.row == 1) {
+    [self.view makeToast:@"清除缓存成功"];
+  }
+  else if (indexPath.section == 1 && indexPath.row == 2) {
+    [self.view makeToast:@"暂无检测更新功能"];
+  }
 	
 	if (indexPath.section == 2) {
 		AboutUSViewController *vc = [[AboutUSViewController alloc] init];
 		[self.navigationController pushViewController:vc animated:true];
 	}
+  
+  if (indexPath.section == 3) {
+    
+    [self.view makeToast:@"暂不能退出账号"];
+  }
   
 }
 

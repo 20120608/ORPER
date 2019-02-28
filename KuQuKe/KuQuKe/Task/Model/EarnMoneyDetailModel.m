@@ -16,7 +16,7 @@
 	NSString *string;
 	switch ([self.join_info[@"join_status"] intValue]) {
 		case 0:
-			string = @"已经开始任务了";
+			string = @"任务进行中";
 			break;
 		case 1:
 			string = @"已经提交任务审核了";
