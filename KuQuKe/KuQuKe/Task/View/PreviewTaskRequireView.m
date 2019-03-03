@@ -139,7 +139,7 @@
       [x.step_info enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         stempString = [NSString stringWithFormat:@"%@\n\n%@",[stempString length]==0 ? @"":stempString, obj];
       }];
-      NSString *content = [NSString stringWithFormat:@"%@%@",x.desc,stempString];
+      NSString *content = [NSString stringWithFormat:@"须知:    %@%@",x.desc,stempString];
       QMLabelFontColorText(self.contentLabel, content, QMTextColor, 13);
       
       

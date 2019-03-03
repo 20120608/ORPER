@@ -13,7 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MessageContentViewController : DQMBaseViewController
 
-
+/** 内容 */
+@property(nonatomic,copy) NSDictionary          *dataDic;
 
 @end
 

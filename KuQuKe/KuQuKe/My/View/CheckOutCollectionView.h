@@ -14,8 +14,9 @@ NS_ASSUME_NONNULL_BEGIN
 @class CheckOutCollectionView;
 @protocol CheckOutCollectionViewDelegate <NSObject>
 
--(void)CheckOutCollectionView:(CheckOutCollectionView *)checkView didSelectButton:(UIButton *)button;
+- (void)CheckOutCollectionView:(CheckOutCollectionView *)checkView didSelectButton:(UIButton *)button;
 
+- (void)CheckOutCollectionView:(CheckOutCollectionView *)checkView didSelectSure:(UIButton *)button DataDictionary:(NSMutableDictionary *)dataDictionary;
 
 @end
 
@@ -35,6 +36,9 @@ typedef NS_ENUM(NSInteger, CheckOutThreePartType) {
 
 /** 类型 */
 @property(nonatomic,assign) CheckOutThreePartType          checkOutThreePartType;
+
+@property(nonatomic,strong) NSArray *moneyArray; /* 可选的数组 */
+
 
 
 @end

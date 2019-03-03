@@ -7,13 +7,11 @@
 //
 
 #import "MessageCenterViewController.h"
-#import "DQMImageTitleSubTitleAndArrowTableViewCell.h" //消息中心的cell
-#import "MessageContentViewController.h"//消息详情
+#import "MessageCenterViewModel.h"//视图模型
 
 @interface MessageCenterViewController ()
 
-/** 数据源 */
-@property(nonatomic,strong) NSMutableArray          *listDataArray;
+@property (nonatomic, strong) MessageCenterViewModel *racViewModel;
 
 @end
 
@@ -21,54 +19,71 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-  
-  //模拟请求
-  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-    
-    self.listDataArray = [[NSMutableArray alloc] initWithArray:@[@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@""]];
-    
-    [UIView transitionWithView:self.tableView duration:0.35 options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
-      [self.tableView reloadData];
-    } completion:^(BOOL finished) {
-      
-    }];
-  });
-  
+	
+	
+	//UI
+	[self createUI];
+	
+	//绑定
+	[self setupBind];
+	
+	//进入界面首次下拉刷新
+	[self.tableView.mj_header beginRefreshing];
+}
+
+#pragma mark - createUI
+- (void)createUI {
+	QMWeak(self);
+	[self.view addSubview:self.tableView];
+	//下拉刷新
+	self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+		[weakself.racViewModel.requestVideoListCommand execute:@{@"headerRefresh":@"1"}];
+	}];
+	//下拉加载更多
+	self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+		[weakself.racViewModel.requestVideoListCommand execute:@{@"headerRefresh":@"0"}];
+	}];
 }
 
 
-#pragma mark - tableView DataSource
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-  return 1;
-}
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-  return [_listDataArray count];
-}
-
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-  //消息中心
-  DQMImageTitleSubTitleAndArrowTableViewCell *cell = [DQMImageTitleSubTitleAndArrowTableViewCell cellWithTableView:tableView indexPath:indexPath andFixedHeightIfNeed:60 showArrow:true];
-  
-  return cell;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-  
-  //信息详情页
-  MessageContentViewController *vc = [[MessageContentViewController alloc] initWithTitle:@"消息详情"];
-  [self.navigationController pushViewController:vc animated:true];
+#pragma mark - Bind UI
+- (void)setupBind{
+	
+	self.racViewModel.currentVC = self;
+	self.tableView.dataSource = self.racViewModel;
+	self.tableView.delegate = self.racViewModel;
+	self.tableView.tableFooterView = [UIView new];
+	
+	//通知方法刷新表视图
+	@weakify(self)
+	[[[NSNotificationCenter defaultCenter] rac_addObserverForName:NotificationName_MessageCenterViewController object:nil] subscribeNext:^(NSNotification * _Nullable x) {
+		@strongify(self)
+		[self resetRefreshView];
+		[UIView transitionWithView:self.tableView duration:0.35 options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
+			[self.tableView reloadData];
+		} completion:^(BOOL finished) {
+			
+		}];
+	}];
 }
 
 
-#pragma mark - load data
--(NSMutableArray *)listDataArray {
-  if (!_listDataArray) {
-    _listDataArray = [[NSMutableArray alloc] init];
-  }
-  return _listDataArray;
+- (void)resetRefreshView{
+	if ([self.tableView.mj_header isRefreshing]) {
+		[self.tableView.mj_header endRefreshing];
+	}
+	if ([self.tableView.mj_footer isRefreshing]) {
+		[self.tableView.mj_footer endRefreshing];
+	}
+}
+
+
+#pragma mark - load
+- (MessageCenterViewModel *)racViewModel{
+	if (!_racViewModel) {
+		_racViewModel = [[MessageCenterViewModel alloc] init];
+	}
+	return _racViewModel;
 }
 
 

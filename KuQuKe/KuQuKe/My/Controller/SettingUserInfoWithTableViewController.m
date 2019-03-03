@@ -57,7 +57,30 @@
 	return 50;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	NSString *jobString = ((StaticListItem *)((self.sections.firstObject.items))[indexPath.row]).title;
+	[self saveUserInfoWithType:@"11" Value:jobString];
+	[kUserDefaults setValue:jobString forKey:JOB];
+}
 
+/**
+ 保存到后台
+ */
+- (void)saveUserInfoWithType:(NSString *)type Value:(NSString *)value {
+	NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+	[params setValue:type forKey:@"type"];
+	[params setValue:value forKey:@"data"];
+	
+	[KuQuKeNetWorkManager POST_updateUserInfoParams:params View:self.view success:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
+		
+		[self.view makeToast:@"修改成功"];
+		
+	} unknown:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
+		
+	} failure:^(NSError *error) {
+		
+	}];
+}
 
 
 #pragma mark - dqm_navibar

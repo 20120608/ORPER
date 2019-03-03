@@ -8,11 +8,11 @@
 
 
 //完善账号
-#import "DQMStaticTableViewController.h"
+#import "DQMTableViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface CompleteAccountViewController : DQMStaticTableViewController
+@interface CompleteAccountViewController : DQMTableViewController
 
 
 

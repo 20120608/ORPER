@@ -55,11 +55,11 @@
       label.hidden = true;
       label.backgroundColor = QMBackColor;
       QMViewBorderRadius(label, 2, 0, QMSubTextColor);
-      QMLabelFontColorText(label, @" 子标签1 ", QMSubTextColor, 14);
+      QMLabelFontColorText(label, @" 子标签1 ", QMSubTextColor, 16);
       [label mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.mas_left).offset(12);
-        make.top.mas_equalTo(_iconImageView.mas_bottom).offset(15);
-        make.height.mas_equalTo(25);
+        make.top.mas_equalTo(_iconImageView.mas_bottom).offset(10);
+        make.height.mas_equalTo(30);
       }];
       label;
     });
@@ -73,8 +73,8 @@
       QMLabelFontColorText(label, @" 子标签2 ", QMSubTextColor, 14);
       [label mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(_subLabel1.mas_right).offset(10);
-        make.top.mas_equalTo(_iconImageView.mas_bottom).offset(15);
-        make.height.mas_equalTo(25);
+        make.top.mas_equalTo(_iconImageView.mas_bottom).offset(10);
+        make.height.mas_equalTo(30);
       }];
       label;
     });
@@ -88,8 +88,8 @@
       QMLabelFontColorText(label, @" 子标签3 ", QMSubTextColor, 14);
       [label mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(_subLabel2.mas_right).offset(10);
-        make.top.mas_equalTo(_iconImageView.mas_bottom).offset(15);
-        make.height.mas_equalTo(25);
+		  make.top.mas_equalTo(_iconImageView.mas_bottom).offset(10);
+		  make.height.mas_equalTo(30);
       }];
       label;
     });
@@ -103,8 +103,8 @@
       QMLabelFontColorText(label, @" 子标签4 ", QMSubTextColor, 14);
       [label mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(_subLabel3.mas_right).offset(10);
-        make.top.mas_equalTo(_iconImageView.mas_bottom).offset(15);
-        make.height.mas_equalTo(25);
+		  make.top.mas_equalTo(_iconImageView.mas_bottom).offset(10);
+		  make.height.mas_equalTo(30);
       }];
       label;
     });

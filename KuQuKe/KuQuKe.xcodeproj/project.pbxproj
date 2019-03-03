@@ -95,6 +95,15 @@
 		55B4995D21EF466F005F31AE /* UserMessageInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4995821EF466F005F31AE /* UserMessageInputView.m */; };
 		55B4996021EF467B005F31AE /* EarnMoneyForRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4995E21EF467B005F31AE /* EarnMoneyForRegisterViewController.m */; };
 		55B4996621F1F948005F31AE /* GameHomeTaskListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4996521F1F948005F31AE /* GameHomeTaskListTableViewCell.m */; };
+		55CBE2E6222BC4EE00BB21C6 /* DQMInputTextFieldTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 55CBE2E5222BC4EE00BB21C6 /* DQMInputTextFieldTableViewCell.m */; };
+		55CBE2EC222BE0BA00BB21C6 /* StudentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 55CBE2EB222BE0BA00BB21C6 /* StudentModel.m */; };
+		55CBE2EF222BE0E100BB21C6 /* StudentListViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 55CBE2EE222BE0E100BB21C6 /* StudentListViewModel.m */; };
+		55CBE2F2222BF11400BB21C6 /* MyInComeViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 55CBE2F1222BF11400BB21C6 /* MyInComeViewModel.m */; };
+		55CBE2F5222BF12700BB21C6 /* MyWithDrawViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 55CBE2F4222BF12700BB21C6 /* MyWithDrawViewModel.m */; };
+		55CBE2F8222BF15500BB21C6 /* MyInComeAndWithDrawModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 55CBE2F7222BF15500BB21C6 /* MyInComeAndWithDrawModel.m */; };
+		55CD2088222B60F60087EE60 /* OnGoingTaskViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 55CD2087222B60F60087EE60 /* OnGoingTaskViewModel.m */; };
+		55CD208F222B69150087EE60 /* MessageCenterViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 55CD208E222B69150087EE60 /* MessageCenterViewModel.m */; };
+		55CD2092222B697E0087EE60 /* MessageCenterListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 55CD2091222B697E0087EE60 /* MessageCenterListModel.m */; };
 		55D1D0D821E22095008ECEE3 /* ZJCalenderMonthTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D1D0C821E22094008ECEE3 /* ZJCalenderMonthTitleView.m */; };
 		55D1D0D921E22095008ECEE3 /* ZJCalenderDayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D1D0C921E22094008ECEE3 /* ZJCalenderDayModel.m */; };
 		55D1D0DA21E22095008ECEE3 /* ZJCalenderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D1D0CC21E22095008ECEE3 /* ZJCalenderCell.m */; };
@@ -344,6 +353,24 @@
 		55B4995F21EF467B005F31AE /* EarnMoneyForRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EarnMoneyForRegisterViewController.h; sourceTree = "<group>"; };
 		55B4996421F1F948005F31AE /* GameHomeTaskListTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameHomeTaskListTableViewCell.h; sourceTree = "<group>"; };
 		55B4996521F1F948005F31AE /* GameHomeTaskListTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameHomeTaskListTableViewCell.m; sourceTree = "<group>"; };
+		55CBE2E4222BC4EE00BB21C6 /* DQMInputTextFieldTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DQMInputTextFieldTableViewCell.h; sourceTree = "<group>"; };
+		55CBE2E5222BC4EE00BB21C6 /* DQMInputTextFieldTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DQMInputTextFieldTableViewCell.m; sourceTree = "<group>"; };
+		55CBE2EA222BE0BA00BB21C6 /* StudentModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StudentModel.h; sourceTree = "<group>"; };
+		55CBE2EB222BE0BA00BB21C6 /* StudentModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StudentModel.m; sourceTree = "<group>"; };
+		55CBE2ED222BE0E100BB21C6 /* StudentListViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StudentListViewModel.h; sourceTree = "<group>"; };
+		55CBE2EE222BE0E100BB21C6 /* StudentListViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StudentListViewModel.m; sourceTree = "<group>"; };
+		55CBE2F0222BF11400BB21C6 /* MyInComeViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyInComeViewModel.h; sourceTree = "<group>"; };
+		55CBE2F1222BF11400BB21C6 /* MyInComeViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyInComeViewModel.m; sourceTree = "<group>"; };
+		55CBE2F3222BF12700BB21C6 /* MyWithDrawViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyWithDrawViewModel.h; sourceTree = "<group>"; };
+		55CBE2F4222BF12700BB21C6 /* MyWithDrawViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyWithDrawViewModel.m; sourceTree = "<group>"; };
+		55CBE2F6222BF15500BB21C6 /* MyInComeAndWithDrawModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyInComeAndWithDrawModel.h; sourceTree = "<group>"; };
+		55CBE2F7222BF15500BB21C6 /* MyInComeAndWithDrawModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyInComeAndWithDrawModel.m; sourceTree = "<group>"; };
+		55CD2086222B60F60087EE60 /* OnGoingTaskViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OnGoingTaskViewModel.h; sourceTree = "<group>"; };
+		55CD2087222B60F60087EE60 /* OnGoingTaskViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OnGoingTaskViewModel.m; sourceTree = "<group>"; };
+		55CD208D222B69150087EE60 /* MessageCenterViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageCenterViewModel.h; sourceTree = "<group>"; };
+		55CD208E222B69150087EE60 /* MessageCenterViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageCenterViewModel.m; sourceTree = "<group>"; };
+		55CD2090222B697E0087EE60 /* MessageCenterListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageCenterListModel.h; sourceTree = "<group>"; };
+		55CD2091222B697E0087EE60 /* MessageCenterListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageCenterListModel.m; sourceTree = "<group>"; };
 		55D1D0C721E22094008ECEE3 /* ZJCalenderConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJCalenderConst.h; sourceTree = "<group>"; };
 		55D1D0C821E22094008ECEE3 /* ZJCalenderMonthTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJCalenderMonthTitleView.m; sourceTree = "<group>"; };
 		55D1D0C921E22094008ECEE3 /* ZJCalenderDayModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJCalenderDayModel.m; sourceTree = "<group>"; };
@@ -537,6 +564,12 @@
 			children = (
 				5537063821E1C064001E49BC /* MyViewController.h */,
 				5537063921E1C064001E49BC /* MyViewController.m */,
+				551A09BC21E983AC00B2FB84 /* MyBalanceOfPaymentsViewController.h */,
+				551A09BD21E983AC00B2FB84 /* MyBalanceOfPaymentsViewController.m */,
+				551A09E421E9AF9B00B2FB84 /* MyInComeViewController.h */,
+				551A09E521E9AF9B00B2FB84 /* MyInComeViewController.m */,
+				551A09E121E9AF6C00B2FB84 /* MyWithdrawViewController.h */,
+				551A09E221E9AF6C00B2FB84 /* MyWithdrawViewController.m */,
 				55542FBF21E61618000F8D45 /* MessageCenterViewController.h */,
 				55542FC121E61618000F8D45 /* MessageCenterViewController.m */,
 				55542FC221E61618000F8D45 /* MessageContentViewController.h */,
@@ -557,12 +590,6 @@
 				551A09BA21E980FF00B2FB84 /* MyStudentsViewController.m */,
 				551A0A1421EB0F8C00B2FB84 /* CheckOutAliPayViewController.h */,
 				551A0A1521EB0F8C00B2FB84 /* CheckOutAliPayViewController.m */,
-				551A09BC21E983AC00B2FB84 /* MyBalanceOfPaymentsViewController.h */,
-				551A09BD21E983AC00B2FB84 /* MyBalanceOfPaymentsViewController.m */,
-				551A09E421E9AF9B00B2FB84 /* MyInComeViewController.h */,
-				551A09E521E9AF9B00B2FB84 /* MyInComeViewController.m */,
-				551A09E121E9AF6C00B2FB84 /* MyWithdrawViewController.h */,
-				551A09E221E9AF6C00B2FB84 /* MyWithdrawViewController.m */,
 				551A09C521E992BE00B2FB84 /* CustomerServiceOfQQViewController.h */,
 				551A09C621E992BE00B2FB84 /* CustomerServiceOfQQViewController.m */,
 				551A09F321E9F31300B2FB84 /* ShareToMyFriendViewController.h */,
@@ -627,6 +654,12 @@
 			children = (
 				55542FD521E646EB000F8D45 /* UserDetailModel.h */,
 				55542FD621E646EB000F8D45 /* UserDetailModel.m */,
+				55CD2090222B697E0087EE60 /* MessageCenterListModel.h */,
+				55CD2091222B697E0087EE60 /* MessageCenterListModel.m */,
+				55CBE2EA222BE0BA00BB21C6 /* StudentModel.h */,
+				55CBE2EB222BE0BA00BB21C6 /* StudentModel.m */,
+				55CBE2F6222BF15500BB21C6 /* MyInComeAndWithDrawModel.h */,
+				55CBE2F7222BF15500BB21C6 /* MyInComeAndWithDrawModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -728,6 +761,8 @@
 				59ADCD0F21E6D10F00A86C1F /* DQMRigthSwitchTableViewCell.m */,
 				551A09BF21E985EC00B2FB84 /* DQMRImageRLabelAndLSubLabelTableViewCell.h */,
 				551A09C021E985EC00B2FB84 /* DQMRImageRLabelAndLSubLabelTableViewCell.m */,
+				55CBE2E4222BC4EE00BB21C6 /* DQMInputTextFieldTableViewCell.h */,
+				55CBE2E5222BC4EE00BB21C6 /* DQMInputTextFieldTableViewCell.m */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -967,6 +1002,7 @@
 		5594A15821E1BC6E009178B3 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				55CD2085222B60DE0087EE60 /* ViewModel */,
 				59698993221D2D2700081FFF /* Model */,
 				5537063F21E1C287001E49BC /* View */,
 				5537063B21E1C262001E49BC /* Controller */,
@@ -977,6 +1013,7 @@
 		5594A15C21E1BCEF009178B3 /* My */ = {
 			isa = PBXGroup;
 			children = (
+				55CD208C222B68FF0087EE60 /* ViewModel */,
 				5537064621E1C2AB001E49BC /* Model */,
 				5537064221E1C295001E49BC /* View */,
 				5537063E21E1C26E001E49BC /* Controller */,
@@ -1018,6 +1055,30 @@
 				5594A0C121E1BB12009178B3 /* main.m */,
 			);
 			path = Other;
+			sourceTree = "<group>";
+		};
+		55CD2085222B60DE0087EE60 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				55CD2086222B60F60087EE60 /* OnGoingTaskViewModel.h */,
+				55CD2087222B60F60087EE60 /* OnGoingTaskViewModel.m */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		55CD208C222B68FF0087EE60 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				55CD208D222B69150087EE60 /* MessageCenterViewModel.h */,
+				55CD208E222B69150087EE60 /* MessageCenterViewModel.m */,
+				55CBE2ED222BE0E100BB21C6 /* StudentListViewModel.h */,
+				55CBE2EE222BE0E100BB21C6 /* StudentListViewModel.m */,
+				55CBE2F0222BF11400BB21C6 /* MyInComeViewModel.h */,
+				55CBE2F1222BF11400BB21C6 /* MyInComeViewModel.m */,
+				55CBE2F3222BF12700BB21C6 /* MyWithDrawViewModel.h */,
+				55CBE2F4222BF12700BB21C6 /* MyWithDrawViewModel.m */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		55D1D0C621E22073008ECEE3 /* DQMCalendar */ = {
@@ -1453,6 +1514,7 @@
 				59698996221D2D3000081FFF /* HomeTaskRecommendModel.m in Sources */,
 				59ADCD2521E7280200A86C1F /* AboutUSViewController.m in Sources */,
 				59ADCD1F21E70E5B00A86C1F /* SettingUserInfoWithTableViewController.m in Sources */,
+				55CD208F222B69150087EE60 /* MessageCenterViewModel.m in Sources */,
 				5594A14621E1BC1F009178B3 /* DQMTextViewController.m in Sources */,
 				5594A14421E1BC1F009178B3 /* DQMNavigationController.m in Sources */,
 				59ADCD1C21E70E3500A86C1F /* SettingUserInfoWithInputViewController.m in Sources */,
@@ -1467,6 +1529,7 @@
 				55542FB621E4F991000F8D45 /* DQMExpandImageView.m in Sources */,
 				596989B82224E27800081FFF /* EarnMoneyDetailModel.m in Sources */,
 				596989A1221D3E9800081FFF /* APPTaskModel.m in Sources */,
+				55CBE2EF222BE0E100BB21C6 /* StudentListViewModel.m in Sources */,
 				55D1D0D821E22095008ECEE3 /* ZJCalenderMonthTitleView.m in Sources */,
 				5930277521F1B75F00FC68F1 /* DQMModalTextViewController.m in Sources */,
 				5594A14A21E1BC1F009178B3 /* DQMGroup.m in Sources */,
@@ -1502,6 +1565,7 @@
 				55B4995C21EF466F005F31AE /* EarnMoneyForSubLabelView.m in Sources */,
 				551A0A0D21EAFAF900B2FB84 /* HomeMyTaskTableViewCell.m in Sources */,
 				55B4995B21EF466F005F31AE /* PreviewStepsCollectionViewCell.m in Sources */,
+				55CD2092222B697E0087EE60 /* MessageCenterListModel.m in Sources */,
 				5594A13B21E1BC1F009178B3 /* UIView+Gradient.m in Sources */,
 				59DC11EE21EDB95E003FE685 /* QMBaseNetWorking.m in Sources */,
 				551A09E621E9AF9B00B2FB84 /* MyInComeViewController.m in Sources */,
@@ -1530,6 +1594,8 @@
 				5594A14921E1BC1F009178B3 /* StaticSectionItem.m in Sources */,
 				5594A14E21E1BC1F009178B3 /* StaticListTableViewCell.m in Sources */,
 				55B4994E21EF4662005F31AE /* TaskPreviewStepModel.m in Sources */,
+				55CD2088222B60F60087EE60 /* OnGoingTaskViewModel.m in Sources */,
+				55CBE2E6222BC4EE00BB21C6 /* DQMInputTextFieldTableViewCell.m in Sources */,
 				5918A77521E32CE900CF8431 /* UICollectionViewLeftAlignedLayout.m in Sources */,
 				5594A13A21E1BC1F009178B3 /* UIView+DQMFrame.m in Sources */,
 				596989AF2223769000081FFF /* CheckInvitationView.m in Sources */,
@@ -1560,12 +1626,15 @@
 				55B4995A21EF466F005F31AE /* PreViewTaskTotalStepView.m in Sources */,
 				55542FDE21E6598E000F8D45 /* DQMRightImageViewTableViewCell.m in Sources */,
 				551A09F521E9F31300B2FB84 /* ShareToMyFriendViewController.m in Sources */,
+				55CBE2F8222BF15500BB21C6 /* MyInComeAndWithDrawModel.m in Sources */,
 				5537063A21E1C064001E49BC /* MyViewController.m in Sources */,
 				551A0A0121EA349100B2FB84 /* HomeHeaderView.m in Sources */,
 				5594A13D21E1BC1F009178B3 /* UIImageView+SDwebImageFade.m in Sources */,
 				59ADCD2221E724AD00A86C1F /* CompleteAccountViewController.m in Sources */,
 				5910E77321F9BADD0098184A /* LoginThreeForeignView.m in Sources */,
 				55542FD721E646EB000F8D45 /* UserDetailModel.m in Sources */,
+				55CBE2EC222BE0BA00BB21C6 /* StudentModel.m in Sources */,
+				55CBE2F5222BF12700BB21C6 /* MyWithDrawViewModel.m in Sources */,
 				5594A13F21E1BC1F009178B3 /* DQMTabBarController.m in Sources */,
 				5594A14221E1BC1F009178B3 /* DQMBaseViewController.m in Sources */,
 				55D1D0D921E22095008ECEE3 /* ZJCalenderDayModel.m in Sources */,
@@ -1578,6 +1647,7 @@
 				59693EE021F95907002CAEF1 /* LoginCodeOrPassWordTableViewCell.m in Sources */,
 				59ADCD1621E6ECB200A86C1F /* CompleteInformationViewController.m in Sources */,
 				5910E78021FAF6770098184A /* RACMVVMListTableViewCell.m in Sources */,
+				55CBE2F2222BF11400BB21C6 /* MyInComeViewModel.m in Sources */,
 				5594A0B421E1BB11009178B3 /* AppDelegate.m in Sources */,
 				55D1D0DB21E22095008ECEE3 /* ZJCalenderView.m in Sources */,
 				55542FC421E61618000F8D45 /* MessageCenterViewController.m in Sources */,

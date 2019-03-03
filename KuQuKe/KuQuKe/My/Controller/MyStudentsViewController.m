@@ -7,13 +7,11 @@
 //
 
 #import "MyStudentsViewController.h"
-#import "LeftAndRightLabelHeaderView.h"//组头
-#import "DQMRImageRLabelAndLSubLabelTableViewCell.h"//cell样式
+#import "StudentListViewModel.h"//rac下的ViewModel
 
 @interface MyStudentsViewController ()
 
-/** 数组 */
-@property(nonatomic,strong) NSMutableArray<DQMRImageRLabelAndLSubLabelTableViewCellModel *>        *listDataArray;
+@property (nonatomic, strong) StudentListViewModel *racViewModel;
 
 @end
 
@@ -22,50 +20,70 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	self.tableView.tableFooterView = [UIView new];
+
+	//UI
+	[self createUI];
 	
+	//绑定
+	[self setupBind];
 	
-	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-		
-		NSArray *dataDicArray = @[
-								  @{@"title":@"ID:896754",@"imageUrl":@"http://img3.h1365.cn/hb1/yl2/10/881812405474933.jpg",@"subTitle":@"¥23.00元"},
-								  @{@"title":@"ID:196724",@"imageUrl":@"http://img3.h1365.cn/hb1/yl2/10/881812405574941.jpg",@"subTitle":@"¥13.00元"}];
-		
-		self.listDataArray = [DQMRImageRLabelAndLSubLabelTableViewCellModel mj_objectArrayWithKeyValuesArray:dataDicArray];
-		
+	//进入界面首次下拉刷新
+	[self.tableView.mj_header beginRefreshing];
+}
+
+#pragma mark - createUI
+- (void)createUI {
+	QMWeak(self);
+	[self.view addSubview:self.tableView];
+	//下拉刷新
+	self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+		[weakself.racViewModel.requestVideoListCommand execute:@{@"headerRefresh":@"1"}];
+	}];
+	//下拉加载更多
+	self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+		[weakself.racViewModel.requestVideoListCommand execute:@{@"headerRefresh":@"0"}];
+	}];
+}
+
+
+#pragma mark - Bind UI
+- (void)setupBind{
+	
+	self.racViewModel.currentVC = self;
+	self.tableView.dataSource = self.racViewModel;
+	self.tableView.delegate = self.racViewModel;
+	
+	//通知方法刷新表视图
+	@weakify(self)
+	[[[NSNotificationCenter defaultCenter] rac_addObserverForName:NotificationName_MyStudentsViewController object:nil] subscribeNext:^(NSNotification * _Nullable x) {
+		@strongify(self)
+		[self resetRefreshView];
 		[UIView transitionWithView:self.tableView duration:0.2 options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
-			
 			[self.tableView reloadData];
-			
 		} completion:nil];
-	});
-	
+	}];
 }
 
 
-#pragma mark - tableView dataSource
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-	return [_listDataArray count];
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-	return 30;
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-	LeftAndRightLabelHeaderView *heaerView = [[LeftAndRightLabelHeaderView alloc] initWithFrame:CGRectZero];
-	LeftAndRightLabelHeaderViewModel *heaerModel = [LeftAndRightLabelHeaderViewModel initWithleftString:@"徒弟ID" rightString:@"累计提成"];
-	heaerView.headerModel = heaerModel;
-	return heaerView;
+- (void)resetRefreshView{
+	if ([self.tableView.mj_header isRefreshing]) {
+		[self.tableView.mj_header endRefreshing];
+	}
+	if ([self.tableView.mj_footer isRefreshing]) {
+		[self.tableView.mj_footer endRefreshing];
+	}
 }
 
 
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-	DQMRImageRLabelAndLSubLabelTableViewCell *cell = [DQMRImageRLabelAndLSubLabelTableViewCell cellWithTableView:tableView indexPath:indexPath andFixedHeightIfNeed:75 showArrow:true];
-	cell.model = _listDataArray[indexPath.row];
-	return cell;
+#pragma mark - load
+- (StudentListViewModel *)racViewModel{
+	if (!_racViewModel) {
+		_racViewModel = [[StudentListViewModel alloc] init];
+	}
+	return _racViewModel;
 }
+
+
 
 
 
@@ -93,12 +111,5 @@
 }
 
 
-#pragma mark - load data
--(NSMutableArray *)listDataArray {
-	if (!_listDataArray) {
-		_listDataArray = [[NSMutableArray alloc] init];
-	}
-	return _listDataArray;
-}
 
 @end

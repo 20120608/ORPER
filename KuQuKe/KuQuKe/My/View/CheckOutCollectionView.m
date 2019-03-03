@@ -13,6 +13,9 @@
 /** 按钮数组 */
 @property(nonatomic,strong) NSMutableArray          *buttonArray;
 
+/** 用户信息字典 */
+@property(nonatomic,strong) NSMutableDictionary          *userMessageDictionary;
+
 @end
 
 @implementation CheckOutCollectionView
@@ -23,7 +26,8 @@
 	if (self) {
 		self.backgroundColor = QMBackColor;
 		self.buttonArray = [[NSMutableArray alloc] init];
-
+		self.userMessageDictionary = [NSMutableDictionary new];
+		
 		UIView *whiteBack = ({
 			UIView *view = [[UIView alloc] init];
 			[self addSubview: view];
@@ -31,7 +35,7 @@
 			[view mas_makeConstraints:^(MASConstraintMaker *make) {
 				make.left.right.mas_equalTo(0);
 				make.top.mas_equalTo(0);
-				make.height.mas_equalTo(240);
+				make.height.mas_equalTo(360);
 			}];
 			view;
 		});
@@ -53,7 +57,7 @@
 			textField.placeholder = @"请输入支付宝账号";
 			textField.textColor = QMTextColor;
 			textField.font = KQMFont(16);
-      textField.returnKeyType = UIReturnKeyDone;
+			textField.returnKeyType = UIReturnKeyDone;
 			[textField mas_makeConstraints:^(MASConstraintMaker *make) {
 				make.left.mas_equalTo(icon1.mas_right).offset(20);
 				make.centerY.mas_equalTo(icon1.mas_centerY);
@@ -72,7 +76,7 @@
 			view;
 		});
 		line1View.backgroundColor = QMBackColor;
-
+		
 		
 		UIImageView *icon2 = ({
 			UIImageView *imageView = [[UIImageView alloc] init];
@@ -91,7 +95,7 @@
 			textField.placeholder = @"请输入支付宝认证的姓名";
 			textField.textColor = QMTextColor;
 			textField.font = KQMFont(16);
-      textField.returnKeyType = UIReturnKeyDone;
+			textField.returnKeyType = UIReturnKeyDone;
 			[textField mas_makeConstraints:^(MASConstraintMaker *make) {
 				make.left.mas_equalTo(icon2.mas_right).offset(20);
 				make.centerY.mas_equalTo(icon2.mas_centerY);
@@ -111,17 +115,24 @@
 		});
 		line2View.backgroundColor = QMBackColor;
 		
-    UILabel *needLabel = ({
-      UILabel *label = [[UILabel alloc] init];
-      [self addSubview:label];
-      NSString *price = [ NSString stringWithFormat:@"需要%.2lf元",[CheckOutMoneyArray[0] floatValue]];
-      QMLabelFontColorText(label, price, QMTextColor, 16);
-      [label mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(20);
-        make.top.mas_equalTo(whiteBack.mas_bottom).offset(20);
-      }];
-      label;
-    });
+		[[alpayCodeTF rac_textSignal] subscribeNext:^(NSString *x) {
+			[self.userMessageDictionary setValue:x forKey:@"real_name"];
+		}];
+		[[alipayTF rac_textSignal] subscribeNext:^(NSString *x) {
+			[self.userMessageDictionary setValue:x forKey:@"account"];
+		}];
+		
+		UILabel *needLabel = ({
+			UILabel *label = [[UILabel alloc] init];
+			[self addSubview:label];
+			NSString *price = [NSString stringWithFormat:@"需要%.2lf元", [@"0" floatValue]];
+			QMLabelFontColorText(label, price, QMTextColor, 16);
+			[label mas_makeConstraints:^(MASConstraintMaker *make) {
+				make.left.mas_equalTo(20);
+				make.top.mas_equalTo(whiteBack.mas_bottom).offset(20);
+			}];
+			label;
+		});
 		
 		
 		self.buttonArray = [[NSMutableArray alloc] init];
@@ -136,7 +147,7 @@
 			[fitstMArray addObject:button];
 			[_buttonArray addObject:button];
 		}
-		[fitstMArray mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedSpacing:20 leadSpacing:20 tailSpacing:20];
+		[fitstMArray mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedItemLength:((kScreenWidth-61)/3) leadSpacing:20 tailSpacing:20];
 		[fitstMArray mas_makeConstraints:^(MASConstraintMaker *make) {
 			make.top.mas_equalTo(120);
 			make.height.mas_equalTo(40);
@@ -153,9 +164,43 @@
 			[secondArray addObject:button];
 			[_buttonArray addObject:button];
 		}
-		[secondArray mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedSpacing:20 leadSpacing:20 tailSpacing:20];
+		[secondArray mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedItemLength:((kScreenWidth-61)/3) leadSpacing:20 tailSpacing:20];
 		[secondArray mas_makeConstraints:^(MASConstraintMaker *make) {
 			make.top.mas_equalTo(180);
+			make.height.mas_equalTo(40);
+		}];
+		
+		NSMutableArray *threeArray = [[NSMutableArray alloc] init];
+		for (int i = 0; i < 3; i++) {
+			UIButton *button = ({
+				UIButton *button = [[UIButton alloc] init];
+				[self addSubview:button];
+				button.tag = i+6;
+				button;
+			});
+			[threeArray addObject:button];
+			[_buttonArray addObject:button];
+		}
+		[threeArray mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedItemLength:((kScreenWidth-61)/3) leadSpacing:20 tailSpacing:20];
+		[threeArray mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.top.mas_equalTo(240);
+			make.height.mas_equalTo(40);
+		}];
+		
+		NSMutableArray *fourArray = [[NSMutableArray alloc] init];
+		for (int i = 0; i < 3; i++) {
+			UIButton *button = ({
+				UIButton *button = [[UIButton alloc] init];
+				[self addSubview:button];
+				button.tag = i+9;
+				button;
+			});
+			[fourArray addObject:button];
+			[_buttonArray addObject:button];
+		}
+		[fourArray mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedItemLength:((kScreenWidth-61)/3) leadSpacing:20 tailSpacing:20];
+		[fourArray mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.top.mas_equalTo(300);
 			make.height.mas_equalTo(40);
 		}];
 		
@@ -165,18 +210,18 @@
 			obj.layer.borderWidth = 1;
 			[obj setBackgroundColor:DQMMainColor forState:UIControlStateSelected];
 			[obj setBackgroundColor:[UIColor whiteColor] forState:UIControlStateNormal];
-      NSString *price = [NSString stringWithFormat:@"%@元",CheckOutMoneyArray[idx]];
+			NSString *price = [NSString stringWithFormat:@"%@元",@"0.00"];
 			QMSetButton(obj, price, 14, nil, QMTextColor, UIControlStateNormal);
 			QMSetButton(obj, price, 14, nil, UIColor.whiteColor, UIControlStateSelected);
-      [obj setSelected:idx == 0 ? true : false];//默认选中第一个
-      [obj addTarget:self action:@selector(changeSelectedWithButton:) forControlEvents:UIControlEventTouchUpInside];
-      
-      //订阅每个按钮的点击事件
-      [[obj rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(UIButton *x) {
-        NSString *price = [ NSString stringWithFormat:@"需要%.2lf元",[CheckOutMoneyArray[x.tag] floatValue]];
-        QMLabelFontColorText(needLabel, price, QMTextColor, 16);
-      }];
-    }];
+			[obj setSelected:idx == 0 ? true : false];//默认选中第一个
+			[obj addTarget:self action:@selector(changeSelectedWithButton:) forControlEvents:UIControlEventTouchUpInside];
+			
+			//订阅每个按钮的点击事件
+			[[obj rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(UIButton *x) {
+				NSString *price = [ NSString stringWithFormat:@"需要%.2lf元",[x.titleLabel.text floatValue]];
+				QMLabelFontColorText(needLabel, price, QMTextColor, 16);
+			}];
+		}];
 		
 		
 		UIButton *checkOutButton = ({
@@ -206,16 +251,62 @@
 			}];
 			label;
 		});
-    QMLabelFontColorText(msgLabel, @"审核后立即到账;\n所产生的手续费由官方承担。", QMSubTextColor, 14);
+		QMLabelFontColorText(msgLabel, @"审核后立即到账;\n所产生的手续费由官方承担。", QMSubTextColor, 14);
+		
+		[[RACObserve(self, checkOutThreePartType) skip:1] subscribeNext:^(id  _Nullable x) {
+			CheckOutThreePartType type = [x intValue];
+			QMSetImage(icon1, type == CheckOutThreePartTypeWeChat ? @"s01" : @"支付宝");
+			alipayTF.placeholder = type == CheckOutThreePartTypeWeChat ? @"请输入微信账号" : @"请输入支付宝账号";
+			alpayCodeTF.placeholder = type == CheckOutThreePartTypeWeChat ? @"请输入微信认证的姓名" : @"请输入支付宝认证的姓名";
+			NSString *string = [NSString stringWithFormat:@"提现到%@,审核后立即到账;\n所产生的手续费由官方承担。", type == CheckOutThreePartTypeWeChat ? @"微信" : @"支付宝"];
+			QMLabelFontColorText(msgLabel, string, QMSubTextColor, 14);
+		}];
+		
+		
+		QMWeak(self);
+		[[RACObserve(self, moneyArray) skip:1] subscribeNext:^(NSArray *  _Nullable x) {
+			NSString *price = [NSString stringWithFormat:@"需要%.2lf元",[x[0] floatValue]];
+			needLabel.text = price;
+			
+			for (int i = (int)([weakself.buttonArray count] - 1); i >= 0; i--) {
+				UIButton *button = weakself.buttonArray[i];
+				if (i < [x count]) {
+					NSString *price = [NSString stringWithFormat:@"%.2lf元",[x[i] floatValue]];
+					QMSetButton(button, price, 14, nil, QMTextColor, UIControlStateNormal);
+					QMSetButton(button, price, 14, nil, UIColor.whiteColor, UIControlStateSelected);
+				} else {
+					button.hidden = true;
+				}
+			}
+			[whiteBack mas_updateConstraints:^(MASConstraintMaker *make) {
+				make.height.mas_equalTo(120 + ([x count]/3 *60) + ([x count]%3 ? 60 : 0));
+			}];
+			
+		}];
+		
+		
+		RACSignal * clickSignal = [self rac_signalForSelector:@selector(changeSelectedWithButton:)];
+		RACSignal *arraysSignal = [RACObserve(self, moneyArray) skip:1];
+		RACSignal * myBalaneSignal = [RACObserve(self, myBalane) skip:1];
+		RACSignal *mergeSignal = [[myBalaneSignal merge:clickSignal] merge:arraysSignal];
+		[[mergeSignal skip:1] subscribeNext:^(id x) {
+			int index = 0;
+			if ([x isKindOfClass:[NSString class]]) {
 
-    [[RACObserve(self, checkOutThreePartType) skip:1] subscribeNext:^(id  _Nullable x) {
-      CheckOutThreePartType type = [x intValue];
-      QMSetImage(icon1, type == CheckOutThreePartTypeWeChat ? @"s01" : @"支付宝");
-      alipayTF.placeholder = type == CheckOutThreePartTypeWeChat ? @"请输入微信账号" : @"请输入支付宝账号";
-      alpayCodeTF.placeholder = type == CheckOutThreePartTypeWeChat ? @"请输入微信认证的姓名" : @"请输入支付宝认证的姓名";
-      NSString *string = [NSString stringWithFormat:@"提现到%@,审核后立即到账;\n所产生的手续费由官方承担。", type == CheckOutThreePartTypeWeChat ? @"微信" : @"支付宝"];
-      QMLabelFontColorText(msgLabel, string, QMSubTextColor, 14);
-    }];
+			} else if ([x isKindOfClass:[UIButton class]]) {
+				index = (int)((UIButton *)x).tag;
+			}
+			if ([_myBalane floatValue] >= [_moneyArray[index] floatValue]) {
+				checkOutButton.userInteractionEnabled = true;
+				QMSetButton(checkOutButton, @"提现", 18, nil, UIColor.whiteColor, UIControlStateNormal);
+			} else {
+				checkOutButton.userInteractionEnabled = false;
+				QMSetButton(checkOutButton, @"余额不足", 18, nil, UIColor.whiteColor, UIControlStateNormal);
+			}
+		}];
+		
+		
+		
 		
 	}
 	return self;
@@ -234,7 +325,13 @@
 
 
 - (void)checkOutButtonClick:(UIButton *)sender {
-	
+	if ([_userMessageDictionary allKeys].count >= 2) {
+		if ([self.delegate respondsToSelector:@selector(CheckOutCollectionView:didSelectSure:DataDictionary:)]) {
+			[self.delegate CheckOutCollectionView:self didSelectSure:sender DataDictionary:_userMessageDictionary];
+		}
+	} else {
+		[self makeToast:@"请填写信息!"];
+	}
 }
 
 @end

@@ -14,9 +14,6 @@
 #define DQMMainColor  QMHexColor(@"1aad00")
 #import "ZJCalenderConst.h"	//日历的宏定义
 
-//提现的金额数组设置
-#define CheckOutMoneyArray  @[@"20",@"50",@"100",@"200",@"500",@"1000"]
-
 //网络请求
 #import "KuQuKeNetWorkManager.h"
 
@@ -28,6 +25,14 @@
 #define USERMONEY @"USERMONEY"
 #define ALLMONEY @"ALLMONEY"
 
+#define SEX @"SEX"
+#define BIRTHDAY @"BIRTHDAY"
+#define ALIPAY @"ALIPAY"
+#define WECHAT @"WECHAT"
+#define QQ @"QQ"
+#define MOBILE @"MOBILE"
+#define EMAIL @"EMAIL"
+#define JOB @"JOB"
 
 
 

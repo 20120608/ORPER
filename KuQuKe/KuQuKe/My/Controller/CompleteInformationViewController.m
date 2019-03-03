@@ -14,7 +14,6 @@
 #import "PGDatePickManager.h"//时间选择器
 #import "HXPhotoPicker.h"//图片选择库
 
-
 @interface CompleteInformationViewController () <PGDatePickerDelegate,HXCustomCameraViewControllerDelegate,HXAlbumListViewControllerDelegate>
 /** 用户模型 */
 @property(nonatomic,strong) UserDetailModel *userModel;
@@ -33,50 +32,35 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-  self.tableView.tableFooterView = [UIView new];
-  
-  
-  //模拟请求    可能是要从数据库取出来
-  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-    
-    UserDetailModel *userModel = [[UserDetailModel alloc] init];
-    userModel.name = @"测试名称";
-    userModel.userId = @"1234";
-    userModel.userface = @"http://tupian.qqjay.com/u/2017/1221/4_143339_4.jpg";
-    userModel.balance = @"1";
-    userModel.total = @"15";
-    userModel.students = @"3";
-    userModel.allowPushNotification = @"1";
-    
-    userModel.aliPay = @"18659740507";
-    userModel.email = @"94606@qq.com";
-    userModel.weChat = @"QM31213";
-    userModel.nickName = @"测试昵称";
-    userModel.QQ = @"946061";
-    userModel.phone = @"186597507";
-    userModel.job = @"工作";
-    userModel.birthday = @"生日";
-    userModel.sex = @"0";
-    
-    self.userModel = userModel;
-    
-    
-    
-    //处理数据  必须保证没有字段为空  可以给@“”
-    [self createSectionsDataArray];
-    
-    
-    
-    //返回主线程刷新界面
-    dispatch_async(dispatch_get_main_queue(), ^{
-      [UIView transitionWithView:self.tableView duration:0.25 options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
-        [self.tableView reloadData];
-      } completion:nil];
-    });
-    
-    
-  });
-  
+	
+	self.tableView.tableFooterView = [UIView new];
+	
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+	
+	UserDetailModel *userModel = [[UserDetailModel alloc] init];
+	userModel.userface = [GET_USERDEFAULT(HEADPIC) length] == 0 ? @"" : GET_USERDEFAULT(HEADPIC);
+	userModel.aliPay = [GET_USERDEFAULT(ALIPAY) length] == 0 ? @"" : GET_USERDEFAULT(ALIPAY);
+	userModel.email = [GET_USERDEFAULT(EMAIL) length] == 0 ? @"" : GET_USERDEFAULT(EMAIL);
+	userModel.weChat = [GET_USERDEFAULT(WECHAT) length] == 0 ? @"" : GET_USERDEFAULT(WECHAT);
+	userModel.nickName = [GET_USERDEFAULT(NICKNAME) length] == 0 ? @"" : GET_USERDEFAULT(NICKNAME);
+	userModel.qq = [GET_USERDEFAULT(QQ) length] == 0 ? @"" : GET_USERDEFAULT(QQ);
+	userModel.phone = [GET_USERDEFAULT(MOBILE) length] == 0 ? @"" : GET_USERDEFAULT(MOBILE);
+	userModel.job = [GET_USERDEFAULT(JOB) length] == 0 ? @"" : GET_USERDEFAULT(JOB);
+	userModel.birthday = [GET_USERDEFAULT(BIRTHDAY) length] == 0 ? @"" : GET_USERDEFAULT(BIRTHDAY);
+	userModel.sex = [GET_USERDEFAULT(SEX) length] == 0 ? @"" : GET_USERDEFAULT(SEX);
+	self.userModel = userModel;
+	
+	//处理数据  必须保证没有字段为空  可以给@“”
+	[self createSectionsDataArray];
+	
+	//返回主线程刷新界面
+	dispatch_async(dispatch_get_main_queue(), ^{
+		[UIView transitionWithView:self.tableView duration:0.25 options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
+			[self.tableView reloadData];
+		} completion:nil];
+	});
 }
 
 //组装cell的数据源
@@ -89,7 +73,7 @@
   
   self.sectionsArray = [[NSMutableArray alloc] init];
   NSArray *titleArray = @[@[@"上传头像"],@[@"昵称",@"性别",@"出生日期"],@[@"职业",@"微信号",@"支付宝号",@"邮箱",@"QQ",@"手机号"]];
-  NSArray *subtitleArray = @[@[@""],@[_userModel.nickName,_userModel.sex,_userModel.birthday],@[_userModel.job,_userModel.weChat,_userModel.aliPay,_userModel.email,_userModel.QQ,_userModel.phone]];
+  NSArray *subtitleArray = @[@[@""],@[_userModel.nickName,_userModel.sex,_userModel.birthday],@[_userModel.job,_userModel.weChat,_userModel.aliPay,_userModel.email,_userModel.qq,_userModel.phone]];
   NSArray *subImageArray = @[@[_userModel.userface],@[@"",@"",@""],@[@"",@"",@"",@"",@"",@""]];
   //对应跳转的界面 0 为不跳转
   NSArray *destVcArray = @[@[[UIViewController class]],@[[SettingUserInfoWithInputViewController class],[SettingUserInfoWithTableViewController class],[UIViewController class]],@[[SettingUserInfoWithTableViewController class],[SettingUserInfoWithInputViewController class],[SettingUserInfoWithInputViewController class],[SettingUserInfoWithInputViewController class],[SettingUserInfoWithInputViewController class],[SettingUserInfoWithInputViewController class]]];
@@ -213,12 +197,15 @@
     }];
 	  UIAlertAction *manAction = [UIAlertAction actionWithTitle:@"男" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
       [self saveUserInfoWithType:@"2" Value:@"1"];
+		  [kUserDefaults setValue:@"男" forKey:SEX];
 	  }];
 	  UIAlertAction *wumanAction = [UIAlertAction actionWithTitle:@"女" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
 		  [self saveUserInfoWithType:@"2" Value:@"2"];
+		  [kUserDefaults setValue:@"女" forKey:SEX];
 	  }];
     UIAlertAction *nillAction = [UIAlertAction actionWithTitle:@"保密" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
       [self saveUserInfoWithType:@"2" Value:@"0"];
+		[kUserDefaults setValue:@"保密" forKey:SEX];
     }];
 	  
 	  [alertC addAction:cancleAction];
@@ -277,7 +264,7 @@
 
   [KuQuKeNetWorkManager POST_updateUserInfoParams:params View:self.view success:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
     
-    [self.view makeToast:@"修改成功"];
+    [self viewWillAppear:true];
     
   } unknown:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
     
@@ -288,10 +275,17 @@
 
 #pragma mark - PGDatePickerDelegate
 - (void)datePicker:(PGDatePicker *)datePicker didSelectDate:(NSDateComponents *)dateComponents {
-  NSTimeInterval time=[dateComponents.date timeIntervalSince1970]*10;// *1000 是精确到毫秒，不乘就是精确到秒
+  NSTimeInterval time= [dateComponents.date timeIntervalSince1970]*10;// *1000 是精确到毫秒，不乘就是精确到秒
   NSString *timeString = [NSString stringWithFormat:@"%.0f", time];
   NSLog(@"选中的日期 dateComponents = %@   %@", dateComponents,timeString);
    [self saveUserInfoWithType:@"3" Value:timeString];
+
+	//存储年月日
+	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+	[dateFormatter setDateFormat:@"yyyy-MM-dd"];
+	NSString *destDateString = [dateFormatter stringFromDate:dateComponents.date];
+	[kUserDefaults setValue:destDateString forKey:BIRTHDAY];
+	[self viewWillAppear:true];
 }
 
 
@@ -375,6 +369,7 @@
       NSString *urlString = dataDic[@"data"][@"img_url"];
       [kUserDefaults setValue:urlString forKey:@"HEADPIC"];//保存
       [self saveUserInfoWithType:@"8" Value:urlString];
+	  [kUserDefaults setValue:dataDic[@"data"][@"real_img_url"] forKey:HEADPIC];
     });
     
   } unknown:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {

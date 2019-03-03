@@ -27,6 +27,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface DQMRImageRLabelAndLSubLabelTableViewCellModel : NSObject
 
 /** 左边主标题 */
+@property(nonatomic,copy) NSString          *id;
+/** 左边主标题 */
 @property(nonatomic,copy) NSString          *title;
 /** subImageUrl */
 @property(nonatomic,copy) NSString          *imageUrl;

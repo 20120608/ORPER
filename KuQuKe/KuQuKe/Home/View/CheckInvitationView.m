@@ -26,6 +26,22 @@
       }];
       view;
     });
+	  
+	  UIButton *closeButton = ({
+		  UIButton *button = [[UIButton alloc] init];
+		  [self addSubview:button];
+		  button.tag = 0;
+		  QMSetButton(button, nil, 12, @"icon_dqm_ring_close_white", QMRandomColor, UIControlStateNormal);
+		  [button mas_makeConstraints:^(MASConstraintMaker *make) {
+			  make.right.mas_equalTo(self.mas_right).offset(-30);
+			  make.top.mas_equalTo(NAVIGATION_BAR_HEIGHT+30);
+			  make.size.mas_equalTo(CGSizeMake(30, 30));
+		  }];
+		  button;
+	  });
+	  [closeButton addTarget:self action:@selector(AlertViewbuttonClick:) forControlEvents:UIControlEventTouchUpInside];
+	  
+	  
     UIImageView *backImageView =  ({
       UIImageView *imageView = [[UIImageView alloc] init];
       [self addSubview: imageView];
@@ -155,6 +171,9 @@
   return self;
 }
 
+- (void)AlertViewbuttonClick:(UIButton *)sender {
+	[self hide];
+}
 
 - (void)show {
   NSLog(@"调用的显示,看订阅");

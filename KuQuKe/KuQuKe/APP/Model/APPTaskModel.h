@@ -27,6 +27,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,copy) NSString          *title;
 /** 标题 */
 @property(nonatomic,copy) NSString          *id;
+/** 进行中的id */
+@property(nonatomic,copy) NSString          *task_id;
+
+
 
 @end
 

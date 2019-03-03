@@ -97,22 +97,6 @@
 		});
 		QMLabelFontColorText(msgLabel, @"可用余额", QMTextColor, 13);
 
-//    UIButton *checkOutBtn = ({
-//      UIButton *button = [[UIButton alloc] init];
-//      [whiteBackView addSubview:button];
-//      button.tag = 1;
-//      [button setBackgroundColor:QMHexColor(@"#75E69D") forState:UIControlStateNormal];
-//      QMSetButton(button, @"余额提现", 13, nil, UIColor.whiteColor, UIControlStateNormal);
-//      QMViewBorderRadius(button, 21.5, 0, QMTextColor);
-//      [button mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.centerX.mas_equalTo(whiteBackView.mas_centerX);
-//        make.size.mas_equalTo(CGSizeMake(200,43));
-//        make.bottom.mas_equalTo(whiteBackView.mas_bottom).offset(-7);
-//      }];
-//      button;
-//    });
-//    [checkOutBtn addTarget:self action:@selector(AlertViewbuttonClick:) forControlEvents:UIControlEventTouchUpInside];
-
 		NSArray *imgaRRAY = @[@"s01",@"s07"];
 		NSMutableArray *buttonArray = [[NSMutableArray alloc] init];
 		for (int i = 0; i < [imgaRRAY count]; i++) {
@@ -135,7 +119,9 @@
 			make.height.mas_equalTo(76);
 		}];
 		
-		
+		[[RACObserve(self, canUseMoney) skip:1] subscribeNext:^(NSString *  _Nullable x) {
+			priceLabel.text = [NSString stringWithFormat:@"¥%.2lf元", [x floatValue]];
+		}];
 	}
 	return self;
 }

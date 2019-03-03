@@ -182,7 +182,7 @@
 		UILabel *label = [[UILabel alloc] init];
 		[rulesBackView addSubview:label];
 		label.numberOfLines = 0;
-		QMLabelFontColorText(label, @"1.每人最多有3次机会参与抽奖，每个用户每天首次免费参与，每完成5个任务，可额外获得一次机会。\n2.兑换方式:\n中奖金额以现金方式发放到账户余额，可提现。", QMTextColor, 12);
+		QMLabelFontColorText(label, @"1.每人最多有3次机会参与抽奖，每个用户每天首次免费参与，每完成5个任务，可额外获得一次机会。\n\n2.兑换方式:\n中奖金额以现金方式发放到账户余额，可提现。", QMTextColor, 12);
 		[label mas_makeConstraints:^(MASConstraintMaker *make) {
 			make.edges.mas_equalTo(UIEdgeInsetsMake(30, 10, 20, 10));
 		}];

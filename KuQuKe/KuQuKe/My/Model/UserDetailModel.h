@@ -29,7 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 /** weChat */
 @property(nonatomic,copy) NSString          *weChat;
 /** QQ */
-@property(nonatomic,copy) NSString          *QQ;
+@property(nonatomic,copy) NSString          *qq;
 /** 电话 */
 @property(nonatomic,copy) NSString          *phone;
 /** 职业 */

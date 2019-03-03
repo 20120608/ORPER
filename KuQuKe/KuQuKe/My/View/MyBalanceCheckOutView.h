@@ -20,6 +20,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MyBalanceCheckOutView : UIView
 
+/** 价格 */
+@property(nonatomic,assign) NSString          *canUseMoney;
+
 /** 代理 */
 @property(nonatomic,weak) id<MyBalanceCheckOutViewDelegate>          delegete;
 

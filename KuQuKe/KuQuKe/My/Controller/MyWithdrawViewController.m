@@ -7,23 +7,24 @@
 //
 
 #import "MyWithdrawViewController.h"
-#import "TaskTableViewCell.h"//cell的样式
+#import "MyWithDrawViewModel.h"//视图模型
 
-@interface MyWithdrawViewController () <UITableViewDelegate,UITableViewDataSource>
+@interface MyWithdrawViewController ()
 
-/** 数据源 */
-@property(nonatomic,strong) NSMutableArray          *listDataArray;
 /** 列表 */
 @property(nonatomic,strong) UITableView          	*tableView;
 /** 是否第一次刷新 */
 @property(nonatomic,assign) BOOL 					isDataLoaded;
+
+@property (nonatomic, strong) MyWithDrawViewModel 	*racViewModel;
+
 @end
 
 @implementation MyWithdrawViewController
 
 - (void)viewDidLoad {
-  self.view.backgroundColor = UIColor.whiteColor;
-
+	self.tableView.backgroundColor = UIColor.whiteColor;
+	
 	//因为列表延迟加载了，所以在初始化的时候加载数据即可
 	[self loadData];
 }
@@ -31,71 +32,80 @@
 
 
 - (void)loadData {
+	
 	//第一次才加载，后续触发的不处理
 	if (!self.isDataLoaded) {
-		[self headerRefresh];
 		self.isDataLoaded = YES;
+		
+		//UI
+		[self createUI];
+		
+		//绑定
+		[self setupBind];
+		
+		//进入界面首次下拉刷新
+		[self.tableView.mj_header beginRefreshing];
 	}
 }
 
+#pragma mark - createUI
+- (void)createUI {
+	QMWeak(self);
+	[self.view addSubview:self.tableView];
+	//下拉刷新
+	self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+		[weakself.racViewModel.requestVideoListCommand execute:@{@"headerRefresh":@"1"}];
+	}];
+	//下拉加载更多
+	self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+		[weakself.racViewModel.requestVideoListCommand execute:@{@"headerRefresh":@"0"}];
+	}];
+}
 
-- (void)headerRefresh {
-	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-		NSLog(@"刷新");
-		[self.listDataArray addObjectsFromArray:@[@{@"11":@"222"},@{@"11":@"222"},@{@"11":@"222"}]];
+
+#pragma mark - Bind UI
+- (void)setupBind{
+	
+	self.racViewModel.currentVC = self;
+	self.tableView.dataSource = self.racViewModel;
+	self.tableView.delegate = self.racViewModel;
+	
+	//通知方法刷新表视图
+	@weakify(self)
+	[[[NSNotificationCenter defaultCenter] rac_addObserverForName:NotificationName_MyWithdrawViewController object:nil] subscribeNext:^(NSNotification * _Nullable x) {
+		@strongify(self)
+		[self resetRefreshView];
 		[UIView transitionWithView:self.tableView duration:0.2 options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
 			[self.tableView reloadData];
 		} completion:nil];
-	});
-	
+	}];
 }
 
 
-
-
-#pragma mark - tableview datasource
-#pragma mark - tableView DataSource
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-	return 1;
-}
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-	return 20;
-}
-
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-	TaskTableViewCell *cell = [TaskTableViewCell cellWithTableView:tableView initWithCellStyle:TaskTableViewCellStyleNoImage indexPath:indexPath andFixedHeightIfNeed:60];
-	return cell;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-#pragma mark - load data
--(NSMutableArray *)listDataArray {
-	if (!_listDataArray) {
-		_listDataArray = [[NSMutableArray alloc] init];
+- (void)resetRefreshView{
+	if ([self.tableView.mj_header isRefreshing]) {
+		[self.tableView.mj_header endRefreshing];
 	}
-	return _listDataArray;
+	if ([self.tableView.mj_footer isRefreshing]) {
+		[self.tableView.mj_footer endRefreshing];
+	}
 }
+
+
+#pragma mark - load
+- (MyWithDrawViewModel *)racViewModel{
+	if (!_racViewModel) {
+		_racViewModel = [[MyWithDrawViewModel alloc] init];
+	}
+	return _racViewModel;
+}
+
+
 
 - (UITableView *)tableView {
 	if (!_tableView) {
 		_tableView = [[UITableView alloc] init];
 		[self.view addSubview:_tableView];
-		_tableView.delegate           = self;
-		_tableView.dataSource         = self;
 		_tableView.estimatedRowHeight = 80;
 		_tableView.rowHeight          = UITableViewAutomaticDimension;
 		_tableView.tableFooterView    = [[UIView alloc] init];

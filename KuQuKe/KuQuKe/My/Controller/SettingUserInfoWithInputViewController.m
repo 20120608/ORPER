@@ -53,7 +53,11 @@
   [KuQuKeNetWorkManager POST_updateUserInfoParams:params View:self.view success:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
     
     [self.view makeToast:@"修改成功"];
-    
+	  //修改缓存
+	   _settingInputStyle == SettingInputStyleNickName ? [kUserDefaults setValue:value forKey:NICKNAME] : _settingInputStyle == SettingInputStyleBirthday ? [kUserDefaults setValue:value forKey:BIRTHDAY] : _settingInputStyle == SettingInputStyleWeChat ? [kUserDefaults setValue:value forKey:WECHAT] : _settingInputStyle == SettingInputStyleQQ ? [kUserDefaults setValue:value forKey:QQ] : _settingInputStyle == SettingInputStylePhone ? [kUserDefaults setValue:value forKey:MOBILE] : _settingInputStyle == SettingInputStyleAliPay ? [kUserDefaults setValue:value forKey:ALIPAY] : _settingInputStyle == SettingInputStyleEmail ? [kUserDefaults setValue:value forKey:EMAIL] : @"其他";
+	  
+	  [self.navigationController popViewControllerAnimated:true];
+
   } unknown:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
     
   } failure:^(NSError *error) {
@@ -101,7 +105,7 @@
       [self saveUserInfoWithType:@"6" Value:newString];
       break;
       case SettingInputStyleAliPay:
-      [self saveUserInfoWithType:@"11" Value:newString];
+      [self saveUserInfoWithType:@"9" Value:newString];
       break;
       case SettingInputStyleEmail:
       [self saveUserInfoWithType:@"7" Value:newString];
@@ -110,7 +114,6 @@
       break;
   }
   
-  [self.navigationController popViewControllerAnimated:true];
 }
 
 - (NSMutableAttributedString *)dqmNavigationBarTitle:(DQMNavigationBar *)navigationBar {

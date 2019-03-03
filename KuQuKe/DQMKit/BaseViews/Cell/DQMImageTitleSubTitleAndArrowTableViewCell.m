@@ -139,6 +139,14 @@
 
 
 
+/* 每个项目的 */
+-(void)setMsgModel:(MessageCenterListModel *)msgModel {
+	_msgModel = msgModel;
+	[self.iconImageView qm_setImageUrlString:msgModel.pic];
+	self.titleLabel.text = msgModel.msg;
+	self.subTitleLabel.text = msgModel.add_time;
+}
+
 
 @end
 

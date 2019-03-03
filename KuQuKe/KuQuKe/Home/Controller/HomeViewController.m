@@ -34,6 +34,7 @@
 @property (nonatomic,strong  ) DQMHorizontalViewScrollerView *advScrollView;
 
 @property (nonatomic,copy    ) NSString                      *myMoney;/* 余额 */
+@property (nonatomic,copy    ) NSString                      *canUseMoney;/* 可提现余额 */
 @property (nonatomic,copy    ) NSString                      *adimgString;/* 广告图 */
 @property (nonatomic,copy    ) NSString                      *getAllMoney;/* 全部任务可获得金钱 */
 @property (nonatomic,copy    ) NSString                      *num;/* 可接任务数量 */
@@ -117,14 +118,15 @@
 		moneyLabel.text = [NSString stringWithFormat:@"今日赚钱: ¥%.2f",[x floatValue]];
 	}];
 	
-  QMWeak(self);
+	QMWeak(self);
 	UIButton *withdrawMoneyButton = [UIButton initWithFrame:CGRectZero buttonTitle:@"提现" normalColor:DQMMainColor cornerRadius:AdaptedWidth(11) doneBlock:^(UIButton *sender) {
 		NSLog(@"提现");
-    //提现
-    MyBalanceCheckOutView *checkOutView = [[MyBalanceCheckOutView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
-    [[UIApplication sharedApplication].keyWindow addSubview:checkOutView];
-    checkOutView.delegete = self;
-    [checkOutView showAnimation];
+		//提现
+		MyBalanceCheckOutView *checkOutView = [[MyBalanceCheckOutView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
+		[[UIApplication sharedApplication].keyWindow addSubview:checkOutView];
+		checkOutView.delegete = self;
+		checkOutView.canUseMoney = weakself.canUseMoney;
+		[checkOutView showAnimation];
 	}];
 	
 	[navi addSubview:withdrawMoneyButton];
@@ -158,27 +160,45 @@
     
     //登录成功
     [self logInSuccess:dataDic];
+	  
+	 [self checkLogin];
     
   } unknown:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
-    
-    //判断是否弹出邀请码页
-    if ([dataDic[@"code"] intValue] == 300) {
-      CheckInvitationView *view = ({
-        CheckInvitationView *view = [[CheckInvitationView alloc] init];
-        [self.view.window addSubview: view];
-        view.delegate = self;
-        [view mas_makeConstraints:^(MASConstraintMaker *make) {
-          make.edges.mas_equalTo(self.view);
-        }];
-        view;
-      });
-      [view show];
-    }
-    
+
   } failure:^(NSError *error) {
     
   }];
 }
+
+/**
+ 上下级判断
+ */
+- (void)checkLogin {
+	
+	[KuQuKeNetWorkManager POST_checkLoginParams:[NSMutableDictionary new] View:self.view success:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
+		
+		
+		
+	} unknown:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
+		
+		if ([reqsModel.code intValue] == 400) {
+			CheckInvitationView *view = ({
+				CheckInvitationView *view = [[CheckInvitationView alloc] init];
+				[self.view.window addSubview: view];
+				view.delegate = self;
+				[view mas_makeConstraints:^(MASConstraintMaker *make) {
+					make.edges.mas_equalTo(self.view);
+				}];
+				view;
+			});
+			[view show];
+		}
+		
+	} failure:^(NSError *error) {
+		
+	}];
+}
+
 
 - (void)loadIndexConfig {
   //广告请求数据 推荐赚钱数据
@@ -189,6 +209,7 @@
 
     //订阅余额
     self.myMoney = dataDic[@"data"][@"today_money"];
+	self.canUseMoney = dataDic[@"data"][@"user_money"];
     self.adimgString = dataDic[@"data"][@"ad_img"];
     self.num = dataDic[@"data"][@"num"];
     self.getAllMoney =  dataDic[@"data"][@"get_all_money"];

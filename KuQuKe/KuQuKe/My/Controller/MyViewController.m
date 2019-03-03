@@ -56,35 +56,52 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-  
-  //获取用户基本信息
-  NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
-  [KuQuKeNetWorkManager GET_UserInfoParams:params View:self.view success:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
-    
-    if ([dataDic[@"data"][@"share_code"] isEqual:[NSNull class]]) {
-      [kUserDefaults setValue:dataDic[@"data"][@"share_code"] forKey:SHARECODE];
-    }
-    [kUserDefaults setValue:dataDic[@"data"][@"nickname"] forKey:NICKNAME];
-    [kUserDefaults setValue:dataDic[@"data"][@"head_pic"] forKey:HEADPIC];
-    [kUserDefaults setValue:dataDic[@"data"][@"user_money"] forKey:USERMONEY];
-    [kUserDefaults setValue:dataDic[@"data"][@"all_money"] forKey:ALLMONEY];
-    [kUserDefaults setValue:dataDic[@"data"][@"user_id"] forKey:USERID];
-    
-    //制作模型和触发信令
-    UserDetailModel *userModel = [[UserDetailModel alloc] init];
-    userModel.name = GET_USERDEFAULT(NICKNAME);
-    userModel.userId = GET_USERDEFAULT(USERID);
-    userModel.userface = GET_USERDEFAULT(HEADPIC);
-    userModel.balance = GET_USERDEFAULT(USERMONEY);
-    userModel.total = GET_USERDEFAULT(ALLMONEY);;
-    userModel.students = @"0";//学生人数还没有
-    self.userModel = userModel;
-    
-  } unknown:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
-    
-  } failure:^(NSError *error) {
-    
-  }];
+	
+	//获取用户基本信息
+	NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+	[KuQuKeNetWorkManager GET_UserInfoParams:params View:self.view success:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
+		
+		if ([dataDic[@"data"][@"share_code"] isEqual:[NSNull class]]) {
+			[kUserDefaults setValue:dataDic[@"data"][@"share_code"] forKey:SHARECODE];
+		}
+		[kUserDefaults setValue:dataDic[@"data"][@"nickname"] forKey:NICKNAME];
+		[kUserDefaults setValue:dataDic[@"data"][@"head_pic"] forKey:HEADPIC];
+		[kUserDefaults setValue:dataDic[@"data"][@"user_money"] forKey:USERMONEY];
+		[kUserDefaults setValue:dataDic[@"data"][@"all_money"] forKey:ALLMONEY];
+		[kUserDefaults setValue:dataDic[@"data"][@"user_id"] forKey:USERID];
+		[kUserDefaults setValue:dataDic[@"data"][@"sex"] forKey:SEX];
+		[kUserDefaults setValue:dataDic[@"data"][@"birthday"] forKey:BIRTHDAY];
+		[kUserDefaults setValue:dataDic[@"data"][@"alipay"] forKey:ALIPAY];
+		[kUserDefaults setValue:dataDic[@"data"][@"weixin"] forKey:WECHAT];
+		[kUserDefaults setValue:dataDic[@"data"][@"qq"] forKey:QQ];
+		[kUserDefaults setValue:dataDic[@"data"][@"mobile"] forKey:MOBILE];
+		[kUserDefaults setValue:dataDic[@"data"][@"email"] forKey:EMAIL];
+		[kUserDefaults setValue:dataDic[@"data"][@"job"] forKey:JOB];
+
+		//制作模型和触发信令
+		UserDetailModel *userModel = [[UserDetailModel alloc] init];
+		userModel.name = GET_USERDEFAULT(NICKNAME);
+		userModel.userId = GET_USERDEFAULT(USERID);
+		userModel.userface = GET_USERDEFAULT(HEADPIC);
+		userModel.balance = GET_USERDEFAULT(USERMONEY);
+		userModel.total = GET_USERDEFAULT(ALLMONEY);
+		userModel.sex = GET_USERDEFAULT(SEX);
+		userModel.birthday = GET_USERDEFAULT(BIRTHDAY);
+		userModel.aliPay = GET_USERDEFAULT(ALIPAY);
+		userModel.weChat = GET_USERDEFAULT(WECHAT);
+		userModel.qq = GET_USERDEFAULT(QQ);
+		userModel.phone = GET_USERDEFAULT(MOBILE);
+		userModel.email = GET_USERDEFAULT(EMAIL);
+		userModel.job = GET_USERDEFAULT(JOB);
+
+		userModel.students = @"0";//学生人数还没有
+		self.userModel = userModel;
+		
+	} unknown:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
+		
+	} failure:^(NSError *error) {
+		
+	}];
 }
 
 - (BOOL)dx_isNullOrNilWithObject:(id)object;
@@ -299,6 +316,7 @@
 		MyBalanceCheckOutView *checkOutView = [[MyBalanceCheckOutView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
     [[UIApplication sharedApplication].keyWindow addSubview:checkOutView];
 		checkOutView.delegete = self;
+		checkOutView.canUseMoney = GET_USERDEFAULT(USERMONEY);
 		[checkOutView showAnimation];
 	}
 	else {

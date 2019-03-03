@@ -110,6 +110,7 @@
 			[self.contentView addSubview:label];
 			label.hidden = true;
 			QMLabelFontColorText(label, @"", QMSubTextColor, 16);
+			[label setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisHorizontal];//抗拉伸
 			[label mas_makeConstraints:^(MASConstraintMaker *make) {
 				make.right.mas_equalTo(_arrowImageView.mas_left).offset(-10);
 				make.centerY.mas_equalTo(_backView.mas_centerY);

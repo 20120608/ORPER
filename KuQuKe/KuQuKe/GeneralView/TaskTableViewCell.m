@@ -94,6 +94,7 @@
 			}];
 			imageView;
 		});
+		
 		/** 标题 */
 		self.titleLabel = ({
 			UILabel *label = [[UILabel alloc] init];
@@ -268,6 +269,9 @@
       NSString *priceString = [NSString stringWithFormat:@"+%0.2f元",[x.price floatValue]];
       self.priceLabel.attributedText = [QMSGeneralHelpers changeStringToMutableAttributedStringTitle:priceString font:kQmFont(16) rangeOfFont:NSMakeRange(0, priceString.length) color:QMPriceColor rangeOfColor:NSMakeRange(0, priceString.length)];
       @weakify(self)
+		self.subTitleLabel.text = x.desc;
+		self.subTitleLabel.hidden = [x.mark count];//与子标签互斥
+		
       [x.mark enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         @strongify(self)
         self.subLabel1.hidden = self.subLabel2.hidden = self.subLabel3.hidden =  self.subLabel4.hidden = true;
@@ -288,6 +292,26 @@
         }
       }];
     }];
+		
+		//设置数据
+		[[RACObserve(self, myInDrowModel) skip:1] subscribeNext:^(MyInComeAndWithDrawModel *x) {
+			
+			if (_cellStyle == TaskTableViewCellStyleInCome) {
+				//收入的
+				[self.iconImageView qm_setImageUrlString:x.pic];
+				self.titleLabel.text = x.desc;
+				self.subTitleLabel.text = x.change_time;
+				self.priceLabel.text = [NSString stringWithFormat:@"+%0.2f元",[x.user_money floatValue]];
+				
+			} else if (_cellStyle == TaskTableViewCellStyleNoImage) {
+				//支出的
+				self.titleLabel.text = x.status;
+				self.subTitleLabel.text = x.add_time;
+				self.sourceLabel.text = x.type;
+				self.priceLabel.text = [NSString stringWithFormat:@"+%0.2f元",[x.money floatValue]];
+			}
+		}];
+		
 	}
 	return self;
 }

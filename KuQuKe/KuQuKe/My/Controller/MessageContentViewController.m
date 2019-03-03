@@ -20,17 +20,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
   
-  [self createUI];
-  
-  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-    
-    //触发订阅
-    self.msgDictionary = @{@"name":@"这是消息标题",@"time":@"这是消息时间",@"content":@"这是消息内容这是消息内容这是消息内容这是消息内容这是消息内容这是消息内容这是消息内容这是消息内容这是消息内容这是消息内容这是消息内容这是消息内容这是消息内容这是消息内容这是消息内容这是消息内容这是消息内容这是消息内容这是消息内容这是消息内容"};
-    
-  });
-  
+  	[self createUI];
+	
 }
 
+- (void)setDataDic:(NSDictionary *)dataDic {
+	_dataDic = dataDic;
+	
+	NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+	[dic setValue:@"信息" forKey:@"name"];
+	[dic setValue:dataDic[@"msg"] forKey:@"content"];
+	[dic setValue:dataDic[@"add_time"] forKey:@"time"];
+	//触发订阅
+	self.msgDictionary = dic;
+}
 
 
 #pragma mark - UI

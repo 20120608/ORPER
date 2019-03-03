@@ -9,6 +9,7 @@
 
 //左边图标主标题副标题   右边箭头
 #import <UIKit/UIKit.h>
+#import "MessageCenterListModel.h"//模型
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -17,6 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 +(DQMImageTitleSubTitleAndArrowTableViewCell *)cellWithTableView:(UITableView *)tableView indexPath:(NSIndexPath *)indexPath andFixedHeightIfNeed:(CGFloat)height showArrow:(BOOL)showArrow;
 
+/** 视图模型 */
+@property(nonatomic,strong) MessageCenterListModel          *msgModel;
 
 @end
 

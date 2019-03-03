@@ -114,7 +114,7 @@
 	} else if (indexPath.section == 2) {
 		DQMLabelSizeToFitTableViewCell *cell = [DQMLabelSizeToFitTableViewCell cellWithTableView:tableView];
 		cell.backgroundColor = UIColor.whiteColor;
-    cell.contentText = [QMSGeneralHelpers changeStringToMutableAttributedStringTitle:@"1: ios徒弟每做一个任务，师傅可得60%奖励;\n2: 安卓徒弟每做一个任务，师傅可得20%奖励;\n3: 酷趣客保留在法律法规许可的范围内调整奖励政策与佣金高低;" color:QMTextColor];
+    cell.contentText = [QMSGeneralHelpers changeStringToMutableAttributedStringTitle:@"1: ios徒弟每做一个任务，师傅可得60%奖励;\n\n2: 安卓徒弟每做一个任务，师傅可得20%奖励;\n\n3: 酷趣客保留在法律法规许可的范围内调整奖励政策与佣金高低;" color:QMTextColor];
 		[cell setLabelEdgeInsetTop:10 left:30 bottom:10 right:30];
 		cell.showBackColorView = true;
 		return cell;

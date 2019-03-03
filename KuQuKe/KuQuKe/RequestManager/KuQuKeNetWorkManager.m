@@ -666,4 +666,478 @@
              checkLoginStatus:false];
 }
 
+
+/**
+ 正在进行中的任务列表
+ get kuquke.yiyunrj.xyz/task/nowTaskList
+ 
+ 参数	类型	必需/可选	默认	描述
+ time	int	必需	无	时间戳(用于判断请求是否超时)
+ token	string	必需	无	确定来访者身份
+ type	int	必需	1	1应用赚 2游戏赚
+ uid	int	必需	1	用户id
+ num	int	必需	10	每页数量
+ page	int	必需	1	请求页数
+ */
++ (QMURLSessionTask *)GET_nowTaskListParams:(NSDictionary *)params View:(UIView *)view success:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))success unknown:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))unknown failure:(void(^)(NSError *error))failure {
+	[params setValue:[QMSGeneralHelpers currentTimeStr] forKey:@"time"];
+	[params setValue:GET_USERDEFAULT(USERID) forKey:@"uid"];
+	NSString *token = [QMSGeneralHelpers md5Codesign:params];
+	[params setValue:token forKey:@"token"];
+	
+	NSString *url = [NSString stringWithFormat:@"%@%@",@"http://kuquke.yiyunrj.xyz/task/nowTaskList",[QMSGeneralHelpers changeParamsToString:params keySortArray:@[@"time",@"token",@"type",@"uid",@"num",@"page"]]];
+	
+	return [DQMAFNetWork method:GET
+				   withchildUrl:url
+					  andparams:nil
+						   view:view
+						 HUDMsg:@"正在进行中的任务"
+						success:^(RequestStatusModel * _Nonnull reqsModel, NSDictionary * _Nonnull dataDic) {
+							if (success) {
+								success(reqsModel,dataDic);
+							}
+						}
+						unknown:^(RequestStatusModel * _Nonnull reqsModel, NSDictionary * _Nonnull dataDic) {
+							if (unknown) {
+								unknown(reqsModel,dataDic);
+							}
+						}
+						failure:^(NSError * _Nonnull error) {
+							if (failure) {
+								failure(error);
+							}
+						}
+					  graceTime:3
+						showHUD:true
+				  networkstatus:true
+			   checkLoginStatus:false];
+}
+
+/**
+ 记录列表  消息中心
+ get kuquke.yiyunrj.xyz/user/messageLog
+ 
+ 参数	类型	必需/可选	默认	描述
+ time	int	必需	无	时间戳(用于判断请求是否超时)
+ token	string	必需	无	确定来访者身份
+ type	int	必需	1	1应用赚 2游戏赚
+ uid	int	必需	1	用户id
+ num	int	必需	10	每页数量
+ page	int	必需	1	请求页数
+ */
++ (QMURLSessionTask *)GET_messageLogParams:(NSDictionary *)params View:(UIView *)view success:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))success unknown:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))unknown failure:(void(^)(NSError *error))failure  {
+	
+	[params setValue:[QMSGeneralHelpers currentTimeStr] forKey:@"time"];
+	[params setValue:GET_USERDEFAULT(USERID) forKey:@"uid"];
+	NSString *token = [QMSGeneralHelpers md5Codesign:params];
+	[params setValue:token forKey:@"token"];
+	
+	NSString *url = [NSString stringWithFormat:@"%@%@",@"http://kuquke.yiyunrj.xyz/user/messageLog",[QMSGeneralHelpers changeParamsToString:params keySortArray:@[@"time",@"token",@"type",@"uid",@"num",@"page"]]];
+	
+	return [DQMAFNetWork method:GET
+				   withchildUrl:url
+					  andparams:nil
+						   view:view
+						 HUDMsg:@"记录列表"
+						success:^(RequestStatusModel * _Nonnull reqsModel, NSDictionary * _Nonnull dataDic) {
+							if (success) {
+								success(reqsModel,dataDic);
+							}
+						}
+						unknown:^(RequestStatusModel * _Nonnull reqsModel, NSDictionary * _Nonnull dataDic) {
+							if (unknown) {
+								unknown(reqsModel,dataDic);
+							}
+						}
+						failure:^(NSError * _Nonnull error) {
+							if (failure) {
+								failure(error);
+							}
+						}
+					  graceTime:3
+						showHUD:true
+				  networkstatus:true
+			   checkLoginStatus:false];
+}
+
+
+
+/**
+ 提现申请判断
+ post kuquke.yiyunrj.xyz/User/isWithdrawal
+ 
+ 参数	类型	必需/可选	默认	描述
+ time	int	必需	无	时间戳(用于判断请求是否超时)
+ token	string	必需	无	确定来访者身份
+ uid	int	必需	无	用户唯一id
+ type	int	必需	无	1支付宝提现 2微信提现
+ */
++ (QMURLSessionTask *)POST_isWithdrawalParams:(NSDictionary *)params View:(UIView *)view success:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))success unknown:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))unknown failure:(void(^)(NSError *error))failure {
+	
+	[params setValue:[QMSGeneralHelpers currentTimeStr] forKey:@"time"];
+	[params setValue:GET_USERDEFAULT(USERID) forKey:@"uid"];
+	
+	NSString *postTokenString = [QMSGeneralHelpers md5Codesign:params];
+	[params setValue:postTokenString forKey:@"token"];
+	
+	NSString *url = [NSString stringWithFormat:@"http://kuquke.yiyunrj.xyz/User/isWithdrawal"];
+	return [DQMAFNetWork method:POST
+				   withchildUrl:url
+					  andparams:params
+						   view:view
+						 HUDMsg:@"提现申请判断"
+						success:^(RequestStatusModel * _Nonnull reqsModel, NSDictionary * _Nonnull dataDic) {
+							if (success) {
+								success(reqsModel,dataDic);
+							}
+						}
+						unknown:^(RequestStatusModel * _Nonnull reqsModel, NSDictionary * _Nonnull dataDic) {
+							if (unknown) {
+								unknown(reqsModel,dataDic);
+							}
+						}
+						failure:^(NSError * _Nonnull error) {
+							if (failure) {
+								failure(error);
+							}
+						}
+					  graceTime:3
+						showHUD:true
+				  networkstatus:true
+			   checkLoginStatus:false];
+}
+
+
+
+/**
+ 提现申请
+ post kuquke.yiyunrj.xyz/User/withdrawal
+ 
+ 参数	类型	必需/可选	默认	描述
+ time	int	必需	无	时间戳(用于判断请求是否超时)
+ token	string	必需	无	确定来访者身份
+ uid	int	必需	无	用户唯一id
+ type	int	必需	无	1支付宝提现 2微信提现
+ price	string	必需	无	申请及金额
+ */
++ (QMURLSessionTask *)POST_withdrawalParams:(NSDictionary *)params View:(UIView *)view success:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))success unknown:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))unknown failure:(void(^)(NSError *error))failure  {
+	
+	[params setValue:[QMSGeneralHelpers currentTimeStr] forKey:@"time"];
+	[params setValue:GET_USERDEFAULT(USERID) forKey:@"uid"];
+	
+	NSString *postTokenString = [QMSGeneralHelpers md5Codesign:params];
+	[params setValue:postTokenString forKey:@"token"];
+	
+	NSString *url = [NSString stringWithFormat:@"http://kuquke.yiyunrj.xyz/User/withdrawal"];
+	return [DQMAFNetWork method:POST
+				   withchildUrl:url
+					  andparams:params
+						   view:view
+						 HUDMsg:@"提现申请"
+						success:^(RequestStatusModel * _Nonnull reqsModel, NSDictionary * _Nonnull dataDic) {
+							if (success) {
+								success(reqsModel,dataDic);
+							}
+						}
+						unknown:^(RequestStatusModel * _Nonnull reqsModel, NSDictionary * _Nonnull dataDic) {
+							if (unknown) {
+								unknown(reqsModel,dataDic);
+							}
+						}
+						failure:^(NSError * _Nonnull error) {
+							if (failure) {
+								failure(error);
+							}
+						}
+					  graceTime:3
+						showHUD:true
+				  networkstatus:true
+			   checkLoginStatus:false];
+}
+
+
+/**
+ 判断用户是否有上级
+ post kuquke.yiyunrj.xyz/User/checkLogin
+ 
+ 参数	类型	必需/可选	默认	描述
+ time	int	必需	无	时间戳(用于判断请求是否超时)
+ token	string	必需	无	确定来访者身份
+ uid	int	必需	无	用户唯一id
+ */
++ (QMURLSessionTask *)POST_checkLoginParams:(NSDictionary *)params View:(UIView *)view success:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))success unknown:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))unknown failure:(void(^)(NSError *error))failure {
+	
+	[params setValue:[QMSGeneralHelpers currentTimeStr] forKey:@"time"];
+	[params setValue:GET_USERDEFAULT(USERID) forKey:@"uid"];
+	
+	NSString *postTokenString = [QMSGeneralHelpers md5Codesign:params];
+	[params setValue:postTokenString forKey:@"token"];
+	
+	NSString *url = [NSString stringWithFormat:@"http://kuquke.yiyunrj.xyz/User/checkLogin"];
+	
+	return [DQMAFNetWork method:POST
+				   withchildUrl:url
+					  andparams:params
+						   view:view
+						 HUDMsg:@"提现申请"
+						success:^(RequestStatusModel * _Nonnull reqsModel, NSDictionary * _Nonnull dataDic) {
+							if (success) {
+								success(reqsModel,dataDic);
+							}
+						}
+						unknown:^(RequestStatusModel * _Nonnull reqsModel, NSDictionary * _Nonnull dataDic) {
+							if (unknown) {
+								unknown(reqsModel,dataDic);
+							}
+						}
+						failure:^(NSError * _Nonnull error) {
+							if (failure) {
+								failure(error);
+							}
+						}
+					  graceTime:3
+						showHUD:true
+					  showError:false
+				  networkstatus:true
+			   checkLoginStatus:false];
+}
+
+
+/**
+ 绑定密码页面
+ post kuquke.yiyunrj.xyz/User/bindPage
+ 
+ 参数	类型	必需/可选	默认	描述
+ time	int	必需	无	时间戳(用于判断请求是否超时)
+ token	string	必需	无	确定来访者身份
+ uid	int	必需	无	用户唯一id
+ */
++ (QMURLSessionTask *)POST_bindPageParams:(NSDictionary *)params View:(UIView *)view success:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))success unknown:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))unknown failure:(void(^)(NSError *error))failure {
+	
+	[params setValue:[QMSGeneralHelpers currentTimeStr] forKey:@"time"];
+	[params setValue:GET_USERDEFAULT(USERID) forKey:@"uid"];
+	
+	NSString *postTokenString = [QMSGeneralHelpers md5Codesign:params];
+	[params setValue:postTokenString forKey:@"token"];
+	
+	NSString *url = [NSString stringWithFormat:@"http://kuquke.yiyunrj.xyz/User/bindPage"];
+	
+	return [DQMAFNetWork method:POST
+				   withchildUrl:url
+					  andparams:params
+						   view:view
+						 HUDMsg:@"绑定密码"
+						success:^(RequestStatusModel * _Nonnull reqsModel, NSDictionary * _Nonnull dataDic) {
+							if (success) {
+								success(reqsModel,dataDic);
+							}
+						}
+						unknown:^(RequestStatusModel * _Nonnull reqsModel, NSDictionary * _Nonnull dataDic) {
+							if (unknown) {
+								unknown(reqsModel,dataDic);
+							}
+						}
+						failure:^(NSError * _Nonnull error) {
+							if (failure) {
+								failure(error);
+							}
+						}
+					  graceTime:3
+						showHUD:true
+					  showError:false
+				  networkstatus:true
+			   checkLoginStatus:false];
+}
+
+
+/**
+ 提交绑定信息页面
+ post kuquke.yiyunrj.xyz/User/bindPost
+ 
+ 参数	类型	必需/可选	默认	描述
+ time	int	必需	无	时间戳(用于判断请求是否超时)
+ token	string	必需	无	确定来访者身份
+ uid	int	必需	无	用户唯一id
+ mobile	string	必需	无	手机号
+ pswd	string	必需	无	密码1
+ pswd2	string	必需	无	第二次密码
+ */
++ (QMURLSessionTask *)POST_bindPostParams:(NSDictionary *)params View:(UIView *)view success:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))success unknown:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))unknown failure:(void(^)(NSError *error))failure {
+	
+	[params setValue:[QMSGeneralHelpers currentTimeStr] forKey:@"time"];
+	[params setValue:GET_USERDEFAULT(USERID) forKey:@"uid"];
+	
+	NSString *postTokenString = [QMSGeneralHelpers md5Codesign:params];
+	[params setValue:postTokenString forKey:@"token"];
+	
+	NSString *url = [NSString stringWithFormat:@"http://kuquke.yiyunrj.xyz/User/bindPost"];
+	
+	return [DQMAFNetWork method:POST
+				   withchildUrl:url
+					  andparams:params
+						   view:view
+						 HUDMsg:@"提交绑定信息"
+						success:^(RequestStatusModel * _Nonnull reqsModel, NSDictionary * _Nonnull dataDic) {
+							if (success) {
+								success(reqsModel,dataDic);
+							}
+						}
+						unknown:^(RequestStatusModel * _Nonnull reqsModel, NSDictionary * _Nonnull dataDic) {
+							if (unknown) {
+								unknown(reqsModel,dataDic);
+							}
+						}
+						failure:^(NSError * _Nonnull error) {
+							if (failure) {
+								failure(error);
+							}
+						}
+					  graceTime:3
+						showHUD:true
+					  showError:false
+				  networkstatus:true
+			   checkLoginStatus:false];
+}
+
+/**
+ 我的徒弟
+ get kuquke.yiyunrj.xyz/user/mySubList
+ 
+ 参数	类型	必需/可选	默认	描述
+ time	int	必需	无	时间戳(用于判断请求是否超时)
+ token	string	必需	无	确定来访者身份
+ uid	int	必需	1	用户id
+ num	int	必需	10	每页数量
+ page	int	必需	1	请求页数
+ */
++ (QMURLSessionTask *)GET_mySubListParams:(NSDictionary *)params View:(UIView *)view success:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))success unknown:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))unknown failure:(void(^)(NSError *error))failure {
+	
+	[params setValue:[QMSGeneralHelpers currentTimeStr] forKey:@"time"];
+	[params setValue:GET_USERDEFAULT(USERID) forKey:@"uid"];
+	NSString *token = [QMSGeneralHelpers md5Codesign:params];
+	[params setValue:token forKey:@"token"];
+	
+	NSString *url = [NSString stringWithFormat:@"%@%@",@"http://kuquke.yiyunrj.xyz/user/mySubList",[QMSGeneralHelpers changeParamsToString:params keySortArray:@[@"time",@"token",@"uid",@"num",@"page"]]];
+	
+	return [DQMAFNetWork method:GET
+				   withchildUrl:url
+					  andparams:nil
+						   view:view
+						 HUDMsg:@"我的徒弟"
+						success:^(RequestStatusModel * _Nonnull reqsModel, NSDictionary * _Nonnull dataDic) {
+							if (success) {
+								success(reqsModel,dataDic);
+							}
+						}
+						unknown:^(RequestStatusModel * _Nonnull reqsModel, NSDictionary * _Nonnull dataDic) {
+							if (unknown) {
+								unknown(reqsModel,dataDic);
+							}
+						}
+						failure:^(NSError * _Nonnull error) {
+							if (failure) {
+								failure(error);
+							}
+						}
+					  graceTime:3
+						showHUD:true
+				  networkstatus:true
+			   checkLoginStatus:false];
+}
+
+
+/**
+ 我的收入记录
+ get kuquke.yiyunrj.xyz/user/myAccountLog
+ 
+ 参数	类型	必需/可选	默认	描述
+ time	int	必需	无	时间戳(用于判断请求是否超时)
+ token	string	必需	无	确定来访者身份
+ uid	int	必需	1	用户id
+ num	int	必需	10	每页数量
+ page	int	必需	1	请求页数
+ */
++ (QMURLSessionTask *)GET_myAccountLogParams:(NSDictionary *)params View:(UIView *)view success:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))success unknown:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))unknown failure:(void(^)(NSError *error))failure {
+	
+	[params setValue:[QMSGeneralHelpers currentTimeStr] forKey:@"time"];
+	[params setValue:GET_USERDEFAULT(USERID) forKey:@"uid"];
+	NSString *token = [QMSGeneralHelpers md5Codesign:params];
+	[params setValue:token forKey:@"token"];
+	
+	NSString *url = [NSString stringWithFormat:@"%@%@",@"http://kuquke.yiyunrj.xyz/user/myAccountLog",[QMSGeneralHelpers changeParamsToString:params keySortArray:@[@"time",@"token",@"uid",@"num",@"page"]]];
+	
+	return [DQMAFNetWork method:GET
+				   withchildUrl:url
+					  andparams:nil
+						   view:view
+						 HUDMsg:@"我的收入记录"
+						success:^(RequestStatusModel * _Nonnull reqsModel, NSDictionary * _Nonnull dataDic) {
+							if (success) {
+								success(reqsModel,dataDic);
+							}
+						}
+						unknown:^(RequestStatusModel * _Nonnull reqsModel, NSDictionary * _Nonnull dataDic) {
+							if (unknown) {
+								unknown(reqsModel,dataDic);
+							}
+						}
+						failure:^(NSError * _Nonnull error) {
+							if (failure) {
+								failure(error);
+							}
+						}
+					  graceTime:3
+						showHUD:true
+				  networkstatus:true
+			   checkLoginStatus:false];
+}
+
+
+
+/**
+ 我的提现
+ get kuquke.yiyunrj.xyz/user/withdrawalLog
+ 
+ 参数	类型	必需/可选	默认	描述
+ time	int	必需	无	时间戳(用于判断请求是否超时)
+ token	string	必需	无	确定来访者身份
+ uid	int	必需	1	用户id
+ num	int	必需	10	每页数量
+ page	int	必需	1	请求页数
+ */
++ (QMURLSessionTask *)GET_withdrawalLogParams:(NSDictionary *)params View:(UIView *)view success:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))success unknown:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))unknown failure:(void(^)(NSError *error))failure {
+	
+	[params setValue:[QMSGeneralHelpers currentTimeStr] forKey:@"time"];
+	[params setValue:GET_USERDEFAULT(USERID) forKey:@"uid"];
+	NSString *token = [QMSGeneralHelpers md5Codesign:params];
+	[params setValue:token forKey:@"token"];
+	
+	NSString *url = [NSString stringWithFormat:@"%@%@",@"http://kuquke.yiyunrj.xyz/user/withdrawalLog",[QMSGeneralHelpers changeParamsToString:params keySortArray:@[@"time",@"token",@"uid",@"num",@"page"]]];
+	
+	return [DQMAFNetWork method:GET
+				   withchildUrl:url
+					  andparams:nil
+						   view:view
+						 HUDMsg:@"我的提现"
+						success:^(RequestStatusModel * _Nonnull reqsModel, NSDictionary * _Nonnull dataDic) {
+							if (success) {
+								success(reqsModel,dataDic);
+							}
+						}
+						unknown:^(RequestStatusModel * _Nonnull reqsModel, NSDictionary * _Nonnull dataDic) {
+							if (unknown) {
+								unknown(reqsModel,dataDic);
+							}
+						}
+						failure:^(NSError * _Nonnull error) {
+							if (failure) {
+								failure(error);
+							}
+						}
+					  graceTime:3
+						showHUD:true
+				  networkstatus:true
+			   checkLoginStatus:false];
+}
+
 @end
