@@ -127,7 +127,7 @@
       }];
       button;
     });
-    QMSetButton(QQqunButton, @"  还没有邀请码,加群获取》  ", 14, nil, QMHexColor(@"d88523"), UIControlStateNormal);
+    QMSetButton(QQqunButton, @" 我还没邀请码,请联系客服索取  ", 14, nil, QMHexColor(@"d88523"), UIControlStateNormal);
 
     [[receiveButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
       if ([_delegate respondsToSelector:@selector(CheckInvitationView:DidSelectInvitation:)]) {
@@ -137,6 +137,7 @@
     
     [[QQqunButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
       if ([_delegate respondsToSelector:@selector(CheckInvitationViewDidSelectAddQQSection:)]) {
+		  [self removeFromSuperview];
         [self.delegate CheckInvitationViewDidSelectAddQQSection:self];
       }
     }];

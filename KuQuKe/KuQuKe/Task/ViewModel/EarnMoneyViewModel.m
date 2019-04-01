@@ -34,8 +34,8 @@
       
       NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
       [params setValue:self.currentVC.taskID forKey:@"id"];
-      
-      [KuQuKeNetWorkManager GET_taskDetailParams:params View:self.currentVC.view success:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
+	  [params setValue:_nowtype forKey:@"nowtype"];
+      [KuQuKeNetWorkManager GET_taskDetailV2Params:params View:self.currentVC.view success:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
         NSLog(@"任务详情 %@",dataDic);
         
         //发送请求的数据

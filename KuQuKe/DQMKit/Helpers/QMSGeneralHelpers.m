@@ -193,15 +193,6 @@
 }
 
 
-/**
- 获取用户的UUID作为唯一标识符
- */
-+ (NSString *)getNowuniqueString
-{
-	NSString *myUUIDStr = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
-	return myUUIDStr;
-}
-
 
 /**
  把params根据ksort方法排序
@@ -252,6 +243,17 @@
 	NSTimeInterval time=[date timeIntervalSince1970]*10;// *1000 是精确到毫秒，不乘就是精确到秒
 	NSString *timeString = [NSString stringWithFormat:@"%.0f", time];
 	return timeString;
+}
+
+/**
+ 传入 秒  得到  xx分钟xx秒
+ */
++ (NSString *)getMMSSFromSS:(NSString *)totalTime {
+	NSInteger seconds = [totalTime integerValue];
+	NSString *str_minute = [NSString stringWithFormat:@"%d",seconds/60];
+	NSString *str_second = [NSString stringWithFormat:@"%d",seconds%60];
+	NSString *format_time = [NSString stringWithFormat:@"%@分钟%@秒",str_minute,str_second];
+	return format_time;
 }
 
 /**

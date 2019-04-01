@@ -8,6 +8,7 @@
 
 #import "APPPageViewModel.h"
 #import "NSData+YYAdd.h"
+#import "APPViewController.h"//应用列表
 
 #import "TaskTableViewCell.h"//任务列表cell
 #import "LeftAndRightLabelHeaderView.h"//组头
@@ -16,8 +17,10 @@
 
 
 @interface APPPageViewModel()
-//数据源
+//可选的
 @property(nonatomic,strong)NSMutableArray *taskListModelArray;
+//进行中的
+@property(nonatomic,strong)NSMutableArray *goingModelArray;
 @property(nonatomic,assign)NSInteger currentPage;
 
 @end
@@ -57,7 +60,7 @@ static const NSInteger startingValue = 1;
       
       [KuQuKeNetWorkManager GET_getTaskListParams:params View:self.currentVC.view success:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
         
-        NSArray *dataArray = [APPTaskModel mj_objectArrayWithKeyValuesArray:dataDic[@"data"][@"list"]];
+        NSArray *dataArray = [APPTaskModel mj_objectArrayWithKeyValuesArray:dataDic[@"data"][@"task_list"][@"list"]];
         if(dataArray.count > 0){
           if(requestPage == startingValue){
             self.currentPage = startingValue;
@@ -69,6 +72,19 @@ static const NSInteger startingValue = 1;
         } else {
           
         }
+		  
+		  NSArray *goingArray = [APPTaskModel mj_objectArrayWithKeyValuesArray:dataDic[@"data"][@"task_nowlist"]];
+		  if(goingArray.count > 0){
+			  if(requestPage == startingValue){
+				  [self.goingModelArray removeAllObjects];
+			  } else {
+				  self.currentPage = requestPage;
+			  }
+			  [self.goingModelArray addObjectsFromArray:goingArray];
+		  } else {
+			  
+		  }
+		  
         //发送请求的数据
         [subscriber sendNext:dataDic];
         [subscriber sendCompleted];
@@ -109,28 +125,41 @@ static const NSInteger startingValue = 1;
       //正在执行或者没有执行，隐藏MBProgressHUD
     }
   }];
-  
-  
+	
 }
 
 
 
 
 #pragma mark - Delegate：UITableViewDelegate
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+	return 2;
+}
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+	if (section == 0) {
+		return [_goingModelArray count];
+	}
   return [_taskListModelArray count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-  return 30;
+  return 50;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-  LeftAndRightLabelHeaderView *heaerView = [[LeftAndRightLabelHeaderView alloc] initWithFrame:CGRectZero];
-  LeftAndRightLabelHeaderViewModel *heaerModel = [LeftAndRightLabelHeaderViewModel initWithleftString:@"投放中" rightString:@""];
-  heaerView.headerModel = heaerModel;
-  return heaerView;
+	LeftAndRightLabelHeaderView *heaerView = [[LeftAndRightLabelHeaderView alloc] initWithFrame:CGRectZero];
+	LeftAndRightLabelHeaderViewModel *heaerModel;
+	if (section == 1) {
+		heaerModel = [LeftAndRightLabelHeaderViewModel initWithleftString:@"投放中" rightString:@""];
+	} else {
+		heaerModel = [LeftAndRightLabelHeaderViewModel initWithleftString:@"进行中" rightString:@""];
+	}
+	heaerView.headerModel = heaerModel;
+	heaerView.textFont = KQMFont(25);
+	heaerView.textColor = QMHexColor(@"eaeaea");
+	heaerView.backgroundColor = UIColor.whiteColor;
+	return heaerView;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -140,8 +169,14 @@ static const NSInteger startingValue = 1;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-  
   EarnMoneyForRegisterViewController *vc = [[EarnMoneyForRegisterViewController alloc] initWithTitle:@"注册赚钱"];
+	if (indexPath.section == 1) {
+		vc.nowtype = @"1";
+	} else if (indexPath.section == 0 && ![self.currentVC isKindOfClass:[APPViewController class]]) {
+		vc.nowtype = @"3";
+	} else {
+		vc.nowtype = @"2";
+	}
   vc.taskID = ((APPTaskModel *)_taskListModelArray[indexPath.row]).id;
   [self.currentVC.navigationController pushViewController:vc animated:true];
   

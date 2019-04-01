@@ -20,7 +20,7 @@
 #import "ShareToMyFriendViewController.h"//分享给朋友
 #import "MyBalanceCheckOutView.h"//余额弹窗
 #import "CheckOutAliPayViewController.h"//兑换到支付宝
-
+#import "H5ActionViewController.h"//在线客服
 
 #define HEADER_TOP 338 //滚动到多少导航栏变不透明
 
@@ -38,6 +38,8 @@
 @property(nonatomic,strong) UIButton *messageButton;
 /** 用户模型 */
 @property(nonatomic,strong) UserDetailModel   *userModel;
+/** 客服 */
+@property(nonatomic,copy) NSString          *kefu_url;
 
 @end
 
@@ -143,11 +145,15 @@
 	UIImageView *headerImageView = [[UIImageView alloc] init];
 	QMSetImage(headerImageView, @"my_header_bg");
 	[expandImageView addSubview:headerImageView];
+	headerImageView.userInteractionEnabled = true;
 	[headerImageView mas_makeConstraints:^(MASConstraintMaker *make) {
 		make.left.right.mas_equalTo(expandImageView);
 		make.bottom.mas_equalTo(expandImageView.mas_bottom);
 		make.height.mas_equalTo(kScreenWidth/1127*827);
 	}];
+	UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headerToSetting)];
+	[headerImageView addGestureRecognizer:tap];
+	
 	
 	UIView *whiteBackView = ({
 		UIView *view = [[UIView alloc] init];
@@ -232,7 +238,8 @@
 
 - (void)loadData {
 	NSArray<DQMTeam *> *firstSectionItemsArray =
-  @[[DQMTeam initTeamWithName:@"账号安全" sortNumber:nil destVc:[MyViewController class] extensionDictionary:@{@"icon":@"006"}],
+  @[[DQMTeam initTeamWithName:@"在线客服" sortNumber:nil destVc:[MyViewController class] extensionDictionary:@{@"icon":@"099"}],
+	[DQMTeam initTeamWithName:@"账号安全" sortNumber:nil destVc:[MyViewController class] extensionDictionary:@{@"icon":@"006"}],
 	[DQMTeam initTeamWithName:@"QQ客服群" sortNumber:nil destVc:[MyViewController class] extensionDictionary:@{@"icon":@"007"}],
 	[DQMTeam initTeamWithName:@"分享给朋友" sortNumber:nil destVc:[MyViewController class] extensionDictionary:@{@"icon":@"008"}]];
 	
@@ -243,7 +250,24 @@
 	[self.listDataArray addObject:firstSectionItemsArray];
 	[self.listDataArray addObject:secondSectionItemsArray];
 	[self.tableView reloadData];
+	
+	[KuQuKeNetWorkManager GET_getKefuUrlParams:[NSMutableDictionary new] View:self.view success:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
+		self.kefu_url = dataDic[@"data"][@"url"];
+		
+	} unknown:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
+		
+	} failure:^(NSError *error) {
+		
+	}];
 }
+
+
+//跳转设置
+- (void)headerToSetting {
+	SettingUsetInfoViewController *vc = [[SettingUsetInfoViewController alloc] initWithTitle:@"设置中心"];
+	[self.navigationController pushViewController:vc animated:true];
+}
+
 
 
 #pragma mark - tableView datasource
@@ -287,21 +311,26 @@
  列表点击事件
  */
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-  
-  if (indexPath.section == 0 && indexPath.row == 0) {
+	if (indexPath.section == 0 && indexPath.row == 0) {
+		if (_kefu_url) {
+			H5ActionViewController *vc = [[H5ActionViewController alloc] initWithTitle:@"客服"];
+			vc.apartUrl = _kefu_url;
+			[self.navigationController pushViewController:vc animated:true];
+		}
+	} else if (indexPath.section == 0 && indexPath.row == 1) {
     CompleteAccountViewController *vc = [[CompleteAccountViewController alloc] initWithTitle:@"账号安全"];
     [self.navigationController pushViewController:vc animated:true];
-  } else if (indexPath.section == 0 && indexPath.row == 1) {
+  } else if (indexPath.section == 0 && indexPath.row == 2) {
 	  CustomerServiceOfQQViewController *vc = [[CustomerServiceOfQQViewController alloc] initWithTitle:@"QQ客服群"];
 	  [self.navigationController pushViewController:vc animated:true];
-  }else if (indexPath.section == 0 && indexPath.row == 2) {
+  }else if (indexPath.section == 0 && indexPath.row == 3) {
 	  ShareToMyFriendViewController *vc = [[ShareToMyFriendViewController alloc] initWithStyle:UITableViewStyleGrouped];
 	  [self.navigationController pushViewController:vc animated:true];
   } else if (indexPath.section == 1 && indexPath.row == 0) {
 	  AboutUSViewController *vc = [[AboutUSViewController alloc] initWithTitle:@"关于酷趣客"];
 	  [self.navigationController pushViewController:vc animated:true];
   } else {
-	  
+	  [self.view makeToast:@"当前已是最新版本"];
   }
   
 }

@@ -93,6 +93,9 @@
 {
 	if (indexPath.section == 0) {
 		ShareToMyFriendImageTableViewCell *cell = [ShareToMyFriendImageTableViewCell cellWithTableView:tableView];
+		if (_dataDic) {
+			cell.codeLabel.text = [NSString stringWithFormat:@"我的邀请码:%@",_dataDic[@"data"][@"user_info"][@"share_code"]];
+		}
     QMWeak(self);
     cell.copyCodeSuccess = ^{
       if (!_dataDic) {

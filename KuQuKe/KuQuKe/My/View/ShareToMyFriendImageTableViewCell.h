@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 +(ShareToMyFriendImageTableViewCell *)cellWithTableView:(UITableView *)tableview;
 
+/** 邀请码 */
+@property(nonatomic,strong) UILabel          *codeLabel;
 /** 复制邀请码 */
 @property(nonatomic,copy) void(^copyCodeSuccess)(void);
 

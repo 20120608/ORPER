@@ -10,7 +10,7 @@
 #import "DQMNavigationController.h"     //导航栏  给每个首页套上导航栏
 #import "HomeViewController.h"          //首页
 #import "APPViewController.h"           //应用赚钱
-#import "GameViewController.h"          //游戏赚钱
+#import "GameViewController.h"          //推广赚钱
 #import "MyViewController.h"            //我的
 
 @interface DQMTabBarController () <UITabBarControllerDelegate>
@@ -38,7 +38,7 @@
   
   DQMNavigationController *two = [[DQMNavigationController alloc] initWithRootViewController:[[APPViewController alloc] initWithTitle:@"应用赚钱"]];
 
-  DQMNavigationController *three = [[DQMNavigationController alloc] initWithRootViewController:[[GameViewController alloc] initWithTitle:@"游戏赚钱"]];
+  DQMNavigationController *three = [[DQMNavigationController alloc] initWithRootViewController:[[GameViewController alloc] initWithTitle:@"推广赚钱"]];
 
     DQMNavigationController *four = [[DQMNavigationController alloc] initWithRootViewController:[[MyViewController alloc] initWithTitle:@"我的"]];
 
@@ -62,7 +62,7 @@
                                                @"TabBarItemSelectedImage" : @"10",
                                                };
 NSDictionary *threeTabBarItemsAttributes = @{
-											  @"TabBarItemTitle" : @"游戏赚钱",
+											  @"TabBarItemTitle" : @"推广赚钱",
 											  @"TabBarItemImage" : @"13",
 											  @"TabBarItemSelectedImage" : @"12",
 											  };

@@ -18,6 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,copy) NSString          *id;
 /** 标题 */
 @property(nonatomic,copy) NSString          *title;
+/** nowtype = 3 专属任务nowtype = 2 正在进行中nowtype = 1 新参加的 */
+@property(nonatomic,copy) NSString          *type_id;
 /** 详情 */
 @property(nonatomic,copy) NSString          *desc;
 /** 内容 */
@@ -32,8 +34,15 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,copy) NSString          *appicon_url;
 /** 步骤 */
 @property(nonatomic,copy) NSArray          *step_info;
-/** 步骤图片 */
+/** 例子图片 */
 @property(nonatomic,copy) NSArray<NSString *>  *exp_img;
+/** 步骤图片 */
+@property(nonatomic,copy) NSArray<NSString *>  *step_img;
+/** 步骤图片 */
+@property(nonatomic,copy) NSString 			 *ios_url;
+/** 详情 */
+@property(nonatomic,copy) NSString          *timer;
+
 /** 信息
  "join_info" =     {
  applyid = 3;

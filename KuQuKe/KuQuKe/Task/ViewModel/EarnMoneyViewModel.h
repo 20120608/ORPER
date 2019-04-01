@@ -22,6 +22,8 @@ NS_ASSUME_NONNULL_BEGIN
 //RACCommand操作：
 //获取视频列表
 @property (nonatomic, strong, readonly) RACCommand *requestVideoListCommand;
+/** 类型 */
+@property(nonatomic,copy) NSString          *nowtype;
 
 
 

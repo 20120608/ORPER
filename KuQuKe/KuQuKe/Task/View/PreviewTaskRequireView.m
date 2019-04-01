@@ -126,7 +126,7 @@
       self.priceLabel.attributedText = [QMSGeneralHelpers changeStringToMutableAttributedStringTitle:price font:KQMFont(40) rangeOfFont:NSMakeRange(0, price.length-1) color:QMPriceColor rangeOfColor:NSMakeRange(0, price.length-1)] ;
       
       /** 截止时间或开始时间 */
-      self.timeLabel.text = [NSString stringWithFormat:@"  有效时间:%@分钟  ",x.dealy_time];
+      self.timeLabel.text = [NSString stringWithFormat:@"  有效时间:%@  ",[QMSGeneralHelpers getMMSSFromSS:x.timer]];
       
       /** 图标 */
       [self.iconImageView qm_setImageUrlString:x.appicon_url];
@@ -139,10 +139,14 @@
       [x.step_info enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         stempString = [NSString stringWithFormat:@"%@\n\n%@",[stempString length]==0 ? @"":stempString, obj];
       }];
-      NSString *content = [NSString stringWithFormat:@"须知:    %@%@",x.desc,stempString];
-      QMLabelFontColorText(self.contentLabel, content, QMTextColor, 13);
-      
-      
+		NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"须知:    %@",([x.desc length] == 0 ? @"" :x.desc)]];
+		[attString addAttribute:NSForegroundColorAttributeName value:QMPriceColor range:NSMakeRange(0, attString.length)];
+		if ([stempString length]) {
+			[attString appendAttributedString:[[NSMutableAttributedString alloc] initWithString:stempString]];
+		}
+		[self.contentLabel setAttributedText:attString];
+
+		
       //是否可以点击开始按钮  join_status  5是未参与 0是已经开始任务了 1是已经提交任务审核了 2是审核通过 3是审核不通过 6是过时失效了
       [self.beginButton setEnabled:false];
       [self.beginButton setBackgroundColor:QMBackColor forState:UIControlStateNormal];
@@ -349,7 +353,7 @@
       UILabel *label = [[UILabel alloc] init];
       [self addSubview:label];
       label.numberOfLines = 0;
-      QMLabelFontColorText(label, @"须知          招商银行首次安装用户;\n第一步      准备一张招商银行信用卡或储蓄卡;\n第二步      下载招商银行APP并安装;\n第三部      注册并登入招行后实名认证[截图保存];\n第四步      返回酷趣客提交截图等待审核;", QMTextColor, 13);
+      QMLabelFontColorText(label, @"须知          招商银行首次安装用户;\n第一步      准备一张招商银行信用卡或储蓄卡;\n第二步      下载招商银行APP并安装;\n第三部      注册并登入招行后实名认证[截图保存];\n第四步      返回酷趣客提交截图等待审核;", QMTextColor, 16);
       [label setText:label.text lineSpacing:8];
       
       label;

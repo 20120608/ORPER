@@ -350,7 +350,7 @@
 		{
 			[_statusLabel removeFromSuperview];
 			[_sourceLabel removeFromSuperview];
-			_priceLabel.textColor = DQMMainColor;
+			_priceLabel.textColor = QMPriceColor;
 		}
 			break;
 		case TaskTableViewCellStyleSubTag:

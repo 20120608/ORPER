@@ -19,8 +19,10 @@
 	self = [super initWithFrame:frame];
 	if (self) {
 		
-		NSArray *msgArray = @[@"可用余额",@"总收益",@"学徒"];
-		NSArray *imgArray = @[@"001",@"002",@"003"];
+		NSArray *msgArray = @[@"提现",@"明细",@"徒弟"];
+		NSArray<UIColor *> *buttonColorArray = @[DQMMainColor,QMPriceColor,QMHexColor(@"f99f42")];
+		NSArray *buttonTitleArray = @[@"  余额  ",@"  收益  ",@"  学徒  "];
+
 		NSMutableArray *buttonMArray = [[NSMutableArray alloc] init];
 		for (int i = 0; i < 3; i++) {
 			UIButton *backView = ({
@@ -32,6 +34,38 @@
 				view;
 			});
 			
+			UILabel *buttonLabel = ({
+				UILabel *label = [[UILabel alloc] init];
+				[self addSubview:label];
+				label.backgroundColor = buttonColorArray[i];
+				QMLabelFontColorText(label, buttonTitleArray[i],  UIColor.whiteColor, 15);
+				QMViewBorderRadius(label, 10, 0, DQMMainColor);
+				[label mas_makeConstraints:^(MASConstraintMaker *make) {
+					make.bottom.mas_equalTo(backView.mas_bottom).offset(-10);
+					make.centerX.mas_equalTo(backView.mas_centerX);
+					make.height.mas_equalTo(20);
+				}];
+				label;
+			});
+			
+			
+			
+			UILabel *numLabel = ({
+				UILabel *label = [[UILabel alloc] init];
+				[backView addSubview:label];
+				label.textAlignment = NSTextAlignmentCenter;
+				label.userInteractionEnabled = NO;
+				QMLabelFontColorText(label, @"0.00", DQMMainColor, 18);
+				label.font = kQmBoldFont(18);
+				[label mas_makeConstraints:^(MASConstraintMaker *make) {
+					make.bottom.mas_equalTo(buttonLabel.mas_top).offset(-10);
+					make.left.right.mas_equalTo(0);
+					make.centerX.mas_equalTo(backView.mas_centerX);
+					make.height.mas_equalTo(20);
+				}];
+				label;
+			});
+			
 			UILabel *msgLabel = ({
 				UILabel *label = [[UILabel alloc] init];
 				[backView addSubview:label];
@@ -40,46 +74,16 @@
 				QMLabelFontColorText(label, @"说明文字", QMTextColor, 14);
 				[label mas_makeConstraints:^(MASConstraintMaker *make) {
 					make.left.right.mas_equalTo(0);
-					make.bottom.mas_equalTo(backView.mas_bottom).offset(-10);
-					make.centerX.mas_equalTo(backView.mas_centerX);
-					make.height.mas_equalTo(14);
-				}];
-				label;
-			});
-			
-			UILabel *numLabel = ({
-				UILabel *label = [[UILabel alloc] init];
-				[backView addSubview:label];
-				label.textAlignment = NSTextAlignmentCenter;
-				label.userInteractionEnabled = NO;
-				QMLabelFontColorText(label, @"0.00", DQMMainColor, 18);
-				[label mas_makeConstraints:^(MASConstraintMaker *make) {
-					make.left.right.mas_equalTo(0);
-					make.bottom.mas_equalTo(msgLabel.mas_top).offset(-6);
+					make.bottom.mas_equalTo(numLabel.mas_top).offset(-6);
 					make.centerX.mas_equalTo(backView.mas_centerX);
 					make.height.mas_equalTo(18);
 				}];
 				label;
 			});
 			
-			UIImageView *iconImageView = ({
-				UIImageView *imageView = [[UIImageView alloc] init];
-				[backView addSubview: imageView];
-				imageView.userInteractionEnabled = NO;
-				imageView.contentMode = UIViewContentModeScaleAspectFit;
-				[imageView mas_makeConstraints:^(MASConstraintMaker *make) {
-					make.centerX.mas_equalTo(backView.mas_centerX);
-					make.top.mas_equalTo(backView.mas_top).offset(10);
-					make.width.mas_equalTo(imageView.mas_height);
-					make.bottom.mas_equalTo(numLabel.mas_top).offset(-10);
-				}];
-				imageView;
-			});
-			QMSetImage(iconImageView, @"001");
 
 			[RACObserve(self, userModel) subscribeNext:^(UserDetailModel *x) {
 				msgLabel.text = msgArray[i];
-				[iconImageView setImage:[UIImage imageNamed:imgArray[i]]];
 				
 				if (i == 0) {
 					numLabel.text = [NSString stringWithFormat:@"%.2lf",[x.balance floatValue]];

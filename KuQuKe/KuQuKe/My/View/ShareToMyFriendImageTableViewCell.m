@@ -80,6 +80,19 @@
 			make.height.mas_equalTo(90);
 		}];
 		
+		UILabel *codeLabel = ({
+			UILabel *label = [[UILabel alloc] init];
+			[self addSubview:label];
+			self.codeLabel = label;
+			[label mas_makeConstraints:^(MASConstraintMaker *make) {
+				make.centerX.mas_equalTo(self.mas_centerX);
+				make.top.mas_equalTo(self.contentView.mas_top).offset(190);
+				make.height.mas_equalTo(34);
+			}];
+			label;
+		});
+		QMLabelFontColorText(codeLabel, @"我的邀请码:______", QMTextColor, 16);
+
 		
 		NSArray *imageArray = @[@"s01",@"s02",@"s03",@"s04",@"s05",@"s06"];
 		NSArray *titleArray = @[@"微信",@"朋友圈",@"QQ",@"QQ空间",@"新浪微博",@"二维码"];
@@ -92,11 +105,11 @@
 			[self.contentView addSubview:button];
 			button.tag = 7;
 			QMSetButton(button, @"复制邀请码", 20, nil, UIColor.whiteColor, UIControlStateNormal);
-			QMViewBorderRadius(button, 15, 0, DQMMainColor);
+			QMViewBorderRadius(button, 15, 0, QMTextColor);
 			[button addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
 			[button mas_makeConstraints:^(MASConstraintMaker *make) {
 				make.centerX.mas_equalTo(self.mas_centerX);
-				make.top.mas_equalTo(self.contentView.mas_top).offset(190);
+				make.top.mas_equalTo(self.contentView.mas_top).offset(224);
 				make.height.mas_equalTo(30);
 				make.width.mas_equalTo(156);
 				make.bottom.mas_equalTo(self.contentView.mas_bottom).offset(-15);

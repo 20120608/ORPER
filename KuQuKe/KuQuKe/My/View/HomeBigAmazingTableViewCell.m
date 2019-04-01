@@ -7,6 +7,8 @@
 //
 
 #import "HomeBigAmazingTableViewCell.h"
+#import "UIView+WebCache.h"
+#import "UIImage+GIF.h"
 
 @implementation HomeBigAmazingTableViewCell
 
@@ -35,22 +37,25 @@
 			make.edges.mas_equalTo(UIEdgeInsetsMake(0, 0, 0, 0));
 			make.height.mas_equalTo(kScreenWidth/375*111);
 		}];
-    
-    [[RACObserve(self, adimgString) skip:1] subscribeNext:^(NSString *x) {
-      [headerView sd_setImageWithURL:[NSURL URLWithString:x]
-                    placeholderImage:[UIImage imageNamed:@"banner.jpg"]
-                           completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-                             if (image && cacheType == SDImageCacheTypeNone) {
-                               CATransition *transition = [CATransition animation];
-                               transition.type = kCATransitionFade;
-                               transition.duration = 0.5;
-                               transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-                               [headerView.layer addAnimation:transition forKey:nil];
-                             }
-                           }];
-    }];
-    
+		
+		@weakify(self);
+		[[RACObserve(self, adimgString) skip:1] subscribeNext:^(NSString *x) {
 
+			[headerView sd_internalSetImageWithURL:[NSURL URLWithString:x] placeholderImage:nil options:0 operationKey:nil setImageBlock:^(UIImage * _Nullable image, NSData * _Nullable imageData) {
+				if (imageData) {
+					[headerView setImage:[UIImage sd_animatedGIFWithData:imageData]];
+				}
+			} progress:nil completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+				@strongify(self);
+				if (!error) {
+					
+				} else {
+					self.hidden = YES;
+				}
+			}];
+		}];
+		
+		
 	}
 	return self;
 }

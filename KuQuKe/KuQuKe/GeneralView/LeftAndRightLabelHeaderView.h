@@ -16,7 +16,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 /** 数据 */
 @property(nonatomic,strong) LeftAndRightLabelHeaderViewModel          *headerModel;
-
+/** 字体大小 */
+@property(nonatomic,strong) UIFont          *textFont;
+/** 字体大小 */
+@property(nonatomic,strong) UIColor          *textColor;
 @end
 
 @interface LeftAndRightLabelHeaderViewModel : NSObject
@@ -25,6 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,copy) NSString          *leftString;
 /** 右标题 */
 @property(nonatomic,copy) NSString          *rightString;
+
 
 +(LeftAndRightLabelHeaderViewModel *)initWithleftString:(NSString *)leftString rightString:(NSString *)rightString;
 

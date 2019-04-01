@@ -190,8 +190,8 @@ static const CGFloat printScreensViewMargin = 12.0;
 		  UIButton *button = [[UIButton alloc] init];
 		  [self addSubview:button];
 		  QMSetButton(button, @"提交审核", 16, nil, UIColor.whiteColor, UIControlStateNormal);
-		  QMViewBorderRadius(button, 4, 0, QMBlueColor);
-		  button.backgroundColor = QMBlueColor;
+		  QMViewBorderRadius(button, 4, 0, UIColor.whiteColor);
+		  button.backgroundColor = QMPriceColor;
 		  [button addTarget:self action:@selector(beginButtonClick:) forControlEvents:UIControlEventTouchUpInside];
 		  [button mas_makeConstraints:^(MASConstraintMaker *make) {
 			  make.centerX.mas_equalTo(self.mas_centerX);
@@ -206,7 +206,7 @@ static const CGFloat printScreensViewMargin = 12.0;
       UILabel *label = [[UILabel alloc] init];
       [self addSubview:label];
       label.textAlignment = NSTextAlignmentCenter;
-      QMLabelFontColorText(label, @"通过审核后自动到账,审核时长1~2工作日", QMSubTextColor, 10);
+      QMLabelFontColorText(label, @"通过审核后自动到账,审核时长1~3工作日", QMSubTextColor, 10);
       [label mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.mas_equalTo(self.mas_bottom).offset(-30-HOME_INDICATOR_HEIGHT);//撑开高
         make.left.right.mas_equalTo(0);

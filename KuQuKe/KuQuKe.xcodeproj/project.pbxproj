@@ -45,6 +45,7 @@
 		55542FD721E646EB000F8D45 /* UserDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 55542FD621E646EB000F8D45 /* UserDetailModel.m */; };
 		55542FDA21E64931000F8D45 /* MyMoneyAndStdentsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 55542FD921E64931000F8D45 /* MyMoneyAndStdentsView.m */; };
 		55542FDE21E6598E000F8D45 /* DQMRightImageViewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 55542FDD21E6598E000F8D45 /* DQMRightImageViewTableViewCell.m */; };
+		5570A4BB224F4902005337D5 /* transactionReceipt in Resources */ = {isa = PBXBuildFile; fileRef = 5570A4BA224F4902005337D5 /* transactionReceipt */; };
 		5594A0B421E1BB11009178B3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5594A0B321E1BB11009178B3 /* AppDelegate.m */; };
 		5594A0B721E1BB11009178B3 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5594A0B621E1BB11009178B3 /* ViewController.m */; };
 		5594A0BA21E1BB11009178B3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5594A0B821E1BB11009178B3 /* Main.storyboard */; };
@@ -87,6 +88,7 @@
 		5594A15521E1BC1F009178B3 /* QMSGeneralHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 5594A13321E1BC1F009178B3 /* QMSGeneralHelpers.m */; };
 		5594A15621E1BC1F009178B3 /* DQMConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 5594A13421E1BC1F009178B3 /* DQMConst.m */; };
 		5594A15B21E1BCC5009178B3 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5594A15A21E1BCC5009178B3 /* HomeViewController.m */; };
+		55AB8A8622392C6700CE21C1 /* EarnMoneyAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 55AB8A8522392C6700CE21C1 /* EarnMoneyAlertView.m */; };
 		55B4994E21EF4662005F31AE /* TaskPreviewStepModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4994D21EF4662005F31AE /* TaskPreviewStepModel.m */; };
 		55B4995921EF466F005F31AE /* PreviewTaskRequireView.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4995121EF466E005F31AE /* PreviewTaskRequireView.m */; };
 		55B4995A21EF466F005F31AE /* PreViewTaskTotalStepView.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4995321EF466E005F31AE /* PreViewTaskTotalStepView.m */; };
@@ -101,6 +103,10 @@
 		55CBE2F2222BF11400BB21C6 /* MyInComeViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 55CBE2F1222BF11400BB21C6 /* MyInComeViewModel.m */; };
 		55CBE2F5222BF12700BB21C6 /* MyWithDrawViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 55CBE2F4222BF12700BB21C6 /* MyWithDrawViewModel.m */; };
 		55CBE2F8222BF15500BB21C6 /* MyInComeAndWithDrawModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 55CBE2F7222BF15500BB21C6 /* MyInComeAndWithDrawModel.m */; };
+		55CBE3592230BA8700BB21C6 /* DQMAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 55CBE3582230BA8700BB21C6 /* DQMAlertView.m */; };
+		55CBE35D2235754500BB21C6 /* H5ActionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55CBE35C2235754500BB21C6 /* H5ActionViewController.m */; };
+		55CBE36022374D8300BB21C6 /* MyExclusiveTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55CBE35F22374D8300BB21C6 /* MyExclusiveTaskViewController.m */; };
+		55CBE363223782E400BB21C6 /* MyExclusiveTaskViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 55CBE362223782E400BB21C6 /* MyExclusiveTaskViewModel.m */; };
 		55CD2088222B60F60087EE60 /* OnGoingTaskViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 55CD2087222B60F60087EE60 /* OnGoingTaskViewModel.m */; };
 		55CD208F222B69150087EE60 /* MessageCenterViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 55CD208E222B69150087EE60 /* MessageCenterViewModel.m */; };
 		55CD2092222B697E0087EE60 /* MessageCenterListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 55CD2091222B697E0087EE60 /* MessageCenterListModel.m */; };
@@ -112,6 +118,8 @@
 		55D1D0DD21E22095008ECEE3 /* ZJCalenderDateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D1D0D221E22095008ECEE3 /* ZJCalenderDateManager.m */; };
 		55D1D0DE21E22095008ECEE3 /* ZJCalenderMonthModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D1D0D521E22095008ECEE3 /* ZJCalenderMonthModel.m */; };
 		55D1D0DF21E22095008ECEE3 /* ZJCalenderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D1D0D721E22095008ECEE3 /* ZJCalenderController.m */; };
+		55FA566C2237B4EB003504D3 /* KQKLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55FA566B2237B4EB003504D3 /* KQKLoginViewController.m */; };
+		55FA56722237B882003504D3 /* LoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 55FA56712237B882003504D3 /* LoginView.m */; };
 		5910E77321F9BADD0098184A /* LoginThreeForeignView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5910E77221F9BADD0098184A /* LoginThreeForeignView.m */; };
 		5910E77721FAF2080098184A /* RACMVVMListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5910E77621FAF2080098184A /* RACMVVMListViewController.m */; };
 		5910E77A21FAF3250098184A /* RACMVVMViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5910E77921FAF3250098184A /* RACMVVMViewModel.m */; };
@@ -252,6 +260,7 @@
 		55542FD921E64931000F8D45 /* MyMoneyAndStdentsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyMoneyAndStdentsView.m; sourceTree = "<group>"; };
 		55542FDC21E6598E000F8D45 /* DQMRightImageViewTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DQMRightImageViewTableViewCell.h; sourceTree = "<group>"; };
 		55542FDD21E6598E000F8D45 /* DQMRightImageViewTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DQMRightImageViewTableViewCell.m; sourceTree = "<group>"; };
+		5570A4BA224F4902005337D5 /* transactionReceipt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = transactionReceipt; sourceTree = "<group>"; };
 		5594A0AF21E1BB11009178B3 /* KuQuKe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KuQuKe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5594A0B221E1BB11009178B3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5594A0B321E1BB11009178B3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -337,6 +346,8 @@
 		5594A15721E1BC2B009178B3 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PrefixHeader.pch; path = KuQuKe/Other/PrefixHeader.pch; sourceTree = SOURCE_ROOT; };
 		5594A15921E1BCC5009178B3 /* HomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		5594A15A21E1BCC5009178B3 /* HomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		55AB8A8422392C6700CE21C1 /* EarnMoneyAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EarnMoneyAlertView.h; sourceTree = "<group>"; };
+		55AB8A8522392C6700CE21C1 /* EarnMoneyAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EarnMoneyAlertView.m; sourceTree = "<group>"; };
 		55B4994C21EF4662005F31AE /* TaskPreviewStepModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskPreviewStepModel.h; sourceTree = "<group>"; };
 		55B4994D21EF4662005F31AE /* TaskPreviewStepModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskPreviewStepModel.m; sourceTree = "<group>"; };
 		55B4994F21EF466D005F31AE /* PreviewTaskRequireView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreviewTaskRequireView.h; sourceTree = "<group>"; };
@@ -365,6 +376,14 @@
 		55CBE2F4222BF12700BB21C6 /* MyWithDrawViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyWithDrawViewModel.m; sourceTree = "<group>"; };
 		55CBE2F6222BF15500BB21C6 /* MyInComeAndWithDrawModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyInComeAndWithDrawModel.h; sourceTree = "<group>"; };
 		55CBE2F7222BF15500BB21C6 /* MyInComeAndWithDrawModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyInComeAndWithDrawModel.m; sourceTree = "<group>"; };
+		55CBE3572230BA8700BB21C6 /* DQMAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DQMAlertView.h; sourceTree = "<group>"; };
+		55CBE3582230BA8700BB21C6 /* DQMAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DQMAlertView.m; sourceTree = "<group>"; };
+		55CBE35B2235754500BB21C6 /* H5ActionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = H5ActionViewController.h; sourceTree = "<group>"; };
+		55CBE35C2235754500BB21C6 /* H5ActionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = H5ActionViewController.m; sourceTree = "<group>"; };
+		55CBE35E22374D8300BB21C6 /* MyExclusiveTaskViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyExclusiveTaskViewController.h; sourceTree = "<group>"; };
+		55CBE35F22374D8300BB21C6 /* MyExclusiveTaskViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyExclusiveTaskViewController.m; sourceTree = "<group>"; };
+		55CBE361223782E400BB21C6 /* MyExclusiveTaskViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyExclusiveTaskViewModel.h; sourceTree = "<group>"; };
+		55CBE362223782E400BB21C6 /* MyExclusiveTaskViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyExclusiveTaskViewModel.m; sourceTree = "<group>"; };
 		55CD2086222B60F60087EE60 /* OnGoingTaskViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OnGoingTaskViewModel.h; sourceTree = "<group>"; };
 		55CD2087222B60F60087EE60 /* OnGoingTaskViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OnGoingTaskViewModel.m; sourceTree = "<group>"; };
 		55CD208D222B69150087EE60 /* MessageCenterViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageCenterViewModel.h; sourceTree = "<group>"; };
@@ -388,6 +407,10 @@
 		55D1D0D521E22095008ECEE3 /* ZJCalenderMonthModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJCalenderMonthModel.m; sourceTree = "<group>"; };
 		55D1D0D621E22095008ECEE3 /* ZJCalenderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJCalenderController.h; sourceTree = "<group>"; };
 		55D1D0D721E22095008ECEE3 /* ZJCalenderController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJCalenderController.m; sourceTree = "<group>"; };
+		55FA566A2237B4EB003504D3 /* KQKLoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KQKLoginViewController.h; sourceTree = "<group>"; };
+		55FA566B2237B4EB003504D3 /* KQKLoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KQKLoginViewController.m; sourceTree = "<group>"; };
+		55FA56702237B882003504D3 /* LoginView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginView.h; sourceTree = "<group>"; };
+		55FA56712237B882003504D3 /* LoginView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginView.m; sourceTree = "<group>"; };
 		5910E77121F9BADD0098184A /* LoginThreeForeignView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginThreeForeignView.h; sourceTree = "<group>"; };
 		5910E77221F9BADD0098184A /* LoginThreeForeignView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginThreeForeignView.m; sourceTree = "<group>"; };
 		5910E77521FAF2080098184A /* RACMVVMListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RACMVVMListViewController.h; sourceTree = "<group>"; };
@@ -531,6 +554,7 @@
 		5537063B21E1C262001E49BC /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				5570A4BA224F4902005337D5 /* transactionReceipt */,
 				5594A15921E1BCC5009178B3 /* HomeViewController.h */,
 				5594A15A21E1BCC5009178B3 /* HomeViewController.m */,
 				5537064C21E1C85C001E49BC /* CheckInViewController.h */,
@@ -544,6 +568,8 @@
 		5537063C21E1C26A001E49BC /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				55CBE35E22374D8300BB21C6 /* MyExclusiveTaskViewController.h */,
+				55CBE35F22374D8300BB21C6 /* MyExclusiveTaskViewController.m */,
 				5537063221E1C053001E49BC /* APPViewController.h */,
 				5537063321E1C053001E49BC /* APPViewController.m */,
 			);
@@ -667,6 +693,7 @@
 		5537064721E1C2E7001E49BC /* Wheel */ = {
 			isa = PBXGroup;
 			children = (
+				55CBE3562230BA7100BB21C6 /* AlertView */,
 				551A09CE21E99FCC00B2FB84 /* DQMJXCategoryView */,
 				59D0AEC321E465EA00F3A67C /* Rotarytable */,
 				5918A76E21E2F5AC00CF8431 /* DQMHorizontalViewScrollerView */,
@@ -727,6 +754,8 @@
 				59185E7D21F7FE6900EEC8B3 /* GameTaskDetailStepTableViewCell.m */,
 				59693ED821F81151002CAEF1 /* GameTaskStepView.h */,
 				59693ED921F81151002CAEF1 /* GameTaskStepView.m */,
+				55AB8A8422392C6700CE21C1 /* EarnMoneyAlertView.h */,
+				55AB8A8522392C6700CE21C1 /* EarnMoneyAlertView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -798,11 +827,13 @@
 				5537064721E1C2E7001E49BC /* Wheel */,
 				59D0AEB621E427C800F3A67C /* GeneralView */,
 				59DC11EF21EDC8B0003FE685 /* RequestManager */,
+				55CBE35A2235731500BB21C6 /* H5WebView */,
 				5594A15821E1BC6E009178B3 /* Home */,
 				55542FC521E6165A000F8D45 /* Task */,
 				5594A15E21E1BCF4009178B3 /* APP */,
 				5594A15D21E1BCF2009178B3 /* Game */,
 				5594A15C21E1BCEF009178B3 /* My */,
+				55FA56692237B4CE003504D3 /* KQKLogin */,
 				5594A15F21E1BD47009178B3 /* Other */,
 			);
 			path = KuQuKe;
@@ -1057,6 +1088,24 @@
 			path = Other;
 			sourceTree = "<group>";
 		};
+		55CBE3562230BA7100BB21C6 /* AlertView */ = {
+			isa = PBXGroup;
+			children = (
+				55CBE3572230BA8700BB21C6 /* DQMAlertView.h */,
+				55CBE3582230BA8700BB21C6 /* DQMAlertView.m */,
+			);
+			path = AlertView;
+			sourceTree = "<group>";
+		};
+		55CBE35A2235731500BB21C6 /* H5WebView */ = {
+			isa = PBXGroup;
+			children = (
+				55CBE35B2235754500BB21C6 /* H5ActionViewController.h */,
+				55CBE35C2235754500BB21C6 /* H5ActionViewController.m */,
+			);
+			path = H5WebView;
+			sourceTree = "<group>";
+		};
 		55CD2085222B60DE0087EE60 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -1103,6 +1152,41 @@
 				55D1D0CD21E22095008ECEE3 /* ZJCalenderView.m */,
 			);
 			path = DQMCalendar;
+			sourceTree = "<group>";
+		};
+		55FA56692237B4CE003504D3 /* KQKLogin */ = {
+			isa = PBXGroup;
+			children = (
+				55FA566F2237B782003504D3 /* view */,
+				55FA566E2237B781003504D3 /* Model */,
+				55FA566D2237B780003504D3 /* Controller */,
+			);
+			path = KQKLogin;
+			sourceTree = "<group>";
+		};
+		55FA566D2237B780003504D3 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				55FA566A2237B4EB003504D3 /* KQKLoginViewController.h */,
+				55FA566B2237B4EB003504D3 /* KQKLoginViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		55FA566E2237B781003504D3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		55FA566F2237B782003504D3 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				55FA56702237B882003504D3 /* LoginView.h */,
+				55FA56712237B882003504D3 /* LoginView.m */,
+			);
+			path = view;
 			sourceTree = "<group>";
 		};
 		5910E77421FAF1C90098184A /* DQMRAC+MVVM */ = {
@@ -1197,6 +1281,8 @@
 			children = (
 				59698998221D3C0600081FFF /* APPPageViewModel.h */,
 				59698999221D3C0600081FFF /* APPPageViewModel.m */,
+				55CBE361223782E400BB21C6 /* MyExclusiveTaskViewModel.h */,
+				55CBE362223782E400BB21C6 /* MyExclusiveTaskViewModel.m */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1359,6 +1445,11 @@
 				TargetAttributes = {
 					5594A0AE21E1BB11009178B3 = {
 						CreatedOnToolsVersion = 10.1;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					5594A0C621E1BB12009178B3 = {
 						CreatedOnToolsVersion = 10.1;
@@ -1400,6 +1491,7 @@
 				5910E78D21FE93810098184A /* lottie_loading.json in Resources */,
 				5594A13521E1BC1F009178B3 /* DqmBaseAssets.xcassets in Resources */,
 				596898F621FED9D1009DB2C0 /* ReadMe.txt in Resources */,
+				5570A4BB224F4902005337D5 /* transactionReceipt in Resources */,
 				5594A0BA21E1BB11009178B3 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1516,10 +1608,12 @@
 				59ADCD1F21E70E5B00A86C1F /* SettingUserInfoWithTableViewController.m in Sources */,
 				55CD208F222B69150087EE60 /* MessageCenterViewModel.m in Sources */,
 				5594A14621E1BC1F009178B3 /* DQMTextViewController.m in Sources */,
+				55FA56722237B882003504D3 /* LoginView.m in Sources */,
 				5594A14421E1BC1F009178B3 /* DQMNavigationController.m in Sources */,
 				59ADCD1C21E70E3500A86C1F /* SettingUserInfoWithInputViewController.m in Sources */,
 				55542FBE21E61601000F8D45 /* UILabel+LineSpacing.m in Sources */,
 				5594A14D21E1BC1F009178B3 /* DQMNavigationBar.m in Sources */,
+				55AB8A8622392C6700CE21C1 /* EarnMoneyAlertView.m in Sources */,
 				596989BC2224E58400081FFF /* EarnMoneyViewModel.m in Sources */,
 				5594A15321E1BC1F009178B3 /* YYFPSLabel.m in Sources */,
 				5594A13821E1BC1F009178B3 /* UIColor+HexString.m in Sources */,
@@ -1571,6 +1665,7 @@
 				551A09E621E9AF9B00B2FB84 /* MyInComeViewController.m in Sources */,
 				5594A14321E1BC1F009178B3 /* DQMFoldingTableViewController.m in Sources */,
 				551A09DA21E9A25600B2FB84 /* DQMJXCategoryViewController.m in Sources */,
+				55CBE35D2235754500BB21C6 /* H5ActionViewController.m in Sources */,
 				55D1D0DD21E22095008ECEE3 /* ZJCalenderDateManager.m in Sources */,
 				5594A14121E1BC1F009178B3 /* DQMRequestBaseViewController.m in Sources */,
 				5910E77A21FAF3250098184A /* RACMVVMViewModel.m in Sources */,
@@ -1585,7 +1680,9 @@
 				55D1D0DE21E22095008ECEE3 /* ZJCalenderMonthModel.m in Sources */,
 				5594A0B721E1BB11009178B3 /* ViewController.m in Sources */,
 				55542FAE21E37ABD000F8D45 /* TaskTableViewCell.m in Sources */,
+				55CBE3592230BA8700BB21C6 /* DQMAlertView.m in Sources */,
 				55542FDA21E64931000F8D45 /* MyMoneyAndStdentsView.m in Sources */,
+				55CBE36022374D8300BB21C6 /* MyExclusiveTaskViewController.m in Sources */,
 				55B4995D21EF466F005F31AE /* UserMessageInputView.m in Sources */,
 				55B4995921EF466F005F31AE /* PreviewTaskRequireView.m in Sources */,
 				5594A13E21E1BC1F009178B3 /* UINavigationController+FDFullscreenPopGesture.m in Sources */,
@@ -1619,8 +1716,10 @@
 				59693EDA21F81151002CAEF1 /* GameTaskStepView.m in Sources */,
 				5918A77121E2F5DF00CF8431 /* DQMHorizontalViewScrollerView.m in Sources */,
 				5930277B21F1B8EC00FC68F1 /* DQMModalBaseViewController.m in Sources */,
+				55FA566C2237B4EB003504D3 /* KQKLoginViewController.m in Sources */,
 				55542FBA21E615E3000F8D45 /* DQMImageTitleSubTitleAndArrowTableViewCell.m in Sources */,
 				551A09FE21EA2F7100B2FB84 /* HomeBigAmazingTableViewCell.m in Sources */,
+				55CBE363223782E400BB21C6 /* MyExclusiveTaskViewModel.m in Sources */,
 				5594A14B21E1BC1F009178B3 /* DQMTeam.m in Sources */,
 				551A09C121E985EC00B2FB84 /* DQMRImageRLabelAndLSubLabelTableViewCell.m in Sources */,
 				55B4995A21EF466F005F31AE /* PreViewTaskTotalStepView.m in Sources */,

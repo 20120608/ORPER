@@ -17,6 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 /** 需要的任务ID */
 @property(nonatomic,copy) NSString          *taskID;
 
+/** 类型 */
+@property(nonatomic,copy) NSString          *nowtype;
 
 @end
 

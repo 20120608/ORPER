@@ -12,10 +12,12 @@
 #import "UserMessageInputView.h"//输入用户信息
 #import "EarnMoneyDetailModel.h"//注册赚钱模型
 #import "EarnMoneyViewModel.h"//视图模型
+#import "DQMAlertView.h"//警告弹窗
 
-
-@interface EarnMoneyForRegisterViewController () <UserMessageInputViewDelegate,PreviewTaskRequireViewDelegate>
-
+@interface EarnMoneyForRegisterViewController () <UserMessageInputViewDelegate,PreviewTaskRequireViewDelegate,DQMAlertViewDelegate>
+{
+	NSTimer * _timer;
+}
 @property (nonatomic, strong) EarnMoneyViewModel *racViewModel;
 
 /** 滚动的背景 */
@@ -30,7 +32,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-  
+	
   [self createUI];
 
   //绑定
@@ -63,6 +65,7 @@
  */
 - (void)resetRefreshView:(NSDictionary *)dataDic {
   self.earnModel = [EarnMoneyDetailModel mj_objectWithKeyValues:dataDic];
+	[self beginCountDown];//开始倒计时
 }
 
 
@@ -72,18 +75,18 @@
 - (void)createUI {
   self.scrollView.hidden = true;
   
-  EarnMoneyForSubLabelView *subTagView = ({
-    EarnMoneyForSubLabelView *view = [[EarnMoneyForSubLabelView alloc] init];
-    [self.scrollView addSubview:view];
-    [view mas_makeConstraints:^(MASConstraintMaker *make) {
-      make.left.mas_equalTo(self.scrollView.mas_left);
-      make.top.mas_equalTo(self.scrollView.mas_top);
-      make.right.mas_equalTo(self.scrollView.mas_right);
-    }];
-    view;
-  });
-  subTagView.backgroundColor = UIColor.whiteColor;
-  
+//  EarnMoneyForSubLabelView *subTagView = ({
+//    EarnMoneyForSubLabelView *view = [[EarnMoneyForSubLabelView alloc] init];
+//    [self.scrollView addSubview:view];
+//    [view mas_makeConstraints:^(MASConstraintMaker *make) {
+//      make.left.mas_equalTo(self.scrollView.mas_left);
+//      make.top.mas_equalTo(self.scrollView.mas_top);
+//      make.right.mas_equalTo(self.scrollView.mas_right);
+//    }];
+//    view;
+//  });
+//  subTagView.backgroundColor = UIColor.whiteColor;
+	
   PreviewTaskRequireView *preTaskView = ({
     PreviewTaskRequireView *view = [[PreviewTaskRequireView alloc] init];
     [self.scrollView addSubview: view];
@@ -91,7 +94,7 @@
     view.backgroundColor = UIColor.whiteColor;
     [view mas_makeConstraints:^(MASConstraintMaker *make) {
       make.left.mas_equalTo(self.scrollView.mas_left);
-      make.top.mas_equalTo(subTagView.mas_bottom);
+      make.top.mas_equalTo(self.scrollView.mas_top);
       make.right.mas_equalTo(self.scrollView.mas_right);
     }];
     view;
@@ -114,7 +117,7 @@
   
   [[RACObserve(self, earnModel) skip:1] subscribeNext:^(EarnMoneyDetailModel *x) {
     preTaskView.imagesUrlStringArray = [[NSMutableArray alloc] initWithArray:x.exp_img];
-    subTagView.earnModel = x;
+//    subTagView.earnModel = x;
     preTaskView.earnModel = x;
     self.scrollView.hidden = false;//打开
   }];
@@ -122,27 +125,26 @@
 
 #pragma mark - 开始任务
 - (void)beginButtonClickPreviewTaskRequireView:(PreviewTaskRequireView *)view {
-	NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
-	[params setValue:_taskID forKey:@"id"];
-	
-	[KuQuKeNetWorkManager POST_taskStartParams:params View:self.view success:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
-		
-		[self.view makeToast:@"现在开始任务了!"];
-		//刷新数据一下
-		[self.racViewModel.requestVideoListCommand execute:@{@"reloadData":@"1"}];
-		
-		
-	} unknown:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
-		
-	} failure:^(NSError *error) {
-		
-	}];
+	//弃用  默认一进入详情页会请求一次任务
+//	NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+//	[params setValue:_taskID forKey:@"id"];
+//
+//	[KuQuKeNetWorkManager POST_taskStartParams:params View:self.view success:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
+//
+//		[self.view makeToast:@"现在开始任务了!"];
+//		[self.racViewModel.requestVideoListCommand execute:@{@"reloadData":@"1"}];
+//		self.racViewModel.nowtype = _nowtype;
+//	} unknown:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
+//
+//	} failure:^(NSError *error) {
+//
+//	}];
 }
 
 #pragma mark - 提交审核按钮
 - (void)getCodeWithUserMessageInputView:(UserMessageInputView *)userMessageInputView code:(NSString *)code phone:(NSString *)phone name:(NSString *)name {
   NSLog(@"获取验证码");
-	
+	[self.view makeToast:@"获取验证码"];
 }
 
 - (void)saveToInvestigateWithUserMessageInputView:(UserMessageInputView *)userMessageInputView ImageArray:(NSArray <HXPhotoModel *>  *)imageArray code:(NSString *)code phone:(NSString *)phone name:(NSString *)name {
@@ -157,8 +159,6 @@
 		return;
 	}
 	
-  NSLog(@"上传图片中");
-  
   NSMutableArray *imageUrlArray = [[NSMutableArray alloc] init];
   
   [imageArray enumerateObjectsUsingBlock:^(HXPhotoModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -207,12 +207,64 @@
 }
 
 
+#pragma mark - timer
+/**
+ 开始计时
+ */
+- (void)beginCountDown {
+	CGFloat timeInterval = 1;
+	[self invalidateTimerWhenDismissViewController];
+	_timer = [NSTimer scheduledTimerWithTimeInterval:timeInterval target:self selector:@selector(countdownAction) userInfo:nil repeats:YES];
+	[[NSRunLoop currentRunLoop] addTimer:_timer forMode:NSRunLoopCommonModes];
+}
+
+/**
+ 计时器操作
+ */
+- (void)countdownAction {
+	
+	if ([self.earnModel.timer intValue] > 0) {
+		self.earnModel.timer = [NSString stringWithFormat:@"%d",[self.earnModel.timer intValue] - 1];
+		self.earnModel = self.earnModel;
+	} else {
+		self.earnModel.timer = @"0";
+		self.earnModel = self.earnModel;
+		[self invalidateTimerWhenDismissViewController];
+	}
+}
+
+//释放定时器
+-(void)invalidateTimerWhenDismissViewController {
+	[_timer invalidate];
+	_timer = nil;
+}
+
+//停止定时器刷新界面
+- (void)stopTimerAndReloadView {
+	[self invalidateTimerWhenDismissViewController];
+	self.earnModel.timer = @"0";
+}
+/**
+ 删除移除计时器   视图是present出来的话不会走这里！！！！
+ */
+- (void)willMoveToParentViewController:(UIViewController *)parent {
+  [super willMoveToParentViewController:parent];
+  NSLog(@"执行了 willMoveToParentViewController ");
+  [self invalidateTimerWhenDismissViewController];
+}
+
+
+- (void)DQMAlertView:(DQMAlertView *)alertView DidSelectInvitation:(NSString *)codeString {
+	
+}
+
 
 
 #pragma mark - load
 - (EarnMoneyViewModel *)racViewModel{
   if (!_racViewModel) {
     _racViewModel = [[EarnMoneyViewModel alloc] init];
+	  _racViewModel.nowtype = _nowtype;
   }
   return _racViewModel;
 }
@@ -244,7 +296,39 @@
 }
 
 -(void)leftButtonEvent:(UIButton *)sender navigationBar:(DQMNavigationBar *)navigationBar {
-  [self.navigationController popViewControllerAnimated:true];
+	
+	DQMAlertView *view = [[DQMAlertView alloc] initWithFrame:self.view.frame];
+	view.delegate = self;
+	[self.view addSubview:view];
+	[view show];
+}
+
+- (void)DQMAlertView:(DQMAlertView *)alertView DidSelectIndexPath:(NSIndexPath *)indexPath {
+	switch (indexPath.row) {
+		case 0:
+			[self.navigationController popViewControllerAnimated:true];
+			break;
+		case 1:
+		{
+			UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"是否确定放弃" message:@"点击确定后放弃任务" preferredStyle:UIAlertControllerStyleActionSheet];
+			UIAlertAction *sure = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+				[self.navigationController popViewControllerAnimated:true];
+			}];
+			UIAlertAction *cancle = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+			}];
+			[alert addAction:sure];
+			[alert addAction:cancle];
+			[self presentViewController:alert animated:true completion:nil];
+		}
+			break;
+		case 2:
+		{
+			[alertView hide];
+		}
+			break;
+		default:
+			break;
+	}
 }
 
 - (UIColor *)dqmNavigationBackgroundColor:(DQMNavigationBar *)navigationBar {

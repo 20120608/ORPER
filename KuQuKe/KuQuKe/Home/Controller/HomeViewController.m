@@ -24,6 +24,11 @@
 #import "AboutUSViewController.h"//关于酷趣客
 #import "MyBalanceCheckOutView.h"//提现弹窗
 #import "CheckOutAliPayViewController.h"//提现功能页面
+#import "H5ActionViewController.h"//webView
+#import "KQKLoginViewController.h"//登录
+
+@import StoreKit;
+
 
 @interface HomeViewController () <DQMHorizontalViewScrollerViewDataSource,AvgButtonMenuTableViewCellDelegate,CheckInvitationViewDelegate,MyBalanceCheckOutViewDelegate>
 {
@@ -39,6 +44,9 @@
 @property (nonatomic,copy    ) NSString                      *getAllMoney;/* 全部任务可获得金钱 */
 @property (nonatomic,copy    ) NSString                      *num;/* 可接任务数量 */
 @property (nonatomic,strong  ) NSMutableArray                *listArray;/* 推荐赚钱数据数组 */
+@property (nonatomic,copy    ) NSString                      *ad_url;/* 广告 */
+@property (nonatomic,copy    ) NSString                      *kefu_url;/* 客服 */
+
 
 @end
 
@@ -49,6 +57,8 @@
 - (void)viewWillAppear:(BOOL)animated {
 	_barStyle = UIStatusBarStyleLightContent;
 	[self setNeedsStatusBarAppearanceUpdate];
+	
+	[self loadData];
 	
 	[self.advScrollView reloadData];
 }
@@ -61,14 +71,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-  [self createUI];
-	
-  [self loadData];
+	[self testData];
 
-  
-//  测试
-//  RACMVVMListViewController *vc = [[RACMVVMListViewController alloc] initWithTitle:@"RAC&&MVVM"];
-//  [weakself.navigationController pushViewController:vc animated:true];
+	
+	self.tabBarController.view.userInteractionEnabled = false;
+	self.num = @"0";
+	self.getAllMoney = @"0";
+  [self createUI];
 }
 
 #pragma mark - UI
@@ -85,11 +94,10 @@
 	self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
 	[self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
 		make.left.right.mas_equalTo(0);
-		make.top.mas_equalTo(_advScrollView.mas_bottom).offset(5);
+		make.top.mas_equalTo(_advScrollView.mas_bottom).offset(3);
 		make.bottom.mas_equalTo(self.view.mas_bottom).offset(-TAB_BAR_HEIGHT);
 	}];
 	
-  
 }
 
 -(void)DIYNavibar {
@@ -144,14 +152,19 @@
 
 #pragma mark - get data
 - (void)loadData {
+	if ([[NSString stringWithFormat:@"%@",GET_USERDEFAULT(USERID)] isEqualToString:@"18659740508"]) {
+		KQKLoginViewController *loginViewController = [[KQKLoginViewController alloc] initWithTitle:@"登录"];
+		[self presentViewController:loginViewController animated:true completion:^{
+			
+		}];
+		return;
+	}
   //用设备号登入
-  NSString *deviceID;
-  if (((NSString *)GET_USERDEFAULT(@"DEVICEID")).length == 0) {
-    deviceID = [QMSGeneralHelpers getNowuniqueString];
-    [kUserDefaults setValue:deviceID forKey:@"DEVICEID"];
-  } else {
-    deviceID = GET_USERDEFAULT(@"DEVICEID");
-  }
+  NSString *deviceID = GET_USERDEFAULT(@"DEVICEID");
+	if (deviceID.length == 0) {
+		[self.view makeToast:@"获取不到UDID"];
+		return;
+	}
   NSMutableDictionary *postDic = [[NSMutableDictionary alloc] init];
   [postDic setValue:deviceID forKey:@"deviceid"];
   [postDic setValue:[NSNumber numberWithInteger:2] forKey:@"phonetype"];
@@ -168,6 +181,17 @@
   } failure:^(NSError *error) {
     
   }];
+	
+	[KuQuKeNetWorkManager GET_getKefuUrlParams:[NSMutableDictionary new] View:self.view success:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
+		self.kefu_url = dataDic[@"data"][@"url"];
+		
+	} unknown:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
+		
+	} failure:^(NSError *error) {
+		
+	}];
+	
+	
 }
 
 /**
@@ -177,17 +201,19 @@
 	
 	[KuQuKeNetWorkManager POST_checkLoginParams:[NSMutableDictionary new] View:self.view success:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
 		
+		self.tabBarController.view.userInteractionEnabled = true;
 		
 		
 	} unknown:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
-		
+		self.tabBarController.view.userInteractionEnabled = true;
+
 		if ([reqsModel.code intValue] == 400) {
 			CheckInvitationView *view = ({
 				CheckInvitationView *view = [[CheckInvitationView alloc] init];
 				[self.view.window addSubview: view];
 				view.delegate = self;
 				[view mas_makeConstraints:^(MASConstraintMaker *make) {
-					make.edges.mas_equalTo(self.view);
+					make.edges.mas_equalTo(self.view.window);
 				}];
 				view;
 			});
@@ -195,7 +221,7 @@
 		}
 		
 	} failure:^(NSError *error) {
-		
+		self.tabBarController.view.userInteractionEnabled = true;
 	}];
 }
 
@@ -209,10 +235,11 @@
 
     //订阅余额
     self.myMoney = dataDic[@"data"][@"today_money"];
+	self.ad_url = dataDic[@"data"][@"ad_url"];
 	self.canUseMoney = dataDic[@"data"][@"user_money"];
     self.adimgString = dataDic[@"data"][@"ad_img"];
-    self.num = dataDic[@"data"][@"num"];
-    self.getAllMoney =  dataDic[@"data"][@"get_all_money"];
+    self.num = [NSString stringWithFormat:@"%@",dataDic[@"data"][@"num"]];
+	self.getAllMoney = [NSString stringWithFormat:@"%@",dataDic[@"data"][@"get_all_money"]];
     self.listArray = [HomeTaskRecommendModel mj_objectArrayWithKeyValuesArray:dataDic[@"data"][@"recommend_list"]];
     
     [self.tableView reloadData];
@@ -262,7 +289,11 @@
 }
 
 - (void)CheckInvitationViewDidSelectAddQQSection:(CheckInvitationView *)invitationView {
-  NSLog(@"点击了弹出QQ群信息页面");
+	if (_kefu_url) {
+		H5ActionViewController *vc = [[H5ActionViewController alloc] initWithTitle:@"客服"];
+		vc.apartUrl = _kefu_url;
+		[self.navigationController pushViewController:vc animated:true];
+	}
 }
 
 - (void)MyBalanceCheckOutView:(MyBalanceCheckOutView *)checkOutView didSelected:(NSInteger)index {
@@ -289,12 +320,17 @@
 	if (section == 4) {
 		return [_listArray count];
 	}
+	if ([_num isEqualToString:@"0"] && [_getAllMoney isEqualToString:@"0"] && (section == 3)) {
+		return 0;
+	}
+	if (section == 2) {
+		return 0;
+	}
   return 1;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-	
-	if (section == 2 || section == 4) {
+	if (section == 4) {
 		return 35;
 	}
 	return 0.01;
@@ -302,14 +338,14 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
 	switch (section) {
-		case 2:
-		{
-			HomeHeaderView *headerView = [[HomeHeaderView alloc] initWithFrame:CGRectZero];
-			headerView.titleString = @"酷玩赚钱";
-			headerView.subTitleString = @"高额赚钱";
-			return headerView;
-		}
-			break;
+//		case 2:
+//		{
+//			HomeHeaderView *headerView = [[HomeHeaderView alloc] initWithFrame:CGRectZero];
+//			headerView.titleString = @"酷玩赚钱";
+//			headerView.subTitleString = @"高额赚钱";
+//			return headerView;
+//		}
+//			break;
 		case 4:
 		{
 			HomeHeaderView *headerView = [[HomeHeaderView alloc] initWithFrame:CGRectZero];
@@ -332,7 +368,7 @@
 		default:
 			break;
 	}
-	return 5;
+	return 3;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
@@ -346,7 +382,7 @@
 	switch (indexPath.section) {
 		case 0:
 		{
-			AvgButtonMenuTableViewCell *cell = [AvgButtonMenuTableViewCell cellWithTableView:tableView initWithButtonsNum:4 indexPath:indexPath andFixedHeightIfNeed:85 WithDatasArray:@[@{@"name":@"邀请赚钱",@"icon":@"01"},@{@"name":@"现金签到",@"icon":@"02"},@{@"name":@"抽奖大转盘",@"icon":@"03"},@{@"name":@"正在进行",@"icon":@"04"}] withFixedSpacing:0 leadSpacing:10 tailSpacing:10];
+			AvgButtonMenuTableViewCell *cell = [AvgButtonMenuTableViewCell cellWithTableView:tableView initWithButtonsNum:4 indexPath:indexPath andFixedHeightIfNeed:85 WithDatasArray:@[@{@"name":@"邀请赚钱",@"icon":@"01"},@{@"name":@"现金签到",@"icon":@"02"},@{@"name":@"每日抽奖",@"icon":@"03"},@{@"name":@"正在进行",@"icon":@"04"}] withFixedSpacing:0 leadSpacing:10 tailSpacing:10];
 			cell.delegate = self;
 			return cell;
 		}
@@ -392,10 +428,17 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-
-	EarnMoneyForRegisterViewController *vc = [[EarnMoneyForRegisterViewController alloc] initWithTitle:@"注册赚钱"];
-	vc.taskID = [NSString stringWithFormat:@"%ld",(long)((HomeTaskRecommendModel *)_listArray[indexPath.row]).id];
-	[self.navigationController pushViewController:vc animated:true];
+	if (indexPath.section == 1 && _ad_url) {
+		H5ActionViewController *vc = [[H5ActionViewController alloc] initWithTitle:@"详情"];
+		vc.apartUrl = _ad_url;
+		[self.navigationController pushViewController:vc animated:true];
+	}
+	else if (indexPath.section == 4) {
+		EarnMoneyForRegisterViewController *vc = [[EarnMoneyForRegisterViewController alloc] initWithTitle:@"注册赚钱"];
+		vc.taskID = [NSString stringWithFormat:@"%ld",(long)((HomeTaskRecommendModel *)_listArray[indexPath.row]).id];
+		vc.nowtype = @"1";
+		[self.navigationController pushViewController:vc animated:true];
+	}
 }
 
 
@@ -436,7 +479,46 @@
 }
 
 
+#pragma mark - 获取uid
+- (NSString *)UDIDFromReceiptData:(NSData *)receiptData{
+	
+	NSDictionary *receiptDict = [NSPropertyListSerialization propertyListWithData:receiptData options:NSPropertyListImmutable format:NULL error:NULL];
+	
+	NSString *purchaseInfo = receiptDict[@"purchase-info"];
+	NSData *purchaseData = [[NSData alloc] initWithBase64EncodedString:purchaseInfo options:0];
+	NSDictionary *purchaseDict = [NSPropertyListSerialization propertyListWithData:purchaseData options:NSPropertyListImmutable format:NULL error:NULL];
+	//NSLog(@"purchaseDict:%@",purchaseDict);
+	
+	NSString *UDID = purchaseDict[@"unique-identifier"];
+	//NSLog(@"UDID:%@",UDID);
+	
+	return UDID;
+}
 
+//Test
+- (void)testData{
+	NSString *path = [[NSBundle mainBundle] pathForResource:@"transactionReceipt" ofType:nil];
+	NSData *receiptData = [NSData dataWithContentsOfFile:path];
+	
+	NSString *UDID = [self UDIDFromReceiptData:receiptData];
+	NSLog(@"UDID:%@",UDID);
+	[kUserDefaults setValue:UDID forKey:@"DEVICEID"];
+}
+
+//Example
+#pragma mark - SKPaymentTransactionObserver
+- (void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray<SKPaymentTransaction *> *)transactions{
+	
+	for (SKPaymentTransaction *transaction in transactions) {
+		
+		if (SKPaymentTransactionStatePurchased == transaction.transactionState) {
+			
+			NSData *receiptData = transaction.transactionReceipt;
+			NSString *UDID = [self UDIDFromReceiptData:receiptData];
+			NSLog(@"UDID:%@",UDID);
+		}
+	}
+}
 
 
 #pragma mark - DQMHorizontalViewScrollerViewDataSource

@@ -79,11 +79,6 @@
 
 
 /**
- 获取用户的UUID作为唯一标识符
- */
-+ (NSString *)getNowuniqueString;
-
-/**
  把params根据ksort方法排序
  */
 + (NSString *)md5Codesign:(NSDictionary *)dict;
@@ -97,6 +92,11 @@
  获取当前时间戳
  */
 + (NSString *)currentTimeStr;
+
+/**
+ 传入 秒  得到  xx分钟xx秒
+ */
++ (NSString *)getMMSSFromSS:(NSString *)totalTime;
 
 /**
  在window上加一个loading视图

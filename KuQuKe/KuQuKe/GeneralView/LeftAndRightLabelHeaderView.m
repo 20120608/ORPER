@@ -57,6 +57,15 @@
 			weakself.rightLabel.text = x.rightString;
 		}];
 		
+		[RACObserve(self, textFont) subscribeNext:^(UIFont *x) {
+			weakself.leftLabel.font = x;
+			weakself.rightLabel.font = x;
+		}];
+		[RACObserve(self, textColor) subscribeNext:^(UIColor *x) {
+			weakself.leftLabel.textColor = x;
+		}];
+		
+		
 	}
 	return self;
 }

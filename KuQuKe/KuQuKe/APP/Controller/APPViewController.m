@@ -8,12 +8,15 @@
 
 #import "APPViewController.h"
 #import "APPPageViewModel.h"
+#import "MyExclusiveTaskViewController.h"
+
 @interface APPViewController ()
 
-/** 数组 */
-@property(nonatomic,strong) NSMutableArray       *listDataArray;
 /** 视图模型 */
 @property(nonatomic,strong) APPPageViewModel          *racViewModel;
+/** 头部 */
+@property(nonatomic,strong) UILabel					  *myTaskLabel;
+
 @end
 
 @implementation APPViewController
@@ -23,15 +26,34 @@
 	
   //UI
   [self createUI];
-  
+	
+	self.myTaskLabel = ({
+		UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 50)];
+		label.textAlignment = NSTextAlignmentCenter;
+		label.backgroundColor = QMBackColor;
+		QMLabelFontColorText(label, @"您有1个专属任务,共0元", QMTextColor, 16);
+		label;
+	});
+	self.tableView.tableHeaderView = _myTaskLabel;
+	_myTaskLabel.userInteractionEnabled = true;
+	UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(zhuanshurenwu)];
+	[_myTaskLabel addGestureRecognizer:tap];
+	
   //绑定
   [self setupBind];
   
   //进入界面首次下拉刷新
   [self.tableView.mj_header beginRefreshing];
-  
 	
 }
+
+- (void)zhuanshurenwu {
+	MyExclusiveTaskViewController *vc = [[MyExclusiveTaskViewController alloc] initWithTitle:@"专属任务"];
+	
+	[self.navigationController pushViewController:vc animated:true];
+}
+
+
 
 #pragma mark - createUI
 - (void)createUI {
@@ -67,8 +89,10 @@
   @weakify(self)
   [[[NSNotificationCenter defaultCenter] rac_addObserverForName:NotificationName_APPViewController object:nil] subscribeNext:^(NSNotification * _Nullable x) {
     @strongify(self)
-
-    [self.tableView reloadData];
+	 NSDictionary *dic = x.object;
+	  NSString *astring = [NSString stringWithFormat:@"您有%@个专属任务，共%@元",dic[@"data"][@"exclusive_info"][@"exclusive_num"],dic[@"data"][@"exclusive_info"][@"exclusive_sum"]];
+	  self.myTaskLabel.text = astring;
+	[self.tableView reloadData];
     [self resetRefreshView];
   }];
 }
@@ -105,13 +129,5 @@
 	return DQMMainColor;
 }
 
-
-#pragma mark - load data
--(NSMutableArray *)listDataArray {
-	if (!_listDataArray) {
-		_listDataArray = [[NSMutableArray alloc] init];
-	}
-	return _listDataArray;
-}
 
 @end

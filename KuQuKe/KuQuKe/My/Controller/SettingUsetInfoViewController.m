@@ -13,6 +13,7 @@
 #import "UserDetailModel.h"//用户模型
 #import "CompleteInformationViewController.h"//完善资料
 #import "AboutUSViewController.h"//关于酷趣客
+#import "KQKLoginViewController.h"//酷趣客的登入界面
 
 
 @interface SettingUsetInfoViewController ()
@@ -61,7 +62,7 @@
 #pragma mark - UITableViewDelegate
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-  return 3;
+  return 4;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -125,7 +126,7 @@
     UILabel *loginOutLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 50)];
     [cell addSubview:loginOutLabel];
     loginOutLabel.textAlignment = NSTextAlignmentCenter;
-    QMLabelFontColorText(loginOutLabel, @"退出账号", DQMMainColor, 16);
+    QMLabelFontColorText(loginOutLabel, @"退出账号", QMPriceColor, 16);
     return cell;
     
   }
@@ -155,10 +156,12 @@
 	}
   
   if (indexPath.section == 3) {
-    
-    [self.view makeToast:@"暂不能退出账号"];
+	  KQKLoginViewController *loginViewController = [[KQKLoginViewController alloc] initWithTitle:@"登录"];
+	  [kUserDefaults setValue:@"18659740508" forKey:@"USERID"];
+	  [self presentViewController:loginViewController animated:true completion:^{
+		  
+	  }];
   }
-  
 }
 
 

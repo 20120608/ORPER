@@ -59,15 +59,16 @@
 
 
 /**
- 获取任务列表
- 参数  类型  必需/可选  默认  描述
- time  int  必需  无  时间戳(用于判断请求是否超时)
- token  string  必需  无  确定来访者身份
- type  int  必需  1  1应用赚 2游戏赚
- uid  int  必需  1  用户id
- num  int  必需  10  每页数量
- page  int  必需  1  请求页数
-
+ 任务列表(含专属任务)
+ get kuquke.yiyunrj.xyz/task/getTaskList
+ 
+ 参数	类型	必需/可选	默认	描述
+ time	int	必需	无	时间戳(用于判断请求是否超时)
+ token	string	必需	无	确定来访者身份
+ type	int	必需	1	1应用赚 2游戏赚
+ uid	int	必需	1	用户id
+ num	int	必需	10	每页数量
+ page	int	必需	1	请求页数
  */
 + (QMURLSessionTask *)GET_getTaskListParams:(NSDictionary *)params View:(UIView *)view success:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))success unknown:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))unknown failure:(void(^)(NSError *error))failure;
 
@@ -127,16 +128,17 @@
 
 
 /**
- 任务详情
- get kuquke.yiyunrj.xyz/task/taskDetail
+ 任务详情V2
+ get kuquke.yiyunrj.xyz/task/taskDetailV2
  
- 参数  类型  必需/可选  默认  描述
- time  int  必需  无  时间戳(用于判断请求是否超时)
- token  string  必需  无  确定来访者身份
- id  int  必需  1  任务id
- uid  int  必需  1  用户id
+ 参数	类型	必需/可选	默认	描述
+ time	int	必需	无	时间戳(用于判断请求是否超时)
+ token	string	必需	无	确定来访者身份
+ id	int	必需	1	任务id
+ uid	int	必需	1	用户id
+ nowtype	int	必需	1	nowtype = 3 专属任务nowtype = 2 正在进行中nowtype = 1 新参加的
  */
-+ (QMURLSessionTask *)GET_taskDetailParams:(NSDictionary *)params View:(UIView *)view success:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))success unknown:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))unknown failure:(void(^)(NSError *error))failure;
++ (QMURLSessionTask *)GET_taskDetailV2Params:(NSDictionary *)params View:(UIView *)view success:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))success unknown:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))unknown failure:(void(^)(NSError *error))failure;
 
 
 
@@ -332,6 +334,40 @@
  */
 + (QMURLSessionTask *)GET_withdrawalLogParams:(NSDictionary *)params View:(UIView *)view success:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))success unknown:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))unknown failure:(void(^)(NSError *error))failure;
 
+/**
+ 获取客服URL
+ get kuquke.yiyunrj.xyz/Index/getKefuUrl
+ 
+ 参数	类型	必需/可选	默认	描述
+ time	int	必需	无	时间戳(用于判断请求是否超时)
+ token	string	必需	无	确定来访者身份
+ uid	int	必需	无	用户id
+ */
++ (QMURLSessionTask *)GET_getKefuUrlParams:(NSDictionary *)params View:(UIView *)view success:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))success unknown:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))unknown failure:(void(^)(NSError *error))failure;
+
+
+/**
+ 手机/ID密码登录
+ post kuquke.yiyunrj.xyz/User/bindLogin
+ 
+ 参数	类型	必需/可选	默认	描述
+ time	int	必需	无	时间戳(用于判断请求是否超时)
+ token	string	必需	无	确定来访者身份
+ mobile	sting	必需	无	用户的手机号/ID
+ password	sting	必需	无	用户密码
+ */
++ (QMURLSessionTask *)POST_bindLoginParams:(NSDictionary *)params View:(UIView *)view success:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))success unknown:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))unknown failure:(void(^)(NSError *error))failure;
+
+/**
+ 找回密码
+ post kuquke.yiyunrj.xyz/User/findPassword
+ 
+ 参数	类型	必需/可选	默认	描述
+ time	int	必需	无	时间戳(用于判断请求是否超时)
+ token	string	必需	无	确定来访者身份
+ mobile	sting	必需	无	用户的手机号
+ */
++ (QMURLSessionTask *)POST_findPasswordParams:(NSDictionary *)params View:(UIView *)view success:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))success unknown:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))unknown failure:(void(^)(NSError *error))failure;
 
 
 @end
