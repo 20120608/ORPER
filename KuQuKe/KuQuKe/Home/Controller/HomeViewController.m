@@ -77,7 +77,8 @@
 	self.tabBarController.view.userInteractionEnabled = false;
 	self.num = @"0";
 	self.getAllMoney = @"0";
-  [self createUI];
+    [self createUI];
+    
 }
 
 #pragma mark - UI

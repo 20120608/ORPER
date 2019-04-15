@@ -21,7 +21,7 @@
 #import "MyBalanceCheckOutView.h"//余额弹窗
 #import "CheckOutAliPayViewController.h"//兑换到支付宝
 #import "H5ActionViewController.h"//在线客服
-
+#import "TaskProgressViewController.h"//任务进度
 #define HEADER_TOP 338 //滚动到多少导航栏变不透明
 
 @interface MyViewController () <MyMoneyAndStdentsViewDelegate,MyBalanceCheckOutViewDelegate>
@@ -239,6 +239,7 @@
 - (void)loadData {
 	NSArray<DQMTeam *> *firstSectionItemsArray =
   @[[DQMTeam initTeamWithName:@"在线客服" sortNumber:nil destVc:[MyViewController class] extensionDictionary:@{@"icon":@"099"}],
+    [DQMTeam initTeamWithName:@"任务进度" sortNumber:nil destVc:[TaskProgressViewController class] extensionDictionary:@{@"icon":@"099"}],
 	[DQMTeam initTeamWithName:@"账号安全" sortNumber:nil destVc:[MyViewController class] extensionDictionary:@{@"icon":@"006"}],
 	[DQMTeam initTeamWithName:@"QQ客服群" sortNumber:nil destVc:[MyViewController class] extensionDictionary:@{@"icon":@"007"}],
 	[DQMTeam initTeamWithName:@"分享给朋友" sortNumber:nil destVc:[MyViewController class] extensionDictionary:@{@"icon":@"008"}]];
@@ -317,13 +318,16 @@
 			vc.apartUrl = _kefu_url;
 			[self.navigationController pushViewController:vc animated:true];
 		}
-	} else if (indexPath.section == 0 && indexPath.row == 1) {
+    } else if (indexPath.section == 0 && indexPath.row == 1) {
+		TaskProgressViewController *vc = [[TaskProgressViewController alloc] initWithTitle:@"任务进度"];
+		[self.navigationController pushViewController:vc animated:true];
+    } else if (indexPath.section == 0 && indexPath.row == 2) {
     CompleteAccountViewController *vc = [[CompleteAccountViewController alloc] initWithTitle:@"账号安全"];
     [self.navigationController pushViewController:vc animated:true];
-  } else if (indexPath.section == 0 && indexPath.row == 2) {
+  } else if (indexPath.section == 0 && indexPath.row == 3) {
 	  CustomerServiceOfQQViewController *vc = [[CustomerServiceOfQQViewController alloc] initWithTitle:@"QQ客服群"];
 	  [self.navigationController pushViewController:vc animated:true];
-  }else if (indexPath.section == 0 && indexPath.row == 3) {
+  }else if (indexPath.section == 0 && indexPath.row == 4) {
 	  ShareToMyFriendViewController *vc = [[ShareToMyFriendViewController alloc] initWithStyle:UITableViewStyleGrouped];
 	  [self.navigationController pushViewController:vc animated:true];
   } else if (indexPath.section == 1 && indexPath.row == 0) {

@@ -166,6 +166,11 @@
 		59DC11EA21EDB06C003FE685 /* DQMAFNetWork.m in Sources */ = {isa = PBXBuildFile; fileRef = 59DC11E921EDB06C003FE685 /* DQMAFNetWork.m */; };
 		59DC11EE21EDB95E003FE685 /* QMBaseNetWorking.m in Sources */ = {isa = PBXBuildFile; fileRef = 59DC11ED21EDB95E003FE685 /* QMBaseNetWorking.m */; };
 		59DC11F221EDC8FD003FE685 /* KuQuKeNetWorkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 59DC11F121EDC8FD003FE685 /* KuQuKeNetWorkManager.m */; };
+		8C623B9F22642EA800BA1219 /* TaskProgressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C623B9E22642EA800BA1219 /* TaskProgressViewController.m */; };
+		8C623BA222642F4200BA1219 /* TaskProgressTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C623BA122642F4200BA1219 /* TaskProgressTableViewCell.m */; };
+		8C623BA5226437C200BA1219 /* TaskProgressViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C623BA4226437C200BA1219 /* TaskProgressViewModel.m */; };
+		8C623BA82264524E00BA1219 /* TaskProgressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C623BA72264524E00BA1219 /* TaskProgressModel.m */; };
+		8C623BAB2264676E00BA1219 /* TaskProgressFailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C623BAA2264676E00BA1219 /* TaskProgressFailTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -501,6 +506,16 @@
 		59DC11ED21EDB95E003FE685 /* QMBaseNetWorking.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QMBaseNetWorking.m; sourceTree = "<group>"; };
 		59DC11F021EDC8FD003FE685 /* KuQuKeNetWorkManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KuQuKeNetWorkManager.h; sourceTree = "<group>"; };
 		59DC11F121EDC8FD003FE685 /* KuQuKeNetWorkManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KuQuKeNetWorkManager.m; sourceTree = "<group>"; };
+		8C623B9D22642EA800BA1219 /* TaskProgressViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TaskProgressViewController.h; sourceTree = "<group>"; };
+		8C623B9E22642EA800BA1219 /* TaskProgressViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TaskProgressViewController.m; sourceTree = "<group>"; };
+		8C623BA022642F4200BA1219 /* TaskProgressTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TaskProgressTableViewCell.h; sourceTree = "<group>"; };
+		8C623BA122642F4200BA1219 /* TaskProgressTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TaskProgressTableViewCell.m; sourceTree = "<group>"; };
+		8C623BA3226437C200BA1219 /* TaskProgressViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TaskProgressViewModel.h; sourceTree = "<group>"; };
+		8C623BA4226437C200BA1219 /* TaskProgressViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TaskProgressViewModel.m; sourceTree = "<group>"; };
+		8C623BA62264524E00BA1219 /* TaskProgressModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TaskProgressModel.h; sourceTree = "<group>"; };
+		8C623BA72264524E00BA1219 /* TaskProgressModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TaskProgressModel.m; sourceTree = "<group>"; };
+		8C623BA92264676E00BA1219 /* TaskProgressFailTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TaskProgressFailTableViewCell.h; sourceTree = "<group>"; };
+		8C623BAA2264676E00BA1219 /* TaskProgressFailTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TaskProgressFailTableViewCell.m; sourceTree = "<group>"; };
 		BBA01A4F588F36CE8B3727A1 /* Pods-KuQuKe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KuQuKe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KuQuKe/Pods-KuQuKe.debug.xcconfig"; sourceTree = "<group>"; };
 		C7FE1CD1FD4856ED3093FC18 /* Pods-KuQuKe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KuQuKe.release.xcconfig"; path = "Pods/Target Support Files/Pods-KuQuKe/Pods-KuQuKe.release.xcconfig"; sourceTree = "<group>"; };
 		D39DEF13475F7A49DCFD97FE /* Pods_KuQuKe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KuQuKe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -590,6 +605,8 @@
 			children = (
 				5537063821E1C064001E49BC /* MyViewController.h */,
 				5537063921E1C064001E49BC /* MyViewController.m */,
+				8C623B9D22642EA800BA1219 /* TaskProgressViewController.h */,
+				8C623B9E22642EA800BA1219 /* TaskProgressViewController.m */,
 				551A09BC21E983AC00B2FB84 /* MyBalanceOfPaymentsViewController.h */,
 				551A09BD21E983AC00B2FB84 /* MyBalanceOfPaymentsViewController.m */,
 				551A09E421E9AF9B00B2FB84 /* MyInComeViewController.h */,
@@ -671,6 +688,10 @@
 				551A0A1221EB0E3A00B2FB84 /* CheckOutSuccessView.m */,
 				551A0A1721EB126200B2FB84 /* CheckOutCollectionView.h */,
 				551A0A1821EB126200B2FB84 /* CheckOutCollectionView.m */,
+				8C623BA022642F4200BA1219 /* TaskProgressTableViewCell.h */,
+				8C623BA122642F4200BA1219 /* TaskProgressTableViewCell.m */,
+				8C623BA92264676E00BA1219 /* TaskProgressFailTableViewCell.h */,
+				8C623BAA2264676E00BA1219 /* TaskProgressFailTableViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -686,6 +707,8 @@
 				55CBE2EB222BE0BA00BB21C6 /* StudentModel.m */,
 				55CBE2F6222BF15500BB21C6 /* MyInComeAndWithDrawModel.h */,
 				55CBE2F7222BF15500BB21C6 /* MyInComeAndWithDrawModel.m */,
+				8C623BA62264524E00BA1219 /* TaskProgressModel.h */,
+				8C623BA72264524E00BA1219 /* TaskProgressModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1126,6 +1149,8 @@
 				55CBE2F1222BF11400BB21C6 /* MyInComeViewModel.m */,
 				55CBE2F3222BF12700BB21C6 /* MyWithDrawViewModel.h */,
 				55CBE2F4222BF12700BB21C6 /* MyWithDrawViewModel.m */,
+				8C623BA3226437C200BA1219 /* TaskProgressViewModel.h */,
+				8C623BA4226437C200BA1219 /* TaskProgressViewModel.m */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1608,6 +1633,7 @@
 				59ADCD1F21E70E5B00A86C1F /* SettingUserInfoWithTableViewController.m in Sources */,
 				55CD208F222B69150087EE60 /* MessageCenterViewModel.m in Sources */,
 				5594A14621E1BC1F009178B3 /* DQMTextViewController.m in Sources */,
+				8C623B9F22642EA800BA1219 /* TaskProgressViewController.m in Sources */,
 				55FA56722237B882003504D3 /* LoginView.m in Sources */,
 				5594A14421E1BC1F009178B3 /* DQMNavigationController.m in Sources */,
 				59ADCD1C21E70E3500A86C1F /* SettingUserInfoWithInputViewController.m in Sources */,
@@ -1687,10 +1713,12 @@
 				55B4995921EF466F005F31AE /* PreviewTaskRequireView.m in Sources */,
 				5594A13E21E1BC1F009178B3 /* UINavigationController+FDFullscreenPopGesture.m in Sources */,
 				551A09BB21E980FF00B2FB84 /* MyStudentsViewController.m in Sources */,
+				8C623BA5226437C200BA1219 /* TaskProgressViewModel.m in Sources */,
 				59693EE321F969F6002CAEF1 /* LoginUseMsgcodeView.m in Sources */,
 				5594A14921E1BC1F009178B3 /* StaticSectionItem.m in Sources */,
 				5594A14E21E1BC1F009178B3 /* StaticListTableViewCell.m in Sources */,
 				55B4994E21EF4662005F31AE /* TaskPreviewStepModel.m in Sources */,
+				8C623BA222642F4200BA1219 /* TaskProgressTableViewCell.m in Sources */,
 				55CD2088222B60F60087EE60 /* OnGoingTaskViewModel.m in Sources */,
 				55CBE2E6222BC4EE00BB21C6 /* DQMInputTextFieldTableViewCell.m in Sources */,
 				5918A77521E32CE900CF8431 /* UICollectionViewLeftAlignedLayout.m in Sources */,
@@ -1706,7 +1734,9 @@
 				551A09EF21E9CD0900B2FB84 /* ChickSuccessAlertView.m in Sources */,
 				5594A13C21E1BC1F009178B3 /* MBProgressHUD+DQM.m in Sources */,
 				55B4996621F1F948005F31AE /* GameHomeTaskListTableViewCell.m in Sources */,
+				8C623BA82264524E00BA1219 /* TaskProgressModel.m in Sources */,
 				5930278121F2DF3E00FC68F1 /* GameTaskCheckInTableViewCell.m in Sources */,
+				8C623BAB2264676E00BA1219 /* TaskProgressFailTableViewCell.m in Sources */,
 				5594A15221E1BC1F009178B3 /* DQMListExpendHeaderView.m in Sources */,
 				59ADCD1321E6D52800A86C1F /* SettingUsetInfoViewController.m in Sources */,
 				551A0A1621EB0F8C00B2FB84 /* CheckOutAliPayViewController.m in Sources */,
@@ -1925,7 +1955,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 5JG628995P;
+				DEVELOPMENT_TEAM = HVNZV2H82B;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/KuQuKe/Other/PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/KuQuKe/Other/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -1933,7 +1963,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.kqk.kuquke;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kqk.kqk;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1949,7 +1979,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 5JG628995P;
+				DEVELOPMENT_TEAM = HVNZV2H82B;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/KuQuKe/Other/PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/KuQuKe/Other/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -1957,7 +1987,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.kqk.kuquke;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kqk.kqk;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;

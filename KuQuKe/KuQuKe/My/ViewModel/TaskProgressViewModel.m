@@ -1,27 +1,28 @@
 //
-//  MessageCenterViewModel.m
+//  TaskProgressViewModel.m
 //  KuQuKe
 //
-//  Created by hallelujah on 2019/3/3.
-//  Copyright © 2019年 kuquke. All rights reserved.
+//  Created by Xcoder on 2019/4/15.
+//  Copyright © 2019 kuquke. All rights reserved.
 //
 
-#import "MessageCenterViewModel.h"
-#import "DQMImageTitleSubTitleAndArrowTableViewCell.h" //消息中心的cell
-#import "MessageContentViewController.h"//消息详情
+#import "TaskProgressViewModel.h"
+#import "TaskProgressModel.h"//cell的样式
+#import "TaskProgressTableViewCell.h"
+#import "TaskProgressFailTableViewCell.h"
 
-@interface MessageCenterViewModel()
-//数据源
-@property(nonatomic,strong)NSMutableArray *models;
-@property(nonatomic,assign)NSInteger currentPage;
-
-@end
+@interface TaskProgressViewModel()
+	//数据源
+	@property(nonatomic,strong)NSMutableArray *models;
+	@property(nonatomic,assign)NSInteger currentPage;
+	
+	@end
 
 //分页第一页是0 、1
 static const NSInteger startingValue = 1;
 
 
-@implementation MessageCenterViewModel
+@implementation TaskProgressViewModel
 #pragma mark - Life Cycle
 - (id) init{
 	if (self = [super init]) {
@@ -30,7 +31,7 @@ static const NSInteger startingValue = 1;
 	}
 	return self;
 }
-
+	
 #pragma mark - private Methods
 - (void)setupBind {
 	//RACCommand事件
@@ -44,19 +45,14 @@ static const NSInteger startingValue = 1;
 			BOOL headerRefresh = [inputData[@"headerRefresh"] boolValue];
 			NSInteger requestPage = headerRefresh ? startingValue : self.currentPage + 1;
 			NSString *paramPage = [NSString stringWithFormat:@"%ld",requestPage];
-			
 			NSMutableDictionary *params = [NSMutableDictionary dictionary];
-//			[params setValue:@"1" forKey:@"type"];//1应用赚 2游戏赚
 			[params setValue:[NSNumber numberWithInt:10] forKey:@"num"];
 			[params setValue:paramPage forKey:@"page"];
-			
-			//旧的公告
-//			[KuQuKeNetWorkManager GET_messageLogParams:params View:self.currentVC.view success:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
+			[params setValue:@"1" forKey:@"type"];//默认给1  游戏不做
 
-			//新的公告
-			[KuQuKeNetWorkManager GET_noticeListParams:params View:self.currentVC.view success:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
+			[KuQuKeNetWorkManager GET_getBakListParams:params View:self.currentVC.view success:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
 				
-				NSArray *dataArray = [MessageCenterListModel mj_objectArrayWithKeyValuesArray:dataDic[@"data"][@"list"]];
+				NSArray *dataArray = [TaskProgressModel mj_objectArrayWithKeyValuesArray:dataDic[@"data"][@"task_list"][@"list"]];
 				if(dataArray.count > 0){
 					if(requestPage == startingValue){
 						self.currentPage = startingValue;
@@ -94,7 +90,7 @@ static const NSInteger startingValue = 1;
 	//switchToLatest获取最新发送的信号，只能用于信号中信号
 	[_requestVideoListCommand.executionSignals.switchToLatest subscribeNext:^(id  _Nullable x) {
 		//    NSLog(@"请求完成后的回调");
-		[[NSNotificationCenter defaultCenter] postNotificationName: NotificationName_MessageCenterViewController object:x];
+		[[NSNotificationCenter defaultCenter] postNotificationName: NotificationName_TaskProgressViewController object:x];
 	}];
 	
 	//监听登录操作的状态：正在进行或者已经结束
@@ -111,39 +107,53 @@ static const NSInteger startingValue = 1;
 	
 	
 }
-
-
-
-
-#pragma mark - Delegate：UITableViewDelegate
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+	
+	
+	
+	
+#pragma mark - tableview datasource
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+	return [_models count];
+}
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
 	return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	return self.models.count;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-	DQMImageTitleSubTitleAndArrowTableViewCell *cell = [DQMImageTitleSubTitleAndArrowTableViewCell cellWithTableView:tableView indexPath:indexPath andFixedHeightIfNeed:60 showArrow:true];
-	cell.msgModel = _models[indexPath.row];
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	TaskProgressModel *model =  _models[indexPath.section];
+	if ([model.status intValue] == 1) {
+		TaskProgressTableViewCell *cell = [TaskProgressTableViewCell cellWithTableView:tableView indexPath:indexPath FixedCellHeight:0];
+		cell.model = model;
+		return cell;
+	}
+	TaskProgressFailTableViewCell *cell = [TaskProgressFailTableViewCell cellWithTableView:tableView indexPath:indexPath FixedCellHeight:0];
+		cell.model = model;
 	return cell;
+	
+}
+	
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+	UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 10)];
+	footer.backgroundColor = QMBackColor;
+	return footer;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	MessageContentViewController *vc = [[MessageContentViewController alloc] init];
-	vc.dataDic = [(MessageCenterListModel *)_models[indexPath.row] mj_keyValues];
-	[self.currentVC.navigationController pushViewController:vc animated:true];
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+	return 10;
 }
-
 
 
 #pragma mark - Getter && Setter
 - (NSMutableArray *)models {
-	if (!_models) {
-		_models = [NSMutableArray array];
-	}
-	return _models;
+if (!_models) {
+	_models = [NSMutableArray array];
 }
-
+return _models;
+}
+	
 @end

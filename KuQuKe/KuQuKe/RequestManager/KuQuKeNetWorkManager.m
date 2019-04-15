@@ -1286,7 +1286,105 @@
 				  networkstatus:true
 			   checkLoginStatus:false];
 }
+	
+	
+	
+/**
+ 进行中的任务
+ 
+ get kuquke.yiyunrj.xyz/task/getBakList
+ 
+ 参数	类型	必需/可选	默认	描述
+ time	int	必需	无	时间戳(用于判断请求是否超时)
+ token	string	必需	无	确定来访者身份
+ type	int	必需	1	1应用赚 2游戏赚
+ uid	int	必需	1	用户id
+ num	int	必需	10	每页数量
+ page	int	必需	1	请求页数
+ */
++ (QMURLSessionTask *)GET_getBakListParams:(NSDictionary *)params View:(UIView *)view success:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))success unknown:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))unknown failure:(void(^)(NSError *error))failure {
+	
+	[params setValue:[QMSGeneralHelpers currentTimeStr] forKey:@"time"];
+	[params setValue:GET_USERDEFAULT(USERID) forKey:@"uid"];
+	NSString *token = [QMSGeneralHelpers md5Codesign:params];
+	[params setValue:token forKey:@"token"];
+	
+	NSString *url = [NSString stringWithFormat:@"%@%@",@"http://kuquke.yiyunrj.xyz/task/getBakList",[QMSGeneralHelpers changeParamsToString:params keySortArray:@[@"time",@"token",@"type",@"uid",@"num",@"page"]]];
+	
+	return [DQMAFNetWork method:GET
+				   withchildUrl:url
+					  andparams:nil
+						   view:view
+						 HUDMsg:@"进行中的任务"
+						success:^(RequestStatusModel * _Nonnull reqsModel, NSDictionary * _Nonnull dataDic) {
+							if (success) {
+								success(reqsModel,dataDic);
+							}
+						}
+						unknown:^(RequestStatusModel * _Nonnull reqsModel, NSDictionary * _Nonnull dataDic) {
+							if (unknown) {
+								unknown(reqsModel,dataDic);
+							}
+						}
+						failure:^(NSError * _Nonnull error) {
+							if (failure) {
+								failure(error);
+							}
+						}
+					  graceTime:3
+						showHUD:true
+				  networkstatus:true
+			   checkLoginStatus:false];
+}
 
+	
+	
+	
+	
+	
+/**
+ 公告列表
+ get kuquke.yiyunrj.xyz/index/noticeList
+ 
+ 参数	类型	必需/可选	默认	描述
+ time	int	必需	无	时间戳(用于判断请求是否超时)
+ token	string	必需	无	确定来访者身份
+ num	int	必需	10	每页数量
+ page	int	必需	1	请求页数
+ */
++ (QMURLSessionTask *)GET_noticeListParams:(NSDictionary *)params View:(UIView *)view success:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))success unknown:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))unknown failure:(void(^)(NSError *error))failure {
+	
+	[params setValue:[QMSGeneralHelpers currentTimeStr] forKey:@"time"];
+	NSString *token = [QMSGeneralHelpers md5Codesign:params];
+	[params setValue:token forKey:@"token"];
+	
+	NSString *url = [NSString stringWithFormat:@"%@%@",@"http://kuquke.yiyunrj.xyz/index/noticeList",[QMSGeneralHelpers changeParamsToString:params keySortArray:@[@"time",@"token",@"num",@"page"]]];
+	
+	return [DQMAFNetWork method:GET
+				   withchildUrl:url
+					  andparams:nil
+						   view:view
+						 HUDMsg:@"公告列表"
+						success:^(RequestStatusModel * _Nonnull reqsModel, NSDictionary * _Nonnull dataDic) {
+							if (success) {
+								success(reqsModel,dataDic);
+							}
+						}
+						unknown:^(RequestStatusModel * _Nonnull reqsModel, NSDictionary * _Nonnull dataDic) {
+							if (unknown) {
+								unknown(reqsModel,dataDic);
+							}
+						}
+						failure:^(NSError * _Nonnull error) {
+							if (failure) {
+								failure(error);
+							}
+						}
+					  graceTime:3
+						showHUD:true
+				  networkstatus:true
+			   checkLoginStatus:false];
+}
 
 
 @end
