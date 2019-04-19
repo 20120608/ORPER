@@ -11,6 +11,7 @@
 #import "YYFPSLabel.h"
 #import "DQMTabBarController.h"
 #include <objc/runtime.h>
+#import "ShopCategoryViewController.h"
 
 @interface AppDelegate ()
 
@@ -31,7 +32,9 @@
     manager.keyboardDistanceFromTextField = 10.0f; // 输入框距离键盘的距离
     manager.toolbarDoneBarButtonItemText = @"完成";// 将英文done换成中文
 
-    self.window.rootViewController = [[DQMTabBarController alloc] init];
+//	self.window.rootViewController = [[DQMTabBarController alloc] init];
+
+    self.window.rootViewController = [[ShopCategoryViewController alloc] init];
 
     [self.window makeKeyAndVisible];
     

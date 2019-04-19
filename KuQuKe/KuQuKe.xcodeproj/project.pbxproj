@@ -171,6 +171,9 @@
 		8C623BA5226437C200BA1219 /* TaskProgressViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C623BA4226437C200BA1219 /* TaskProgressViewModel.m */; };
 		8C623BA82264524E00BA1219 /* TaskProgressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C623BA72264524E00BA1219 /* TaskProgressModel.m */; };
 		8C623BAB2264676E00BA1219 /* TaskProgressFailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C623BAA2264676E00BA1219 /* TaskProgressFailTableViewCell.m */; };
+		8CC206712265CD3A0082B6E4 /* ShopCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC206702265CD3A0082B6E4 /* ShopCategoryViewController.m */; };
+		8CC206772265D0D50082B6E4 /* CategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC206762265D0D50082B6E4 /* CategoryModel.m */; };
+		8CC2067D2267222C0082B6E4 /* KuCunView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC2067C2267222C0082B6E4 /* KuCunView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -516,6 +519,12 @@
 		8C623BA72264524E00BA1219 /* TaskProgressModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TaskProgressModel.m; sourceTree = "<group>"; };
 		8C623BA92264676E00BA1219 /* TaskProgressFailTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TaskProgressFailTableViewCell.h; sourceTree = "<group>"; };
 		8C623BAA2264676E00BA1219 /* TaskProgressFailTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TaskProgressFailTableViewCell.m; sourceTree = "<group>"; };
+		8CC2066F2265CD3A0082B6E4 /* ShopCategoryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShopCategoryViewController.h; sourceTree = "<group>"; };
+		8CC206702265CD3A0082B6E4 /* ShopCategoryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShopCategoryViewController.m; sourceTree = "<group>"; };
+		8CC206752265D0D50082B6E4 /* CategoryModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CategoryModel.h; sourceTree = "<group>"; };
+		8CC206762265D0D50082B6E4 /* CategoryModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CategoryModel.m; sourceTree = "<group>"; };
+		8CC2067B2267222C0082B6E4 /* KuCunView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KuCunView.h; sourceTree = "<group>"; };
+		8CC2067C2267222C0082B6E4 /* KuCunView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KuCunView.m; sourceTree = "<group>"; };
 		BBA01A4F588F36CE8B3727A1 /* Pods-KuQuKe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KuQuKe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KuQuKe/Pods-KuQuKe.debug.xcconfig"; sourceTree = "<group>"; };
 		C7FE1CD1FD4856ED3093FC18 /* Pods-KuQuKe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KuQuKe.release.xcconfig"; path = "Pods/Target Support Files/Pods-KuQuKe/Pods-KuQuKe.release.xcconfig"; sourceTree = "<group>"; };
 		D39DEF13475F7A49DCFD97FE /* Pods_KuQuKe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KuQuKe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -856,6 +865,7 @@
 				5594A15E21E1BCF4009178B3 /* APP */,
 				5594A15D21E1BCF2009178B3 /* Game */,
 				5594A15C21E1BCEF009178B3 /* My */,
+				8CC2066E2265CD0F0082B6E4 /* migu */,
 				55FA56692237B4CE003504D3 /* KQKLogin */,
 				5594A15F21E1BD47009178B3 /* Other */,
 			);
@@ -1401,6 +1411,19 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		8CC2066E2265CD0F0082B6E4 /* migu */ = {
+			isa = PBXGroup;
+			children = (
+				8CC2066F2265CD3A0082B6E4 /* ShopCategoryViewController.h */,
+				8CC206702265CD3A0082B6E4 /* ShopCategoryViewController.m */,
+				8CC206752265D0D50082B6E4 /* CategoryModel.h */,
+				8CC206762265D0D50082B6E4 /* CategoryModel.m */,
+				8CC2067B2267222C0082B6E4 /* KuCunView.h */,
+				8CC2067C2267222C0082B6E4 /* KuCunView.m */,
+			);
+			path = migu;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1643,6 +1666,8 @@
 				596989BC2224E58400081FFF /* EarnMoneyViewModel.m in Sources */,
 				5594A15321E1BC1F009178B3 /* YYFPSLabel.m in Sources */,
 				5594A13821E1BC1F009178B3 /* UIColor+HexString.m in Sources */,
+				8CC206772265D0D50082B6E4 /* CategoryModel.m in Sources */,
+				8CC2067D2267222C0082B6E4 /* KuCunView.m in Sources */,
 				59185E7921F70AD400EEC8B3 /* GameHeaderADCollectionViewCell.m in Sources */,
 				5594A13721E1BC1F009178B3 /* UIButton+DQM.m in Sources */,
 				59D0AEC921E4665E00F3A67C /* RotaryTableViewController.m in Sources */,
@@ -1737,6 +1762,7 @@
 				8C623BA82264524E00BA1219 /* TaskProgressModel.m in Sources */,
 				5930278121F2DF3E00FC68F1 /* GameTaskCheckInTableViewCell.m in Sources */,
 				8C623BAB2264676E00BA1219 /* TaskProgressFailTableViewCell.m in Sources */,
+				8CC206712265CD3A0082B6E4 /* ShopCategoryViewController.m in Sources */,
 				5594A15221E1BC1F009178B3 /* DQMListExpendHeaderView.m in Sources */,
 				59ADCD1321E6D52800A86C1F /* SettingUsetInfoViewController.m in Sources */,
 				551A0A1621EB0F8C00B2FB84 /* CheckOutAliPayViewController.m in Sources */,

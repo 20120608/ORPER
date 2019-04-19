@@ -351,6 +351,7 @@
 		{
 			HomeHeaderView *headerView = [[HomeHeaderView alloc] initWithFrame:CGRectZero];
 			headerView.titleString = @"推荐赚钱";
+			headerView.littleTitleString = @"完成以下任务即可获得奖励";
 			headerView.subTitleString = @"";
 			return headerView;
 		}
