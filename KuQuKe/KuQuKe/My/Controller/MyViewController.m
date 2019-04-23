@@ -239,7 +239,7 @@
 - (void)loadData {
 	NSArray<DQMTeam *> *firstSectionItemsArray =
   @[[DQMTeam initTeamWithName:@"在线客服" sortNumber:nil destVc:[MyViewController class] extensionDictionary:@{@"icon":@"099"}],
-    [DQMTeam initTeamWithName:@"任务进度" sortNumber:nil destVc:[TaskProgressViewController class] extensionDictionary:@{@"icon":@"099"}],
+    [DQMTeam initTeamWithName:@"任务进度" sortNumber:nil destVc:[TaskProgressViewController class] extensionDictionary:@{@"icon":@"个人中心_进行中任务"}],
 	[DQMTeam initTeamWithName:@"账号安全" sortNumber:nil destVc:[MyViewController class] extensionDictionary:@{@"icon":@"006"}],
 	[DQMTeam initTeamWithName:@"QQ客服群" sortNumber:nil destVc:[MyViewController class] extensionDictionary:@{@"icon":@"007"}],
 	[DQMTeam initTeamWithName:@"分享给朋友" sortNumber:nil destVc:[MyViewController class] extensionDictionary:@{@"icon":@"008"}]];

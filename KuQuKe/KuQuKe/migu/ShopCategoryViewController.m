@@ -35,12 +35,27 @@
 	AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
 	manager.responseSerializer = [AFHTTPResponseSerializer serializer];
 	QMURLSessionTask *sessionTask = nil;
-	sessionTask = [manager GET:@"http://192.168.0.204:8088/json/a.json" parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
+	sessionTask = [manager GET:@"http://192.168.9.105:8088/json/f.json" parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
 	} success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+		
 		NSDictionary *dataDic = kJSON(responseObject);
 		RequestStatusModel *reqsModel = [RequestStatusModel mj_objectWithKeyValues:dataDic];
 		if ([reqsModel.code intValue] == 0) {
+			
+			
 			self.categoryModel = [CategoryModel mj_objectWithKeyValues:dataDic];
+			
+			NSMutableArray <SkuInfoList *> *newMArr = [[NSMutableArray alloc] init];
+			[self.categoryModel.data.skuInfoList enumerateObjectsUsingBlock:^(SkuInfoList * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+				
+				if ([obj.stockQuantity intValue] != 0) {
+					[newMArr addObject:obj];
+				}
+			}];
+			self.categoryModel.data.skuInfoList = newMArr;
+			
+			
+
 			if (_categoryModel != nil) {
 				
 				self.selectSKUArr = [[NSMutableArray alloc] init];
@@ -170,13 +185,11 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
 	UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
-	if (cell.tag != 2) {
-		//将对应的选择存入数组中 或者从数组中移除
-		if (cell.tag == 0) {
-			[self.selectSKUArr replaceObjectAtIndex:indexPath.section withObject:[NSString stringWithFormat:@"%ld",indexPath.row]];
-		} else {
-			[self.selectSKUArr replaceObjectAtIndex:indexPath.section withObject:NOSELECTSTRING];
-		}
+	//将对应的选择存入数组中 或者从数组中移除
+	if (cell.tag == 0) {
+		[self.selectSKUArr replaceObjectAtIndex:indexPath.section withObject:[NSString stringWithFormat:@"%ld",indexPath.row]];
+	} else if (cell.tag == 1) {
+		[self.selectSKUArr replaceObjectAtIndex:indexPath.section withObject:NOSELECTSTRING];
 	}
 	//刷新
 	[self reload];
@@ -188,23 +201,33 @@
 	//需要过滤的字段
 	NSMutableArray *needConformArray = [[NSMutableArray alloc] init];
 	[self.selectSKUArr enumerateObjectsUsingBlock:^(NSString *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-		if (indexPath.section == idx) {
+		if (![obj isEqualToString:NOSELECTSTRING] && indexPath.section != idx) {
 			
-		} else if (![obj isEqualToString:NOSELECTSTRING]) {
 			NSString *skuValue = _categoryModel.data.attributeList[idx].attributeValueList[[obj integerValue]].attributeValue;
 			[needConformArray addObject:skuValue];
 		}
 	}];
 	
 	NSMutableArray<SkuInfoList *> *includArr = [[NSMutableArray alloc] initWithArray:self.categoryModel.data.skuInfoList];
+	//1
 	[self.categoryModel.data.skuInfoList enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(SkuInfoList * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+		
+		//2
 		[needConformArray enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(NSString *  _Nonnull skuValue, NSUInteger idx, BOOL * _Nonnull stop) {
+			
+			
+			//3
 			__block BOOL remove = true;
 			[obj.attributeValueList enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(AttributeValueList * _Nonnull attribute, NSUInteger idx, BOOL * _Nonnull stop) {
+				
 				if ([attribute.attributeValue isEqualToString:skuValue]) {
 					remove = false;
 				}
+				
+				
 			}];
+			
+			
 			
 			if (remove) {
 				[includArr removeObject:obj];

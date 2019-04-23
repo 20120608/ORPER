@@ -171,6 +171,7 @@
 		8C623BA5226437C200BA1219 /* TaskProgressViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C623BA4226437C200BA1219 /* TaskProgressViewModel.m */; };
 		8C623BA82264524E00BA1219 /* TaskProgressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C623BA72264524E00BA1219 /* TaskProgressModel.m */; };
 		8C623BAB2264676E00BA1219 /* TaskProgressFailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C623BAA2264676E00BA1219 /* TaskProgressFailTableViewCell.m */; };
+		8CA9E85B226D551600213F48 /* TaskingAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CA9E85A226D551600213F48 /* TaskingAlertView.m */; };
 		8CC206712265CD3A0082B6E4 /* ShopCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC206702265CD3A0082B6E4 /* ShopCategoryViewController.m */; };
 		8CC206772265D0D50082B6E4 /* CategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC206762265D0D50082B6E4 /* CategoryModel.m */; };
 		8CC2067D2267222C0082B6E4 /* KuCunView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC2067C2267222C0082B6E4 /* KuCunView.m */; };
@@ -519,6 +520,8 @@
 		8C623BA72264524E00BA1219 /* TaskProgressModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TaskProgressModel.m; sourceTree = "<group>"; };
 		8C623BA92264676E00BA1219 /* TaskProgressFailTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TaskProgressFailTableViewCell.h; sourceTree = "<group>"; };
 		8C623BAA2264676E00BA1219 /* TaskProgressFailTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TaskProgressFailTableViewCell.m; sourceTree = "<group>"; };
+		8CA9E859226D551600213F48 /* TaskingAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TaskingAlertView.h; sourceTree = "<group>"; };
+		8CA9E85A226D551600213F48 /* TaskingAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TaskingAlertView.m; sourceTree = "<group>"; };
 		8CC2066F2265CD3A0082B6E4 /* ShopCategoryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShopCategoryViewController.h; sourceTree = "<group>"; };
 		8CC206702265CD3A0082B6E4 /* ShopCategoryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShopCategoryViewController.m; sourceTree = "<group>"; };
 		8CC206752265D0D50082B6E4 /* CategoryModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CategoryModel.h; sourceTree = "<group>"; };
@@ -1099,6 +1102,7 @@
 		5594A15E21E1BCF4009178B3 /* APP */ = {
 			isa = PBXGroup;
 			children = (
+				8CA9E858226D544F00213F48 /* View */,
 				5969899E221D3D9900081FFF /* Model */,
 				59698997221D3BE700081FFF /* ViewModel */,
 				5537063C21E1C26A001E49BC /* Controller */,
@@ -1411,6 +1415,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		8CA9E858226D544F00213F48 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8CA9E859226D551600213F48 /* TaskingAlertView.h */,
+				8CA9E85A226D551600213F48 /* TaskingAlertView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		8CC2066E2265CD0F0082B6E4 /* migu */ = {
 			isa = PBXGroup;
 			children = (
@@ -1695,6 +1708,7 @@
 				59185E7E21F7FE6900EEC8B3 /* GameTaskDetailStepTableViewCell.m in Sources */,
 				55B4996021EF467B005F31AE /* EarnMoneyForRegisterViewController.m in Sources */,
 				5594A14021E1BC1F009178B3 /* DQMStaticTableViewController.m in Sources */,
+				8CA9E85B226D551600213F48 /* TaskingAlertView.m in Sources */,
 				55542FB121E3A333000F8D45 /* DQMImageAndArrowTableViewCell.m in Sources */,
 				55D1D0DC21E22095008ECEE3 /* ZJCalenderCollectionView.m in Sources */,
 				55542FB721E4F991000F8D45 /* DQMExpandHeader.m in Sources */,
