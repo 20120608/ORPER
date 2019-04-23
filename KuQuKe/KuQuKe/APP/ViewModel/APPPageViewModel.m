@@ -13,8 +13,7 @@
 #import "TaskTableViewCell.h"//任务列表cell
 #import "LeftAndRightLabelHeaderView.h"//组头
 #import "EarnMoneyForRegisterViewController.h"//注册赚钱
-
-
+#import "TaskingAlertView.h"//进行中的任务弹窗
 
 @interface APPPageViewModel()
 //可选的
@@ -169,7 +168,15 @@ static const NSInteger startingValue = 1;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-  EarnMoneyForRegisterViewController *vc = [[EarnMoneyForRegisterViewController alloc] initWithTitle:@"注册赚钱"];
+	
+//	TaskingAlertView *alertView = [[TaskingAlertView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+//	[[UIApplication sharedApplication].keyWindow addSubview:alertView];
+//
+//	[alertView showAnimation];
+//
+//	return;
+
+	EarnMoneyForRegisterViewController *vc = [[EarnMoneyForRegisterViewController alloc] initWithTitle:@"注册赚钱"];
 	if (indexPath.section == 1) {
 		vc.nowtype = @"1";
 	} else if (indexPath.section == 0 && ![self.currentVC isKindOfClass:[APPViewController class]]) {

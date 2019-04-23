@@ -44,6 +44,17 @@
 			label;
 		});
 		
+		UILabel *smallTitleLabel = ({
+			UILabel *label = [[UILabel alloc] init];
+			[self addSubview:label];
+			QMLabelFontColorText(label, @"", QMTextColor, 15);
+			[label mas_makeConstraints:^(MASConstraintMaker *make) {
+				make.left.mas_equalTo(titleLabel.mas_right).offset(2);
+				make.centerY.mas_equalTo(self.mas_centerY);
+			}];
+			label;
+		});
+		
 		
 		UILabel *subTitleLabel = ({
 			UILabel *label = [[UILabel alloc] init];
@@ -58,6 +69,9 @@
 		
 		[RACObserve(self, titleString)subscribeNext:^(NSString *x) {
 			titleLabel.text = x;
+		}];
+		[RACObserve(self, littleTitleString)subscribeNext:^(NSString *x) {
+			smallTitleLabel.text = x;
 		}];
 		[RACObserve(self, subTitleString) subscribeNext:^(NSString *x) {
 			subTitleLabel.text = x;

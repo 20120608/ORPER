@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 /** 组头 */
 @property(nonatomic,copy) NSString          *titleString;
+/** 组头 */
+@property(nonatomic,copy) NSString          *littleTitleString;
 
 /** 子标题 */
 @property(nonatomic,copy) NSString          *subTitleString;

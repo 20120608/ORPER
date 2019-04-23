@@ -29,8 +29,7 @@
 	
 	NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
 	[dic setValue:@"信息" forKey:@"name"];
-	[dic setValue:dataDic[@"msg"] forKey:@"content"];
-	[dic setValue:dataDic[@"add_time"] forKey:@"time"];
+	
 	//触发订阅
 	self.msgDictionary = dic;
 }
@@ -104,8 +103,8 @@
   //订阅最新消息内容
   [RACObserve(self, msgDictionary) subscribeNext:^(NSDictionary *x) {
     titleLabel.text = x[@"name"];
-    timeLabel.text = x[@"time"];
-    contentLabel.text = x[@"content"];
+    timeLabel.text = x[@"add_time"];
+    contentLabel.text = x[@"title"];
   }];
   
   

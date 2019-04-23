@@ -143,7 +143,7 @@
 -(void)setMsgModel:(MessageCenterListModel *)msgModel {
 	_msgModel = msgModel;
 	[self.iconImageView qm_setImageUrlString:msgModel.pic];
-	self.titleLabel.text = msgModel.msg;
+	self.titleLabel.text = msgModel.content;
 	self.subTitleLabel.text = msgModel.add_time;
 }
 

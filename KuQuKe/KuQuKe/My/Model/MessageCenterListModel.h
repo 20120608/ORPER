@@ -17,6 +17,11 @@ NS_ASSUME_NONNULL_BEGIN
 /** 用户id */
 @property(nonatomic,copy) NSString          *uid;
 
+/** 用户id */
+@property(nonatomic,copy) NSString          *title;
+/** 消息 */
+@property(nonatomic,copy) NSString          *content;
+
 /** 消息 */
 @property(nonatomic,copy) NSString          *msg;
 /** 时间*/

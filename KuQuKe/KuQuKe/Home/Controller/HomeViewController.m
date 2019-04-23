@@ -77,7 +77,8 @@
 	self.tabBarController.view.userInteractionEnabled = false;
 	self.num = @"0";
 	self.getAllMoney = @"0";
-  [self createUI];
+    [self createUI];
+    
 }
 
 #pragma mark - UI
@@ -350,6 +351,7 @@
 		{
 			HomeHeaderView *headerView = [[HomeHeaderView alloc] initWithFrame:CGRectZero];
 			headerView.titleString = @"推荐赚钱";
+			headerView.littleTitleString = @"完成以下任务即可获得奖励";
 			headerView.subTitleString = @"";
 			return headerView;
 		}
