@@ -30,8 +30,6 @@ NS_ASSUME_NONNULL_BEGIN
 /** 进行中的id */
 @property(nonatomic,copy) NSString          *task_id;
 
-
-
 @end
 
 NS_ASSUME_NONNULL_END

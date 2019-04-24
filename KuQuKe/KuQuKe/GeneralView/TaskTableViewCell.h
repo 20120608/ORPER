@@ -12,6 +12,7 @@
 #import "HomeTaskRecommendModel.h"//首页_推荐赚钱模型
 #import "APPTaskModel.h"//应用_任务列表模型
 #import "MyInComeAndWithDrawModel.h"//收支模型
+#import "APPListTaskingModel.h"//应用列表页进行中的模型
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -41,6 +42,8 @@ typedef NS_ENUM(NSUInteger, TaskTableViewCellStyle) {
 @property (nonatomic,strong) APPTaskModel             *appTaskModel;
 /** 个人中心_任务列表模型 */
 @property (nonatomic,strong) MyInComeAndWithDrawModel *myInDrowModel;
+/** 应用_任务列表模型 */
+@property (nonatomic,strong) APPListTaskingModel      *appTaskingModel;
 
 
 

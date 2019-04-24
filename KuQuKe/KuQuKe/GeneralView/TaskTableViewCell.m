@@ -293,6 +293,50 @@
       }];
     }];
 		
+		
+		//设置数据
+		[[RACObserve(self, appTaskingModel) skip:1] subscribeNext:^(APPListTaskingModel *x) {
+			
+			/** 图标 */
+			[self.iconImageView qm_setImageUrlString:x.appicon_url];
+			
+			/** 标题 */
+			self.titleLabel.text = x.title;
+			
+			/** 子标题 */
+			self.subTitleLabel.text = x.desc;
+			
+			/** 价格 */
+			NSString *priceString = [NSString stringWithFormat:@"+%0.2f元",[x.price floatValue]];
+			self.priceLabel.attributedText = [QMSGeneralHelpers changeStringToMutableAttributedStringTitle:priceString font:kQmFont(16) rangeOfFont:NSMakeRange(0, priceString.length) color:QMPriceColor rangeOfColor:NSMakeRange(0, priceString.length)];
+			@weakify(self)
+			self.subTitleLabel.text = x.desc;
+			self.subTitleLabel.hidden = [x.mark count];//与子标签互斥
+			
+			[x.mark enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+				@strongify(self)
+				self.subLabel1.hidden = self.subLabel2.hidden = self.subLabel3.hidden =  self.subLabel4.hidden = true;
+				for (int i = 0; i < [x.mark count]; i++) {
+					if (i == 0) {
+						self.subLabel1.hidden = false;
+						self.subLabel1.text = [NSString stringWithFormat:@"  %@  ",x.mark[i]];
+					} else if (i == 1) {
+						self.subLabel2.hidden = false;
+						self.subLabel2.text = [NSString stringWithFormat:@"  %@  ",x.mark[i]];
+					} else if (i == 2) {
+						self.subLabel3.hidden = false;
+						self.subLabel3.text = [NSString stringWithFormat:@"  %@  ",x.mark[i]];
+					} else if (i == 3) {
+						self.subLabel4.hidden = false;
+						self.subLabel4.text = [NSString stringWithFormat:@"  %@  ",x.mark[i]];
+					}
+				}
+			}];
+		}];
+		
+		
+		
+		
 		//设置数据
 		[[RACObserve(self, myInDrowModel) skip:1] subscribeNext:^(MyInComeAndWithDrawModel *x) {
 			
