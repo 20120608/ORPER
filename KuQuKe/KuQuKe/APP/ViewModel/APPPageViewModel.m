@@ -14,6 +14,7 @@
 #import "LeftAndRightLabelHeaderView.h"//组头
 #import "EarnMoneyForRegisterViewController.h"//注册赚钱
 #import "TaskingAlertView.h"//进行中的任务弹窗
+#import "APPTaskingModel.h"
 
 @interface APPPageViewModel()
 //可选的
@@ -50,7 +51,7 @@ static const NSInteger startingValue = 1;
       NSDictionary *inputData = (NSDictionary *)input;
       BOOL headerRefresh = [inputData[@"headerRefresh"] boolValue];
       NSInteger requestPage = headerRefresh ? startingValue : self.currentPage + 1;
-      NSString *paramPage = [NSString stringWithFormat:@"%ld",requestPage];
+		NSString *paramPage = [NSString stringWithFormat:@"%ld",(long)requestPage];
 
       NSMutableDictionary *params = [NSMutableDictionary dictionary];
       [params setValue:@"1" forKey:@"type"];//1应用赚 2游戏赚
@@ -72,7 +73,8 @@ static const NSInteger startingValue = 1;
           
         }
 		  
-		  NSArray *goingArray = [APPTaskModel mj_objectArrayWithKeyValuesArray:dataDic[@"data"][@"task_nowlist"]];
+		  self.goingModelArray = [[NSMutableArray alloc] init];
+		  NSArray *goingArray = [APPTaskingModel mj_objectArrayWithKeyValuesArray:dataDic[@"data"][@"task_nowlist"][@"list"]];
 		  if(goingArray.count > 0){
 			  if(requestPage == startingValue){
 				  [self.goingModelArray removeAllObjects];
@@ -162,6 +164,13 @@ static const NSInteger startingValue = 1;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+	
+	if (indexPath.section == 0) {
+		TaskTableViewCell *cell = [TaskTableViewCell cellWithTableView:tableView initWithCellStyle:TaskTableViewCellStyleOnGoing indexPath:indexPath andFixedHeightIfNeed:80];
+		cell.appgoingModel = _goingModelArray[indexPath.row];
+		return cell;
+	}
+	
   TaskTableViewCell *cell = [TaskTableViewCell cellWithTableView:tableView initWithCellStyle:TaskTableViewCellStyleSubTag indexPath:indexPath andFixedHeightIfNeed:80];
   cell.appTaskModel = _taskListModelArray[indexPath.row];
   return cell;
@@ -184,7 +193,11 @@ static const NSInteger startingValue = 1;
 	} else {
 		vc.nowtype = @"2";
 	}
-  vc.taskID = ((APPTaskModel *)_taskListModelArray[indexPath.row]).id;
+	if (indexPath.section == 0) {
+		vc.taskID = ((APPTaskingModel *)_goingModelArray[indexPath.row]).task_id;
+	} else {
+		vc.taskID = ((APPTaskModel *)_taskListModelArray[indexPath.row]).id;
+	}
   [self.currentVC.navigationController pushViewController:vc animated:true];
   
 }

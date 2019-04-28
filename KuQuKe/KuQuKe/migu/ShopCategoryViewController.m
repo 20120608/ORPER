@@ -35,7 +35,7 @@
 	AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
 	manager.responseSerializer = [AFHTTPResponseSerializer serializer];
 	QMURLSessionTask *sessionTask = nil;
-	sessionTask = [manager GET:@"http://192.168.9.105:8088/json/f.json" parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
+	sessionTask = [manager GET:@"http://192.168.9.104:8088/json/p.json" parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
 	} success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
 		
 		NSDictionary *dataDic = kJSON(responseObject);
@@ -72,6 +72,7 @@
 			}
 		}
 	} failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+		
 	}];
 }
 
@@ -235,6 +236,8 @@
 		}];
 		
 	}];
+	NSLog(@" 下标： %@   数量 %lu", indexPath,(unsigned long)includArr.count);
+	
 	if ([_selectSKUArr[indexPath.section] integerValue] == indexPath.row) {
 		cell.tag = 1;
 		cell.backgroundColor = UIColor.redColor;
