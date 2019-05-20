@@ -72,12 +72,13 @@
 	
   //转盘背景
   _bgImageView = [[UIImageView alloc] init];
-  _bgImageView.center = self.view.center;
+  _bgImageView.center = CGPointMake(SCREEN_WIDTH/2, NAVIGATION_BAR_HEIGHT+44+(kScreenWidth-50)/2);
   _bgImageView.image = [UIImage imageNamed:@"zhuanpan"];
   [self.view addSubview:_bgImageView];
   [_bgImageView mas_makeConstraints:^(MASConstraintMaker *make) {
     make.centerX.mas_equalTo(self.view.mas_centerX);
-    make.centerY.mas_equalTo(self.view.mas_centerY);
+//    make.centerY.mas_equalTo(self.view.mas_centerY);
+	make.top.mas_equalTo(NAVIGATION_BAR_HEIGHT+44);
     make.width.mas_equalTo(kScreenWidth-50);
     make.height.mas_equalTo(_bgImageView.mas_width);
   }];
@@ -94,7 +95,7 @@
   [btnimage addGestureRecognizer:tap];
   [btnimage mas_makeConstraints:^(MASConstraintMaker *make) {
     make.centerX.mas_equalTo(self.view.mas_centerX);
-    make.centerY.mas_equalTo(self.view.mas_centerY);
+    make.centerY.mas_equalTo(_bgImageView.mas_centerY);
     make.height.width.mas_equalTo(_bgImageView.mas_width).multipliedBy(0.41);
   }];
 	
@@ -103,7 +104,7 @@
 		[self.view addSubview:label];
 		[label mas_makeConstraints:^(MASConstraintMaker *make) {
 			make.centerX.mas_equalTo(_bgImageView.mas_centerX);
-			make.centerY.mas_equalTo(self.view.mas_centerY).offset(-11);
+			make.centerY.mas_equalTo(_bgImageView.mas_centerY).offset(-11);
 		}];
 		label;
 	});
@@ -116,7 +117,7 @@
 		QMLabelFontColorText(label, @"0次机会", QMHexColor(@"#A8342A"), 12);
 		[label mas_makeConstraints:^(MASConstraintMaker *make) {
 			make.centerX.mas_equalTo(_bgImageView.mas_centerX);
-			make.centerY.mas_equalTo(self.view.mas_centerY).offset(11);
+			make.centerY.mas_equalTo(_bgImageView.mas_centerY).offset(11);
 		}];
 		label;
 	});
@@ -126,18 +127,18 @@
 		chanceNumLabel.text = [NSString stringWithFormat:@"%@次机会",x];
 	}];
 	
-	UIImageView *IlikeRotaryImageView = ({
-		UIImageView *imageView = [[UIImageView alloc] init];
-		[self.view addSubview: imageView];
-		[imageView mas_makeConstraints:^(MASConstraintMaker *make) {
-			make.centerX.mas_equalTo(self.view.mas_centerX);
-			make.top.mas_equalTo(self.dqm_navgationBar.mas_bottom).offset(20);
-			make.width.mas_equalTo(kScreenWidth*0.9);
-			make.height.mas_equalTo(imageView.mas_width).multipliedBy(0.185);
-		}];
-		imageView;
-	});
-	QMSetImage(IlikeRotaryImageView, @"我要抽现金");
+//	UIImageView *IlikeRotaryImageView = ({
+//		UIImageView *imageView = [[UIImageView alloc] init];
+//		[self.view addSubview: imageView];
+//		[imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+//			make.centerX.mas_equalTo(self.view.mas_centerX);
+//			make.top.mas_equalTo(self.dqm_navgationBar.mas_bottom).offset(20);
+//			make.width.mas_equalTo(kScreenWidth*0.9);
+//			make.height.mas_equalTo(imageView.mas_width).multipliedBy(0.185);
+//		}];
+//		imageView;
+//	});
+//	QMSetImage(IlikeRotaryImageView, @"我要抽现金");
 
 	
 	UIImageView *rulesImageView = ({

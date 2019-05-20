@@ -133,15 +133,6 @@
 
 
 #pragma mark - dqm_navibar
-- (BOOL)dqmNavigationIsHideBottomLine:(DQMNavigationBar *)navigationBar {
-	return true;
-}
-
-/** 导航条左边的按钮 */
-- (UIImage *)dqmNavigationBarLeftButtonImage:(UIButton *)leftButton navigationBar:(DQMNavigationBar *)navigationBar {
-	[leftButton setImage:[UIImage imageNamed:@"NavgationBar_white_back"] forState:UIControlStateHighlighted];
-	return [UIImage imageNamed:@"NavgationBar_white_back"];
-}
 
 - (NSMutableAttributedString *)dqmNavigationBarTitle:(DQMNavigationBar *)navigationBar {
 	return [QMSGeneralHelpers changeStringToMutableAttributedStringTitle:@"邀请好友" color:UIColor.whiteColor];

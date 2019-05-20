@@ -55,7 +55,7 @@
 			[view mas_makeConstraints:^(MASConstraintMaker *make) {
 				make.centerX.mas_equalTo(self.mas_centerX);
 				make.centerY.mas_equalTo(self.mas_centerY).offset(-40);
-				make.size.mas_equalTo(CGSizeMake(250, 187));//217去掉按钮剩下187
+				make.size.mas_equalTo(CGSizeMake(250, 263));
 			}];
 			view;
 		});
@@ -91,7 +91,7 @@
 			[label mas_makeConstraints:^(MASConstraintMaker *make) {
 				make.centerX.mas_equalTo(whiteBackView.mas_centerX);
 				make.top.mas_equalTo(priceLabel.mas_bottom).offset(7);
-        make.bottom.mas_equalTo(whiteBackView.mas_bottom).offset(-7);
+        		make.top.mas_equalTo(priceLabel.mas_bottom).offset(7);
 			}];
 			label;
 		});
@@ -105,7 +105,7 @@
 				[_backView addSubview:button];
 				button.tag = i + 2;
 				button.imageView.contentMode = UIViewContentModeScaleAspectFit;
-				QMViewBorderRadius(button, 38, 0, DQMMainColor);
+				QMViewBorderRadius(button, 32.5, 0, DQMMainColor);
 				[button setImage:[UIImage imageNamed:imgaRRAY[i]] forState:UIControlStateNormal];
 				[button addTarget:self action:@selector(AlertViewbuttonClick:) forControlEvents:UIControlEventTouchUpInside];
 				
@@ -113,10 +113,10 @@
 			});
 			[buttonArray addObject: button];
 		}
-		[buttonArray mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedItemLength:76 leadSpacing:(kScreenWidth-152)/3 tailSpacing:(kScreenWidth-152)/3];
+		[buttonArray mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedItemLength:65 leadSpacing:(kScreenWidth-130)/2.5 tailSpacing:(kScreenWidth-130)/2.5];
 		[buttonArray mas_makeConstraints:^(MASConstraintMaker *make) {
-			make.top.mas_equalTo(whiteBackView.mas_bottom).offset(70);
-			make.height.mas_equalTo(76);
+			make.bottom.mas_equalTo(whiteBackView.mas_bottom).offset(-20);
+			make.height.mas_equalTo(65);
 		}];
 		
 		[[RACObserve(self, canUseMoney) skip:1] subscribeNext:^(NSString *  _Nullable x) {

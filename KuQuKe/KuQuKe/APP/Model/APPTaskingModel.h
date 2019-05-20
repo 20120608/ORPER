@@ -24,6 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , assign) NSInteger              start_time;
 @property (nonatomic , assign) NSInteger              add_time;
 
+
 @end
 
 NS_ASSUME_NONNULL_END

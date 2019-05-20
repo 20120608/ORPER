@@ -402,9 +402,34 @@
  */
 + (QMURLSessionTask *)GET_noticeListParams:(NSDictionary *)params View:(UIView *)view success:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))success unknown:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))unknown failure:(void(^)(NSError *error))failure;
 
+/**
+ 参加任务的时间
+ post kuquke.yiyunrj.xyz/task/getJoinTime
+ 
+ 参数	类型	必需/可选	默认	描述
+ time	int	必需	无	时间戳(用于判断请求是否超时)
+ token	string	必需	无	确定来访者身份
+ tid	int	必需	1	任务id
+ uid	int	必需	无	用户id
+ */
++ (QMURLSessionTask *)POST_getJoinTime:(NSDictionary *)params View:(UIView *)view success:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))success unknown:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))unknown failure:(void(^)(NSError *error))failure;
+
 	
-	
-	
+/**
+ 任务（含专属状态变化）
+ post kuquke.yiyunrj.xyz/task/addExclusiveTaskOk
+ 
+ 参数	类型	必需/可选	默认	描述
+ time	int	必需	无	时间戳(用于判断请求是否超时)
+ token	string	必需	无	确定来访者身份
+ id	int	必需	1	任务id
+ uid	int	必需	无	用户id
+ applyid	int	必需	1	参加id，详情中会有返回
+ nowstatus	int	必需	无	状态1.完成任务 6任务超时 2领取奖励
+ */
++ (QMURLSessionTask *)POST_addExclusiveTaskOk:(NSDictionary *)params View:(UIView *)view success:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))success unknown:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))unknown failure:(void(^)(NSError *error))failure;
+
+
 	
 	
 

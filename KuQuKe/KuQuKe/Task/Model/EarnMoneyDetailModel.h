@@ -43,6 +43,20 @@ NS_ASSUME_NONNULL_BEGIN
 /** 详情 */
 @property(nonatomic,copy) NSString          *timer;
 
+/* 任务ID */
+@property(nonatomic,copy) NSString *bundleID;
+
+/* 包装包大小 */
+@property(nonatomic,copy) NSString *apk_size;
+
+/* 参加的ID */
+@property(nonatomic,copy) NSString *applyid;
+
+/* 参加的ID */
+@property(nonatomic,copy) NSString *jump_url;
+
+
+
 /** 信息
  "join_info" =     {
  applyid = 3;

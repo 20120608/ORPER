@@ -125,6 +125,9 @@
 
 #pragma mark - 开始任务
 - (void)beginButtonClickPreviewTaskRequireView:(PreviewTaskRequireView *)view {
+	//跳转
+	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@", _earnModel.jump_url]]];
+	
 	//弃用  默认一进入详情页会请求一次任务
 //	NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
 //	[params setValue:_taskID forKey:@"id"];

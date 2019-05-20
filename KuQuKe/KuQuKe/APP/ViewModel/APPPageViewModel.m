@@ -15,6 +15,7 @@
 #import "EarnMoneyForRegisterViewController.h"//注册赚钱
 #import "TaskingAlertView.h"//进行中的任务弹窗
 #import "APPTaskingModel.h"
+#import "EarnMoneyDetailModel.h"//任务详情
 
 @interface APPPageViewModel()
 //可选的
@@ -178,28 +179,59 @@ static const NSInteger startingValue = 1;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	
-//	TaskingAlertView *alertView = [[TaskingAlertView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
-//	[[UIApplication sharedApplication].keyWindow addSubview:alertView];
-//
-//	[alertView showAnimation];
-//
-//	return;
-
-	EarnMoneyForRegisterViewController *vc = [[EarnMoneyForRegisterViewController alloc] initWithTitle:@"注册赚钱"];
-	if (indexPath.section == 1) {
-		vc.nowtype = @"1";
-	} else if (indexPath.section == 0 && ![self.currentVC isKindOfClass:[APPViewController class]]) {
-		vc.nowtype = @"3";
-	} else {
-		vc.nowtype = @"2";
-	}
+	
+	APPTaskingModel *taskingModel = nil;
+	APPTaskModel *taskModel = nil;
+	
 	if (indexPath.section == 0) {
-		vc.taskID = ((APPTaskingModel *)_goingModelArray[indexPath.row]).task_id;
+		taskingModel = (APPTaskingModel *)self.goingModelArray[indexPath.row];
 	} else {
-		vc.taskID = ((APPTaskModel *)_taskListModelArray[indexPath.row]).id;
+		taskModel = ((APPTaskModel *)_taskListModelArray[indexPath.row]);
 	}
-  [self.currentVC.navigationController pushViewController:vc animated:true];
-  
+	
+	if (taskingModel.type_id == 2 || taskModel.type_id == 2) {
+		
+		TaskingAlertView *alertView = [[TaskingAlertView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+		alertView.currentVC = self.currentVC;
+		
+		NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+		if (taskingModel != nil) {
+			[params setValue:taskingModel.task_id forKey:@"id"];
+		} else {
+			[params setValue:taskModel.id forKey:@"id"];
+		}
+		[params setValue:@"2" forKey:@"nowtype"];
+		
+		[KuQuKeNetWorkManager GET_taskDetailV2Params:params View:self.currentVC.view success:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
+			
+			alertView.earnMoneyModel = [EarnMoneyDetailModel mj_objectWithKeyValues:dataDic[@"data"]];
+			[[UIApplication sharedApplication].keyWindow addSubview:alertView];
+			[alertView showAnimation];
+			
+		} unknown:^(RequestStatusModel * _Nonnull reqsModel, NSDictionary * _Nonnull dataDic) {
+			
+		} failure:^(NSError * _Nonnull error) {
+			
+		}];
+		
+	} else {
+		EarnMoneyForRegisterViewController *vc = [[EarnMoneyForRegisterViewController alloc] initWithTitle:@"注册赚钱"];
+		if (indexPath.section == 1) {
+			vc.nowtype = @"1";
+		} else if (indexPath.section == 0 && ![self.currentVC isKindOfClass:[APPViewController class]]) {
+			vc.nowtype = @"3";
+		} else {
+			vc.nowtype = @"2";
+		}
+		if (indexPath.section == 0) {
+			vc.taskID = taskingModel.task_id;
+		} else {
+			vc.taskID = taskModel.id;
+		}
+		
+		[self.currentVC.navigationController pushViewController:vc animated:true];
+	}
+	
 }
 
 

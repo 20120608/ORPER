@@ -15,6 +15,8 @@
 
 @interface AppDelegate ()
 
+@property (nonatomic, unsafe_unretained) UIBackgroundTaskIdentifier taskId;
+@property (nonatomic, strong) NSTimer *timer;
 
 @end
 
@@ -32,39 +34,19 @@
     manager.keyboardDistanceFromTextField = 10.0f; // 输入框距离键盘的距离
     manager.toolbarDoneBarButtonItemText = @"完成";// 将英文done换成中文
 
-//	self.window.rootViewController = [[DQMTabBarController alloc] init];
+	self.window.rootViewController = [[DQMTabBarController alloc] init];
 
-    self.window.rootViewController = [[ShopCategoryViewController alloc] init];
+//    self.window.rootViewController = [[ShopCategoryViewController alloc] init];
 
     [self.window makeKeyAndVisible];
-    
-    //    [self.window addSubview:[[YYFPSLabel alloc] initWithFrame:CGRectMake(61, STATUS_BAR_HEIGHT, 0, 0)]];
-    
-    //    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-    //        Class LSApplicationWorkspace_class = objc_getClass("LSApplicationWorkspace");
-    //        NSObject * workspace = [LSApplicationWorkspace_class performSelector:@selector(defaultWorkspace)];
-    //
-    //        if ([workspace respondsToSelector:NSSelectorFromString(@"openApplicationWithBundleID:")])
-    //        {
-    //            if ([workspace performSelector:NSSelectorFromString(@"openApplicationWithBundleID:") withObject:@"com.biemaile.userapp"]) {
-    //                NSLog(@"跳转成功");
-    //
-    ////                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-    ////                    NSString *state = @"0|1"; //此处读取存好的标记0|1或其他你做的标记
-    ////                    if([state isEqual:@"0"])
-    ////                    {
-    ////                        NSLog(@"进入后台");
-    ////                    }
-    ////                    else if([state isEqual:@"1"])
-    ////                    {
-    ////                        NSLog(@"活跃状态");
-    ////                    }
-    //                });
-    //
-    //            }
-    //
-    //        }
-    //    });
+	
+	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//		[[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/id1251303871"]]];
+		
+		
+
+		
+	});
     
     
     return YES;
@@ -179,10 +161,31 @@
     
     
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        NSLog(@"当前显示的APP %@",[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleDisplayName"]);
-    });
+	self.taskId =[application beginBackgroundTaskWithExpirationHandler:^(void) {
+		//当申请的后台时间用完的时候调用这个block
+		//此时我们需要结束后台任务，
+		[self endTask];
+	}];
+	// 模拟一个长时间的任务 Task
+	self.timer =[NSTimer scheduledTimerWithTimeInterval:1.0f
+												 target:self
+											   selector:@selector(longTimeTask:)
+											   userInfo:nil
+												repeats:YES];
+}
+#pragma mark - 停止timer
+-(void)endTask {
+	if (_timer != nil||_timer.isValid) {
+		[_timer invalidate];
+		_timer = nil;
+		//结束后台任务
+		[[UIApplication sharedApplication] endBackgroundTask:_taskId];
+		_taskId = UIBackgroundTaskInvalid;
+	}
+}
+- (void) longTimeTask:(NSTimer *)timer {
+	// 系统留给的我们的时间
+	NSTimeInterval time =[[UIApplication sharedApplication] backgroundTimeRemaining];
 }
     
     

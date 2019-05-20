@@ -29,6 +29,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,copy) NSString          *id;
 /** 进行中的id */
 @property(nonatomic,copy) NSString          *task_id;
+/** 1进入 2弹窗 */
+@property (nonatomic , assign) NSInteger    type_id;
 
 
 

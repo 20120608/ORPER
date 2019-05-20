@@ -148,35 +148,35 @@
 
 		
       //是否可以点击开始按钮  join_status  5是未参与 0是已经开始任务了 1是已经提交任务审核了 2是审核通过 3是审核不通过 6是过时失效了
-      [self.beginButton setEnabled:false];
-      [self.beginButton setBackgroundColor:QMBackColor forState:UIControlStateNormal];
-
-      switch ([x.join_info[@"join_status"] intValue]) {
-          case 5:
-          [self.beginButton setEnabled:true];
-          [self.beginButton setBackgroundColor:QMBlueColor forState:UIControlStateNormal];
-          break;
-          case 0:
-          [self.beginButton setTitle:@"任务进行中" forState:UIControlStateNormal];
-          break;
-          case 1:
-          [self.beginButton setTitle:@"审核中" forState:UIControlStateNormal];
-          break;
-          case 2:
-          [self.beginButton setTitle:@"审核已通过" forState:UIControlStateNormal];
-          break;
-          case 3:
-          [self.beginButton setTitle:@"审核不通过" forState:UIControlStateNormal];
-          [self.beginButton setBackgroundColor:QMPriceColor forState:UIControlStateNormal];
-
-          break;
-          case 6:
-          [self.beginButton setTitle:@"任务超时失效" forState:UIControlStateNormal];
-          [self.beginButton setBackgroundColor:QMPriceColor forState:UIControlStateNormal];
-          break;
-        default:
-          break;
-      }
+//      [self.beginButton setEnabled:false];
+		[self.beginButton setBackgroundColor:QMBlueColor forState:UIControlStateNormal];
+		[self.beginButton setTitle:@"开始任务" forState:UIControlStateNormal];
+//      switch ([x.join_info[@"join_status"] intValue]) {
+//          case 5:
+//          [self.beginButton setEnabled:true];
+//          [self.beginButton setBackgroundColor:QMBlueColor forState:UIControlStateNormal];
+//          break;
+//          case 0:
+//          [self.beginButton setTitle:@"任务进行中" forState:UIControlStateNormal];
+//          break;
+//          case 1:
+//          [self.beginButton setTitle:@"审核中" forState:UIControlStateNormal];
+//          break;
+//          case 2:
+//          [self.beginButton setTitle:@"审核已通过" forState:UIControlStateNormal];
+//          break;
+//          case 3:
+//          [self.beginButton setTitle:@"审核不通过" forState:UIControlStateNormal];
+//          [self.beginButton setBackgroundColor:QMPriceColor forState:UIControlStateNormal];
+//
+//          break;
+//          case 6:
+//          [self.beginButton setTitle:@"任务超时失效" forState:UIControlStateNormal];
+//          [self.beginButton setBackgroundColor:QMPriceColor forState:UIControlStateNormal];
+//          break;
+//        default:
+//          break;
+//      }
     }];
     
   }

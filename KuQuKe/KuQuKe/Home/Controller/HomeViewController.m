@@ -116,7 +116,7 @@
 	UILabel *moneyLabel = ({
 		UILabel *label = [[UILabel alloc] init];
 		[navi addSubview:label];
-		QMLabelFontColorText(label, @"今日赚钱: ¥0.00", UIColor.whiteColor, 15);
+		QMLabelFontColorText(label, @"余额: ¥0.00", UIColor.whiteColor, 13);
 		[label mas_makeConstraints:^(MASConstraintMaker *make) {
 			make.left.mas_equalTo(navi.mas_left).offset(15);
 			make.bottom.mas_equalTo(navi.mas_bottom).offset(-12);
@@ -124,7 +124,7 @@
 		label;
 	});
 	[RACObserve(self, myMoney) subscribeNext:^(NSString *x) {
-		moneyLabel.text = [NSString stringWithFormat:@"今日赚钱: ¥%.2f",[x floatValue]];
+		moneyLabel.text = [NSString stringWithFormat:@"余额: ¥%.2f",[x floatValue]];
 	}];
 	
 	QMWeak(self);
@@ -235,7 +235,7 @@
   [KuQuKeNetWorkManager GET_getIndexConfig:params View:self.view success:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
 
     //订阅余额
-    self.myMoney = dataDic[@"data"][@"today_money"];
+    self.myMoney = dataDic[@"data"][@"user_money"];
 	self.ad_url = dataDic[@"data"][@"ad_url"];
 	self.canUseMoney = dataDic[@"data"][@"user_money"];
     self.adimgString = dataDic[@"data"][@"ad_img"];
@@ -324,7 +324,7 @@
 	if ([_num isEqualToString:@"0"] && [_getAllMoney isEqualToString:@"0"] && (section == 3)) {
 		return 0;
 	}
-	if (section == 2) {
+	if (section == 1 || section == 2) {
 		return 0;
 	}
   return 1;
@@ -334,6 +334,9 @@
 	if (section == 4) {
 		return 35;
 	}
+//	if (section == 2) {
+//		return 35;
+//	}
 	return 0.01;
 }
 
@@ -449,8 +452,7 @@
 	switch (index) {
 		case 0:
 		{
-			ShareToMyFriendViewController *vc = [[ShareToMyFriendViewController alloc] initWithStyle:UITableViewStyleGrouped];
-			[self.navigationController pushViewController:vc animated:true];
+			[self.tabBarController setSelectedIndex:2];
 		}
 			break;
 		case 1:

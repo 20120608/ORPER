@@ -10,8 +10,17 @@
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
+@class EarnMoneyDetailModel;
+@class APPViewController;
 
 @interface TaskingAlertView : UIView
+
+/** 任务模型 */
+@property(nonatomic,strong) EarnMoneyDetailModel *earnMoneyModel;
+
+//当前视图控制器
+@property (nonatomic, weak) APPViewController *currentVC;
+
 
 - (void)showAnimation;
 
