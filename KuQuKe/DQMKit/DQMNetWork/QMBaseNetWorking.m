@@ -136,7 +136,9 @@ static NSMutableArray *tasks;
   if(GET_USERDEFAULT(USER_TOKEN) != nil){
     [manager.requestSerializer setValue:GET_USERDEFAULT(USER_TOKEN) forHTTPHeaderField:@"token"];
   }
-  
+	
+	[manager.requestSerializer setValue: [NSString stringWithFormat:@"Bearer %@", GET_USERDEFAULT(USER_TOKEN)] forHTTPHeaderField:@"Authorization"];
+	
   QMURLSessionTask *sessionTask = nil;
   
   if (type == 1) {

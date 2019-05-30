@@ -13,6 +13,8 @@
 #import "EarnMoneyDetailModel.h"//注册赚钱模型
 #import "EarnMoneyViewModel.h"//视图模型
 #import "DQMAlertView.h"//警告弹窗
+#import "AppDelegate.h"
+
 
 @interface EarnMoneyForRegisterViewController () <UserMessageInputViewDelegate,PreviewTaskRequireViewDelegate,DQMAlertViewDelegate>
 {
@@ -55,9 +57,11 @@
     @strongify(self)
     NSDictionary * dataDic = [x object];
     [self resetRefreshView:dataDic];
+	  
+	  [[NSNotificationCenter defaultCenter] postNotificationName:@"刷新任务列表页" object:nil];
+	  
   }];
 }
-
 
 
 /**
@@ -65,7 +69,14 @@
  */
 - (void)resetRefreshView:(NSDictionary *)dataDic {
   self.earnModel = [EarnMoneyDetailModel mj_objectWithKeyValues:dataDic];
-	[self beginCountDown];//开始倒计时
+	
+	//传入定时器 指定时间内没取消会弹窗
+	_earnModel.beginDate = [NSDate dateWithTimeIntervalSinceNow:180];
+	AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+	[app startearnMoneyModelTimer:_earnModel];
+	
+	//开始倒计时
+	[self beginCountDown];
 }
 
 
@@ -117,7 +128,6 @@
   
   [[RACObserve(self, earnModel) skip:1] subscribeNext:^(EarnMoneyDetailModel *x) {
     preTaskView.imagesUrlStringArray = [[NSMutableArray alloc] initWithArray:x.exp_img];
-//    subTagView.earnModel = x;
     preTaskView.earnModel = x;
     self.scrollView.hidden = false;//打开
   }];
@@ -315,7 +325,22 @@
 		{
 			UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"是否确定放弃" message:@"点击确定后放弃任务" preferredStyle:UIAlertControllerStyleActionSheet];
 			UIAlertAction *sure = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-				[self.navigationController popViewControllerAnimated:true];
+				
+				//放弃任务 移除定时器的模型
+				AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+				[app removeTimeTask:_earnModel.id];
+				
+				
+				//通知后台移除任务
+				NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+				[params setValue:_earnModel.id forKey:@"id"];
+				[params setValue:_earnModel.applyid forKey:@"applyid"];
+				[params setValue:@"6" forKey:@"nowstatus"];
+				[KuQuKeNetWorkManager POST_addExclusiveTaskOk:params View:nil success:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
+					[[NSNotificationCenter defaultCenter] postNotificationName:@"刷新任务列表页" object:nil];
+					[self.navigationController popViewControllerAnimated:true];
+				} unknown:nil failure:nil];
+				
 			}];
 			UIAlertAction *cancle = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
 			}];

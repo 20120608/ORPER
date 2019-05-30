@@ -23,6 +23,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , assign) NSInteger              timer;
 @property (nonatomic , assign) NSInteger              start_time;
 @property (nonatomic , assign) NSInteger              add_time;
+	
+/** 过期时间 */
+@property (nonatomic , assign) NSDate 		*beginDate;
 
 
 @end

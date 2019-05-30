@@ -32,6 +32,10 @@ NS_ASSUME_NONNULL_BEGIN
 /** 1进入 2弹窗 */
 @property (nonatomic , assign) NSInteger    type_id;
 
+	
+/** 过期时间 */
+@property (nonatomic , assign) NSDate 		*beginDate;
+
 
 
 @end

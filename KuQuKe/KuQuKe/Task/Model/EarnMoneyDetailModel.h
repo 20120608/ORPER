@@ -55,7 +55,8 @@ NS_ASSUME_NONNULL_BEGIN
 /* 参加的ID */
 @property(nonatomic,copy) NSString *jump_url;
 
-
+/** 过期时间 */
+@property (nonatomic , copy) NSDate 		*beginDate;
 
 /** 信息
  "join_info" =     {

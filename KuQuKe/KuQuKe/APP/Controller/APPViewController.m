@@ -45,7 +45,16 @@
   //进入界面首次下拉刷新
   [self.tableView.mj_header beginRefreshing];
 	
+	
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationReload) name:@"刷新任务列表页" object:nil];
+	
 }
+	
+	
+- (void)notificationReload {
+	[self.tableView.mj_header beginRefreshing];
+}
+
 
 - (void)zhuanshurenwu {
 	MyExclusiveTaskViewController *vc = [[MyExclusiveTaskViewController alloc] initWithTitle:@"专属任务"];

@@ -7,10 +7,22 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TaskStatusTimer.h"
+#import "APPTaskingModel.h"
+#import "APPTaskModel.h"
+#import "EarnMoneyDetailModel.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+
+
+@property (nonatomic, strong) TaskStatusTimer *stateTimer;
+	
+//传入任务id和时间后开启定时器
+- (void)startearnMoneyModelTimer:(EarnMoneyDetailModel *)earnModel;
+	
+- (void)removeTimeTask:(NSString *)taskid;
 
 
 @end

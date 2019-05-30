@@ -45,7 +45,8 @@ typedef NS_ENUM(NSUInteger, TaskTableViewCellStyle) {
 /** 个人中心_任务列表模型 */
 @property (nonatomic,strong) APPTaskingModel 		  *appgoingModel;
 
-
+/** 状态 */
+@property(nonatomic,strong) UILabel          *timeLabel;
 
 @end
 

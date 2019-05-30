@@ -11,6 +11,8 @@
 #import "DQMAlertView.h"
 #import "EarnMoneyDetailModel.h"
 #import "APPViewController.h"
+#import "AppDelegate.h"
+
 
 @interface TaskingAlertView ()
 
@@ -220,53 +222,12 @@
 	[hud showAnimated:true];
 	
 	[self testGoOtherAPP:hud bundleID:_earnMoneyModel.bundleID];
-
-	//判断APP是否安装
-//	if ([[UIDevice currentDevice].systemVersion floatValue] >= 12.0) {
-//
-//		MBProgressHUD *hud = [[MBProgressHUD alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
-//		hud.label.text = @"正在搜索APP";
-//		hud.minShowTime = 4;
-//		[hud removeFromSuperViewOnHide];
-//		[self.window addSubview:hud];
-//		[hud showAnimated:true];
-//
-//		[self testGoOtherAPP:hud];
-//	}
-//	if ([[UIDevice currentDevice].systemVersion floatValue] == 11.0) {
-//
-//		MBProgressHUD *hud = [[MBProgressHUD alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
-//		hud.label.text = @"正在搜索APP";
-//		hud.minShowTime = 2;
-//		[hud removeFromSuperViewOnHide];
-//		[self.window addSubview:hud];
-//		[hud showAnimated:true];
-//
-//		NSBundle *container = [NSBundle bundleWithPath:@"/System/Library/PrivateFrameworks/MobileContainerManager.framework"];
-//		if ([container load]) {
-//			Class appContainer = NSClassFromString(@"MCMAppContainer");
-//
-//			id test = [appContainer performSelector:@selector(containerWithIdentifier:error:) withObject:@"com.biemaile.userapp" withObject:nil];
-//			NSLog(@"%@",test);
-//			if (test) {
-//				NSLog(@"安装成功");
-//				[self runtimeJump:@"com.biemaile.userapp"];
-//				return;
-//			} else {
-//				NSLog(@"没有安装");
-//			}
-//		}
-//
-//		hud.label.text = @"找不到相应的APP!\n请移步APPStor下载";
-//		dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//			[hud hideAnimated:true];
-//		});
-//
-//	} else {
-//		//非iOS11通过获取安装列表判断即可
-//
-//		[self runtimeJump:@"com.biemaile.userapp"];
-//	}
+	
+	
+	//传入定时器 指定时间内没取消会弹窗
+	_earnMoneyModel.beginDate = [NSDate dateWithTimeIntervalSinceNow:180];
+	AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+	[app startearnMoneyModelTimer:_earnMoneyModel];
 	
 }
 
@@ -331,11 +292,16 @@
 		NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
 		[params setValue:_earnMoneyModel.id forKey:@"id"];
 		[params setValue:_earnMoneyModel.applyid forKey:@"applyid"];
-		[params setValue:@"6" forKey:@"nowstatus"];
+		[params setValue:@"2" forKey:@"nowstatus"];
 		
 		[KuQuKeNetWorkManager POST_addExclusiveTaskOk:params View:self success:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
 			
 			[self makeToast:@"领取奖励申请已提交!"];
+			
+			//完成任务 移除定时器的模型
+			AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+			[app removeTimeTask:_earnMoneyModel.id];
+			
 		} unknown:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
 			
 		} failure:^(NSError *error) {

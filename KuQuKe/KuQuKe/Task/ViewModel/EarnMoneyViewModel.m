@@ -8,7 +8,6 @@
 
 #import "EarnMoneyViewModel.h"
 #import "EarnMoneyForRegisterViewController.h"//注册赚钱的
-//#import "NSData+YYAdd.h"
 
 @interface EarnMoneyViewModel()
 
@@ -37,7 +36,8 @@
 	  [params setValue:_nowtype forKey:@"nowtype"];
       [KuQuKeNetWorkManager GET_taskDetailV2Params:params View:self.currentVC.view success:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
         NSLog(@"任务详情 %@",dataDic);
-        
+		  
+		 
         //发送请求的数据
         [subscriber sendNext:dataDic[@"data"]];
         [subscriber sendCompleted];

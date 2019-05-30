@@ -58,7 +58,7 @@
 	}];
 	
 }
-
+	
 #pragma mark - Bind UI
 - (void)setupBind{
 	

@@ -25,6 +25,9 @@
 /** 状态 */
 @property(nonatomic,strong) UILabel          *statusLabel;
 
+
+
+	
 /** 子标签1 */
 @property(nonatomic,strong) UILabel          *subLabel1;
 /** 子标签2 */
@@ -103,6 +106,19 @@
 			[label mas_makeConstraints:^(MASConstraintMaker *make) {
 				make.left.mas_equalTo(_iconImageView.mas_right).offset(8);
 				make.top.mas_equalTo(_iconImageView.mas_top);
+				make.right.mas_equalTo(self.mas_right).offset(-60);
+			}];
+			label;
+		});
+		
+		//定时器
+		self.timeLabel = ({
+			UILabel *label = [[UILabel alloc] init];
+			[self.contentView addSubview:label];
+			QMLabelFontColorText(label, @"00:00", QMSubTextColor, 12);
+			[label mas_makeConstraints:^(MASConstraintMaker *make) {
+				make.left.mas_equalTo(_iconImageView.mas_right).offset(8);
+				make.top.mas_equalTo(_titleLabel.mas_bottom).offset(3);
 				make.right.mas_equalTo(self.mas_right).offset(-60);
 			}];
 			label;
@@ -263,6 +279,16 @@
 			/** 标题 */
 			self.titleLabel.text = x.title;
 			
+			/** 截止时间或开始时间 */
+			if (x.timer > 0) {
+				
+				self.timeLabel.text = [NSString stringWithFormat:@"有效时间:%@  ",[QMSGeneralHelpers getMMSSFromSS:[NSString stringWithFormat:@"%ld",(long)x.timer]]];
+				
+			} else {
+				self.timeLabel.text = @"有效时间: 00:00";
+			}
+			
+			
 			/** 子标题 */
 			self.subTitleLabel.text = x.desc;
 			
@@ -371,7 +397,7 @@
 - (void)setCellStyle:(TaskTableViewCellStyle)cellStyle {
 	_cellStyle = cellStyle;
 	
-	_subLabel1.hidden = _subLabel2.hidden = _subLabel3.hidden = _subLabel4.hidden = true;
+	_timeLabel.hidden = _subLabel1.hidden = _subLabel2.hidden = _subLabel3.hidden = _subLabel4.hidden = true;
 	
 	
 	switch (cellStyle) {
@@ -438,6 +464,7 @@
 			
 		case TaskTableViewCellStyleOnGoing:
 		{
+			_timeLabel.hidden = false;
 			[_sourceLabel removeFromSuperview];
 			_priceLabel.textColor = QMPriceColor;
 			[_priceLabel mas_remakeConstraints:^(MASConstraintMaker *make) {

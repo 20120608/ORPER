@@ -33,6 +33,8 @@
     manager.enableAutoToolbar = YES;//控制是否显示键盘上的工具条。
     manager.keyboardDistanceFromTextField = 10.0f; // 输入框距离键盘的距离
     manager.toolbarDoneBarButtonItemText = @"完成";// 将英文done换成中文
+	
+		
 
 	self.window.rootViewController = [[DQMTabBarController alloc] init];
 
@@ -44,6 +46,7 @@
 //		[[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/id1251303871"]]];
 		
 		
+		
 
 		
 	});
@@ -51,69 +54,25 @@
     
     return YES;
 }
-    
-    
--(void)getAppPlist {
-    
-    //    Class LSApplicationWorkspace_class = objc_getClass("LSApplicationWorkspace");
-    //    NSObject* workspace = [LSApplicationWorkspace_class performSelector:@selector(defaultWorkspace)];
-    //
-    //    NSArray*apps = [workspace performSelector:@selector(allApplications)];
-    //
-    //    //    NSArray*appsActivity = [workspace performSelector:@selector(applicationForUserActivityDomainName)];
-    //
-    //    NSMutableArray*appsIconArr = [NSMutableArray array];
-    //
-    //    NSMutableArray*appsNameArr = [NSMutableArray array];
-    //
-    //
-    //
-    //    NSLog(@"apps: %@",apps );
-    //
-    //    [apps enumerateObjectsUsingBlock:^(id obj,NSUInteger idx,BOOL* stop) {
-    //
-    //        NSDictionary *boundIconsDictionary = [obj performSelector:@selector(boundIconsDictionary)];
-    //
-    //        NSString*iconPath = [NSString stringWithFormat:@"%@/%@.png", [[obj performSelector:@selector(resourcesDirectoryURL)]path], [[[boundIconsDictionary objectForKey:@"CFBundlePrimaryIcon"]objectForKey:@"CFBundleIconFiles"]lastObject]];
-    //
-    //        UIImage*image = [[UIImage alloc]initWithContentsOfFile:iconPath];
-    //
-    //        id name = [obj performSelector:@selector(localizedName)];
-    //
-    //        if(image)
-    //
-    //        {
-    //
-    //            [appsIconArr addObject:image];
-    //
-    //            [appsNameArr addObject: name];
-    //        }
-    //
-    //        //        NSLog(@"iconPath = %@", iconPath);
-    //
-    //        NSLog(@"name = %@", name);
-    //
-    //        //        输出app的属性
-    //        NSLog(@"%@",[self properties_aps:obj]);
-    //
-    //        NSLog(@"_____________________________________________\n");
-    //        NSDictionary * appPropertices = [self properties_aps:obj];
-    //
-    //    }];
-    //
-    //
-    //    //通过applicationIdentifier id。判断是否安装某个APP
-    //    BOOL isInstall = [workspace performSelector:@selector(applicationIsInstalled:) withObject:@"com.tencent.xin"];
-    //
-    //
-    //    if (isInstall) {
-    //        //通过bundle id。打开一个APP
-    //        [workspace performSelector:@selector(openApplicationWithBundleID:) withObject:@"com.tencent.xin"];
-    //    }else{
-    //        NSLog(@"您还没安装");
-    //    }
-    
+	
+
+	
+//传入任务id和时间后开启定时器
+- (void)startearnMoneyModelTimer:(EarnMoneyDetailModel *)earnModel {
+	NSLog(@"进入定时器");
+	if (!_stateTimer) {
+		self.stateTimer = [TaskStatusTimer sharedTimerManager];
+			[_stateTimer countDown];
+	}
+	[_stateTimer.modelsArray addObject:earnModel];
 }
+	
+- (void)removeTimeTask:(NSString *)taskid {
+	if (_stateTimer) {
+		[_stateTimer removeTask:taskid];
+	}
+}
+	
     
     //获取app的属性。
 - (NSDictionary *)properties_aps:(id)objc

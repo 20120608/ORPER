@@ -18,11 +18,17 @@
 #import "EarnMoneyDetailModel.h"//任务详情
 
 @interface APPPageViewModel()
+{
+	NSTimer * _timer;
+}
 //可选的
 @property(nonatomic,strong)NSMutableArray *taskListModelArray;
 //进行中的
 @property(nonatomic,strong)NSMutableArray *goingModelArray;
 @property(nonatomic,assign)NSInteger currentPage;
+
+//让cell监控当前的时间后改变定时器
+@property(nonatomic,assign)NSInteger times;
 
 @end
 
@@ -128,6 +134,10 @@ static const NSInteger startingValue = 1;
     }
   }];
 	
+	
+	//计时器开起来
+	[self beginCountDown];
+	
 }
 
 
@@ -166,15 +176,24 @@ static const NSInteger startingValue = 1;
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	
+	TaskTableViewCell *cell;
 	if (indexPath.section == 0) {
-		TaskTableViewCell *cell = [TaskTableViewCell cellWithTableView:tableView initWithCellStyle:TaskTableViewCellStyleOnGoing indexPath:indexPath andFixedHeightIfNeed:80];
+		cell = [TaskTableViewCell cellWithTableView:tableView initWithCellStyle:TaskTableViewCellStyleOnGoing indexPath:indexPath andFixedHeightIfNeed:80];
 		cell.appgoingModel = _goingModelArray[indexPath.row];
-		return cell;
+		
+	} else {
+		cell = [TaskTableViewCell cellWithTableView:tableView initWithCellStyle:TaskTableViewCellStyleSubTag indexPath:indexPath andFixedHeightIfNeed:80];
+		cell.appTaskModel = _taskListModelArray[indexPath.row];
 	}
 	
-  TaskTableViewCell *cell = [TaskTableViewCell cellWithTableView:tableView initWithCellStyle:TaskTableViewCellStyleSubTag indexPath:indexPath andFixedHeightIfNeed:80];
-  cell.appTaskModel = _taskListModelArray[indexPath.row];
-  return cell;
+	[[RACObserve(self, times) takeUntil:cell.rac_prepareForReuseSignal] subscribeNext:^(id x) {
+		if (cell.appgoingModel != nil) {
+			cell.appgoingModel.timer = cell.appgoingModel.timer - 1;
+			cell.appgoingModel = cell.appgoingModel;
+		}
+	}];
+	
+	return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -207,6 +226,7 @@ static const NSInteger startingValue = 1;
 			alertView.earnMoneyModel = [EarnMoneyDetailModel mj_objectWithKeyValues:dataDic[@"data"]];
 			[[UIApplication sharedApplication].keyWindow addSubview:alertView];
 			[alertView showAnimation];
+			[_currentVC.tableView.mj_header beginRefreshing];
 			
 		} unknown:^(RequestStatusModel * _Nonnull reqsModel, NSDictionary * _Nonnull dataDic) {
 			
@@ -235,6 +255,46 @@ static const NSInteger startingValue = 1;
 }
 
 
+#pragma mark - timer
+	/**
+	 开始计时
+	 */
+- (void)beginCountDown {
+	CGFloat timeInterval = 1;
+	[self invalidateTimerWhenDismissViewController];
+	_timer = [NSTimer scheduledTimerWithTimeInterval:timeInterval target:self selector:@selector(countdownAction) userInfo:nil repeats:YES];
+	[[NSRunLoop currentRunLoop] addTimer:_timer forMode:NSRunLoopCommonModes];
+}
+	
+	/**
+	 计时器操作
+	 */
+- (void)countdownAction {
+	
+	self.times = self.times+1;
+}
+	
+	//释放定时器
+-(void)invalidateTimerWhenDismissViewController {
+	[_timer invalidate];
+	_timer = nil;
+}
+	
+	//停止定时器刷新界面
+- (void)stopTimerAndReloadView {
+	[self invalidateTimerWhenDismissViewController];
+}
+	/**
+	 删除移除计时器   视图是present出来的话不会走这里！！！！
+	 */
+- (void)willMoveToParentViewController:(UIViewController *)parent {
+	[self invalidateTimerWhenDismissViewController];
+}
+	
+	
+	
+	
+	
 #pragma mark - Getter && Setter
 - (NSMutableArray *)taskListModelArray {
   if (!_taskListModelArray) {
