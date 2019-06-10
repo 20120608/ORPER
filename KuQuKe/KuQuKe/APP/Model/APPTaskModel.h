@@ -31,12 +31,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,copy) NSString          *task_id;
 /** 1进入 2弹窗 */
 @property (nonatomic , assign) NSInteger    type_id;
-
+/** 开始时间 */
+@property(nonatomic,copy) NSString          *start_time;
 	
 /** 过期时间 */
 @property (nonatomic , assign) NSDate 		*beginDate;
-
-
 
 @end
 

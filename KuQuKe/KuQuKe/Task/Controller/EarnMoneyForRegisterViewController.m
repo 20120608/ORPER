@@ -28,6 +28,10 @@
 /** 任务模型 */
 @property(nonatomic,strong) EarnMoneyDetailModel          *earnModel;
 
+/** 模型 */
+@property(nonatomic,strong) UserMessageInputView *userMessageView;
+
+
 @end
 
 @implementation EarnMoneyForRegisterViewController
@@ -110,26 +114,30 @@
     }];
     view;
   });
-  
-  UserMessageInputView *userMessageView = ({
-    UserMessageInputView *view = [[UserMessageInputView alloc] init];
-    [self.scrollView addSubview: view];
-	view.delegate = self;
-    [view mas_makeConstraints:^(MASConstraintMaker *make) {
-      make.left.mas_equalTo(self.scrollView.mas_left);
-      make.top.mas_equalTo(preTaskView.mas_bottom);
-      make.right.mas_equalTo(self.scrollView.mas_right);
-      make.bottom.mas_equalTo(self.scrollView.mas_bottom);
-    }];
-    view;
-  });
-  userMessageView.backgroundColor = UIColor.whiteColor;
-  
-  
+	
   [[RACObserve(self, earnModel) skip:1] subscribeNext:^(EarnMoneyDetailModel *x) {
     preTaskView.imagesUrlStringArray = [[NSMutableArray alloc] initWithArray:x.exp_img];
     preTaskView.earnModel = x;
-    self.scrollView.hidden = false;//打开
+	  
+	  if (_userMessageView == nil) {
+		  self.scrollView.hidden = false;//打开
+		  
+		  UserMessageInputView *userMessageView = ({
+			  UserMessageInputView *view = [[UserMessageInputView alloc] initWithStepModels:_earnModel.exp_img];
+			  [self.scrollView addSubview: view];
+			  view.delegate = self;
+			  [view mas_makeConstraints:^(MASConstraintMaker *make) {
+				  make.left.mas_equalTo(self.scrollView.mas_left);
+				  make.top.mas_equalTo(preTaskView.mas_bottom);
+				  make.right.mas_equalTo(self.scrollView.mas_right);
+				  make.bottom.mas_equalTo(self.scrollView.mas_bottom);
+			  }];
+			  view;
+		  });
+		  _userMessageView = userMessageView;
+		  _userMessageView.backgroundColor = UIColor.whiteColor;
+	  }
+	  
   }];
 }
 
@@ -137,21 +145,6 @@
 - (void)beginButtonClickPreviewTaskRequireView:(PreviewTaskRequireView *)view {
 	//跳转
 	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@", _earnModel.jump_url]]];
-	
-	//弃用  默认一进入详情页会请求一次任务
-//	NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
-//	[params setValue:_taskID forKey:@"id"];
-//
-//	[KuQuKeNetWorkManager POST_taskStartParams:params View:self.view success:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
-//
-//		[self.view makeToast:@"现在开始任务了!"];
-//		[self.racViewModel.requestVideoListCommand execute:@{@"reloadData":@"1"}];
-//		self.racViewModel.nowtype = _nowtype;
-//	} unknown:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
-//
-//	} failure:^(NSError *error) {
-//
-//	}];
 }
 
 #pragma mark - 提交审核按钮
@@ -161,6 +154,7 @@
 }
 
 - (void)saveToInvestigateWithUserMessageInputView:(UserMessageInputView *)userMessageInputView ImageArray:(NSArray <HXPhotoModel *>  *)imageArray code:(NSString *)code phone:(NSString *)phone name:(NSString *)name {
+	
 	if ([_earnModel.join_info[@"join_status"] intValue] != 0) {
 		[self.view makeToast:[_earnModel msgForJoinStatus]];
 		return;
@@ -201,7 +195,7 @@
 	NSString *imgString = [imageUrlArray componentsJoinedByString:@","];
 	NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
 	[params setValue:_taskID forKey:@"id"];
-	[params setValue:_earnModel.join_info[@"applyid"] forKey:@"applyid"];
+	[params setValue:_earnModel.applyid forKey:@"applyid"];
 	[params setValue:imgString forKey:@"img"];
 	[params setValue:name forKey:@"account"];
 	[params setValue:phone forKey:@"mobile"];
@@ -323,30 +317,31 @@
 			break;
 		case 1:
 		{
-			UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"是否确定放弃" message:@"点击确定后放弃任务" preferredStyle:UIAlertControllerStyleActionSheet];
-			UIAlertAction *sure = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-				
-				//放弃任务 移除定时器的模型
-				AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-				[app removeTimeTask:_earnModel.id];
-				
-				
-				//通知后台移除任务
-				NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
-				[params setValue:_earnModel.id forKey:@"id"];
-				[params setValue:_earnModel.applyid forKey:@"applyid"];
-				[params setValue:@"6" forKey:@"nowstatus"];
-				[KuQuKeNetWorkManager POST_addExclusiveTaskOk:params View:nil success:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
-					[[NSNotificationCenter defaultCenter] postNotificationName:@"刷新任务列表页" object:nil];
-					[self.navigationController popViewControllerAnimated:true];
-				} unknown:nil failure:nil];
-				
-			}];
-			UIAlertAction *cancle = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-			}];
-			[alert addAction:sure];
-			[alert addAction:cancle];
-			[self presentViewController:alert animated:true completion:nil];
+			[self.navigationController popViewControllerAnimated:true];
+//			UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"是否确定放弃" message:@"点击确定后放弃任务" preferredStyle:UIAlertControllerStyleActionSheet];
+//			UIAlertAction *sure = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+//
+//				//放弃任务 移除定时器的模型
+//				AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+//				[app removeTimeTask:_earnModel.id];
+//
+//
+//				//通知后台移除任务
+//				NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+//				[params setValue:_earnModel.id forKey:@"id"];
+//				[params setValue:_earnModel.applyid forKey:@"applyid"];
+//				[params setValue:@"6" forKey:@"nowstatus"];
+//				[KuQuKeNetWorkManager POST_addExclusiveTaskOk:params View:nil success:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
+//					[[NSNotificationCenter defaultCenter] postNotificationName:@"刷新任务列表页" object:nil];
+//					[self.navigationController popViewControllerAnimated:true];
+//				} unknown:nil failure:nil];
+//
+//			}];
+//			UIAlertAction *cancle = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+//			}];
+//			[alert addAction:sure];
+//			[alert addAction:cancle];
+//			[self presentViewController:alert animated:true completion:nil];
 		}
 			break;
 		case 2:

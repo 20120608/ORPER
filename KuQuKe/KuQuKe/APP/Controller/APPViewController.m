@@ -27,14 +27,43 @@
   //UI
   [self createUI];
 	
+	UIView *headerView = ({
+		UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 150)];
+		view.backgroundColor = QMHexColor(@"FADD6D");
+		UIButton *backBtn = ({
+			UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 80, 100)];
+			[self.view addSubview:button];
+			button.backgroundColor = QMHexColor(@"F9D36D");
+			QMSetButton(button, @"<", 40, nil, QMTextColor, UIControlStateNormal);
+			[button addTarget:self action:@selector(headBackBtnClick) forControlEvents:UIControlEventTouchUpInside];
+			button;
+		});
+		UILabel *titleLabel = ({
+			UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(110, 20, SCREEN_WIDTH-110, 28)];
+			QMLabelFontColorText(label, @"试玩赚钱", QMTextColor, 26);
+			            label.font = [UIFont boldSystemFontOfSize:26];
+			label;
+		});
+		UILabel *subLabel = ({
+			UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(110, 50, SCREEN_WIDTH-110, 25)];
+			QMLabelFontColorText(label, @"①完成任务②审核通过③我拿奖励", QMTextColor, 16);
+			label;
+		});
+		[view addSubview:subLabel];
+		[view addSubview:titleLabel];
+		[view addSubview:backBtn];
+		view;
+	});
+	
 	self.myTaskLabel = ({
-		UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 50)];
+		UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 100, kScreenWidth, 50)];
 		label.textAlignment = NSTextAlignmentCenter;
 		label.backgroundColor = QMBackColor;
 		QMLabelFontColorText(label, @"您有1个专属任务,共0元", QMTextColor, 16);
 		label;
 	});
-	self.tableView.tableHeaderView = _myTaskLabel;
+	[headerView addSubview:_myTaskLabel];
+	self.tableView.tableHeaderView = headerView;
 	_myTaskLabel.userInteractionEnabled = true;
 	UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(zhuanshurenwu)];
 	[_myTaskLabel addGestureRecognizer:tap];
@@ -55,11 +84,15 @@
 	[self.tableView.mj_header beginRefreshing];
 }
 
+- (void)headBackBtnClick {
+	[self.tabBarController setSelectedIndex:0];
+}
 
 - (void)zhuanshurenwu {
 	MyExclusiveTaskViewController *vc = [[MyExclusiveTaskViewController alloc] initWithTitle:@"专属任务"];
-	
-	[self.navigationController pushViewController:vc animated:true];
+	if (![_myTaskLabel.text isEqualToString:@"您有0个专属任务，共0元"]) {
+		[self.navigationController pushViewController:vc animated:true];
+	}
 }
 
 

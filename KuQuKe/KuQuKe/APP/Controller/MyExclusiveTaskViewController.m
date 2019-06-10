@@ -45,7 +45,7 @@
 	[self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
 		make.left.right.mas_equalTo(0);
 		make.top.mas_equalTo(self.dqm_navgationBar.mas_bottom);
-		make.bottom.mas_equalTo(self.view.mas_bottom).offset(-TAB_BAR_HEIGHT);
+		make.bottom.mas_equalTo(self.view.mas_bottom);
 	}];
 	QMWeak(self);
 	//下拉刷新
@@ -70,9 +70,6 @@
 	@weakify(self)
 	[[[NSNotificationCenter defaultCenter] rac_addObserverForName:NotificationName_MyExclusiveTaskViewController object:nil] subscribeNext:^(NSNotification * _Nullable x) {
 		@strongify(self)
-		NSDictionary *dic = x.object;
-		NSString *astring = [NSString stringWithFormat:@"您有%@个专属任务，共%@元",dic[@"data"][@"exclusive_info"][@"exclusive_num"],dic[@"data"][@"exclusive_info"][@"exclusive_sum"]];
-		self.myTaskLabel.text = astring;
 		[self.tableView reloadData];
 		[self resetRefreshView];
 	}];

@@ -431,37 +431,16 @@
 
 
 
-/**
- 话务通登入
- */
-+ (QMURLSessionTask *)GET_huawutongLogin:(NSDictionary *)params View:(UIView *)view success:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))success unknown:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))unknown failure:(void(^)(NSError *error))failure;
-
 
 /**
- 话务通获取任务
+ 专属任务列表
+ get kuquke.yiyunrj.xyz/task/exclusiveList
+ 
+ 参数	类型	必需/可选	默认	描述
+ time	int	必需	无	时间戳(用于判断请求是否超时)
+ token	string	必需	无	确定来访者身份
+ uid	int	必需	1	用户id
  */
-+ (QMURLSessionTask *)GET_getMember:(NSDictionary *)params View:(UIView *)view success:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))success unknown:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))unknown failure:(void(^)(NSError *error))failure;
-/**
- 话务通个人信息
- */
-+ (QMURLSessionTask *)GET_huawutonggetTask:(NSDictionary *)params View:(UIView *)view success:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))success unknown:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))unknown failure:(void(^)(NSError *error))failure;
-
-
-/**
- 话务通新号码
- */
-+ (QMURLSessionTask *)GET_huawutongNewPhone:(NSDictionary *)params View:(UIView *)view success:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))success unknown:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))unknown failure:(void(^)(NSError *error))failure;
-
-/**
- 话务通获取标记
- */
-+ (QMURLSessionTask *)GET_huawutonggetTags:(NSDictionary *)params View:(UIView *)view success:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))success unknown:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))unknown failure:(void(^)(NSError *error))failure;
-
-/**
- 话务通获取标记详情
- */
-+ (QMURLSessionTask *)GET_huawutonggetCurDateDialLogList:(NSDictionary *)params View:(UIView *)view success:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))success unknown:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))unknown failure:(void(^)(NSError *error))failure;
-
-
++ (QMURLSessionTask *)GET_exclusiveList:(NSDictionary *)params View:(UIView *)view success:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))success unknown:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))unknown failure:(void(^)(NSError *error))failure;
 
 @end

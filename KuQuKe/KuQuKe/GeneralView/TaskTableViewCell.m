@@ -265,7 +265,7 @@
       
       /** 价格 */
       NSString *priceString = [NSString stringWithFormat:@"+%0.2f元",[x.price floatValue]];
-      self.priceLabel.attributedText = [QMSGeneralHelpers changeStringToMutableAttributedStringTitle:priceString font:kQmFont(16) rangeOfFont:NSMakeRange(0, priceString.length) color:DQMMainColor rangeOfColor:NSMakeRange(0, priceString.length)];
+      self.priceLabel.attributedText = [QMSGeneralHelpers changeStringToMutableAttributedStringTitle:priceString font:kQmFont(16) rangeOfFont:NSMakeRange(0, priceString.length) color:QMPriceColor rangeOfColor:NSMakeRange(0, priceString.length)];
       
     }];
 		

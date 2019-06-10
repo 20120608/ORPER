@@ -41,6 +41,7 @@ PODS:
     - SDWebImage/Core
   - Toast (4.0.0)
   - TYCyclePagerView (1.1.2)
+  - WechatOpenSDK (1.8.4)
   - YBImageBrowser (2.1.1):
     - SDWebImage
     - YYImage
@@ -74,6 +75,7 @@ DEPENDENCIES:
   - SDWebImage/GIF
   - Toast (~> 4.0.0)
   - TYCyclePagerView (~> 1.1.0)
+  - WechatOpenSDK
   - YBImageBrowser (~> 2.1.1)
   - YYCategories (~> 1.0.4)
   - YYImage (~> 1.0.4)
@@ -99,6 +101,7 @@ SPEC REPOS:
     - SDWebImage
     - Toast
     - TYCyclePagerView
+    - WechatOpenSDK
     - YBImageBrowser
     - YYCache
     - YYCategories
@@ -125,6 +128,7 @@ SPEC CHECKSUMS:
   SDWebImage: c5594f1a19c48d526d321e548902b56b479cd508
   Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
   TYCyclePagerView: 0f67b0986995fd614843e819bc974cadd7f98008
+  WechatOpenSDK: 9b721089507c895d05f997408c30bb6e6f5f9b60
   YBImageBrowser: 606b8ae4eb7fb86bbadc7884f8bf729f96a74660
   YYCache: 8105b6638f5e849296c71f331ff83891a4942952
   YYCategories: 6bcd4314c6661a561410dce4a793379ebd306abd
@@ -132,6 +136,6 @@ SPEC CHECKSUMS:
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
   YYWebImage: 5f7f36aee2ae293f016d418c7d6ba05c4863e928
 
-PODFILE CHECKSUM: 6caf34e251d5bccf5e6528f98764e58f96b41cfe
+PODFILE CHECKSUM: b9c1e42d55066db72dc84f521b996c26e8e261f4
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.6.1

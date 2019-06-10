@@ -48,9 +48,7 @@
 		5570A4BB224F4902005337D5 /* transactionReceipt in Resources */ = {isa = PBXBuildFile; fileRef = 5570A4BA224F4902005337D5 /* transactionReceipt */; };
 		5594A0B421E1BB11009178B3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5594A0B321E1BB11009178B3 /* AppDelegate.m */; };
 		5594A0B721E1BB11009178B3 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5594A0B621E1BB11009178B3 /* ViewController.m */; };
-		5594A0BA21E1BB11009178B3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5594A0B821E1BB11009178B3 /* Main.storyboard */; };
 		5594A0BC21E1BB11009178B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5594A0BB21E1BB11009178B3 /* Assets.xcassets */; };
-		5594A0BF21E1BB11009178B3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5594A0BD21E1BB11009178B3 /* LaunchScreen.storyboard */; };
 		5594A0C221E1BB12009178B3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5594A0C121E1BB12009178B3 /* main.m */; };
 		5594A0CC21E1BB12009178B3 /* KuQuKeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5594A0CB21E1BB12009178B3 /* KuQuKeTests.m */; };
 		5594A0D721E1BB12009178B3 /* KuQuKeUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5594A0D621E1BB12009178B3 /* KuQuKeUITests.m */; };
@@ -166,14 +164,25 @@
 		59DC11EA21EDB06C003FE685 /* DQMAFNetWork.m in Sources */ = {isa = PBXBuildFile; fileRef = 59DC11E921EDB06C003FE685 /* DQMAFNetWork.m */; };
 		59DC11EE21EDB95E003FE685 /* QMBaseNetWorking.m in Sources */ = {isa = PBXBuildFile; fileRef = 59DC11ED21EDB95E003FE685 /* QMBaseNetWorking.m */; };
 		59DC11F221EDC8FD003FE685 /* KuQuKeNetWorkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 59DC11F121EDC8FD003FE685 /* KuQuKeNetWorkManager.m */; };
+		8C49069022A10AF500358ADC /* HXModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C49068F22A10AF500358ADC /* HXModel.m */; };
+		8C49069622A10E9400358ADC /* HXCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C49069522A10E9400358ADC /* HXCollectionViewCell.m */; };
 		8C623B9F22642EA800BA1219 /* TaskProgressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C623B9E22642EA800BA1219 /* TaskProgressViewController.m */; };
 		8C623BA222642F4200BA1219 /* TaskProgressTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C623BA122642F4200BA1219 /* TaskProgressTableViewCell.m */; };
 		8C623BA5226437C200BA1219 /* TaskProgressViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C623BA4226437C200BA1219 /* TaskProgressViewModel.m */; };
 		8C623BA82264524E00BA1219 /* TaskProgressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C623BA72264524E00BA1219 /* TaskProgressModel.m */; };
 		8C623BAB2264676E00BA1219 /* TaskProgressFailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C623BAA2264676E00BA1219 /* TaskProgressFailTableViewCell.m */; };
+		8C67F1FB22A4F9710054F074 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C67F1FA22A4F9710054F074 /* libc++.tbd */; };
+		8C67F1FD22A4F97A0054F074 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C67F1FC22A4F97A0054F074 /* libz.tbd */; };
+		8C67F1FF22A4F9830054F074 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C67F1FE22A4F9830054F074 /* libsqlite3.tbd */; };
+		8C67F20722A5055B0054F074 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C67F20622A5055B0054F074 /* libiconv.tbd */; };
+		8C67F20922A505650054F074 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C67F20822A505650054F074 /* SystemConfiguration.framework */; };
+		8C67F20B22A505700054F074 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C67F20A22A505700054F074 /* CoreGraphics.framework */; };
+		8C67F20D22A505850054F074 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C67F20C22A505850054F074 /* CoreTelephony.framework */; };
+		8C67F22522A50C780054F074 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C67F22122A50C770054F074 /* Main.storyboard */; };
+		8C67F22622A50C780054F074 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C67F22322A50C780054F074 /* LaunchScreen.storyboard */; };
+		8C67F22C22A510240054F074 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C67F22B22A510240054F074 /* TencentOpenAPI.framework */; };
 		8CA9E85B226D551600213F48 /* TaskingAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CA9E85A226D551600213F48 /* TaskingAlertView.m */; };
 		8CAD34D922709A5F0018EA71 /* APPTaskingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CAD34D822709A5F0018EA71 /* APPTaskingModel.m */; };
-		8CC206712265CD3A0082B6E4 /* ShopCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC206702265CD3A0082B6E4 /* ShopCategoryViewController.m */; };
 		8CFE9F9422924059001FBA3D /* TaskStatusTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CFE9F9322924059001FBA3D /* TaskStatusTimer.m */; };
 /* End PBXBuildFile section */
 
@@ -275,9 +284,7 @@
 		5594A0B321E1BB11009178B3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		5594A0B521E1BB11009178B3 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		5594A0B621E1BB11009178B3 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		5594A0B921E1BB11009178B3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5594A0BB21E1BB11009178B3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		5594A0BE21E1BB11009178B3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5594A0C021E1BB11009178B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5594A0C121E1BB12009178B3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5594A0C721E1BB12009178B3 /* KuQuKeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KuQuKeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -510,6 +517,10 @@
 		59DC11ED21EDB95E003FE685 /* QMBaseNetWorking.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QMBaseNetWorking.m; sourceTree = "<group>"; };
 		59DC11F021EDC8FD003FE685 /* KuQuKeNetWorkManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KuQuKeNetWorkManager.h; sourceTree = "<group>"; };
 		59DC11F121EDC8FD003FE685 /* KuQuKeNetWorkManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KuQuKeNetWorkManager.m; sourceTree = "<group>"; };
+		8C49068E22A10AF500358ADC /* HXModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HXModel.h; sourceTree = "<group>"; };
+		8C49068F22A10AF500358ADC /* HXModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HXModel.m; sourceTree = "<group>"; };
+		8C49069422A10E9400358ADC /* HXCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HXCollectionViewCell.h; sourceTree = "<group>"; };
+		8C49069522A10E9400358ADC /* HXCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HXCollectionViewCell.m; sourceTree = "<group>"; };
 		8C623B9D22642EA800BA1219 /* TaskProgressViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TaskProgressViewController.h; sourceTree = "<group>"; };
 		8C623B9E22642EA800BA1219 /* TaskProgressViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TaskProgressViewController.m; sourceTree = "<group>"; };
 		8C623BA022642F4200BA1219 /* TaskProgressTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TaskProgressTableViewCell.h; sourceTree = "<group>"; };
@@ -520,12 +531,20 @@
 		8C623BA72264524E00BA1219 /* TaskProgressModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TaskProgressModel.m; sourceTree = "<group>"; };
 		8C623BA92264676E00BA1219 /* TaskProgressFailTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TaskProgressFailTableViewCell.h; sourceTree = "<group>"; };
 		8C623BAA2264676E00BA1219 /* TaskProgressFailTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TaskProgressFailTableViewCell.m; sourceTree = "<group>"; };
+		8C67F1FA22A4F9710054F074 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		8C67F1FC22A4F97A0054F074 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		8C67F1FE22A4F9830054F074 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		8C67F20622A5055B0054F074 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
+		8C67F20822A505650054F074 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		8C67F20A22A505700054F074 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		8C67F20C22A505850054F074 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		8C67F22222A50C770054F074 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		8C67F22422A50C780054F074 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		8C67F22B22A510240054F074 /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
 		8CA9E859226D551600213F48 /* TaskingAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TaskingAlertView.h; sourceTree = "<group>"; };
 		8CA9E85A226D551600213F48 /* TaskingAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TaskingAlertView.m; sourceTree = "<group>"; };
 		8CAD34D722709A5F0018EA71 /* APPTaskingModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APPTaskingModel.h; sourceTree = "<group>"; };
 		8CAD34D822709A5F0018EA71 /* APPTaskingModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = APPTaskingModel.m; sourceTree = "<group>"; };
-		8CC2066F2265CD3A0082B6E4 /* ShopCategoryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShopCategoryViewController.h; sourceTree = "<group>"; };
-		8CC206702265CD3A0082B6E4 /* ShopCategoryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShopCategoryViewController.m; sourceTree = "<group>"; };
 		8CFE9F9222924059001FBA3D /* TaskStatusTimer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TaskStatusTimer.h; sourceTree = "<group>"; };
 		8CFE9F9322924059001FBA3D /* TaskStatusTimer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TaskStatusTimer.m; sourceTree = "<group>"; };
 		BBA01A4F588F36CE8B3727A1 /* Pods-KuQuKe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KuQuKe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KuQuKe/Pods-KuQuKe.debug.xcconfig"; sourceTree = "<group>"; };
@@ -538,6 +557,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C67F20D22A505850054F074 /* CoreTelephony.framework in Frameworks */,
+				8C67F22C22A510240054F074 /* TencentOpenAPI.framework in Frameworks */,
+				8C67F1FF22A4F9830054F074 /* libsqlite3.tbd in Frameworks */,
+				8C67F20B22A505700054F074 /* CoreGraphics.framework in Frameworks */,
+				8C67F20922A505650054F074 /* SystemConfiguration.framework in Frameworks */,
+				8C67F20722A5055B0054F074 /* libiconv.tbd in Frameworks */,
+				8C67F1FD22A4F97A0054F074 /* libz.tbd in Frameworks */,
+				8C67F1FB22A4F9710054F074 /* libc++.tbd in Frameworks */,
 				24F3749048812FFC2B1BA2EA /* Pods_KuQuKe.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -562,6 +589,13 @@
 		341CBE9BFB6E56E6515E9BCB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8C67F20C22A505850054F074 /* CoreTelephony.framework */,
+				8C67F20A22A505700054F074 /* CoreGraphics.framework */,
+				8C67F20822A505650054F074 /* SystemConfiguration.framework */,
+				8C67F20622A5055B0054F074 /* libiconv.tbd */,
+				8C67F1FE22A4F9830054F074 /* libsqlite3.tbd */,
+				8C67F1FC22A4F97A0054F074 /* libz.tbd */,
+				8C67F1FA22A4F9710054F074 /* libc++.tbd */,
 				D39DEF13475F7A49DCFD97FE /* Pods_KuQuKe.framework */,
 			);
 			name = Frameworks;
@@ -779,8 +813,6 @@
 				55B4995121EF466E005F31AE /* PreviewTaskRequireView.m */,
 				55B4995221EF466E005F31AE /* PreViewTaskTotalStepView.h */,
 				55B4995321EF466E005F31AE /* PreViewTaskTotalStepView.m */,
-				55B4995721EF466E005F31AE /* UserMessageInputView.h */,
-				55B4995821EF466F005F31AE /* UserMessageInputView.m */,
 				5930277F21F2DF3E00FC68F1 /* GameTaskCheckInTableViewCell.h */,
 				5930278021F2DF3E00FC68F1 /* GameTaskCheckInTableViewCell.m */,
 				59185E7721F70AD400EEC8B3 /* GameHeaderADCollectionViewCell.h */,
@@ -791,6 +823,10 @@
 				59693ED921F81151002CAEF1 /* GameTaskStepView.m */,
 				55AB8A8422392C6700CE21C1 /* EarnMoneyAlertView.h */,
 				55AB8A8522392C6700CE21C1 /* EarnMoneyAlertView.m */,
+				55B4995721EF466E005F31AE /* UserMessageInputView.h */,
+				55B4995821EF466F005F31AE /* UserMessageInputView.m */,
+				8C49069422A10E9400358ADC /* HXCollectionViewCell.h */,
+				8C49069522A10E9400358ADC /* HXCollectionViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -802,6 +838,8 @@
 				55B4994D21EF4662005F31AE /* TaskPreviewStepModel.m */,
 				596989B62224E27800081FFF /* EarnMoneyDetailModel.h */,
 				596989B72224E27800081FFF /* EarnMoneyDetailModel.m */,
+				8C49068E22A10AF500358ADC /* HXModel.h */,
+				8C49068F22A10AF500358ADC /* HXModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -870,7 +908,6 @@
 				5594A15E21E1BCF4009178B3 /* APP */,
 				5594A15D21E1BCF2009178B3 /* Game */,
 				5594A15C21E1BCEF009178B3 /* My */,
-				8CC2066E2265CD0F0082B6E4 /* migu */,
 				55FA56692237B4CE003504D3 /* KQKLogin */,
 				5594A15F21E1BD47009178B3 /* Other */,
 			);
@@ -1115,12 +1152,13 @@
 		5594A15F21E1BD47009178B3 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				8C67F22B22A510240054F074 /* TencentOpenAPI.framework */,
+				8C67F22322A50C780054F074 /* LaunchScreen.storyboard */,
+				8C67F22122A50C770054F074 /* Main.storyboard */,
 				5594A0B521E1BB11009178B3 /* ViewController.h */,
 				5594A0B621E1BB11009178B3 /* ViewController.m */,
-				5594A0B821E1BB11009178B3 /* Main.storyboard */,
 				5594A0BB21E1BB11009178B3 /* Assets.xcassets */,
 				5594A15721E1BC2B009178B3 /* PrefixHeader.pch */,
-				5594A0BD21E1BB11009178B3 /* LaunchScreen.storyboard */,
 				5594A0C021E1BB11009178B3 /* Info.plist */,
 				5594A0C121E1BB12009178B3 /* main.m */,
 			);
@@ -1428,15 +1466,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		8CC2066E2265CD0F0082B6E4 /* migu */ = {
-			isa = PBXGroup;
-			children = (
-				8CC2066F2265CD3A0082B6E4 /* ShopCategoryViewController.h */,
-				8CC206702265CD3A0082B6E4 /* ShopCategoryViewController.m */,
-			);
-			path = migu;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1547,13 +1576,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5594A0BF21E1BB11009178B3 /* LaunchScreen.storyboard in Resources */,
 				5594A0BC21E1BB11009178B3 /* Assets.xcassets in Resources */,
 				5910E78D21FE93810098184A /* lottie_loading.json in Resources */,
 				5594A13521E1BC1F009178B3 /* DqmBaseAssets.xcassets in Resources */,
+				8C67F22522A50C780054F074 /* Main.storyboard in Resources */,
+				8C67F22622A50C780054F074 /* LaunchScreen.storyboard in Resources */,
 				596898F621FED9D1009DB2C0 /* ReadMe.txt in Resources */,
 				5570A4BB224F4902005337D5 /* transactionReceipt in Resources */,
-				5594A0BA21E1BB11009178B3 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1580,7 +1609,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-KuQuKe/Pods-KuQuKe-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-KuQuKe/Pods-KuQuKe-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/FLAnimatedImage/FLAnimatedImage.framework",
 				"${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework",
@@ -1635,7 +1664,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KuQuKe/Pods-KuQuKe-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-KuQuKe/Pods-KuQuKe-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F9AEA2E2FCE162FAA5A265D1 /* [CP] Check Pods Manifest.lock */ = {
@@ -1675,6 +1704,7 @@
 				59ADCD1C21E70E3500A86C1F /* SettingUserInfoWithInputViewController.m in Sources */,
 				55542FBE21E61601000F8D45 /* UILabel+LineSpacing.m in Sources */,
 				5594A14D21E1BC1F009178B3 /* DQMNavigationBar.m in Sources */,
+				8C49069022A10AF500358ADC /* HXModel.m in Sources */,
 				55AB8A8622392C6700CE21C1 /* EarnMoneyAlertView.m in Sources */,
 				596989BC2224E58400081FFF /* EarnMoneyViewModel.m in Sources */,
 				5594A15321E1BC1F009178B3 /* YYFPSLabel.m in Sources */,
@@ -1708,6 +1738,7 @@
 				5594A14021E1BC1F009178B3 /* DQMStaticTableViewController.m in Sources */,
 				8CA9E85B226D551600213F48 /* TaskingAlertView.m in Sources */,
 				55542FB121E3A333000F8D45 /* DQMImageAndArrowTableViewCell.m in Sources */,
+				8C49069622A10E9400358ADC /* HXCollectionViewCell.m in Sources */,
 				55D1D0DC21E22095008ECEE3 /* ZJCalenderCollectionView.m in Sources */,
 				55542FB721E4F991000F8D45 /* DQMExpandHeader.m in Sources */,
 				551A0A1021EB05E300B2FB84 /* MyBalanceCheckOutView.m in Sources */,
@@ -1774,7 +1805,6 @@
 				8C623BA82264524E00BA1219 /* TaskProgressModel.m in Sources */,
 				5930278121F2DF3E00FC68F1 /* GameTaskCheckInTableViewCell.m in Sources */,
 				8C623BAB2264676E00BA1219 /* TaskProgressFailTableViewCell.m in Sources */,
-				8CC206712265CD3A0082B6E4 /* ShopCategoryViewController.m in Sources */,
 				5594A15221E1BC1F009178B3 /* DQMListExpendHeaderView.m in Sources */,
 				59ADCD1321E6D52800A86C1F /* SettingUsetInfoViewController.m in Sources */,
 				551A0A1621EB0F8C00B2FB84 /* CheckOutAliPayViewController.m in Sources */,
@@ -1856,18 +1886,18 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		5594A0B821E1BB11009178B3 /* Main.storyboard */ = {
+		8C67F22122A50C770054F074 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				5594A0B921E1BB11009178B3 /* Base */,
+				8C67F22222A50C770054F074 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		5594A0BD21E1BB11009178B3 /* LaunchScreen.storyboard */ = {
+		8C67F22322A50C780054F074 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				5594A0BE21E1BB11009178B3 /* Base */,
+				8C67F22422A50C780054F074 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -1996,12 +2026,113 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HVNZV2H82B;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/KuQuKe/share/SDK/ShareSDK/Support/PlatformSDK/QQSDK",
+					"$(PROJECT_DIR)/KuQuKe/share/SDK/ShareSDK/Support/Required",
+					"$(PROJECT_DIR)/KuQuKe/share/SDK/ShareSDK/Support/Optional",
+					"$(PROJECT_DIR)/KuQuKe/share/SDK/ShareSDK/Support/PlatformConnector",
+					"$(PROJECT_DIR)/KuQuKe/share/SDK/ShareSDK",
+					"$(PROJECT_DIR)/KuQuKe/share/SDK/Required",
+					"$(PROJECT_DIR)/KuQuKe/Other",
+				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/KuQuKe/Other/PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/KuQuKe/Other/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/KuQuKe/share/SDK/ShareSDK/Support/PlatformSDK/WeChatSDK",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"WeChatSDK\"",
+					"-l\"c++\"",
+					"-l\"sqlite3\"",
+					"-l\"sqlite3.0\"",
+					"-l\"z\"",
+					"-framework",
+					"\"AFNetworking\"",
+					"-framework",
+					"\"Accelerate\"",
+					"-framework",
+					"\"AssetsLibrary\"",
+					"-framework",
+					"\"CFNetwork\"",
+					"-framework",
+					"\"CoreFoundation\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"CoreImage\"",
+					"-framework",
+					"\"CoreTelephony\"",
+					"-framework",
+					"\"CoreText\"",
+					"-framework",
+					"\"FLAnimatedImage\"",
+					"-framework",
+					"\"FMDB\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"HXPhotoPicker\"",
+					"-framework",
+					"\"IQKeyboardManager\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-framework",
+					"\"JXCategoryView\"",
+					"-framework",
+					"\"Lottie\"",
+					"-framework",
+					"\"MBProgressHUD\"",
+					"-framework",
+					"\"MJExtension\"",
+					"-framework",
+					"\"MJRefresh\"",
+					"-framework",
+					"\"Masonry\"",
+					"-framework",
+					"\"MobileCoreServices\"",
+					"-framework",
+					"\"PGDatePicker\"",
+					"-framework",
+					"\"PGPickerView\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"Reachability\"",
+					"-framework",
+					"\"ReactiveObjC\"",
+					"-framework",
+					"\"SDWebImage\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"TYCyclePagerView\"",
+					"-framework",
+					"\"Toast\"",
+					"-framework",
+					"\"UIKit\"",
+					"-framework",
+					"\"YBImageBrowser\"",
+					"-framework",
+					"\"YYCache\"",
+					"-framework",
+					"\"YYCategories\"",
+					"-framework",
+					"\"YYImage\"",
+					"-framework",
+					"\"YYText\"",
+					"-framework",
+					"\"YYWebImage\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.kqk.kqk;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2020,12 +2151,113 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HVNZV2H82B;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/KuQuKe/share/SDK/ShareSDK/Support/PlatformSDK/QQSDK",
+					"$(PROJECT_DIR)/KuQuKe/share/SDK/ShareSDK/Support/Required",
+					"$(PROJECT_DIR)/KuQuKe/share/SDK/ShareSDK/Support/Optional",
+					"$(PROJECT_DIR)/KuQuKe/share/SDK/ShareSDK/Support/PlatformConnector",
+					"$(PROJECT_DIR)/KuQuKe/share/SDK/ShareSDK",
+					"$(PROJECT_DIR)/KuQuKe/share/SDK/Required",
+					"$(PROJECT_DIR)/KuQuKe/Other",
+				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/KuQuKe/Other/PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/KuQuKe/Other/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/KuQuKe/share/SDK/ShareSDK/Support/PlatformSDK/WeChatSDK",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"WeChatSDK\"",
+					"-l\"c++\"",
+					"-l\"sqlite3\"",
+					"-l\"sqlite3.0\"",
+					"-l\"z\"",
+					"-framework",
+					"\"AFNetworking\"",
+					"-framework",
+					"\"Accelerate\"",
+					"-framework",
+					"\"AssetsLibrary\"",
+					"-framework",
+					"\"CFNetwork\"",
+					"-framework",
+					"\"CoreFoundation\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"CoreImage\"",
+					"-framework",
+					"\"CoreTelephony\"",
+					"-framework",
+					"\"CoreText\"",
+					"-framework",
+					"\"FLAnimatedImage\"",
+					"-framework",
+					"\"FMDB\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"HXPhotoPicker\"",
+					"-framework",
+					"\"IQKeyboardManager\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-framework",
+					"\"JXCategoryView\"",
+					"-framework",
+					"\"Lottie\"",
+					"-framework",
+					"\"MBProgressHUD\"",
+					"-framework",
+					"\"MJExtension\"",
+					"-framework",
+					"\"MJRefresh\"",
+					"-framework",
+					"\"Masonry\"",
+					"-framework",
+					"\"MobileCoreServices\"",
+					"-framework",
+					"\"PGDatePicker\"",
+					"-framework",
+					"\"PGPickerView\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"Reachability\"",
+					"-framework",
+					"\"ReactiveObjC\"",
+					"-framework",
+					"\"SDWebImage\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"TYCyclePagerView\"",
+					"-framework",
+					"\"Toast\"",
+					"-framework",
+					"\"UIKit\"",
+					"-framework",
+					"\"YBImageBrowser\"",
+					"-framework",
+					"\"YYCache\"",
+					"-framework",
+					"\"YYCategories\"",
+					"-framework",
+					"\"YYImage\"",
+					"-framework",
+					"\"YYText\"",
+					"-framework",
+					"\"YYWebImage\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.kqk.kqk;
 				PRODUCT_NAME = "$(TARGET_NAME)";

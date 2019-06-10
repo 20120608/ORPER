@@ -11,7 +11,6 @@
 #import "YYFPSLabel.h"
 #import "DQMTabBarController.h"
 #include <objc/runtime.h>
-#import "ShopCategoryViewController.h"
 
 @interface AppDelegate ()
 
@@ -24,6 +23,24 @@
 
     
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+	
+	
+	//向微信注册
+	[WXApi registerApp:@"wxd930ea5d5a258f4f"];
+	TencentOAuth *tencentOAuth = [[TencentOAuth alloc] initWithAppId:@"222222" andDelegate:self];
+	tencentOAuth.redirectURI = @"www.qq.com";
+
+//	TCSendStoryDic *sendStoryDict = [TCSendStoryDic dictionary];
+//	sendStoryDict.paramTitle = @"Share Title";
+//	sendStoryDict.paramSummary = @"Share Summary";
+//	sendStoryDict.paramDescription = @"Share Description";
+//	sendStoryDict.paramPics = @"http://aaa.bbb/ccc.png";
+//	sendStoryDict.paramShareUrl = @"http://xxx.yyy/zzz";
+//
+//	NSArray *fopenIdArray = @[@"ABCD1234ABCD1234ABCD1234ABCD1234", @"ABCD5678ABCD5678ABCD5678ABCD5678"];
+//
+//	[_tencentOAuth sendStory:sendStoryDict friendList:fopenIdArray];
+	
 	
     /*配置键盘*/
     IQKeyboardManager *manager = [IQKeyboardManager sharedManager];
@@ -38,23 +55,19 @@
 
 	self.window.rootViewController = [[DQMTabBarController alloc] init];
 
-//    self.window.rootViewController = [[ShopCategoryViewController alloc] init];
-
     [self.window makeKeyAndVisible];
-	
-	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//		[[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/id1251303871"]]];
-		
-		
-		
-
-		
-	});
-    
     
     return YES;
 }
-	
+
+
+#pragma mark - 微信分享
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options
+{
+	[TencentOAuth HandleOpenURL:url];
+	[WXApi handleOpenURL:url delegate:self];
+	return true;
+}
 
 	
 //传入任务id和时间后开启定时器
@@ -107,11 +120,6 @@
       
     }
     
-- (BOOL)application:(UIApplication *)application openURL:(nonnull NSURL *)url options:(nonnull NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
-    
-    return true;
-}
-    
     
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -163,5 +171,35 @@
 }
     
     
-    @end
+- (void)tencentDidLogin {
+	
+}
+
+- (void)tencentDidNotLogin:(BOOL)cancelled {
+	
+}
+
+- (void)tencentDidNotNetWork {
+	
+}
+
+- (void)sendStoryResponse:(APIResponse *)response
+{
+	if (URLREQUEST_SUCCEED == response.retCode
+		&& kOpenSDKErrorSuccess == response.detailRetCode)
+	{
+		NSMutableString *str=[NSMutableString stringWithFormat:@""];
+		for (id key in response.jsonResponse) {
+			[str appendString: [NSString stringWithFormat:@"%@:%@\n",key,[response.jsonResponse objectForKey:key]]];
+		}
+		NSLog(@"分享结果str %@", str);
+	}
+	else
+	{
+		NSString *errMsg = [NSString stringWithFormat:@"errorMsg:%@\n%@", response.errorMsg, [response.jsonResponse objectForKey:@"msg"]];
+		NSLog(@"分享结果errMsg %@", errMsg);
+	}
+}
+
+@end
 

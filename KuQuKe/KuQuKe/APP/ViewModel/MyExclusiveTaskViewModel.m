@@ -14,13 +14,13 @@
 #import "LeftAndRightLabelHeaderView.h"//组头
 #import "EarnMoneyForRegisterViewController.h"//注册赚钱
 
+#import "TaskingAlertView.h"
+#import "EarnMoneyDetailModel.h"
 
 
 @interface MyExclusiveTaskViewModel()
-//可选的
-@property(nonatomic,strong)NSMutableArray *taskListModelArray;
-//进行中的
-@property(nonatomic,strong)NSMutableArray *goingModelArray;
+	
+@property(nonatomic,strong)NSMutableArray<APPTaskingModel *> *taskListModelArray;
 @property(nonatomic,assign)NSInteger currentPage;
 
 @end
@@ -47,44 +47,33 @@ static const NSInteger startingValue = 1;
 	_requestVideoListCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
 		return [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
 			@strongify(self)
-			//请求分页的视频列表数据
-			NSDictionary *inputData = (NSDictionary *)input;
-			BOOL headerRefresh = [inputData[@"headerRefresh"] boolValue];
-			NSInteger requestPage = headerRefresh ? startingValue : self.currentPage + 1;
-			NSString *paramPage = [NSString stringWithFormat:@"%ld",requestPage];
-			
 			NSMutableDictionary *params = [NSMutableDictionary dictionary];
-			[params setValue:@"1" forKey:@"type"];//1应用赚 2游戏赚
-			[params setValue:[NSNumber numberWithInt:10] forKey:@"num"];
-			[params setValue:paramPage forKey:@"page"];
+
+			//请求分页的视频列表数据
+//			NSDictionary *inputData = (NSDictionary *)input;
+//			BOOL headerRefresh = [inputData[@"headerRefresh"] boolValue];
+//			NSInteger requestPage = headerRefresh ? startingValue : self.currentPage + 1;
+//			NSString *paramPage = [NSString stringWithFormat:@"%ld",requestPage];
 			
-			[KuQuKeNetWorkManager GET_getTaskListParams:params View:self.currentVC.view success:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
+//			[params setValue:@"1" forKey:@"type"];//1应用赚 2游戏赚
+//			[params setValue:[NSNumber numberWithInt:10] forKey:@"num"];
+//			[params setValue:paramPage forKey:@"page"];
+			
+			[KuQuKeNetWorkManager GET_exclusiveList:params View:self.currentVC.view success:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
 				
-				NSArray *dataArray = [APPTaskModel mj_objectArrayWithKeyValuesArray:dataDic[@"data"][@"task_list"][@"list"]];
-				if(dataArray.count > 0){
-					if(requestPage == startingValue){
-						self.currentPage = startingValue;
-						[self.taskListModelArray removeAllObjects];
-					} else {
-						self.currentPage = requestPage;
-					}
-					[self.taskListModelArray addObjectsFromArray:dataArray];
-				} else {
-					
-				}
-				
-				NSArray *goingArray = [APPTaskModel mj_objectArrayWithKeyValuesArray:dataDic[@"data"][@"task_nowlist"]];
-				if(goingArray.count > 0){
-					if(requestPage == startingValue){
-						[self.goingModelArray removeAllObjects];
-					} else {
-						self.currentPage = requestPage;
-					}
-					[self.goingModelArray addObjectsFromArray:goingArray];
-				} else {
-					
-				}
-				
+				NSArray *dataArray = [APPTaskingModel mj_objectArrayWithKeyValuesArray:dataDic[@"data"][@"exclusive_nowlist"]];
+//				if(dataArray.count > 0){
+//					if(requestPage == startingValue){
+//						self.currentPage = startingValue;
+//						[self.taskListModelArray removeAllObjects];
+//					} else {
+//						self.currentPage = requestPage;
+//					}
+//					[self.taskListModelArray addObjectsFromArray:dataArray];
+//				} else {
+//
+//				}
+				self.taskListModelArray = [[NSMutableArray alloc] initWithArray:dataArray];
 				//发送请求的数据
 				[subscriber sendNext:dataDic];
 				[subscriber sendCompleted];
@@ -137,9 +126,6 @@ static const NSInteger startingValue = 1;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	if (section == 0) {
-		return [_goingModelArray count];
-	}
 	return [_taskListModelArray count];
 }
 
@@ -158,17 +144,33 @@ static const NSInteger startingValue = 1;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	TaskTableViewCell *cell = [TaskTableViewCell cellWithTableView:tableView initWithCellStyle:TaskTableViewCellStyleSubTag indexPath:indexPath andFixedHeightIfNeed:80];
-	cell.appTaskModel = _taskListModelArray[indexPath.row];
+	TaskTableViewCell *cell = [TaskTableViewCell cellWithTableView:tableView initWithCellStyle:TaskTableViewCellStylePriceLabelRedColor indexPath:indexPath andFixedHeightIfNeed:80];
+	cell.appgoingModel = _taskListModelArray[indexPath.row];
 	return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	EarnMoneyForRegisterViewController *vc = [[EarnMoneyForRegisterViewController alloc] initWithTitle:@"注册赚钱"];
-	vc.nowtype = @"3";
-	vc.taskID = ((APPTaskModel *)_taskListModelArray[indexPath.row]).id;
-	[self.currentVC.navigationController pushViewController:vc animated:true];
+	TaskingAlertView *alertView = [[TaskingAlertView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+	alertView.currentVC2 = (MyExclusiveTaskViewController *)self.currentVC;
 	
+	NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+	if (_taskListModelArray[indexPath.row] != nil) {
+		[params setValue:((APPTaskingModel *)_taskListModelArray[indexPath.row]).task_id forKey:@"id"];
+	}
+	[params setValue:@"2" forKey:@"nowtype"];
+	
+	[KuQuKeNetWorkManager GET_taskDetailV2Params:params View:self.currentVC.view success:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
+		
+		alertView.earnMoneyModel = [EarnMoneyDetailModel mj_objectWithKeyValues:dataDic[@"data"]];
+		[[UIApplication sharedApplication].keyWindow addSubview:alertView];
+		[alertView showAnimation];
+		[_currentVC.tableView.mj_header beginRefreshing];
+
+	} unknown:^(RequestStatusModel * _Nonnull reqsModel, NSDictionary * _Nonnull dataDic) {
+		
+	} failure:^(NSError * _Nonnull error) {
+		
+	}];
 }
 
 

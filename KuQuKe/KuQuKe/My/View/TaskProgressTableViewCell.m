@@ -168,7 +168,7 @@
 				self.leftLabel.text = x.finish_time;
 				
 				/** msg */
-				self.msgLabel.text = x.audit_msg;
+				self.msgLabel.text = @"任务审核需1-3个工作日";//title
                 
             }];
         }

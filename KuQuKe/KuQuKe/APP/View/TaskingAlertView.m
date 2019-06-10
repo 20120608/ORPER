@@ -12,7 +12,7 @@
 #import "EarnMoneyDetailModel.h"
 #import "APPViewController.h"
 #import "AppDelegate.h"
-
+#import "MyExclusiveTaskViewController.h"
 
 @interface TaskingAlertView ()
 
@@ -176,7 +176,11 @@
 #pragma mark - 任务
 - (void)beginButtonClick:(UIButton *)sender {
 	
-	[self.currentVC.tableView.mj_header beginRefreshing];
+	if (self.currentVC != nil) {
+		[self.currentVC.tableView.mj_header beginRefreshing];
+	} else {
+		[self.currentVC2.tableView.mj_header beginRefreshing];
+	}
 
 	if (_earnMoneyModel.bundleID == nil) {
 		
@@ -289,18 +293,15 @@
 
 - (void)receiveButtonClick:(UIButton *)sender {
 	if (_earnMoneyModel.applyid != nil) {
+		
 		NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
 		[params setValue:_earnMoneyModel.id forKey:@"id"];
 		[params setValue:_earnMoneyModel.applyid forKey:@"applyid"];
-		[params setValue:@"2" forKey:@"nowstatus"];
+		[params setValue:@"1" forKey:@"nowstatus"];
 		
 		[KuQuKeNetWorkManager POST_addExclusiveTaskOk:params View:self success:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
 			
-			[self makeToast:@"领取奖励申请已提交!"];
-			
-			//完成任务 移除定时器的模型
-			AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-			[app removeTimeTask:_earnMoneyModel.id];
+			[self receive];
 			
 		} unknown:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
 			
@@ -311,6 +312,28 @@
 		[self makeToast:@"请先参加任务!"];
 	}
 	
+}
+	
+	
+- (void)receive {
+	NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+	[params setValue:_earnMoneyModel.id forKey:@"id"];
+	[params setValue:_earnMoneyModel.applyid forKey:@"applyid"];
+	[params setValue:@"2" forKey:@"nowstatus"];
+	
+	[KuQuKeNetWorkManager POST_addExclusiveTaskOk:params View:self success:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
+		
+		[self makeToast:@"领取奖励申请已提交!"];
+		
+		//完成任务 移除定时器的模型
+		AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+		[app removeTimeTask:_earnMoneyModel.id];
+		
+	} unknown:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
+		
+	} failure:^(NSError *error) {
+		
+	}];
 }
 
 

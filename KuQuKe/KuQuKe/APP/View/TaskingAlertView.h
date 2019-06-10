@@ -12,7 +12,7 @@
 NS_ASSUME_NONNULL_BEGIN
 @class EarnMoneyDetailModel;
 @class APPViewController;
-
+@class MyExclusiveTaskViewController;
 @interface TaskingAlertView : UIView
 
 /** 任务模型 */
@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 //当前视图控制器
 @property (nonatomic, weak) APPViewController *currentVC;
+@property (nonatomic, weak) MyExclusiveTaskViewController *currentVC2;
 
 
 - (void)showAnimation;

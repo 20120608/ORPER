@@ -13,10 +13,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 #define NotificationName_MyExclusiveTaskViewController @"NotificationName_MyExclusiveTaskViewController"
 
+@class MyExclusiveTaskViewController;
 @interface MyExclusiveTaskViewModel : NSObject <UITableViewDelegate,UITableViewDataSource>
 
 //当前视图控制器
-@property (nonatomic, weak) UIViewController *currentVC;
+@property (nonatomic, weak) MyExclusiveTaskViewController *currentVC;
 
 //RACCommand操作：
 //获取任务列表

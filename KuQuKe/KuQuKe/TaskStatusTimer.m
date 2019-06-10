@@ -60,7 +60,6 @@
 		
 		QMWeak(self);
 		dispatch_source_set_event_handler(_timer, ^{
-			NSLog(@"有进入计时器");
 			
 			if (_timeout < -100) {
 				dispatch_suspend(_timer);

@@ -1490,128 +1490,29 @@
 
 
 
-
-
 /**
- 话务通登入
+ 专属任务列表
+ get kuquke.yiyunrj.xyz/task/exclusiveList
+ 
+ 参数	类型	必需/可选	默认	描述
+ time	int	必需	无	时间戳(用于判断请求是否超时)
+ token	string	必需	无	确定来访者身份
+ uid	int	必需	1	用户id
  */
-+ (QMURLSessionTask *)GET_huawutongLogin:(NSDictionary *)params View:(UIView *)view success:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))success unknown:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))unknown failure:(void(^)(NSError *error))failure {
++ (QMURLSessionTask *)GET_exclusiveList:(NSDictionary *)params View:(UIView *)view success:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))success unknown:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))unknown failure:(void(^)(NSError *error))failure {
 	
-	params = @{@"password":@"yckj12345678",@"userName":@"trialorg_demo1"};
-	NSString *url = [NSString stringWithFormat:@"http://hwtapi.shualeduo.com/mobile/auth?clientId=78c555faacc29dd3"];
-//	NSString *url = [NSString stringWithFormat:@"http://hwtapi.shualeduo.com/mobile/auth?clientId=78c555faacc29dd3&password=123456&userName=hytx3_sujihong"];
+	[params setValue:[QMSGeneralHelpers currentTimeStr] forKey:@"time"];
+	[params setValue:GET_USERDEFAULT(USERID) forKey:@"uid"];
+	NSString *token = [QMSGeneralHelpers md5Codesign:params];
+	[params setValue:token forKey:@"token"];
 
+	NSString *url = [NSString stringWithFormat:@"%@%@",@"http://kuquke.yiyunrj.xyz/task/exclusiveList",[QMSGeneralHelpers changeParamsToString:params keySortArray:@[@"time",@"token",@"uid"]]];
 	
-	return [DQMAFNetWork method:POST
-				   withchildUrl:url
-					  andparams:params
-						   view:view
-						 HUDMsg:@"话务通登入"
-						success:^(RequestStatusModel * _Nonnull reqsModel, NSDictionary * _Nonnull dataDic) {
-							if (success) {
-								success(reqsModel,dataDic);
-							}
-						}
-						unknown:^(RequestStatusModel * _Nonnull reqsModel, NSDictionary * _Nonnull dataDic) {
-							if (unknown) {
-								unknown(reqsModel,dataDic);
-							}
-						}
-						failure:^(NSError * _Nonnull error) {
-							if (failure) {
-								failure(error);
-							}
-						}
-					  graceTime:3
-						showHUD:false
-					  showError:false
-				  networkstatus:false
-			   checkLoginStatus:false];
-}
-
-
-/**
- 话务通获取任务
- */
-+ (QMURLSessionTask *)GET_getMember:(NSDictionary *)params View:(UIView *)view success:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))success unknown:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))unknown failure:(void(^)(NSError *error))failure {
-	
-	NSString *url = [NSString stringWithFormat:@"http://hwtapi.shualeduo.com/mobile/member/getMember"];
-	
-	return [DQMAFNetWork method:POST
-				   withchildUrl:url
-					  andparams:params
-						   view:view
-						 HUDMsg:@"话务通个人信息"
-						success:^(RequestStatusModel * _Nonnull reqsModel, NSDictionary * _Nonnull dataDic) {
-							if (success) {
-								success(reqsModel,dataDic);
-							}
-						}
-						unknown:^(RequestStatusModel * _Nonnull reqsModel, NSDictionary * _Nonnull dataDic) {
-							if (unknown) {
-								unknown(reqsModel,dataDic);
-							}
-						}
-						failure:^(NSError * _Nonnull error) {
-							if (failure) {
-								failure(error);
-							}
-						}
-					  graceTime:3
-						showHUD:false
-					  showError:false
-				  networkstatus:false
-			   checkLoginStatus:false];
-}
-
-/**
- 话务通获取任务
- */
-+ (QMURLSessionTask *)GET_huawutonggetTask:(NSDictionary *)params View:(UIView *)view success:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))success unknown:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))unknown failure:(void(^)(NSError *error))failure {
-	
-	NSString *url = [NSString stringWithFormat:@"http://hwtapi.shualeduo.com/mobile/memberTask/getTask"];
-	
-	return [DQMAFNetWork method:POST
-				   withchildUrl:url
-					  andparams:params
-						   view:view
-						 HUDMsg:@"话务通个人信息"
-						success:^(RequestStatusModel * _Nonnull reqsModel, NSDictionary * _Nonnull dataDic) {
-							if (success) {
-								success(reqsModel,dataDic);
-							}
-						}
-						unknown:^(RequestStatusModel * _Nonnull reqsModel, NSDictionary * _Nonnull dataDic) {
-							if (unknown) {
-								unknown(reqsModel,dataDic);
-							}
-						}
-						failure:^(NSError * _Nonnull error) {
-							if (failure) {
-								failure(error);
-							}
-						}
-					  graceTime:3
-						showHUD:false
-					  showError:false
-				  networkstatus:false
-			   checkLoginStatus:false];
-}
-
-
-/**
- 话务通新号码
- */
-+ (QMURLSessionTask *)GET_huawutongNewPhone:(NSDictionary *)params View:(UIView *)view success:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))success unknown:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))unknown failure:(void(^)(NSError *error))failure {
-	
-	params = @{@"appointMobile":@"",@"oldMobile":@"",@"clientId":@"78c555faacc29dd3"};
-
-	NSString *url = [NSString stringWithFormat:@"http://hwtapi.shualeduo.com/mobile/mobile/getMobile/27933/"];
 	return [DQMAFNetWork method:GET
 				   withchildUrl:url
-					  andparams:params
+					  andparams:nil
 						   view:view
-						 HUDMsg:@"话务通新号码"
+						 HUDMsg:@"专属任务列表"
 						success:^(RequestStatusModel * _Nonnull reqsModel, NSDictionary * _Nonnull dataDic) {
 							if (success) {
 								success(reqsModel,dataDic);
@@ -1628,83 +1529,9 @@
 							}
 						}
 					  graceTime:3
-						showHUD:false
-					  showError:false
-				  networkstatus:false
+						showHUD:true
+				  networkstatus:true
 			   checkLoginStatus:false];
 }
-
-
-/**
- 话务通获取标记
- */
-+ (QMURLSessionTask *)GET_huawutonggetTags:(NSDictionary *)params View:(UIView *)view success:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))success unknown:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))unknown failure:(void(^)(NSError *error))failure {
-	
-	NSString *url = [NSString stringWithFormat:@"http://hwtapi.shualeduo.com/mobile/dialog/getTags"];
-	return [DQMAFNetWork method:GET
-				   withchildUrl:url
-					  andparams:params
-						   view:view
-						 HUDMsg:@"话务通获取标记"
-						success:^(RequestStatusModel * _Nonnull reqsModel, NSDictionary * _Nonnull dataDic) {
-							if (success) {
-								success(reqsModel,dataDic);
-							}
-						}
-						unknown:^(RequestStatusModel * _Nonnull reqsModel, NSDictionary * _Nonnull dataDic) {
-							if (unknown) {
-								unknown(reqsModel,dataDic);
-							}
-						}
-						failure:^(NSError * _Nonnull error) {
-							if (failure) {
-								failure(error);
-							}
-						}
-					  graceTime:3
-						showHUD:false
-					  showError:false
-				  networkstatus:false
-			   checkLoginStatus:false];
-}
-
-
-
-/**
- 话务通获取标记详情
- */
-+ (QMURLSessionTask *)GET_huawutonggetCurDateDialLogList:(NSDictionary *)params View:(UIView *)view success:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))success unknown:(void(^)(RequestStatusModel *reqsModel,NSDictionary *dataDic))unknown failure:(void(^)(NSError *error))failure {
-	
-	params = @{@"limit":@"10",@"offset":@"0",@"search":@""};
-
-	NSString *url = [NSString stringWithFormat:@"http://hwtapi.shualeduo.com/mobile/dialog/getCurDateDialLogList"];
-	return [DQMAFNetWork method:GET
-				   withchildUrl:url
-					  andparams:params
-						   view:view
-						 HUDMsg:@"话务通获取标记"
-						success:^(RequestStatusModel * _Nonnull reqsModel, NSDictionary * _Nonnull dataDic) {
-							if (success) {
-								success(reqsModel,dataDic);
-							}
-						}
-						unknown:^(RequestStatusModel * _Nonnull reqsModel, NSDictionary * _Nonnull dataDic) {
-							if (unknown) {
-								unknown(reqsModel,dataDic);
-							}
-						}
-						failure:^(NSError * _Nonnull error) {
-							if (failure) {
-								failure(error);
-							}
-						}
-					  graceTime:3
-						showHUD:false
-					  showError:false
-				  networkstatus:false
-			   checkLoginStatus:false];
-}
-
-
 
 @end

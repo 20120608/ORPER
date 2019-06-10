@@ -47,7 +47,7 @@
 		UILabel *smallTitleLabel = ({
 			UILabel *label = [[UILabel alloc] init];
 			[self addSubview:label];
-			QMLabelFontColorText(label, @"", QMTextColor, 15);
+			QMLabelFontColorText(label, @"", QMSubTextColor, 12);
 			[label mas_makeConstraints:^(MASConstraintMaker *make) {
 				make.left.mas_equalTo(titleLabel.mas_right).offset(2);
 				make.centerY.mas_equalTo(self.mas_centerY);

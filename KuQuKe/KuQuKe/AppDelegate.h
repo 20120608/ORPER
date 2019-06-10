@@ -12,7 +12,10 @@
 #import "APPTaskModel.h"
 #import "EarnMoneyDetailModel.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+#import "WXApi.h"
+#import <TencentOpenAPI/TencentOAuth.h>
+
+@interface AppDelegate : UIResponder <UIApplicationDelegate, WXApiDelegate,TencentSessionDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 

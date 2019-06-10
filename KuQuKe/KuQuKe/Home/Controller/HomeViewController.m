@@ -26,6 +26,8 @@
 #import "CheckOutAliPayViewController.h"//提现功能页面
 #import "H5ActionViewController.h"//webView
 #import "KQKLoginViewController.h"//登录
+#import "H5ActionViewController.h"//客服
+#import <SDWebImage/UIButton+WebCache.h>
 
 @import StoreKit;
 
@@ -46,6 +48,7 @@
 @property (nonatomic,strong  ) NSMutableArray                *listArray;/* 推荐赚钱数据数组 */
 @property (nonatomic,copy    ) NSString                      *ad_url;/* 广告 */
 @property (nonatomic,copy    ) NSString                      *kefu_url;/* 客服 */
+@property (nonatomic,copy    ) NSString                      *kefu_img;/* 客服 */
 
 
 @end
@@ -99,6 +102,41 @@
 		make.bottom.mas_equalTo(self.view.mas_bottom).offset(-TAB_BAR_HEIGHT);
 	}];
 	
+	UIImageView *helpImageView = ({
+		UIImageView *imageView = [[UIImageView alloc] init];
+		[self.view addSubview: imageView];
+		imageView.userInteractionEnabled = true;
+		[imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.right.mas_equalTo(-20);
+			make.size.mas_equalTo(CGSizeMake(50, 50));
+			make.bottom.mas_equalTo(self.view.mas_bottom).offset(-HOME_INDICATOR_HEIGHT-100);
+		}];
+		imageView;
+	});
+	[RACObserve(self, kefu_img) subscribeNext:^(NSString*  _Nullable x) {
+		if (x != nil) {
+			[helpImageView qm_setWithImageURL:[NSURL URLWithString:x] placeholderImage:[UIImage imageNamed:@"placeholderImage"]];
+		}
+	}];
+	
+	UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(helpClick)];
+	[helpImageView addGestureRecognizer:tap];
+	
+}
+
+- (void)helpClick {
+	[KuQuKeNetWorkManager GET_getKefuUrlParams:[NSMutableDictionary new] View:self.view success:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
+		if (dataDic[@"data"][@"url"]) {
+			H5ActionViewController *vc = [[H5ActionViewController alloc] initWithTitle:@"客服"];
+			vc.apartUrl = _kefu_url;
+			
+			[self.navigationController pushViewController:vc animated:true];
+		}
+	} unknown:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
+		
+	} failure:^(NSError *error) {
+		
+	}];
 }
 
 -(void)DIYNavibar {
@@ -140,7 +178,7 @@
 	
 	[navi addSubview:withdrawMoneyButton];
 	withdrawMoneyButton.backgroundColor = UIColor.whiteColor;
-	[withdrawMoneyButton.titleLabel setFont:AdaptedFontSize(13)];
+	[withdrawMoneyButton.titleLabel setFont:kQmFont(13)];
 	[withdrawMoneyButton mas_makeConstraints:^(MASConstraintMaker *make) {
 		make.right.mas_equalTo(navi.mas_right).offset(-15);
 		make.height.mas_equalTo(AdaptedWidth(22));
@@ -185,6 +223,7 @@
 	
 	[KuQuKeNetWorkManager GET_getKefuUrlParams:[NSMutableDictionary new] View:self.view success:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
 		self.kefu_url = dataDic[@"data"][@"url"];
+		self.kefu_img = dataDic[@"data"][@"img"];
 		
 	} unknown:^(RequestStatusModel *reqsModel, NSDictionary *dataDic) {
 		

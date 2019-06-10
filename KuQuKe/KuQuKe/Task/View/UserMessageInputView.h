@@ -9,6 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "HXPhotoPicker.h"
 #import "SDWebImageManager.h"
+#import "HXCollectionViewCell.h"
+#import "HXModel.h"
+#import "HXPhotoSubViewCell.h"
+
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -24,6 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
  开始任务
  */
 - (void)getCodeWithUserMessageInputView:(UserMessageInputView *)userMessageInputView code:(NSString *)code phone:(NSString *)phone name:(NSString *)name;
+
 
 @end
 
@@ -57,8 +62,7 @@ NS_ASSUME_NONNULL_BEGIN
 /** 介绍 */
 @property (nonatomic,strong) UILabel     *msgLabel;
 
-/** 数据 */
-@property(nonatomic,strong) NSArray <HXPhotoModel *> *imageArray;
+- (instancetype)initWithStepModels:(NSArray *)imageArray;
 
 @end
 
